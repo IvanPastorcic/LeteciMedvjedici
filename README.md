@@ -1,2 +1,2 @@
-# Programsko-inzenjerstvo
+# Programsko inženjerstvo
 FER Programsko inženjerstvo 
