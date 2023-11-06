@@ -1,5 +1,33 @@
 # Programsko inženjerstvo
-FER Programsko inženjerstvo 
+> Ime projekta u naslovu ima cilj opisati namjenu projekta te pomoći u podizanju početnog interesa za projekt prezentirajući osnovnu svrhu projekta.
+> Isključivo ovisi o Vama!
+> 
+> Naravno, nijedan predložak nije idealan za sve projekte jer su potrebe i ciljevi različiti. Ne bojte se naglasiti Vaš cilj u ovoj početnoj stranici projekta, podržat ćemo ga bez obzira usredotočili se Vi više na tenologiju ili marketing.
+> 
+> Zašto ovaj dokument? Samo manji dio timova je do sada propoznao potrebu (a i meni je lakše pratiti Vaš rad).  
+
+# Opis projekta
+Ovaj projekt je reultat timskog rada u sklopu projeknog zadatka kolegija [Programsko inženjerstvo](https://www.fer.unizg.hr/predmet/proinz) na Fakultetu elektrotehnike i računarstva Sveučilišta u Zagrebu. 
+
+Kratko opisati cilj Vašeg projekta. Vaša motivacija?  (Napomena: odgovor nije »Zato što je to bio zadatak i nismo imali ideje za drugo.«). Koji problem rješavate?
+> Obzirom da je ovo zadani projekt navedite i što želite/jeste novo  naučili.
+
+> Dobro izrađen opis omogućuje vam da pokažete svoj rad drugim programerima, kao i potencijalnim poslodavcima. Ne samo da prvi dojam na stranici opisa često razlikuje dobar projekt od lošeg projekta već i predstavlja dobru praksu koju morate savladati.
+
+# Funkcijski zahtjevi
+> Navedite ključne zahtjeve Vašeg projekta.
+
+
+# Tehnologije
+
+#Instalcija
+# Članovi tima 
+> Popis članova tima/linkovi/ glavni doprinos
+>
+
+# Kontribucije
+>Pravila ovise o organizaciji tima i su često izdvojena u CONTRIBUTING.md
+
 
 
 # 📝 Kodeks ponašanja [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
