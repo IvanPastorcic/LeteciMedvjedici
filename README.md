@@ -24,52 +24,74 @@ FUNKCIJSKI ZAHTJEVI APLIKACIJE
 1.	Aplikacija mora omogućiti lociranje prijava na interaktivnoj mapi (OpenStreetMap)
 2.	Aplikacija mora omogućiti registraciju i login korisnika (autentifikacija pomoću OAuth 2.0)
 
-GRAĐANI
+**GRAĐANI**
+
 3.	Aplikacija građanima omogućava prijavu informacija o prirodnim nepogodama
-    •	Vrsta nepogode
-    •	Lokacija nepogode
-    •	Kratki opis situacije
-    •	Fotografije – opcionalno
-    •	Geografske koordinate -  opcionalno
+   - •	Vrsta nepogode
+   - •	Lokacija nepogode
+   - •	Kratki opis situacije
+   - •	Fotografije – opcionalno
+   - •	Geografske koordinate -  opcionalno
+
 4.	Aplikacija građanima omogućuje praćenje statusa njihovih prijava
     4.1.	 Promjena statusa može se dojaviti putem e-maila ili push notifikacija (FCM ili Twillio)
+
 5.	Aplikacija građanima omogućuje da dobivaju obavijesti o novim prijavljenim nepogodama putem e-maila ili push notifikacija (FCM ili Twillio)
+
     5.1.	 Obavijesti temeljem lokacija odabranih iz ponuđene liste
     5.2.	 Obavijesti temeljem trenutne lokacije korisnika
-6.	Aplikacija građanima omogućuje pristup važnim informacijama:
-    6.1.	 O sigurnosnim mjerama
-    6.2.	 O najbližim skloništima
-    6.3.	 O resursima u blizini
-7.	Aplikacija omogućava slanje anonimne prijave (bez registracije korisnika)
-    7.1.	 Status anonimne prijave može se pratiti putem jedinstvenog identifikacijskog broja
-8.	Aplikacija omogućava brz pronalazak uputa za pripremu i reakciju u slučaju ekstremnih prirodnih nepogoda u skladu s trenutnim normama
-9.	Aplikacija građanima omogućava prijavu svojih potreba
-    •	Za hranom
-    •	Za smještajem
-    •	Za medicinskom pomoći
 
-VLASTI
+6.	Aplikacija građanima omogućuje pristup važnim informacijama:
+
+    6.1.	 O sigurnosnim mjerama
+
+  	6.2.	 O najbližim skloništima
+
+  	6.3.	 O resursima u blizini
+
+7.	Aplikacija omogućava slanje anonimne prijave (bez registracije korisnika)
+
+    7.1.	 Status anonimne prijave može se pratiti putem jedinstvenog identifikacijskog broja
+
+8.	Aplikacija omogućava brz pronalazak uputa za pripremu i reakciju u slučaju ekstremnih prirodnih nepogoda u skladu s trenutnim normama
+
+9.	Aplikacija građanima omogućava prijavu svojih potreba
+   - •	Za hranom
+   - •	Za smještajem
+   - •	Za medicinskom pomoći
+
+**VLASTI**
+
 10.	Aplikacija vlastima omogućava pristup svim prijavama
+
 11.	Aplikacija omogućava vlastima generiranje statističkih izvještaja
-    •	Broj prijava
-    •	Vrste nepogoda
-    •	Učinkovitost odgovora na krize
+   - •	Broj prijava
+   - •	Vrste nepogoda
+   - •	Učinkovitost odgovora na krize
     
-HUMANITARNE ORGANIZACIJE
+**HUMANITARNE ORGANIZACIJE**
+
 12.	Aplikacija humanitarnim organizacijama omogućava pregled o potrebama građana
-    •	Potreba za smještajem
-    •	Potreba za hranom
-    •	Potreba za medicinskom pomoći
+   - •	Potreba za smještajem
+   - •	Potreba za hranom
+   - •	Potreba za medicinskom pomoći
+
 13.	Aplikacija omogućuje dodavanje informacija o dostupnim resursima
+
 14.	Aplikacija omogućuje dodavanje informacija o akcijama pomoći
 
-ADMINISTRATOR
+**ADMINISTRATOR**
+
 15.	Aplikacija administratorima omogućava pregled svih prijava
+
 16.	Aplikacija administratorima omogućava promjenu statusa prijave
-    •	Odobravanje prijava
-    •	Odbijanje prijava
+   - •	Odobravanje prijava
+   - •	Odbijanje prijava
+
 17.	Aplikacija administratorima omogućava povezivanje sličnih prijava
+
 18.	Aplikacija omogućava predlaganje dodatnih resursa
+
 19.	Aplikacija omogućava predlaganje dodatnih mjera
 
 NEFUNKCIJSKI ZAHTJEVI
