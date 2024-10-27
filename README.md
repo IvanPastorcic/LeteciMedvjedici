@@ -1,30 +1,115 @@
 # Programsko inženjerstvo
 
-> Ime projekta u naslovu ima cilj opisati namjenu projekta te pomoći u podizanju početnog interesa za projekt prezentirajući osnovnu svrhu projekta.
-> Isključivo ovisi o Vama!
-> 
-> Naravno, nijedan predložak nije idealan za sve projekte jer su potrebe i ciljevi različiti. Ne bojte se naglasiti Vaš cilj u ovoj početnoj stranici projekta, podržat ćemo ga bez obzira usredotočili se Vi više na tenologiju ili marketing.
-> 
-> Zašto ovaj dokument? Samo manji dio timova je do sada propoznao potrebu (a i meni je lakše pratiti Vaš rad).  
 
 # Opis projekta
 Ovaj projekt je reultat timskog rada u sklopu projeknog zadatka kolegija [Programsko inženjerstvo](https://www.fer.unizg.hr/predmet/proinz) na Fakultetu elektrotehnike i računarstva Sveučilišta u Zagrebu. 
 
-Kratko opisati cilj Vašeg projekta. Vaša motivacija?  (Napomena: odgovor nije »Zato što je to bio zadatak i nismo imali ideje za drugo.«). Koji problem rješavate?
-> Obzirom da je ovo zadani projekt navedite i što želite/jeste novo  naučili.
+Cilj ovog studentskog timskog projekta je osmisliti i razviti aplikaciju koja omogućava brzu reakciju i učinkovitiju koordinaciju između građana, vlasti i humanitarnih organizacija. Rješavamo problem spore i loše komunikacije između vlasti i javnosti u kriznim situacijama. Želimo olakšati dobivanje pomoći i relevantnih informacija unesrećnima. 
 
-> Dobro izrađen opis omogućuje vam da pokažete svoj rad drugim programerima, kao i potencijalnim poslodavcima. Ne samo da prvi dojam na stranici opisa često razlikuje dobar projekt od lošeg projekta već i predstavlja dobru praksu koju morate savladati.
+Ovim projektom želimo usavršiti svoja znanja i vještine izrade programske potpore, sposobnosti rada u timu i kolegijalnost. 
+
 
 # Funkcijski zahtjevi
-> Navedite ključne zahtjeve Vašeg projekta.
+FUNKCIJSKI ZAHTJEVI APLIKACIJE
+1.	Aplikacija mora omogućiti lociranje prijava na interaktivnoj mapi (OpenStreetMap)
+2.	Aplikacija mora omogućiti registraciju i login korisnika (autentifikacija pomoću OAuth 2.0)
+
+**GRAĐANI**
+
+3.	Aplikacija građanima omogućava prijavu informacija o prirodnim nepogodama
+   - 	Vrsta nepogode
+   - 	Lokacija nepogode
+   - 	Kratki opis situacije
+   - 	Fotografije – opcionalno
+   - 	Geografske koordinate -  opcionalno
+
+4.	Aplikacija građanima omogućuje praćenje statusa njihovih prijava
+    4.1.	 Promjena statusa može se dojaviti putem e-maila ili push notifikacija (FCM ili Twillio)
+
+5.	Aplikacija građanima omogućuje da dobivaju obavijesti o novim prijavljenim nepogodama putem e-maila ili push notifikacija (FCM ili Twillio)
+
+    5.1.	 Obavijesti temeljem lokacija odabranih iz ponuđene liste
+    5.2.	 Obavijesti temeljem trenutne lokacije korisnika
+
+6.	Aplikacija građanima omogućuje pristup važnim informacijama:
+
+    6.1.	 O sigurnosnim mjerama
+
+  	 6.2. O najbližim skloništima
+
+  	 6.3.	 O resursima u blizini
+
+7.	Aplikacija omogućava slanje anonimne prijave (bez registracije korisnika)
+
+    7.1.	 Status anonimne prijave može se pratiti putem jedinstvenog identifikacijskog broja
+
+8.	Aplikacija omogućava brz pronalazak uputa za pripremu i reakciju u slučaju ekstremnih prirodnih nepogoda u skladu s trenutnim normama
+
+9.	Aplikacija građanima omogućava prijavu svojih potreba
+   - 	Za hranom
+   - 	Za smještajem
+   - 	Za medicinskom pomoći
+
+**VLASTI**
+
+10.	Aplikacija vlastima omogućava pristup svim prijavama
+
+11.	Aplikacija omogućava vlastima generiranje statističkih izvještaja
+   - 	Broj prijava
+   - 	Vrste nepogoda
+   - 	Učinkovitost odgovora na krize
+    
+**HUMANITARNE ORGANIZACIJE**
+
+12.	Aplikacija humanitarnim organizacijama omogućava pregled o potrebama građana
+   - 	Potreba za smještajem
+   - 	Potreba za hranom
+   - 	Potreba za medicinskom pomoći
+
+13.	Aplikacija omogućuje dodavanje informacija o dostupnim resursima
+
+14.	Aplikacija omogućuje dodavanje informacija o akcijama pomoći
+
+**ADMINISTRATOR**
+
+15.	Aplikacija administratorima omogućava pregled svih prijava
+
+16.	Aplikacija administratorima omogućava promjenu statusa prijave
+   - 	Odobravanje prijava
+   - 	Odbijanje prijava
+
+17.	Aplikacija administratorima omogućava povezivanje sličnih prijava
+
+18.	Aplikacija omogućava predlaganje dodatnih resursa
+
+19.	Aplikacija omogućava predlaganje dodatnih mjera
+
+NEFUNKCIJSKI ZAHTJEVI
+1.	Aplikacija slijedi Opću uredbu o zaštiti osobnih podataka
+2.	Aplikacija mora biti responzivna na različitim uređajima
+3.	Aplikacija mora biti usklađena sa standardima pristupačnosti
+
 
 
 # Tehnologije
 
-#Instalcija
+Za frontend ćemo koristiti React.js, a za backend Spring Boot. Deployment ćemo raditi u Renderu. 
+
+Baza podataka - postgreSQL
+Komunikacija - Discord
+Dizajn - Figma
+UML - Astah
+Testiranje - Postman
+
 # Članovi tima 
-> Popis članova tima/linkovi/ glavni doprinos
->
+> Elma Vuran - voditelj/backend
+> Lana Zekušić - frontend
+> Ivan Pastorčić - backend, baza
+> Natali Žegarac - backend
+> Silvija Rade - frontend, dizajn, dokumentacija
+> Krešimir Horvat - frontend
+> Iva Sulić - frontend
+> 
 
 # Kontribucije
 >Pravila ovise o organizaciji tima i su često izdvojena u CONTRIBUTING.md
@@ -35,18 +120,7 @@ Kratko opisati cilj Vašeg projekta. Vaša motivacija?  (Napomena: odgovor nije 
 Kao studenti sigurno ste upoznati s minimumom prihvatljivog ponašanja definiran u [KODEKS PONAŠANJA STUDENATA FAKULTETA ELEKTROTEHNIKE I RAČUNARSTVA SVEUČILIŠTA U ZAGREBU](https://www.fer.hr/_download/repository/Kodeks_ponasanja_studenata_FER-a_procisceni_tekst_2016%5B1%5D.pdf), te dodatnim naputcima za timski rad na predmetu [Programsko inženjerstvo](https://wwww.fer.hr).
 Očekujemo da ćete poštovati [etički kodeks IEEE-a](https://www.ieee.org/about/corporate/governance/p7-8.html) koji ima važnu obrazovnu funkciju sa svrhom postavljanja najviših standarda integriteta, odgovornog ponašanja i etičkog ponašanja u profesionalnim aktivnosti. Time profesionalna zajednica programskih inženjera definira opća načela koja definiranju  moralni karakter, donošenje važnih poslovnih odluka i uspostavljanje jasnih moralnih očekivanja za sve pripadnike zajenice.
 
-Kodeks ponašanja skup je provedivih pravila koja služe za jasnu komunikaciju očekivanja i zahtjeva za rad zajednice/tima. Njime se jasno definiraju obaveze, prava, neprihvatljiva ponašanja te  odgovarajuće posljedice (za razliku od etičkog kodeksa). U ovom repozitoriju dan je jedan od široko prihvačenih kodeks ponašanja za rad u zajednici otvorenog koda.
->### Poboljšajte funkcioniranje tima:
->* definirajte načina na koji će rad biti podijeljen među članovima grupe
->* dogovorite kako će grupa međusobno komunicirati.
->* ne gubite vrijeme na dogovore na koji će grupa rješavati sporove primjenite standarde!
->* implicitno podrazmijevamo da će svi članovi grupe slijediti kodeks ponašanja.
- 
->###  Prijava problema
->Najgore što se može dogoditi je da netko šuti kad postoje problemi. Postoji nekoliko stvari koje možete učiniti kako biste najbolje riješili sukobe i probleme:
->* Obratite mi se izravno [e-pošta](mailto:vlado.sruk@fer.hr) i  učinit ćemo sve što je u našoj moći da u punom povjerenju saznamo koje korake trebamo poduzeti kako bismo riješili problem.
->* Razgovarajte s vašim asistentom jer ima najbolji uvid u dinamiku tima. Zajedno ćete saznati kako riješiti sukob i kako izbjeći daljnje utjecanje u vašem radu.
->* Ako se osjećate ugodno neposredno razgovarajte o problemu. Manje incidente trebalo bi rješavati izravno. Odvojite vrijeme i privatno razgovarajte s pogođenim članom tima te vjerujte u iskrenost.
+Kodeks ponašanja skup je provedivih pravila koja služe za jasnu komunikaciju očekivanja i zahtjeva za rad zajednice/tima. Njime se jasno definiraju obaveze, prava, neprihvatljiva ponašanja te  odgovarajuće posljedice (za razliku od etičkog kodeksa).
 
 # 📝 Licenca
 Važeča (1)
@@ -77,3 +151,5 @@ Orginal [![cc0-1.0][cc0-1.0-shield]][cc0-1.0]
 [cc0-1.0-shield]: https://img.shields.io/badge/License-CC0--1.0-lightgrey.svg
 
 ### Reference na licenciranje repozitorija
+
+
