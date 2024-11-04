@@ -1,10 +1,15 @@
 package hr.fer.progi.backend.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,6 +23,9 @@ public class Settlement {
 	@Column
 	private String settlementName;
 
+		
+	 @OneToMany(mappedBy = "settlement", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	 private List<NaturalDisaster> naturalDisasters;
 	
 	public Long getSettlementId() {
 		return settlementId;
