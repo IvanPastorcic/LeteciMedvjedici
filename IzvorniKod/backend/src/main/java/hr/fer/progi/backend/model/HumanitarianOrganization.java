@@ -1,30 +1,35 @@
 package hr.fer.progi.backend.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "HumanitarianOrganization")
 public class HumanitarianOrganization {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // or AUTO or SEQUENCE or TABLE
-	private Long id;
+	private Long idOrg;
+	
+	@Column(name = "organizationName")
 	private String organizationName;
 
 	public HumanitarianOrganization(Long id, String organizationName) {
 		super();
-		this.id = id;
+		this.idOrg = id;
 		this.organizationName = organizationName;
 	}
 
 	public Long getId() {
-		return id;
+		return idOrg;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this.idOrg = id;
 	}
 
 	public String getOrganizationName() {
@@ -37,7 +42,7 @@ public class HumanitarianOrganization {
 
 	@Override
 	public String toString() {
-		return "HumanitarianOrganization{" + "id=" + id + ", organizationName='" + organizationName + '\'' + '}';
+		return "HumanitarianOrganization{" + "id=" + idOrg + ", organizationName='" + organizationName + '\'' + '}';
 	}
 
 	@Override
@@ -49,12 +54,12 @@ public class HumanitarianOrganization {
 
 		HumanitarianOrganization that = (HumanitarianOrganization) o;
 
-		return id != null ? id.equals(that.id) : that.id == null;
+		return idOrg != null ? idOrg.equals(that.idOrg) : that.idOrg == null;
 	}
 
 	@Override
 	public int hashCode() {
-		return id != null ? id.hashCode() : 0;
+		return idOrg != null ? idOrg.hashCode() : 0;
 	}
 
 }
