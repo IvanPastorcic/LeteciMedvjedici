@@ -1,17 +1,11 @@
 package hr.fer.progi.backend.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
 
 import hr.fer.progi.backend.model.Enum.DisasterType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 
 @Entity
-@Table("NATURALDISASTER")
+@Table(name = "NATURAL_DISASTER")
 public class NaturalDisaster {
 	
 	@Id
