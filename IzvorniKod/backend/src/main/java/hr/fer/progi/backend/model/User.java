@@ -1,24 +1,24 @@
 package hr.fer.progi.backend.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 
 @Entity
-@Table("USER")
+@Table(name = "USER")
 public class User {
-	
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int userId;
-	
+	private Long id;
+
+	@Column
 	private String email;
-	
+
+	@Column
 	private String password;
-	
+
+	@Column
 	private String username;
 
 	public User() {
@@ -32,13 +32,7 @@ public class User {
 		this.username = username;
 	}
 	
-	public int getUserId() {
-		return userId;
-	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
 
 	public String getEmail() {
 		return email;
@@ -63,6 +57,9 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
-	
+
+
+	public void setId(Long id) {this.id = id;}
+
+	public Long getId() { return id;}
 }
