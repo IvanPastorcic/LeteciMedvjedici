@@ -26,7 +26,10 @@ public class NaturalDisaster {
 		this.disasterType = disasterType;
 	}
 
-
+	@ManyToOne
+	@JoinColumn(name = "SETTLEMENT_ID", nullable = false)
+	private Settlement settlement;
+	
 	public int getDisasterId() {
 		return disasterId;
 	}
