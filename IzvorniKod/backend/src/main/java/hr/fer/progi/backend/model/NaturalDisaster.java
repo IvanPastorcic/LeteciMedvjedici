@@ -3,13 +3,12 @@ package hr.fer.progi.backend.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+import hr.fer.progi.backend.model.Enum.DisasterType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table("NATURALDISASTER")
@@ -17,46 +16,40 @@ public class NaturalDisaster {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idNepogoda;
+	private int disasterId;
 	
-	@NotEmpty
-	private String vrstaNepogoda;
+	@Enumerated(EnumType.STRING)
+    private DisasterType disasterType;
 	
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "settlement_id", nullable = false)
-	private Settlement settlement;
 
-
-	public int getIdNepogoda() {
-		return idNepogoda;
+    public NaturalDisaster() {
+    	
+    }
+    
+	public NaturalDisaster(int disasterId, DisasterType disasterType) {
+		super();
+		this.disasterId = disasterId;
+		this.disasterType = disasterType;
 	}
 
 
-	public void setIdNepogoda(int idNepogoda) {
-		this.idNepogoda = idNepogoda;
+	public int getDisasterId() {
+		return disasterId;
 	}
 
 
-	public String getVrstaNepogoda() {
-		return vrstaNepogoda;
+	public void setDisasterId(int disasterId) {
+		this.disasterId = disasterId;
 	}
 
 
-	public void setVrstaNepogoda(String vrstaNepogoda) {
-		this.vrstaNepogoda = vrstaNepogoda;
+	public DisasterType getDisasterType() {
+		return disasterType;
 	}
 
 
-	public Settlement getSettlement() {
-		return settlement;
+	public void setDisasterType(DisasterType disasterType) {
+		this.disasterType = disasterType;
 	}
 
-
-	public void setSettlement(Settlement settlement) {
-		this.settlement = settlement;
-	}
-	
-	
-	
 }
