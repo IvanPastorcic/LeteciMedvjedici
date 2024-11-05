@@ -1,7 +1,6 @@
 .Login {
     flex: 1;
     max-width: 300px;
-    padding: 20px;
     box-sizing: border-box;
 }
 
@@ -16,9 +15,9 @@ label{
 }
 
 .FormRow input {
-    width: 100%; /* Polje za unos koristi cijelu širinu unutar FormRow */
-    padding: 3px; /* Dodaje padding za veću visinu polja */
-    box-sizing: border-box; /* Osigurava da padding ne prelazi zadanu širinu */
+    width: 100%; 
+    padding: 3px; 
+    box-sizing: border-box; 
 }
 
 .PasswordRow {
@@ -40,17 +39,22 @@ label{
 
 button {
     width: 100%; 
-    padding: 4px; 
-    font-size: 1em; /* Veći font za bolju čitljivost */
-    background-color: #a9aeb1; /* Boja pozadine gumba */
-    color: white; /* Boja teksta gumba */
-    cursor: pointer; /* Promjena kursora na rukicu */
-    transition: background-color 0.2s; /* Efekt prelaska za promjenu boje */
+    padding: 7px; 
+    font-size: 1em; 
+    background-color: #a9aeb1; 
+    color: white; 
+    cursor: pointer; 
+    transition: background-color 0.2s;
     margin-top: 8px;
     border-radius: 3px;
-    border-color: black;
+    border: none;
 }
 
 button:hover {
     background-color: #c51717; 
+}
+
+.separator{
+    padding-top: 8px;
+    color: #8b9094;
 }

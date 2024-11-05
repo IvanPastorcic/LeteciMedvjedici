@@ -15,17 +15,15 @@
 
 
 .Anonymous button {
-    padding: 5px 10px;               /* Manji unutarnji razmak unutar gumba */
-    border: none;                    /* Uklanja granicu */
-    border-radius: 5px;              /* Zaobljeni kutovi za gumb */
-    background-color:rgb(78, 78, 81); 
-    color: white;                    /* Bijela boja teksta na gumbu */
-    display: inline-block;           /* Postavljanje gumba kao inline-block za bolju kontrolu širine */
-    width: 300px;                     /* Automatska širina gumba */
+    padding: 10px 10px;               
+    border: none;                    
+    background-color: #c51717;                  
+    display: inline-block;           
+    width: 300px;                     
     margin-left: auto;
     margin-right: 5px;
 }
 
 .Anonymous button:hover{
-    background-color: #c51717;
+    background-color:#9f1717;
 }

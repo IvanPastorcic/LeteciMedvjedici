@@ -15,19 +15,42 @@ function RegisterForm(props){
         return emailRegex.test(email);
     }
 
-    function validateUsername(username){
-        return username.length >= 3;
+    function validateUsername(username) {
+        if (username.length <= 3) {
+            return { isValid: false, error: "Username must be longer than 3 characters." };
+        }
+        
+        const startsWithLetter = /^[a-zA-Z]/.test(username); 
+        if (!startsWithLetter) {
+            return { isValid: false, error: "Username must start with a letter." };
+        }
+    
+        return { isValid: true }; 
     }
 
     function validatePassword(password) {
         if (password.length <= 8) {
-            return false;
+            return { isValid: false, error: "Password must be longer than 8 characters." };
         }
+    
         const hasUpperCase = /[A-Z]/.test(password);
+        if (!hasUpperCase) {
+            return { isValid: false, error: "Password must contain at least one uppercase letter." };
+        }
+    
+        const hasLowerCase = /[a-z]/.test(password);  
+        if (!hasLowerCase) {
+            return { isValid: false, error: "Password must contain at least one lowercase letter." };
+        }
+    
         const hasNumber = /[0-9]/.test(password);
-        return hasUpperCase && hasNumber;
+        if (!hasNumber) {
+            return { isValid: false, error: "Password must contain at least one number." };
+        }
+    
+        return { isValid: true };  
     }
-
+    
     function onSubmit(e){
         e.preventDefault();
         setError("");
@@ -37,13 +60,15 @@ function RegisterForm(props){
             return;
         }
 
-        if (!validateUsername(registerForm.username)) {
-            setError("Unacceptable username");
+        const usernameValidation = validateUsername(registerForm.username);
+        if (!usernameValidation.isValid) {
+            setError(usernameValidation.error);
             return;
         }
 
-        if (!validatePassword(registerForm.password)) {
-            setError("Unacceptable password");
+        const passwordValidation = validatePassword(registerForm.password);
+        if (!passwordValidation.isValid) {
+            setError(passwordValidation.error);
             return;
         }
 
@@ -75,61 +100,70 @@ function RegisterForm(props){
     }
 
     return (
-        <div className="RegisterForm">
-        <form onSubmit={onSubmit}>
-            <h3>Register</h3>
-            <div>
-                <label>e-mail</label>
-                <input 
-                    type="email" 
-                    name="email" 
-                    value={registerForm.email} 
-                    onChange={onChange} 
-                />
-            </div>
-            <div>
-                <label>username</label>
-                <input 
-                    type="text" 
-                    name="username" 
-                    value={registerForm.username} 
-                    onChange={onChange} 
-                />
-            </div>
-            <div>
-                <label>password</label>
-                <input 
-                    type="password" 
-                    name="password" 
-                    value={registerForm.password} 
-                    onChange={onChange} 
-                />
-            </div>
-            <div>
-                <label>repeat your password</label>
-                <input 
-                    type="password" 
-                    name="repeatedPassword" 
-                    value={registerForm.repeatedPassword} 
-                    onChange={onChange} 
-                />
-            </div>
-            {error && <p style={{ color: "red" }}>{error}</p>}
+        <div className="register-container">
+            <h3 className="form-title">Register</h3>
+    
+            <div className="register-form">
+                <form onSubmit={onSubmit}>
+                    <div>
+                        <label>e-mail</label>
+                        <input 
+                            type="email" 
+                            name="email" 
+                            value={registerForm.email} 
+                            onChange={onChange} 
+                        />
+                    </div>
+                    <div>
+                        <label>username</label>
+                        <input 
+                            type="text" 
+                            name="username" 
+                            value={registerForm.username} 
+                            onChange={onChange} 
+                        />
+                    </div>
+                    <div>
+                        <label>password</label>
+                        <input 
+                            type="password" 
+                            name="password" 
+                            value={registerForm.password} 
+                            onChange={onChange} 
+                        />
+                    </div>
+                    <div>
+                        <label>repeat your password</label>
+                        <input 
+                            type="password" 
+                            name="repeatedPassword" 
+                            value={registerForm.repeatedPassword} 
+                            onChange={onChange} 
+                        />
+                    </div>
 
-            <div className="separator">
-                <hr />
-                <span>or</span>
-                <hr />
+                    {error && <p style={{ color: "red",
+                                        fontSize: "12px",
+                                        textAlign: "center"
+                     }}>{error}</p>}
+
+                    <div className="separator">
+                        <hr />
+                        <span>or</span>
+                        <hr />
+                    </div>
+
+                    <button type="submit" className="google-button">Use your google login</button>
+                </form>
+
+                <div className="create-account">
+                    <p>All set? Click 'create account' <br /> and wait for confirmation.</p>
+                    <button type="button" className="create-button" 
+                        onClick={onSubmit}>create account</button>
+                </div>
             </div>
-
-            <button type="submit">Use your google login</button>
-        </form>
-
-        <div className="create-account">
-            <p>All set? Click 'create account' and wait for confirmation.</p>
-            <button type = "submit" className="create-button">create account</button>
-        </div>
     </div>
+
     );
 }
 

@@ -1,39 +1,41 @@
 .FormContainer {
   display: flex;
-  justify-content: space-between; /* Razmak između Login i Register */
-  align-items: center;        /* Poravnanje na vrh */
-  gap: 20px;                      /* Razmak između Login i Register */
+  justify-content: center;       
+  align-items: flex-start;
+  gap: 25px;                     
   width: 100%;
-  max-width: 800px;               /* Maksimalna širina kontejnera */
-  margin: 0 auto;                 /* Centriraj kontejner na stranici */
+  max-width: 780px;              
+  margin: 20px auto;                 
   padding: 20px; 
+  background-color: #f9f9f9; 
+  border: 1px solid #ccc; 
+  border-radius: 5px;
 }
 
 .Anonymous {
-  margin-top: 20px; /* Razmak između FormContainer i Anonymous sekcije */
-  text-align: center; /* Centriranje teksta unutar Anonymous komponente */
-  width: 100%; /* Širina do 100% da zauzme cijelu širinu ispod formi */
+  margin-top: 20px; 
+  text-align: center; 
+  width: 100%; 
 }
 
 .Separator {
-  border-left: 2px solid rgb(78, 78, 81); /* Linija između Login i Register */
-  height: 350px;               /* Visina separatora, prilagodite prema potrebi */
-  margin: 0 20px;              /* Horizontalni razmak */
+  border-left: 2px solid #a9aeb1; 
+  height: 350px;              
+  margin: 0 20px;             
 }
 
 .Register {
-  flex: 1;           /* Omogućava da obje komponente zauzimaju isti prostor */
-  max-width: 300px;  /* Podesite širinu komponenti */
-  padding: 20px;
+  flex: 1;           
   box-sizing: border-box;
-  margin-left: 20px;
+  padding-bottom: 100px;
+  max-width: 300px;
+  padding-left: 25px;
 }
 
 .Login {
   flex: 1;
-  max-width: 300px;
-  padding: 20px;
   box-sizing: border-box;
+  padding-right: 20px;
 }
 
 
