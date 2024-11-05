@@ -15,8 +15,27 @@ function Login(props){
         return emailRegex.test(email);
     }
 
-    function validatePassword(password){
-        return password.length >= 8;
+    function validatePassword(password) {
+        if (password.length <= 8) {
+            return { isValid: false, error: "Password must be longer than 8 characters." };
+        }
+    
+        const hasUpperCase = /[A-Z]/.test(password);
+        if (!hasUpperCase) {
+            return { isValid: false, error: "Password must contain at least one uppercase letter." };
+        }
+    
+        const hasLowerCase = /[a-z]/.test(password);  
+        if (!hasLowerCase) {
+            return { isValid: false, error: "Password must contain at least one lowercase letter." };
+        }
+    
+        const hasNumber = /[0-9]/.test(password);
+        if (!hasNumber) {
+            return { isValid: false, error: "Password must contain at least one number." };
+        }
+    
+        return { isValid: true };  
     }
 
     function onSubmit(e){
@@ -28,8 +47,9 @@ function Login(props){
             return;
         }
 
-        if (!validatePassword(loginForm.password)) {
-            setError("Incorrect password");
+        const passwordValidation = validatePassword(loginForm.password);
+        if (!passwordValidation.isValid) {
+            setError(passwordValidation.error);
             return;
         }
 
@@ -65,7 +85,12 @@ function Login(props){
                     </div>
                     <input name="password" type="password" onChange={onChange} value={loginForm.password}/>
                 </div>
-                {error && <div className="Error">{error}</div>}
+
+                 {error && <p style={{ color: "red",
+                                        fontSize: "14px",
+                                        textAlign: "center"
+                     }}>{error}</p>}
+                
                 <button type="submit">Log in</button>
 
                 <div className="separator">

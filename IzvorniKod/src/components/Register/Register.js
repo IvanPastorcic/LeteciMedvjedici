@@ -18,9 +18,13 @@ function Register(props){
 
     return (
         <div className="Register">
-        <h3>Don't have an account yet?</h3>
-        {error && <p className="error">{error}</p>} {/* Prikaz greške */}
-        <button onClick={() => navigate('/register')}>Register now</button> 
+            <h2>Register</h2>
+            <div className="register-content">
+                <p>Don't have an account yet?</p>
+                {error && <p className="error">{error}</p>} {/* Prikaz greške */}
+                <button className="register-button" onClick={() => navigate('/register')}>Register now</button> 
+            </div>
+        
     </div>
     )
 }

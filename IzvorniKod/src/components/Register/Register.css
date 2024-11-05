@@ -1,6 +1,23 @@
-.Register {
-    flex: 1;            
-    max-width: 300px;   
-    padding: 20px;
-    box-sizing: border-box;
+
+.register-button {
+    background-color: #c51717;
+    color: white;           
+    border: none;          
+    padding: 10px 15px;   
+    cursor: pointer;      
+    transition: background-color 0.3s; 
+}
+
+.register-button:hover {
+    background-color: #9f1717;
+}
+
+.register-content {
+    display: flex;
+    justify-content: center;        
+    align-items: center;        
+    height: 100%;                  
+    flex-direction: column;        
+    text-align: center;            
+    margin-top: 100px; 
 }
