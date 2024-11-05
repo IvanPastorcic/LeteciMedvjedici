@@ -4,8 +4,8 @@ package hr.fer.progi.backend.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "USER")
-public class User {
+@Table(name = "APPUSER")
+public class AppUser {
 
 
 	@Id
@@ -15,17 +15,21 @@ public class User {
 	@Column
 	private String email;
 
+
+	/*TODO: skuzit kako spremamo password*/
 	@Column
 	private String password;
+
+
 
 	@Column
 	private String username;
 
-	public User() {
+	public AppUser() {
 		
 	}
 	
-	public User(String email, String password, String username) {
+	public AppUser(String email, String password, String username) {
 		super();
 		this.email = email;
 		this.password = password;

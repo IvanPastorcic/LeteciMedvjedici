@@ -2,43 +2,44 @@ package hr.fer.progi.backend.model;
 
 import java.sql.Date;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
-@Table("REPORT")
+@Table(name = "REPORT")
 public class Report {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reportId;
 
-    @NotEmpty
+    @NotNull
     private String status;
     
-    @NotEmpty
+    @NotNull
     private Date time;
     
     private String shortDescription;
-    
+
+	/*
+	**NOTE**
+	@JoinColumn(name ="ovdje_ide_NAZIVTABLICE_NAZIVCOLUMNA", nullable=false)
+	npr.
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_ID", nullable = false)
+    private User user;
+
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "geographicCoordinates", nullable = false)
     private String reportGeographicCoordinates;
+*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_ID", nullable = false)
+    private AppUser appUser;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId", nullable = false)
-    private User user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "disasterId", nullable = false)
+    @JoinColumn(name = "NATURAL_DISASTER_ID", nullable = false)
     private NaturalDisaster disaster;
 
     public Report() {}
@@ -51,12 +52,12 @@ public class Report {
     }
 
     // without relationships
-    public Report(String status, Date time, String reportGeographicCoordinates, String shortDescription, User user, NaturalDisaster disaster) {
+    public Report(String status, Date time/*, String reportGeographicCoordinates*/, String shortDescription, AppUser appUser, NaturalDisaster disaster) {
         this.status = status;
         this.time = time;
-        this.reportGeographicCoordinates = reportGeographicCoordinates;
+        /*this.reportGeographicCoordinates = reportGeographicCoordinates;*/
         this.shortDescription = shortDescription;
-        this.user = user;
+        this.appUser = appUser;
         this.disaster = disaster;
     }
 
@@ -84,13 +85,13 @@ public class Report {
 		this.time = time;
 	}
 
-	public String getGeographicCoordinates() {
+	/*public String getGeographicCoordinates() {
 		return reportGeographicCoordinates;
 	}
 
 	public void setGeographicCoordinates(String reportGeographicCoordinates) {
 		this.reportGeographicCoordinates = reportGeographicCoordinates;
-	}
+	}*/
 
 	public String getShortDescription() {
 		return shortDescription;
@@ -100,12 +101,12 @@ public class Report {
 		this.shortDescription = shortDescription;
 	}
 
-	public User getUser() {
-		return user;
+	public AppUser getUser() {
+		return appUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(AppUser appUser) {
+		this.appUser = appUser;
 	}
 
 	public NaturalDisaster getDisaster() {

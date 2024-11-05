@@ -1,27 +1,26 @@
 package hr.fer.progi.backend.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "HumanitarianOrganization")
+@Table(name = "HUMANITARIAN_ORGANIZATION")
 public class HumanitarianOrganization {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // or AUTO or SEQUENCE or TABLE
 	private Long idOrg;
 	
-	@Column(name = "organizationName")
+	@Column
 	private String organizationName;
 
 	public HumanitarianOrganization(Long id, String organizationName) {
 		super();
 		this.idOrg = id;
 		this.organizationName = organizationName;
+	}
+
+	public HumanitarianOrganization() {
+
 	}
 
 	public Long getId() {
