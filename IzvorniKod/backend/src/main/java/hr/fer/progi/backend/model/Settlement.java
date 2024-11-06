@@ -1,36 +1,34 @@
 package hr.fer.progi.backend.model;
 
-import java.util.List;
-
 import jakarta.persistence.*;
-
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "SETTLEMENT")
 public class Settlement {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // or AUTO or SEQUENCE or TABLE
-	private Long settlementId;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 	@Column
+	@NotEmpty
 	private String settlementName;
 
-		
-	@OneToMany(mappedBy = "settlement", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<NaturalDisaster> naturalDisasters;
-
+	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "COUNTY_ID", nullable = false)
+	@Column
 	private County county;
 
-
-	public Long getSettlementId() {
-		return settlementId;
+	public Settlement() {
 	}
 
-	public void setSettlementId(Long settlementId) {
-		this.settlementId = settlementId;
+	// with relationships
+	public Settlement(String settlementName, County county) {
+		this.settlementName = settlementName;
+		this.county = county;
 	}
 
 	public String getSettlementName() {
@@ -40,5 +38,17 @@ public class Settlement {
 	public void setSettlementName(String settlementName) {
 		this.settlementName = settlementName;
 	}
-	
+
+	public County getCounty() {
+		return county;
+	}
+
+	public void setCounty(County county) {
+		this.county = county;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
 }

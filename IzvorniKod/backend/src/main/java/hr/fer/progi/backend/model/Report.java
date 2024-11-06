@@ -2,79 +2,89 @@ package hr.fer.progi.backend.model;
 
 import java.sql.Date;
 
+import hr.fer.progi.backend.model.Enum.ReportStatus;
 import jakarta.persistence.*;
-import org.antlr.v4.runtime.misc.NotNull;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "REPORT")
 public class Report {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long reportId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @NotNull
-    private String status;
-    
-    @NotNull
-    private Date time;
-    
-    private String shortDescription;
+	@NotNull
+	@Column
+	@Enumerated(EnumType.STRING)
+	private ReportStatus reportStatus;
+
+	@NotNull
+	@Column
+	private Date time;
+
+	@NotEmpty
+	@Column
+	private String shortDescription;
+
+	@Column
+	private String photo; // putanja do slike?
 
 	/*
-	**NOTE**
-	@JoinColumn(name ="ovdje_ide_NAZIVTABLICE_NAZIVCOLUMNA", nullable=false)
-	npr.
+	 ** NOTE**
+	 * 
+	 * @JoinColumn(name ="ovdje_ide_NAZIVTABLICE_NAZIVCOLUMNA", nullable=false)
+	 * 
+	 * 
+	 * @ManyToOne(fetch = FetchType.LAZY)
+	 * @JoinColumn(name = "LOCATION_GEOGRAPHICCOORDINATES", nullable =
+	 * false) private String reportGeographicCoordinates;
+	 */
+	
+	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID", nullable = false)
-    private User user;
+	@JoinColumn(name = "USER_ID", nullable = false)
+	private AppUser appUser;
 
+	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "NATURAL_DISASTER_ID", nullable = false)
+	private NaturalDisaster naturalDisaster;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "geographicCoordinates", nullable = false)
-    private String reportGeographicCoordinates;
-*/
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID", nullable = false)
-    private AppUser appUser;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "NATURAL_DISASTER_ID", nullable = false)
-    private NaturalDisaster disaster;
-
-    public Report() {}
-
-    // without relationships
-    public Report(String status, Date time, String shortDescription) {
-        this.status = status;
-        this.time = time;
-        this.shortDescription = shortDescription;
-    }
-
-    // without relationships
-    public Report(String status, Date time/*, String reportGeographicCoordinates*/, String shortDescription, AppUser appUser, NaturalDisaster disaster) {
-        this.status = status;
-        this.time = time;
-        /*this.reportGeographicCoordinates = reportGeographicCoordinates;*/
-        this.shortDescription = shortDescription;
-        this.appUser = appUser;
-        this.disaster = disaster;
-    }
-
-	public Long getReportId() {
-		return reportId;
+	public Report() {
 	}
 
-	public void setReportId(Long reportId) {
-		this.reportId = reportId;
+	// without relationships
+	public Report(ReportStatus reportStatus, Date time, String shortDescription, String photo) {
+		this.reportStatus = reportStatus;
+		this.time = time;
+		this.shortDescription = shortDescription;
+		this.photo = photo;
 	}
 
-	public String getStatus() {
-		return status;
+	// with relationships
+	public Report(ReportStatus reportStatus, Date time/* , @NotEmpty String reportGeographicCoordinates */,
+			String shortDescription, String photo, AppUser appUser, NaturalDisaster naturalDisaster) {
+		this.reportStatus = reportStatus;
+		this.time = time;
+		/* this.reportGeographicCoordinates = reportGeographicCoordinates; */
+		this.shortDescription = shortDescription;
+		this.photo = photo;
+		this.appUser = appUser;
+		this.naturalDisaster = naturalDisaster;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public Long getId() {
+		return id;
+	}
+
+	public ReportStatus getStatus() {
+		return reportStatus;
+	}
+
+	public void setStatus(ReportStatus reportStatus) {
+		this.reportStatus = reportStatus;
 	}
 
 	public Date getTime() {
@@ -85,13 +95,13 @@ public class Report {
 		this.time = time;
 	}
 
-	/*public String getGeographicCoordinates() {
-		return reportGeographicCoordinates;
-	}
-
-	public void setGeographicCoordinates(String reportGeographicCoordinates) {
-		this.reportGeographicCoordinates = reportGeographicCoordinates;
-	}*/
+	/*
+	 * public String getGeographicCoordinates() { return
+	 * reportGeographicCoordinates; }
+	 * 
+	 * public void setGeographicCoordinates(String reportGeographicCoordinates) {
+	 * this.reportGeographicCoordinates = reportGeographicCoordinates; }
+	 */
 
 	public String getShortDescription() {
 		return shortDescription;
@@ -110,12 +120,19 @@ public class Report {
 	}
 
 	public NaturalDisaster getDisaster() {
-		return disaster;
+		return naturalDisaster;
 	}
 
-	public void setDisaster(NaturalDisaster disaster) {
-		this.disaster = disaster;
+	public void setDisaster(NaturalDisaster naturalDisaster) {
+		this.naturalDisaster = naturalDisaster;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 }
-

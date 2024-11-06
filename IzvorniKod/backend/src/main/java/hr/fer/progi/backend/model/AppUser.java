@@ -1,12 +1,10 @@
 package hr.fer.progi.backend.model;
 
-
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "APPUSER")
 public class AppUser {
-
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,28 +13,28 @@ public class AppUser {
 	@Column
 	private String email;
 
-
-	/*TODO: skuzit kako spremamo password*/
+	/* TODO: skuzit kako spremamo password */
 	@Column
 	private String password;
-
-
 
 	@Column
 	private String username;
 
-	public AppUser() {
-		
-	}
+	/* 
+	 * @ManyToOne(fetch = FetchType.LAZY)
+	 * @JoinColumn(name = "LOCATION_GEOGRAPHICCOORDINATES", nullable =
+	 * false) private String reportGeographicCoordinates;
+	 */
 	
-	public AppUser(String email, String password, String username) {
-		super();
+	public AppUser() {
+	}
+
+	public AppUser(String email, String password, String username/* , @NotEmpty String reportGeographicCoordinates */) {
 		this.email = email;
 		this.password = password;
 		this.username = username;
+		/* this.reportGeographicCoordinates = reportGeographicCoordinates; */
 	}
-	
-
 
 	public String getEmail() {
 		return email;
@@ -62,8 +60,15 @@ public class AppUser {
 		this.username = username;
 	}
 
-
-	public void setId(Long id) {this.id = id;}
-
-	public Long getId() { return id;}
+	public Long getId() {
+		return id;
+	}
+	
+	/*
+	 * public String getGeographicCoordinates() { return
+	 * reportGeographicCoordinates; }
+	 * 
+	 * public void setGeographicCoordinates(String reportGeographicCoordinates) {
+	 * this.reportGeographicCoordinates = reportGeographicCoordinates; }
+	 */
 }
