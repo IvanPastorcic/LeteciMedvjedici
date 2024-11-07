@@ -8,13 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-
 public class AuthController {
-/*
-    @GetMapping("/login/success")
-    public ResponseEntity<?> loginSuccess(OAuth2AccessToken token){
 
-        OAuth2User user = (OAuth2User) token.getScopes();
-        String email = user.getAttribute("email");
-    }*/
+    @GetMapping("/")
+    public String home(){
+        return "Hello, Home!";
+    }
+
+    @GetMapping("/secured")
+    public String secured(){
+        return "Hello, Secured!";
+    }
+
 }

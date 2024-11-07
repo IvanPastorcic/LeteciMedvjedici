@@ -19,7 +19,7 @@ public class Settlement {
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "COUNTY_ID", nullable = false)
-	@Column
+	//@Column
 	private County county;
 
 	public Settlement() {
