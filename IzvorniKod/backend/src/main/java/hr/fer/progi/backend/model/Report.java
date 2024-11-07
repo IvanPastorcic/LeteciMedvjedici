@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
+
 @Entity
 @Table(name = "REPORT")
 public class Report {
@@ -15,7 +16,7 @@ public class Report {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull
+	@NotEmpty
 	@Column
 	@Enumerated(EnumType.STRING)
 	private ReportStatus reportStatus;
