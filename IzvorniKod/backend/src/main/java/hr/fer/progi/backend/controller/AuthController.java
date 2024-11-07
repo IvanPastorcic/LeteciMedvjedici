@@ -11,12 +11,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     @GetMapping("/")
+    public String home2() {
+        System.out.println("tu smo u home2");
+        return "pliz radi";
+    }
+
+    @GetMapping("/home")
     public String home(){
+        System.out.println("tu smo u home /home");
         return "Hello, Home!";
     }
 
     @GetMapping("/secured")
     public String secured(){
+        System.out.println("tu smo u secured");
         return "Hello, Secured!";
     }
 
