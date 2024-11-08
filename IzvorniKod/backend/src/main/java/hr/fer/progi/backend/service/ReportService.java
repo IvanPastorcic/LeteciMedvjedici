@@ -5,22 +5,17 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import hr.fer.progi.backend.model.Report;
+import hr.fer.progi.backend.model.Enum.ReportStatus;
 import hr.fer.progi.backend.repository.ReportRepository;
 
 @Service
-public class ReportService {
-	private final ReportRepository reportRepository;
+public interface ReportService {
 	
-	public ReportService(ReportRepository reportRepository) {
-		this.reportRepository = reportRepository;
-	}
-	
-	public List<Report> getAllReports() {
-        return reportRepository.findAll();
-    }
+	public List<Report> getAllReports();
 
-    public Report newReport(Report report) {
-        return reportRepository.save(report);
-    }
+    public Report newReport(Report report);
 
+	public Report findById(Long id);
+
+	public List<Report> findByReportStatus(ReportStatus status);
 }
