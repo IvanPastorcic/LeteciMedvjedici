@@ -4,6 +4,6 @@ import org.springframework.stereotype.Service;
 import hr.fer.progi.backend.repository.NaturalDisasterRepository;
 
 @Service
-public class NaturalDisasterService {
+public interface NaturalDisasterService {
 
 }
