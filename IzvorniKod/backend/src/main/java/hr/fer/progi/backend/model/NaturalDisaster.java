@@ -16,12 +16,32 @@ public class NaturalDisaster {
 	@Enumerated(EnumType.STRING)
 	@Column
 	private DisasterType disasterType;
+	
+	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "SETTLEMENT_ID", nullable = false)
+	private Settlement settlement;
 
 	public NaturalDisaster() {
 	}
 
+	// without relationships
 	public NaturalDisaster(DisasterType disasterType) {
 		this.disasterType = disasterType;
+	}
+	
+	// with relationships
+	public NaturalDisaster(DisasterType disasterType, Settlement settlement) {
+		this.disasterType = disasterType;
+		this.settlement = settlement;
+	}
+	
+	public Settlement getSettlement() {
+		return settlement;
+	}
+
+	public void setSettlement(Settlement settlement) {
+		this.settlement = settlement;
 	}
 
 	public int getDisasterId() {
