@@ -13,10 +13,6 @@ public class AppUser {
 	@Column
 	private String email;
 
-	/* TODO: skuzit kako spremamo password */
-	@Column
-	private String password;
-
 	@Column
 	private String username;
 
@@ -29,9 +25,9 @@ public class AppUser {
 	public AppUser() {
 	}
 
-	public AppUser(String email, String password, String username/* , @NotEmpty String reportGeographicCoordinates */) {
+	public AppUser(String email, String username/* , @NotEmpty String reportGeographicCoordinates */) {
 		this.email = email;
-		this.password = password;
+
 		this.username = username;
 		/* this.reportGeographicCoordinates = reportGeographicCoordinates; */
 	}
@@ -44,13 +40,7 @@ public class AppUser {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
-	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 	public String getUsername() {
 		return username;
