@@ -73,7 +73,9 @@ function Login(props){
     return (
         <div className="Login">
             <h2>Log in</h2>
+           
             <form onSubmit={onSubmit}>
+                 {/*
                 <div className="FormRow">
                     <label>e-mail</label>
                     <input name="email" onChange={onChange} value={loginForm.email}/>
@@ -98,7 +100,7 @@ function Login(props){
                 
                 <hr />
             </div>
-
+*/}
             <button type="submit">Use your google login</button>
             </form>
         </div>
