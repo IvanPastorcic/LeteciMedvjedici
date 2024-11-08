@@ -1,42 +1,43 @@
-.FormContainer {
+.PageBody {
   display: flex;
-  justify-content: center;       
+  justify-content: center;
+  height: calc(100vh - 80px);
+  box-sizing: border-box;
+
+}
+
+
+.LeftSection {
+  flex: 0.35;
+  display: flex;
+  justify-content: center;
   align-items: flex-start;
-  gap: 25px;                     
-  width: 100%;
-  max-width: 780px;              
-  margin: 20px auto;                 
-  padding: 20px; 
-  background-color: #f9f9f9; 
-  border: 1px solid #ccc; 
-  border-radius: 5px;
+  background-color: #DBD9D3;
+  padding: 40px 20px;
 }
 
-.Anonymous {
-  margin-top: 20px; 
-  text-align: center; 
-  width: 100%; 
+.RightSection {
+  flex: 0.65;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #E5E4E2;
+  padding: 40px 20px;
 }
 
+.LoginRegisterBox {
+  display: flex;
+  background-color: #FAF9F6;
+  padding: 20px;
+  border-radius: 8px;
+  width: 700px;
+
+}
+
+/*crta izmedu login i register */
 .Separator {
-  border-left: 2px solid #a9aeb1; 
-  height: 350px;              
-  margin: 0 20px;             
+  border-left: 1px solid #353935;
+  margin: 0 15px;
 }
-
-.Register {
-  flex: 1;           
-  box-sizing: border-box;
-  padding-bottom: 100px;
-  max-width: 300px;
-  padding-left: 25px;
-}
-
-.Login {
-  flex: 1;
-  box-sizing: border-box;
-  padding-right: 20px;
-}
-
 
 

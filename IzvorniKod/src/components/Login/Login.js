@@ -99,7 +99,7 @@ function Login(props){
                 <hr />
             </div>
 
-            <button type="submit">Use your google login</button>
+            <button type="submit" className="google-login">Use your google login</button>
             </form>
         </div>
     )

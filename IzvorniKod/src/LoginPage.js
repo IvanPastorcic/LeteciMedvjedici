@@ -5,6 +5,8 @@ import Register from "./components/Register/Register";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 import Anonymous from "./components/Anonymous/Anonymous";
 import AnonHeader from "./components/AnonHeader/AnonHeader";
+import FirstInfoFrame from "./components/FirstInfoFrame/FirstInfoFrame";
+import Footer from "./components/Footer/Footer";
 import "./LoginPage.css";
 
 
@@ -17,16 +19,30 @@ function LoginPage() {
           <Route 
             path="/" 
             element={
-              <div className="FormContainer">
-                <Login />
-                <div className="Separator"></div>
-                <Register />
+              <div className="PageBody">
+                
+                <div className="LeftSection">
+                  
+                    <FirstInfoFrame />
+                  
+                </div>
+
+                
+                <div className="RightSection">
+                  <div className="LoginRegisterBox">
+                    <Login />
+                    <div className="Separator"></div>       
+                    <Register />
+                  </div>
+                  <Anonymous />
+                  
+                </div>
               </div>
-            } 
+            }
           />
           <Route path="/register" element={<RegisterForm />} />
         </Routes>
-        <Anonymous />
+        <Footer /> 
       </div>
     </Router>
   );
