@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class AppUserController {
 
-    private final UserService userService;
+ /*   private final UserService userService;
 
     public AppUserController(UserService userService) {
         this.userService = userService;
@@ -27,5 +27,5 @@ public class AppUserController {
             throw new InputIsNullException("Korisnik ne postoji");
         }
         return ResponseEntity.ok().body(UserMapper.INSTANCE.toDto(userService.fetchUserById(userId)));
-    }
+    }*/
 }

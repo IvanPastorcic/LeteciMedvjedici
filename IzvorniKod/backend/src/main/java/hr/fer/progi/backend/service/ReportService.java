@@ -8,7 +8,7 @@ import hr.fer.progi.backend.model.Report;
 import hr.fer.progi.backend.repository.ReportRepository;
 
 @Service
-public interface ReportService {
+public class ReportService {
 	private final ReportRepository reportRepository;
 	
 	public ReportService(ReportRepository reportRepository) {
