@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import hr.fer.progi.backend.model.Report;
@@ -11,7 +12,7 @@ import hr.fer.progi.backend.model.Enum.ReportStatus;
 import hr.fer.progi.backend.repository.ReportRepository;
 import hr.fer.progi.backend.service.ReportService;
 
-@Service
+@Component
 public class ReportServiceImpl implements ReportService {
 	
 	private final ReportRepository reportRepository;
