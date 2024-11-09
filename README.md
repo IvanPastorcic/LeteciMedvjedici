@@ -83,9 +83,9 @@ Ovim projektom želimo usavršiti svoja znanja i vještine izrade programske pot
 # Članovi tima 
 > Elma Vuran - voditelj, full-stack <br>
 > Lana Zekušić - frontend, dizajn <br>
-> Ivan Pastorčić - backend, baza, dokumentacija <br>
+> Ivan Pastorčić - backend, baza, dokumentacija, DevOps <br>
 > Natali Žegarac - backend, baza <br>
-> Silvija Rade - frontend, dizajn <br>
+> Silvija Rade - frontend <br>
 > Krešimir Horvat - frontend <br>
 > Iva Sulić - frontend <br>
 
