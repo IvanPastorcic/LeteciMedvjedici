@@ -39,4 +39,15 @@ public class UserServiceImpl implements UserService {
         this.userRepository.delete(appUser);
 
     }
+
+    @Override
+    public AppUser fetchUserByEmail(String email) {
+        return userRepository.findAppUserByEmail(email);
+    }
+
+    @Override
+    public Long insertUser(AppUser user) {
+        AppUser tempUser = userRepository.save(user);
+        return tempUser.getId();
+    }
 }

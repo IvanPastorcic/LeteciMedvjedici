@@ -4,14 +4,17 @@ package hr.fer.progi.backend.controller;
 import hr.fer.progi.backend.model.AppUser;
 import hr.fer.progi.backend.model.Report;
 import hr.fer.progi.backend.repository.exception.InputIsNullException;
+import hr.fer.progi.backend.repository.exception.WrongInputException;
 import hr.fer.progi.backend.service.UserService;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 
 @RestController
@@ -22,6 +25,21 @@ public class AppUserController {
 
     public AppUserController(UserService userService) {
         this.userService = userService;
+    }
+
+
+    //dodati role
+    @PostMapping("/register")
+    public ResponseEntity<HttpStatus> saveUser(@RequestBody AppUser newUser)
+    {
+        if (userService.fetchUserByEmail(newUser.getEmail()) != null)
+        {
+            throw new WrongInputException("Već postoji korisnik s tim emailom");
+        }
+
+        Long newUserId = userService.insertUser(newUser);
+
+        return ResponseEntity.status(HttpStatus.CREATED).header(String.valueOf(newUserId)).build();
     }
 
     @GetMapping("/{userId}")

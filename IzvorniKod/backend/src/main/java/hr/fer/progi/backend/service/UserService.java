@@ -16,4 +16,8 @@ public interface UserService {
     Optional<AppUser> findById(Long id);
 
     void delete(AppUser appUser);
+
+    AppUser fetchUserByEmail(String email);
+
+    Long insertUser(AppUser newUser);
 }
