@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
-import RegisterForm from "./components/RegisterForm/RegisterForm";
 import Anonymous from "./components/Anonymous/Anonymous";
 import AnonHeader from "./components/AnonHeader/AnonHeader";
 import FirstInfoFrame from "./components/FirstInfoFrame/FirstInfoFrame";
@@ -13,7 +12,7 @@ import "./LoginPage.css";
 function LoginPage() {
   return (
     <Router>
-      <div>
+      <div className="LoginPageContainer">
         <AnonHeader />
         <Routes>
           <Route 
@@ -26,8 +25,7 @@ function LoginPage() {
                     <FirstInfoFrame />
                   
                 </div>
-
-                
+               
                 <div className="RightSection">
                   <div className="LoginRegisterBox">
                     <Login />
@@ -40,7 +38,6 @@ function LoginPage() {
               </div>
             }
           />
-          <Route path="/register" element={<RegisterForm />} />
         </Routes>
         <Footer /> 
       </div>

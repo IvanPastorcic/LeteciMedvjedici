@@ -4,7 +4,8 @@
     padding: 15px 20px;
     font-family: 'Poppins', sans-serif;
     text-align: center;
-    position: fixed;
+    position: relative;
+    flex-shrink: 0;
     bottom: 0;
     width: 100%;
 }

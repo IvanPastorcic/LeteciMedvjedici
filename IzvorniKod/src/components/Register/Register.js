@@ -22,7 +22,7 @@ function Register(props){
             <div className="register-content">
                 <p>Don't have an account yet?</p>
                 {error && <p className="error">{error}</p>} {/* Prikaz greške */}
-                <button className="register-button" onClick={() => navigate('/register')}>Register now</button> 
+                <button className="register-button" onClick={() => navigate('/register')}>Use your Google account to register</button> 
             </div>
         
     </div>
