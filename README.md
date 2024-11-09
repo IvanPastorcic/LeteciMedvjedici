@@ -2,7 +2,7 @@
 
 
 # Opis projekta
-Ovaj projekt je reultat timskog rada u sklopu projeknog zadatka kolegija [Programsko inženjerstvo](https://www.fer.unizg.hr/predmet/proinz) na Fakultetu elektrotehnike i računarstva Sveučilišta u Zagrebu. 
+Ovaj projekt je rezultat timskog rada u sklopu projeknog zadatka kolegija [Programsko inženjerstvo](https://www.fer.unizg.hr/predmet/proinz) na Fakultetu elektrotehnike i računarstva Sveučilišta u Zagrebu. 
 
 Cilj ovog studentskog timskog projekta je osmisliti i razviti aplikaciju koja omogućava brzu reakciju i učinkovitiju koordinaciju između građana, vlasti i humanitarnih organizacija. Rješavamo problem spore i loše komunikacije između vlasti i javnosti u kriznim situacijama. Želimo olakšati dobivanje pomoći i relevantnih informacija unesrećnima. 
 
