@@ -12,10 +12,7 @@ function FirstInfoFrame() {
         <text>STAY SAFE</text>
       </div>
       <br></br>
-      <br></br>
       <h id="with">with</h>
-      <br></br>
-
       <h id="SafeBear">SafeBear</h>
       <div className="Line"></div>
       <p>our reliable, real time emergency reporting application</p>

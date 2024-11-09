@@ -1,10 +1,20 @@
+/* Full-page container to set min-height */
+.LoginPageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden; /* Prevents overflow when content doesn't fit */
+}
+
+/* Adjust PageBody to take full remaining height */
 .PageBody {
   display: flex;
   justify-content: center;
-  height: calc(100vh - 80px);
+  flex: 1;
+  height: auto; /* header + footer height */
   box-sizing: border-box;
-
 }
+
 
 
 .LeftSection {
@@ -12,8 +22,10 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background-color: #DBD9D3;
   padding: 40px 20px;
+  background-color: #DBD9D3;
+  overflow-y: hidden;
+  box-sizing: border-box;
 }
 
 .RightSection {
@@ -21,8 +33,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #E5E4E2;
   padding: 40px 20px;
+  background-color: #E5E4E2;
 }
 
 .LoginRegisterBox {
@@ -31,13 +43,35 @@
   padding: 20px;
   border-radius: 8px;
   width: 700px;
-
+  flex-shrink: 0;
 }
 
-/*crta izmedu login i register */
+/* Separator */
 .Separator {
   border-left: 1px solid #353935;
   margin: 0 15px;
 }
 
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .PageBody {
+    flex-direction: column;
+    align-items: center;
+    height: auto; /* Adjust height for stacked layout */
+  }
 
+  .LeftSection, .RightSection {
+    width: 100%;
+    flex: none;
+    padding: 20px;
+  }
+
+  .LoginRegisterBox {
+    flex-direction: column;
+    width: 100%; /* Full width on small screens */
+  }
+
+  .Separator {
+    display: none; /* Remove separator on small screens */
+  }
+}
