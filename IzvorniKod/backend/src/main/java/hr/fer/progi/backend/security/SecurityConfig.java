@@ -9,15 +9,16 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    /*TODO:definirati koji su endpointi public a koji su protected*/
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> {
-                    authorize.requestMatchers("/").permitAll();
+                    authorize.requestMatchers("/", "/reports/add").permitAll();
                     authorize.anyRequest().authenticated();
                 })
-                .oauth2Login(Customizer.withDefaults());
+                .oauth2Login(oauth2Login -> oauth2Login
+                        .defaultSuccessUrl("/home", true)
+                        .failureUrl("/"));
 
         return http.build();
 

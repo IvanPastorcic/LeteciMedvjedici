@@ -12,5 +12,7 @@ public interface UserRepository extends JpaRepository<AppUser, Long>{
     @Query("select pm from AppUser pm where pm.id = :id")
     AppUser findAppUserByIdJPQL(Long id);
 
+    @Query("select pm from AppUser pm where pm.email = :email")
+    AppUser findAppUserByEmail(String email);
 
 }
