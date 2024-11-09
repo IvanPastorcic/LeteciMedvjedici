@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hr.fer.progi.backend.model.Report;
 import hr.fer.progi.backend.model.Enum.ReportStatus;
-
+import hr.fer.progi.backend.repository.exception.InputIsNullException;
 import hr.fer.progi.backend.service.ReportService;
 
 
@@ -44,7 +44,7 @@ public class ReportController {
         Report report = reportService.findById(id);
         
         if (report == null) {
-            return ResponseEntity.notFound().build(); //404
+        	 throw new InputIsNullException("Prijava ne postoji");
         }
         
         return ResponseEntity.ok(report);
