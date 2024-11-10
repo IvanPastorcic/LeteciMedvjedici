@@ -91,7 +91,7 @@ Ovim projektom želimo usavršiti svoja znanja i vještine izrade programske pot
 > Iva Sulić - frontend <br>
 
 # Kontribucije
->Pravila ovise o organizaciji tima i su često izdvojena u CONTRIBUTING.md
+Tijekom rada na projektu se očekuje praćenje kodeksa ponašanja te etičkog kodeksa projekta. Više detalja pogledajte u [CONTRIBUTING.md](https://github.com/IvanPastorcic/LeteciMedvjedici/blob/main/CONTRIBUTING.md).
 
 
 
