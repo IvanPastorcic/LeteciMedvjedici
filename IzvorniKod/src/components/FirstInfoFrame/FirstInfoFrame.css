@@ -1,28 +1,28 @@
 .FirstInfoFrame {
   background-color: #FAF9F6;
-  padding: 20px;
+  padding: 15px;
   border-radius: 8px;
-  height: 550px;
+  height: 50vh;
   text-align: center;
   max-width: 300px;
 }
 
 .bigText{
-  margin-top: 30px;
-  font-family: Poppins;
-  font-weight: bold;
-  font-size: 25px;
-}
-
-#with, #SafeBear {
+  margin-top: 20px;
   font-family: Poppins;
   font-weight: bold;
   font-size: 20px;
 }
 
+#with, #SafeBear {
+  font-family: Poppins;
+  font-weight: bold;
+  font-size: 18px;
+}
+
 .FirstInfoFrame p {
   font-family: Poppins;
-  font-size: 17px;
+  font-size: 15px;
   color: #333;
   line-height: 1.5;
 }

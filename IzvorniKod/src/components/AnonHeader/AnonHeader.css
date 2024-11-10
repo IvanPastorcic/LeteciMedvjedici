@@ -1,30 +1,33 @@
 /* Header */
 .anon-header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    background-color: #CD1434; 
-    padding: 7px 20px;
-    color: #fff;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-  }
-  
- 
-  .logo {
-    width: 60px;
-    height: 60px;
-    margin: 7px;
-    border-radius: 50%;
-    border: 3px solid black;
-  }
-  
- 
-  .slogan {
-    color: #ffffff;
-    font-weight: normal;
-    font-size: 1.1rem;
-    padding: 10px;
-    height: 100%;
- }
-  
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #CD1434; 
+  padding: 5px 20px;
+  height: 80px;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+
+.logo {
+  width: 60px;
+  height: 60px;
+  margin: 5px;
+  border-radius: 50%;
+  border: 3px solid black;
+}
+
+
+.slogan {
+  color: #ffffff;
+  font-weight: normal;
+  font-size: 1.1rem;
+  padding: 10px;
+  margin-top: 40px;
+  height: 100%;
+}
