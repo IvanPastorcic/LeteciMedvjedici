@@ -1,0 +1,54 @@
+.PageBody {
+    display: flex;
+    height: auto;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .LeftSection {
+    flex: 0.25;
+    display: flex;
+    justify-content: left;
+    padding: 97px 10px;
+    background-color: #E5E4E2;
+    box-sizing: border-box;
+  }
+
+  .MiddleSection {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background-color: #FAF9F6;
+    box-sizing: border-box;
+}
+  
+  .RightSection {
+    flex: 0.25;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: #FAF9F6;
+    box-sizing: border-box;
+  }
+
+  
+.info-title {
+    font-family: Poppins;
+    font-size: 32px;
+    text-decoration: underline;
+    text-align: left;
+  }
+
+.information-button{
+    background-color: #808080;
+    color: #FFFFFF;
+    padding: 14px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: Poppins;
+    font-size: 32px;
+}
