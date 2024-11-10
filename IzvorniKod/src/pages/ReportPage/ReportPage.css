@@ -1,0 +1,175 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.header-title {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  flex-grow: 1; 
+}
+
+
+.back-button svg {
+  margin-right: 8px; 
+}
+  
+.app-container {
+    background-color: #d9d9d9; 
+    padding: 10px 15px; 
+}
+  
+  .report-section {
+    margin-top: 20px;
+  }
+  
+  .location-inputs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    max-width: 600px; 
+    margin: 20px auto;
+  }
+  
+  .location-button {
+    flex: 1;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+  
+  .address-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  
+  
+  .optional-section p {
+    font-weight: bold;
+    display: inline-block;
+  }
+  
+  .optional-section p span {
+    font-style: italic;
+    font-weight: normal;
+  }
+  
+  .description-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 4px;
+  }
+  
+  .camera-icon {
+    margin-right: 10px;
+  }
+  
+  .submit-button {
+    background-color: #b30000;
+    color: white;
+    padding: 15px 30px; 
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    flex: 0 0 45%; 
+    text-align: center;
+  }
+  
+  
+  button:focus {
+    outline: none;
+  }
+  
+  button {
+    background: none;
+    border: 2px solid #ccc; 
+    border-radius: 8px; 
+    padding: 10px; 
+    cursor: pointer;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  button:hover {
+    border-color: #b30000; 
+  }
+
+  .section-title {
+    text-align: center;
+    margin-top: 20px;
+  } 
+  
+  .divider {
+    border: 0;
+    border-top: 2px solid #666; 
+    width: 85%; 
+    margin: 20px auto; 
+  }
+
+  .content-container {
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 25px auto;
+    max-width: 100%; 
+  }
+
+  .footer-section {  
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px auto; 
+    max-width: 90%; 
+  }
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: auto; 
+  }
+  
+
+.footer-section {
+  display: flex;              
+  justify-content: space-between; 
+  align-items: center;           
+  margin: 40px auto;             
+  max-width: 90%;
+}
+
+
+.optional-section {
+  flex: 0 1 auto;                
+  width: 60%;                   
+  margin-right: 20px;            
+}
+
+
+.submit-button {
+  background-color: #b30000;
+  color: white;
+  padding: 20px 30px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  flex: 0 0 auto;                /* Prevent the submit button from stretching */
+  margin-left: 20px;             /* Optional: space between description and submit button */
+}
+
+
+
