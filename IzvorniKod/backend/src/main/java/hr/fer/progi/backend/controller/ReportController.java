@@ -14,6 +14,7 @@ import hr.fer.progi.backend.service.ReportService;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -29,16 +30,19 @@ public class ReportController {
 		this.reportService = reportService;
 	}
 	
+	//get list of all reports
 	@GetMapping
 	List<Report> reports() {
 		return reportService.getAllReports();
 	}
 	
+	//add new report
 	@PostMapping("/add")
 	Report newReport(@RequestBody Report newReport){
 		return reportService.newReport(newReport);
 	}
 	
+	//get report with matching id
 	@GetMapping("/{id}") 
 	 public ResponseEntity<Report> findById(@PathVariable Long id) {
         Report report = reportService.findById(id);
@@ -50,6 +54,7 @@ public class ReportController {
         return ResponseEntity.ok(report);
     }
 	
+	//get report with matching reportStatus
 	@GetMapping("/status/{status}") 
 	 public ResponseEntity<List<Report>> filterByStatus(@PathVariable String status) { // mislim da je moglo i bez responseentity ovdje jer u najgorem slucaju vraca praznu listu
 		ReportStatus rstatus;
@@ -68,6 +73,18 @@ public class ReportController {
        
        return ResponseEntity.ok(reports);
    }
+	
+	//delete report
+	@DeleteMapping("/{id}/delete")
+	public ResponseEntity<Report> deleteById(@PathVariable Long id) {
+        Report report = reportService.deleteById(id);
+        
+        if (report == null) {
+        	 throw new InputIsNullException("Prijava ne postoji");
+        }
+        
+        return ResponseEntity.ok(report);
+    }
 	
 	
 	

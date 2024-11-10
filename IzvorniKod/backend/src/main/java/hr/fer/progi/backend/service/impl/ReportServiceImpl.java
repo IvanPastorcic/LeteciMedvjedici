@@ -1,12 +1,7 @@
 package hr.fer.progi.backend.service.impl;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
 import hr.fer.progi.backend.model.Report;
 import hr.fer.progi.backend.model.Enum.ReportStatus;
 import hr.fer.progi.backend.repository.ReportRepository;
@@ -38,6 +33,17 @@ public class ReportServiceImpl implements ReportService {
 	@Override
 	public List<Report> findByReportStatus(ReportStatus status) {
 		return reportRepository.findByReportStatus(status);
+	}
+
+	@Override
+	public Report deleteById(Long id) {
+		Report r;
+		if(reportRepository.findById(id).orElse(null) != null) {
+			r = reportRepository.findById(id).orElse(null);
+			reportRepository.deleteById(id);
+			return r; 
+		}
+		return null;
 	}
 
 	
