@@ -6,4 +6,4 @@
 4. Pošaljite pull zahtjev s opisom promjena koje ste napravili.
 
 ### Kodeks ponašanja
-Molimo vas da se pridržavate našeg [Kodeksa ponašanja](link_do_kodeksa) tijekom rada. Očekujemo poštovanje, suradnju i otvorenost prema povratnim informacijama.
+Molimo vas da se pridržavate našeg [Kodeksa ponašanja](https://github.com/IvanPastorcic/LeteciMedvjedici/blob/main/CODE_OF_CONDUCT.md) tijekom rada. Očekujemo poštovanje, suradnju i otvorenost prema povratnim informacijama.
