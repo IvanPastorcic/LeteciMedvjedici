@@ -8,6 +8,16 @@ Cilj ovog studentskog timskog projekta je osmisliti i razviti aplikaciju koja om
 
 Ovim projektom želimo usavršiti svoja znanja i vještine izrade programske potpore, sposobnosti rada u timu i kolegijalnost. 
 
+# Pristup aplikaciji
+Aplikaciju SafeBear se može koristiti putem web preglednika. (Trenutno nije osbosobljeno)
+
+Izvorni kod se nalazi na [GitHub-u projekta](https://github.com/IvanPastorcic/LeteciMedvjedici/tree/main/IzvorniKod) (Trenutno nema koda za prikaz jer je aplikacija u ranoj fazi implementacije)
+
+Više informacija o projektu pogledajte na našem [Wiki-ju](https://github.com/IvanPastorcic/LeteciMedvjedici/wiki)
+
+Aplikacija SafeBear trenutno nije dostupna u runnable formatu. Tim radi na završnim prilagodbama i testiranju kako bi osigurao optimalnu funkcionalnost prije nego što je javno objavimo.
+
+Trenutna verzija aplikacije: **0.0.1ALPHA**
 
 # Funkcijski zahtjevi
 ## Funkcionalni zahtjevi
@@ -23,6 +33,8 @@ Ovim projektom želimo usavršiti svoja znanja i vještine izrade programske pot
 | F-05        | Aplikacija građanima omogućuje praćenje statusa njihovih prijava.                                             | Srednji   | Zahtjev dionika  | Korisnik ima uvid u stanje svojih prijava.                                                              |
 | F-05.1      | Aplikacija obavještava korisnika o promjenama statusa njegovih prijava putem e-maila.                         | Srednji   | Zahtjev dionika  | Korisnik prima obavijesti o promjenama statusa prijava putem e-maila.                                   |
 | F-05.2      | Aplikacija obavještava korisnika o promjenama statusa njegovih prijava putem push notifikacija.               | Srednji   | Zahtjev dionika  | Korisnik prima obavijesti o promjenama statusa prijava putem push notifikacija.                         |
+| F-05.3      | Registrirani korisnik može pratiti status svojih prijava nepogoda.                                            | Visok     | Zahtjev dionika  | Korisnik ima pregled prijašnjih prijava nepogoda i njihovog statusa u sklopu profila unutar aplikacije. |
+| F-05.4      | Anonimni korisnik ima mogućnost praćenja svojih prijava nepogoda.                                             | Visok     | Zahtjev dionika  | Anonimni korisnik može putem jedinstvenog idenfikacijskog broja prijave u aplikaciji tražiti uvid u status prijave.                                                                                                                                                                                                                                                        |
 | F-06        | Aplikacija obavještava korisnika o novim prijavljenim nepogodama.                                             | Visok     | Zahtjev dionika  | Korisnik prima obavijesti o novim prijavljenim nepogodama.                                              |
 | F-06.1      | Aplikacija obavještava korisnika o novim prijavljenim nepogodama putem push notifikacija.                     | Visok     | Zahtjev dionika  | Korisnik prima obavijesti o novim prijavljenim nepogodama putem push notifikacija.                      |
 | F-06.2      | Aplikacija obavještava korisnika o novim prijavljenim nepogodama putem e-maila.                               | Visok     | Zahtjev dionika  | Korisnik prima obavijesti o novim prijavljenim nepogodama putem e-maila.                                |
