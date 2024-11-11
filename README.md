@@ -69,19 +69,20 @@ Trenutna verzija aplikacije: **0.0.1ALPHA**
 
 ## Ostali zahtjevi
 
-| ID zahtjeva | Opis                                                                                                                                                                                              | Prioritet |
-| ----------  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| NF-1        | Aplikacija slijedi Opću uredbu o zaštiti osobnih podataka                                                                                                                                         | Visok     |
-| NF-2        | Aplikacija mora biti responzivna na različitim uređajima                                                                                                                                          | Nizak     |
-| NF-3        | Aplikacija mora biti usklađena sa standardima pristupačnosti                                                                                                                                      | Nizak     |
-| NF-4.1      | Sustav treba biti oblikovan tako da omogućuje jednostavno održavanje.                                                                                                                             | Visok     |
-| NF-4.1.1    | Sustav treba imati dovoljnu dokumentaciju.                                                                                                                                                        | Visok     |
-| NF-4.1.1.1  | Kôd sustava treba biti dokumentiran prema "Code Conventions for the Java Programming Language" dostupnim na [Oracle](https://www.oracle.com/java/technologies/cc-java-programming-language.html). | Visok     |
-| NF-4.1.1.2  | Sustav treba biti opisan putem dokumenta oblikovanja /SRS/.                                                                                                                                       | Visok     |
-| NF-4.1.1.3  | Sustav treba biti popraćen "Priručnikom za rad" koji opisuje pravilnu upotrebu sustava.                                                                                                           | Visok     |
-| NF-5        | Prijave nepogoda su omogućene samo unutar Republike Hrvatske                                                                                                                                      | Visok     |
-| NF-5.1      | Korisnik može prijaviti nepogodu ne više od 30 km od trenutne lokacije                                                                                                                            | Visok     |
-| NF-6        | Korisnik ne može prijaviti prirodnu nepogodu sat vremena nakon prethodne prijave, ako takva postoji                                                                                               | Visok     |
+| ID zahtjeva  | Opis                                                                                                                                                                                              | Prioritet |
+| -----------  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| NF-01        | Aplikacija slijedi Opću uredbu o zaštiti osobnih podataka                                                                                                                                         | Visok     |
+| NF-02        | Aplikacija mora biti responzivna na različitim uređajima                                                                                                                                          | Nizak     |
+| NF-03        | Aplikacija mora biti usklađena sa standardima pristupačnosti                                                                                                                                      | Nizak     |
+| NF-04.1      | Sustav treba biti oblikovan tako da omogućuje jednostavno održavanje.                                                                                                                             | Visok     |
+| NF-04.1.1    | Sustav treba imati dovoljnu dokumentaciju.                                                                                                                                                        | Visok     |
+| NF-04.1.1.1  | Kôd sustava treba biti dokumentiran prema "Code Conventions for the Java Programming Language" dostupnim na [Oracle](https://www.oracle.com/java/technologies/cc-java-programming-language.html). | Visok     |
+| NF-04.1.1.2  | Sustav treba biti opisan putem dokumenta oblikovanja /SRS/.                                                                                                                                       | Visok     |
+| NF-04.1.1.3  | Sustav treba biti popraćen "Priručnikom za rad" koji opisuje pravilnu upotrebu sustava.                                                                                                           | Visok     |
+| NF-05        | Prijave nepogoda su omogućene samo unutar Republike Hrvatske                                                                                                                                      | Visok     |
+| NF-05.1      | Korisnik može prijaviti nepogodu ne više od 30 km od trenutne lokacije                                                                                                                            | Visok     |
+| NF-06        | Korisnik ne može prijaviti prirodnu nepogodu sat vremena nakon prethodne prijave, ako takva postoji                                                                                               | Visok     |
+| NF-07        | Sustav koristi Ouath2.0 autorizaciju korisnika                                                                                                                                                    | Visok     | 
 
 # Tehnologije
 
