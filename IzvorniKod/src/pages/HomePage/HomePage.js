@@ -1,21 +1,20 @@
 import './HomePage.css';
 import Info from './Info';
-import AnonHeader from "./components/AnonHeader/AnonHeader";
-import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import AidActions from './AidActions'
+import Report from './Report';
+//import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 const HomePage = () => {
     return ( 
-        <Router>
             <div className="HomePage">
-            <AnonHeader /> 
+            {/*<AnonHeader /> */}
             <div className="buttonsHomePage">
-                <button className="information-button"> click me </button>
+                <button className="information-button"> INFORMATION </button>
+                <button className="report-button"> REPORT </button>
+                <button className="see-map-button"> see map </button>
             </div>
-            <Routes>
-                <Route 
-                path="/" 
-                element={
                     <div className="PageBody">
+                        
                     
                         <div className="LeftSection">
                             
@@ -24,21 +23,30 @@ const HomePage = () => {
                         </div>
 
                         <div className="MiddleSection">
-                            
-                            <h1>HI IAM MIDDLE</h1>
-                            
+                            <div className="Filter">
+                                <text>Filter by:</text>
+                                <button className="filter-button"> date posted </button>
+                                <button className="filter-button"> location </button>
+
+                            </div>
+
+                            <Report/> 
+                            <Report/> 
+                            <Report/> 
                         </div>
                         
                         <div className="RightSection">
-
+                            <h2>AID ACTIONS:</h2>
+                            <br />
+                            <AidActions/>
+                            <AidActions/>
+                            <AidActions/>
                         </div>
 
                     </div>
-                }
-                />
-            </Routes>
+                
+                
             </div>
-        </Router>
 
 
 
