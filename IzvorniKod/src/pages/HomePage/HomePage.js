@@ -4,11 +4,14 @@ import AnonHeader from "../../components/AnonHeader/AnonHeader";
 import ReportComponent from "../../components/Report/ReportComponent";
 import AidActions from "../../components/AidActions/AidActions";
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import React, { useState } from 'react';
+
 //import Report from './Report';
 //import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 const HomePage = () => {
+
+    const [showInfo, setShowInfo] = useState(false);
 
     const [reports, setReport] = useState([  
         {date : "26 Oct 2024 10:35", username: "username", disasterType: "FLOOD", area: "X", description: "opis korisnika"},
@@ -27,11 +30,19 @@ const HomePage = () => {
     const navigateToMap = () => {
         navigate('/map'); 
     };
+
+    const handleInformation = () => {
+        setShowInfo(!showInfo); 
+    };
     return ( 
             <div className="HomePage">
-            <AnonHeader /> 
+                <div className='header'>
+                    <AnonHeader /> 
+                </div>
+            
             <div className="buttonsHomePage">
-                <button className="information-button"> INFORMATION </button>
+                <button className="information-button"
+                onClick={handleInformation}> INFORMATION </button>
                 <button className="report-button" 
                 onClick={handleAnonymousReport}> REPORT </button>
                 <button className="see-map-button"
@@ -39,12 +50,13 @@ const HomePage = () => {
             </div>
                     <div className="PageBody">
                         
+                    {showInfo && (
                     
                         <div className="LeftSection">
-                            
-                            <Info />
+                        <Info />
                             
                         </div>
+                        )}
 
                         <div className="MiddleSection">
                             <div className="Filter">
