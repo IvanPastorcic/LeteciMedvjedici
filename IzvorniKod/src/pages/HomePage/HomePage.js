@@ -52,17 +52,17 @@ const HomePage = () => {
                 <button className="see-map-button"
                 onClick={navigateToMap}> see map </button>
             </div>
-                    <div className="PageBody">
+                    <div className="PageBodyHome">
                         
                     {showInfo && (
                     
-                        <div className="LeftSection">
+                        <div className="LeftSectionHome">
                         <Info />
                             
                         </div>
                         )}
 
-                        <div className="MiddleSection">
+                        <div className="MiddleSectionHome">
                             <div className="Filter">
                                 <text>Filter by:</text>
                                 <button className="filter-button"> date posted </button>
@@ -73,7 +73,7 @@ const HomePage = () => {
                             <ReportComponent reports={reports}/> 
                         </div>
                         
-                        <div className="RightSection">
+                        <div className="RightSectionHome">
                             <h2>AID ACTIONS:</h2>
                             <br />
                             <AidActions aids={aids}/> 
