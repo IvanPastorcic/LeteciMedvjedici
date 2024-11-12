@@ -1,4 +1,4 @@
-const Report = () => {
+const ReportComponent = () => {
     return ( 
         <div className="Report">
             <div className="ReportDateName">
@@ -14,4 +14,4 @@ const Report = () => {
      );
 }
  
-export default Report;
+export default ReportComponent;
