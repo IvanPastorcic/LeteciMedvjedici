@@ -14,5 +14,8 @@ public interface SettlementService {
 	public List<Settlement> getAll();
 
 	public List<Settlement> findByCountyID(Long id);
+	
+	public Settlement findById(Long id);
+
 
 }
