@@ -27,8 +27,12 @@ public class AppUserController {
         this.userService = userService;
     }
 
+    @GetMapping("/home")
+    public String home(){
+        return "hello from home";
+    }
 
-    //dodati role
+    /*
     @PostMapping("/register")
     public ResponseEntity<HttpStatus> saveUser(@RequestBody AppUser newUser)
     {
@@ -40,7 +44,7 @@ public class AppUserController {
         Long newUserId = userService.insertUser(newUser);
 
         return ResponseEntity.status(HttpStatus.CREATED).header(String.valueOf(newUserId)).build();
-    }
+    }*/
 
     @GetMapping("/{userId}")
     public ResponseEntity<AppUser> getUserById(@PathVariable Long userId)
