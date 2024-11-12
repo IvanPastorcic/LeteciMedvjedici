@@ -17,7 +17,7 @@ public class Settlement {
 	private String settlementName;
 
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "COUNTY_ID", nullable = false)
 	//@Column
 	private County county;

@@ -1,5 +1,7 @@
 package hr.fer.progi.backend.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +18,17 @@ public class SettlementServiceImpl implements SettlementService{
 	public Settlement createSettlement(Settlement settlement) {
 		return settlementRepository.save(settlement);
 	}
+
+	@Override
+	public List<Settlement> getAll() {
+		return settlementRepository.findAll();
+	}
+
+	@Override
+	public List<Settlement> findByCountyID(Long id) {
+		return settlementRepository.findByCountyId(id);
+	}
+
+	
 
 }
