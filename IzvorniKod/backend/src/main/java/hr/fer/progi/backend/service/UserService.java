@@ -18,7 +18,7 @@ public interface UserService {
     void delete(AppUser appUser);
 
     Optional<AppUser> fetchUserByEmail(String email);
-    
+
 
     AppUser loadCurrentUser();
 }

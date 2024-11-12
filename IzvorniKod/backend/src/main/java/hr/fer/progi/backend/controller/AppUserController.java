@@ -32,19 +32,6 @@ public class AppUserController {
         return "hello from home";
     }
 
-    /*
-    @PostMapping("/register")
-    public ResponseEntity<HttpStatus> saveUser(@RequestBody AppUser newUser)
-    {
-        if (userService.fetchUserByEmail(newUser.getEmail()) != null)
-        {
-            throw new WrongInputException("Već postoji korisnik s tim emailom");
-        }
-
-        Long newUserId = userService.insertUser(newUser);
-
-        return ResponseEntity.status(HttpStatus.CREATED).header(String.valueOf(newUserId)).build();
-    }*/
 
     @GetMapping("/{userId}")
     public ResponseEntity<AppUser> getUserById(@PathVariable Long userId)

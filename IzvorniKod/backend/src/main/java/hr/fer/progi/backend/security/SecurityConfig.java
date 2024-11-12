@@ -29,7 +29,7 @@ public class SecurityConfig {
                     authorize.anyRequest().authenticated();
                 })
                 .oauth2Login(oauth2Login -> oauth2Login
-                        .defaultSuccessUrl("/user/home", true)
+                        .defaultSuccessUrl("/home", true)
                         .userInfoEndpoint(userInfoEndpoint ->
                                 userInfoEndpoint
                                         .oidcUserService((OAuth2UserService) oAuth2Service)

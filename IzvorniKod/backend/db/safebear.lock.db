@@ -1,6 +1,0 @@
-#FileLock
-#Tue Nov 12 18:36:18 UTC 2024
-hostName=192.168.56.1
-id=19321a976038a5c5fcff92c48600739ae7a0ada481b
-method=file
-server=192.168.56.1\:49844
