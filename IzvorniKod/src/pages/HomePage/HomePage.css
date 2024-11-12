@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 
-.PageBody {
+.PageBodyHome {
     display: flex;
     height: auto;
     box-sizing: border-box;
@@ -9,17 +9,18 @@
     background-color: #FAF9F6;
   }
 
-.LeftSection {
-  flex: 0.25;
+.LeftSectionHome {
+  flex: 0.3;
   display: flex;
   justify-content: left;
   padding: 25px 10px;
   box-sizing: border-box;
   margin: 10px;
   border-radius: 8px;
+  background-color: #E5E4E2;
 }
 
-.MiddleSection {
+.MiddleSectionHome {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -29,8 +30,8 @@
   box-sizing: border-box;
 }
   
-.RightSection {
-  flex: 0.25;
+.RightSectionHome {
+  flex: 0.3;
   flex-direction: column;
   display: flex;
   align-items: center;
@@ -38,6 +39,8 @@
   background-color: #FAF9F6;
   box-sizing: border-box;
 }
+
+
 
 .buttonsHomePage{
   display: flex;
@@ -137,7 +140,7 @@
   align-items: center;
   background-color: #E5E4E2;
   border: 1px solid black;
-  width: 362px;
+  width: 100%;
   height: 57px;
   font-size: 13px;
   font-family: Poppins;
@@ -162,7 +165,7 @@
   background-color: white;
   padding: 11px 8px;
   margin-bottom: 7px;
-  width: 362px;
+  width: 100%;
   min-height: 227px;
 }
 
@@ -175,5 +178,19 @@
 
 .report-content{
   text-align: left;
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  background-color: #CD1434;
+  justify-content: space-between;
+}
+
+.profile-text{
+  color: white;
+  text-align: right;
+  font-family: Poppins;
+  margin: 10px;
 }
 
