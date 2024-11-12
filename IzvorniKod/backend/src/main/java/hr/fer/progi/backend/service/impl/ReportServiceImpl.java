@@ -1,34 +1,68 @@
 package hr.fer.progi.backend.service.impl;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import hr.fer.progi.backend.dto.ReportDTO;
+import hr.fer.progi.backend.model.AppUser;
+import hr.fer.progi.backend.model.NaturalDisaster;
 import hr.fer.progi.backend.model.Report;
+import hr.fer.progi.backend.model.Settlement;
 import hr.fer.progi.backend.model.Enum.ReportStatus;
+import hr.fer.progi.backend.repository.NaturalDisasterRepository;
 import hr.fer.progi.backend.repository.ReportRepository;
+import hr.fer.progi.backend.repository.SettlementRepository;
 import hr.fer.progi.backend.service.ReportService;
+import hr.fer.progi.backend.service.UserService;
 
-@Component
+@Service
 public class ReportServiceImpl implements ReportService {
-	
-	private final ReportRepository reportRepository;
-	
-	public ReportServiceImpl(ReportRepository reportRepository) {
-		this.reportRepository = reportRepository;
-	}
-	
+
+	@Autowired
+	private ReportRepository reportRepository;
+
+	@Autowired
+	private SettlementRepository settlementRepository;
+
+	@Autowired
+	private NaturalDisasterRepository naturalDisasterRepository;
+
+	@Autowired
+	private UserService userService;
+
 	@Override
 	public List<Report> getAllReports() {
-        return reportRepository.findAll();
-    }
+		return reportRepository.findAll();
+	}
 
 	@Override
-    public Report newReport(Report report) {
-        return reportRepository.save(report);
-    }
+	public Report newReport(ReportDTO dto) {
+		AppUser appUser = userService.fetchUserById(dto.getUserId());
+		Settlement settlement = settlementRepository.findById(dto.getSettlementId()).orElse(null); // service kada dodam
 
-	 public Report findById(Long id) {
-	        return reportRepository.findById(id).orElse(null);
-	    }
+		// for testing
+//		AppUser testUser = new AppUser("testuser@example.com", "testuser");
+//		userService.insertUser(testUser);
+
+		NaturalDisaster naturalDisaster = new NaturalDisaster(dto.getDisasterType(), settlement);
+		naturalDisaster = naturalDisasterRepository.save(naturalDisaster);
+
+		Report report = new Report(ReportStatus.PROCESSING, getTime(), dto.getShortDescription(), dto.getPhoto(),
+				appUser, naturalDisaster); 
+		return reportRepository.save(report);
+	}
+
+	private Timestamp getTime() {
+		long millis = System.currentTimeMillis();  
+		Timestamp date = new Timestamp(millis);  //vraca jedan sat manje...
+		return date;
+	}
+
+	public Report findById(Long id) {
+		return reportRepository.findById(id).orElse(null);
+	}
 
 	@Override
 	public List<Report> findByReportStatus(ReportStatus status) {
@@ -38,13 +72,12 @@ public class ReportServiceImpl implements ReportService {
 	@Override
 	public Report deleteById(Long id) {
 		Report r;
-		if(reportRepository.findById(id).orElse(null) != null) {
+		if (reportRepository.findById(id).orElse(null) != null) {
 			r = reportRepository.findById(id).orElse(null);
 			reportRepository.deleteById(id);
-			return r; 
+			return r;
 		}
 		return null;
 	}
 
-	
 }

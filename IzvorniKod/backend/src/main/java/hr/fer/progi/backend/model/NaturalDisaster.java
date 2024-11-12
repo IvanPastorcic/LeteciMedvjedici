@@ -18,7 +18,7 @@ public class NaturalDisaster {
 	private DisasterType disasterType;
 	
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "SETTLEMENT_ID", nullable = false)
 	private Settlement settlement;
 

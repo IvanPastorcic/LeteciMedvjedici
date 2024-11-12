@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import hr.fer.progi.backend.dto.ReportDTO;
 import hr.fer.progi.backend.model.Report;
 import hr.fer.progi.backend.model.Enum.ReportStatus;
 import hr.fer.progi.backend.repository.exception.InputIsNullException;
@@ -32,14 +33,15 @@ public class ReportController {
 	
 	//get list of all reports
 	@GetMapping
-	List<Report> reports() {
+	public List<Report> reports() {
 		return reportService.getAllReports();
 	}
 	
 	//add new report
 	@PostMapping("/add")
-	Report newReport(@RequestBody Report newReport){
-		return reportService.newReport(newReport);
+	public ResponseEntity<Report> newReport(@RequestBody ReportDTO dto){
+		Report report = reportService.newReport(dto);
+		return ResponseEntity.ok(report);
 	}
 	
 	//get report with matching id
