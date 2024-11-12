@@ -6,26 +6,16 @@ import hr.fer.progi.backend.model.Enum.ReportStatus;
 
 public class ReportDTO {
 
-	private Long userId;
 	private Long settlementId;
 	private DisasterType disasterType;;
 	private String shortDescription;
 	private String photo;
 
-	public ReportDTO(Long userId, Long settlementId, DisasterType disasterType, String shortDescription, String photo) {
-		this.userId = userId;
+	public ReportDTO(Long settlementId, DisasterType disasterType, String shortDescription, String photo) {
 		this.settlementId = settlementId;
 		this.disasterType = disasterType;
 		this.shortDescription = shortDescription;
 		this.photo = photo;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
 	}
 
 	public Long getSettlementId() {

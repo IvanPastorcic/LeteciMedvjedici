@@ -29,6 +29,11 @@ public class SettlementServiceImpl implements SettlementService{
 		return settlementRepository.findByCountyId(id);
 	}
 
+	@Override
+	public Settlement findById(Long id) {
+		return settlementRepository.findById(id).orElse(null);
+	}
+
 	
 
 }
