@@ -39,7 +39,7 @@ public class ReportServiceImpl implements ReportService {
 
 	@Override
 	public Report newReport(ReportDTO dto) {
-		AppUser appUser = userService.fetchUserById(dto.getUserId());
+		AppUser appUser = userService.getCurrentUser();
 		Settlement settlement = settlementRepository.findById(dto.getSettlementId()).orElse(null); // service kada dodam
 
 		// for testing
