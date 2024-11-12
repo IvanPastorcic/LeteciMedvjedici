@@ -1,8 +1,9 @@
 package hr.fer.progi.backend.service.impl;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
+
+import hr.fer.progi.backend.service.OAuth2Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import hr.fer.progi.backend.dto.ReportDTO;
@@ -31,6 +32,12 @@ public class ReportServiceImpl implements ReportService {
 
 	@Autowired
 	private UserService userService;
+	private final OAuth2Service oAuth2Service;
+
+	public ReportServiceImpl(OAuth2Service oAuth2Service) {
+		this.oAuth2Service = oAuth2Service;
+	}
+
 
 	@Override
 	public List<Report> getAllReports() {

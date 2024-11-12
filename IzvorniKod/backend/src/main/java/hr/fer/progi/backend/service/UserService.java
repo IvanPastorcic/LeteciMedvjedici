@@ -17,7 +17,8 @@ public interface UserService {
 
     void delete(AppUser appUser);
 
-    AppUser fetchUserByEmail(String email);
+    Optional<AppUser> fetchUserByEmail(String email);
+    
 
-    Long insertUser(AppUser newUser);
+    AppUser loadCurrentUser();
 }
