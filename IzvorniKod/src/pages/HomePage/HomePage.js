@@ -1,16 +1,26 @@
 import './HomePage.css';
-import Info from './Info';
-import AidActions from './AidActions'
-import Report from './Report';
+import Info from "../../components/Info/Info";
+import AnonHeader from "../../components/AnonHeader/AnonHeader";
+import ReportComponent from "../../components/Report/ReportComponent";
+import AidActions from "../../components/AidActions/AidActions";
+import { useNavigate } from 'react-router-dom';
+//import Report from './Report';
 //import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 const HomePage = () => {
+
+    const navigate = useNavigate();
+
+    const handleAnonymousReport = () => {
+        navigate('/report'); 
+    };
     return ( 
             <div className="HomePage">
-            {/*<AnonHeader /> */}
+            <AnonHeader /> 
             <div className="buttonsHomePage">
                 <button className="information-button"> INFORMATION </button>
-                <button className="report-button"> REPORT </button>
+                <button className="report-button" 
+                onClick={handleAnonymousReport}> REPORT </button>
                 <button className="see-map-button"> see map </button>
             </div>
                     <div className="PageBody">
@@ -30,9 +40,9 @@ const HomePage = () => {
 
                             </div>
 
-                            <Report/> 
-                            <Report/> 
-                            <Report/> 
+                            <ReportComponent/> 
+                            <ReportComponent/> 
+                            <ReportComponent/> 
                         </div>
                         
                         <div className="RightSection">
