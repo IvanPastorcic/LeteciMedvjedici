@@ -17,9 +17,13 @@ const HomePage = () => {
         {date : "26 Oct 2024 10:35", username: "username", disasterType: "FLOOD", area: "X", description: "opis korisnika"},
         {date : "27 Oct 2024 11:00", username: "Pero", disasterType: "EARTHQUAKE", area: "ZAGREB", description: "tresle su se kuce"},
         {date : "28 Oct 2024 15:58", username: "User123", disasterType: "FIRE", area: "OSIJEK", description: "istocna strana"}
-    ]
+    ])
 
-    )
+    const [aids, setAids] = useState([  
+        {date : "26 Oct 2024 10:35", organisationName: "THE RED CROSS", aidInfo: "informacije o sklonistima"},
+        {date : "27 Oct 2024 11:00", organisationName: "ORGANISATION2", aidInfo: "informacije o HRANI"},
+        {date : "28 Oct 2024 15:58", organisationName: "ORGANISATION3", aidInfo: "informacije o VODI"}
+    ])
 
     const navigate = useNavigate();
 
@@ -72,9 +76,7 @@ const HomePage = () => {
                         <div className="RightSection">
                             <h2>AID ACTIONS:</h2>
                             <br />
-                            <AidActions/>
-                            <AidActions/>
-                            <AidActions/>
+                            <AidActions aids={aids}/> 
                         </div>
 
                     </div>
