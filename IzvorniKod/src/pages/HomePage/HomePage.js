@@ -4,15 +4,28 @@ import AnonHeader from "../../components/AnonHeader/AnonHeader";
 import ReportComponent from "../../components/Report/ReportComponent";
 import AidActions from "../../components/AidActions/AidActions";
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 //import Report from './Report';
 //import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 const HomePage = () => {
 
+    const [reports, setReport] = useState([  
+        {date : "26 Oct 2024 10:35", username: "username", disasterType: "FLOOD", area: "X", description: "opis korisnika"},
+        {date : "27 Oct 2024 11:00", username: "Pero", disasterType: "EARTHQUAKE", area: "ZAGREB", description: "tresle su se kuce"},
+        {date : "28 Oct 2024 15:58", username: "User123", disasterType: "FIRE", area: "OSIJEK", description: "istocna strana"}
+    ]
+
+    )
+
     const navigate = useNavigate();
 
     const handleAnonymousReport = () => {
         navigate('/report'); 
+    };
+
+    const navigateToMap = () => {
+        navigate('/map'); 
     };
     return ( 
             <div className="HomePage">
@@ -21,7 +34,8 @@ const HomePage = () => {
                 <button className="information-button"> INFORMATION </button>
                 <button className="report-button" 
                 onClick={handleAnonymousReport}> REPORT </button>
-                <button className="see-map-button"> see map </button>
+                <button className="see-map-button"
+                onClick={navigateToMap}> see map </button>
             </div>
                     <div className="PageBody">
                         
@@ -40,9 +54,7 @@ const HomePage = () => {
 
                             </div>
 
-                            <ReportComponent/> 
-                            <ReportComponent/> 
-                            <ReportComponent/> 
+                            <ReportComponent reports={reports}/> 
                         </div>
                         
                         <div className="RightSection">

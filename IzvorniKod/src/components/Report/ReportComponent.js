@@ -1,15 +1,25 @@
-const ReportComponent = () => {
+const ReportComponent = (props) => {
+
+    const reports = props.reports;
+    console.log(props, reports);
     return ( 
         <div className="Report">
-            <div className="ReportDateName">
-                <text className="aid-date">26 Oct 2024 10:35</text>
-                <text className="username">username</text>
-            </div>
-           <div className="report-content">
-            <h2>FLOOD REPORT - X AREA</h2>
-            <text>opis korisnika</text>
+            
+                {reports.map((report)=>(
+                    <div className="ReportDateName">
+                    <text className="aid-date">{report.date}</text>
+                    <text className="username">{report.username}</text>
+                    </div>
 
-           </div>
+                ))}
+                
+                {reports.map((report)=>(
+                <div className="report-content">
+                    <h2>{report.disasterType} REPORT - {report.area} AREA</h2>
+                    <text>{report.description}</text>
+
+                </div>
+                ))}
     </div>  
      );
 }
