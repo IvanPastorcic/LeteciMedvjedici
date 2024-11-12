@@ -1,6 +1,7 @@
 package hr.fer.progi.backend.model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import hr.fer.progi.backend.model.Enum.ReportStatus;
 import jakarta.persistence.*;
@@ -23,7 +24,7 @@ public class Report {
 
 	@NotNull
 	@Column
-	private Date time;
+	private Timestamp time;
 
 	@NotEmpty
 	@Column
@@ -44,12 +45,12 @@ public class Report {
 	 */
 	
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "USER_ID", nullable = false)
 	private AppUser appUser;
 
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "NATURAL_DISASTER_ID", nullable = false)
 	private NaturalDisaster naturalDisaster;
 
@@ -57,7 +58,7 @@ public class Report {
 	}
 
 	// without relationships
-	public Report(ReportStatus reportStatus, Date time, String shortDescription, String photo) {
+	public Report(ReportStatus reportStatus, Timestamp time, String shortDescription, String photo) {
 		this.reportStatus = reportStatus;
 		this.time = time;
 		this.shortDescription = shortDescription;
@@ -65,7 +66,7 @@ public class Report {
 	}
 
 	// with relationships
-	public Report(ReportStatus reportStatus, Date time/* , @NotEmpty String reportGeographicCoordinates */,
+	public Report(ReportStatus reportStatus, Timestamp time/* , @NotEmpty String reportGeographicCoordinates */,
 			String shortDescription, String photo, AppUser appUser, NaturalDisaster naturalDisaster) {
 		this.reportStatus = reportStatus;
 		this.time = time;
@@ -88,11 +89,11 @@ public class Report {
 		this.reportStatus = reportStatus;
 	}
 
-	public Date getTime() {
+	public Timestamp getTime() {
 		return time;
 	}
 
-	public void setTime(Date time) {
+	public void setTime(Timestamp time) {
 		this.time = time;
 	}
 

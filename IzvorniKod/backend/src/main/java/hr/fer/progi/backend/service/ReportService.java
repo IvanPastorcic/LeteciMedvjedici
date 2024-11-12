@@ -2,6 +2,8 @@ package hr.fer.progi.backend.service;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
+
+import hr.fer.progi.backend.dto.ReportDTO;
 import hr.fer.progi.backend.model.Report;
 import hr.fer.progi.backend.model.Enum.ReportStatus;
 
@@ -11,7 +13,7 @@ public interface ReportService {
 	public List<Report> getAllReports();
 	// returns List of all reports
 
-    public Report newReport(Report report);
+    public Report newReport(ReportDTO reportDTO);
     // adds new report
 
 	public Report findById(Long id);
