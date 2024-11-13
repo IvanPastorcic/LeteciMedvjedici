@@ -170,6 +170,36 @@
   flex: 0 0 auto;                /* Prevent the submit button from stretching */
   margin-left: 20px;             /* Optional: space between description and submit button */
 }
+.search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-height: 150px;
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  z-index: 1000;
+}
+
+.search-item {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.search-item:hover, .search-item:focus {
+  background-color: #e8e8e8;
+  color: #333;
+}
+
+.search-item:active {
+  background-color: #d0d0d0;
+}
 
 
 
