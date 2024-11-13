@@ -39,6 +39,8 @@ public class ReportServiceImpl implements ReportService {
 	}
 
 
+
+	//TODO: nakon mi moramo razdijeliti getallreports. Admin ce moci dohvatiti ovaj endpoint, ali građani će moći dohvatiti samo one kojima je status "prihvaćeno"
 	@Override
 	public List<Report> getAllReports() {
 		return reportRepository.findAll();

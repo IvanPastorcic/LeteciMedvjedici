@@ -1,9 +1,6 @@
 package hr.fer.progi.backend.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import hr.fer.progi.backend.dto.ReportDTO;
 import hr.fer.progi.backend.model.Report;
@@ -15,13 +12,10 @@ import hr.fer.progi.backend.service.ReportService;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
 
 
 @RestController
+@CrossOrigin
 @RequestMapping("/reports")
 public class ReportController {
 	
@@ -33,8 +27,8 @@ public class ReportController {
 	
 	//get list of all reports
 	@GetMapping
-	public List<Report> reports() {
-		return reportService.getAllReports();
+	public ResponseEntity<List<Report>> reports() {
+		return ResponseEntity.ok(reportService.getAllReports());
 	}
 	
 	//add new report
