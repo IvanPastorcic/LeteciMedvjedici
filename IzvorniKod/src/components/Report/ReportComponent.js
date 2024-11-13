@@ -6,13 +6,13 @@ const ReportComponent = (props) => {
         <div>
             
                 {reports.map((report)=>(
-                    <div className="Report">
+                    <div key={report.id} className="Report">
                         <div className="ReportDateName">
-                            <text className="aid-date">{report.date}</text>
-                            <text className="username">{report.username}</text>
+                            <text className="aid-date">{new Date(report.time).toLocaleDateString()}</text>
+                            <text className="username">{report.user.username}</text>
                         </div>
-                            <h2>{report.disasterType} REPORT - {report.area} AREA</h2>
-                            <text>{report.description}</text>
+                            <h2>{report.disaster.disasterType} REPORT -  {report.disaster.settlement.settlementName} AREA</h2>
+                            <text>{report.shortDescription}</text>
 
                         
                     </div>

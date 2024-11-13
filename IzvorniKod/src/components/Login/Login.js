@@ -3,8 +3,7 @@ import './Login.css';
 
 function Login(props) {
     function handleGoogleLogin() {
-        // Redirect to Google login route or implement Google login logic here
-        window.location.href = "/auth/google"; // Update with your Google login endpoint
+        window.location.href = "http://localhost:8081/login"
     }
 
     return (
