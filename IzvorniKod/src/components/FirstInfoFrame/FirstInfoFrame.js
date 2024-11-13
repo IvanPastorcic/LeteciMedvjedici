@@ -5,11 +5,11 @@ function FirstInfoFrame() {
   return (
     <div className="FirstInfoFrame">
       <div className="bigText">
-        <text>BE INFORMED</text>
+        <span>BE INFORMED</span>
         <br></br>
-        <text>GET ALERTS</text>
+        <span>GET ALERTS</span>
         <br></br>
-        <text>STAY SAFE</text>
+        <span>STAY SAFE</span>
       </div>
       <br></br>
       <h id="with">with</h>
