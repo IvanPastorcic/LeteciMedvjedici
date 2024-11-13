@@ -61,4 +61,9 @@ public class AppUserController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping
+    public ResponseEntity<AppUser> current() {
+        return  ResponseEntity.ok(userService.loadCurrentUser());
+    }
+
 }
