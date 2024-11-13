@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import AnonHeader from "../../components/AnonHeader/AnonHeader";
-import { FaArrowLeft, FaFire, FaWater, FaBolt, FaMountain, FaMapMarkerAlt, FaCamera, FaHome } from "react-icons/fa";
-import { MdOutlineBrokenImage } from "react-icons/md";
+import { FaArrowLeft, FaFire, FaWater, FaBolt, FaMountain, FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom"; 
 import './ReportPage.css';
 
 function ReportPage(){
   const navigate = useNavigate();
   const [activeButton, setActiveButton] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  // Simulirana baza podataka s lokacijama
+  const locations = ["New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "Zagreb", "Split", "Dubrovnik"];
 
   const goBack = () => {
     navigate(-1); // Go back to the previous page
@@ -15,6 +19,25 @@ function ReportPage(){
 
   const handleButtonClick = (type) => {
     setActiveButton(type);
+  };
+
+  const handleInputChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+
+    if (query) {
+      const matches = locations.filter(location => 
+        location.toLowerCase().includes(query.toLowerCase())
+      );
+      setSearchResults(matches.length > 0 ? matches : ["No matching results found"]);
+    } else {
+      setSearchResults([]);
+    }
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setSearchQuery(suggestion);
+    setSearchResults([]); // Zatvori padajući izbornik nakon odabira
   };
 
   const containerStyle = {
@@ -107,23 +130,30 @@ function ReportPage(){
 
         <hr className="divider" />
         <h2 className="section-title">Where did it happen?</h2>
-        <div className="location-inputs">
-          <button className="location-button">
-            <FaMapMarkerAlt /> At my location
-          </button>
-          <input type="text" placeholder="Somewhere else: input address" className="address-input" />
+        <div className="location-inputs" style={{ position: 'relative' }}>
+          <input 
+            type="text" 
+            placeholder="Input location" 
+            className="address-input" 
+            value={searchQuery}
+            onChange={handleInputChange}
+          />
+          {searchResults.length > 0 && (
+            <ul className="search-dropdown">
+              {searchResults.map((result, index) => (
+                <li key={index} className="search-item" onClick={() => handleSuggestionClick(result)}>
+                  {result}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
+
         <hr className="divider" />
-        <div className="footer-section">
-          <div className="optional-section">
-            <p>OPTIONAL: <span>add a short description and photos for more information.</span></p>
-            <div className="description-input">
-              <FaCamera size={30} className="camera-icon" />
-              <input type="text" placeholder="Add description here..." />
-            </div>
-          </div>
-          <button className="submit-button">SUBMIT REPORT</button>
-        </div>
+        
+        {/* Submit button with original position */}
+        <button className="submit-button">SUBMIT REPORT</button>
+        
       </div>
     </div>
     </div>
