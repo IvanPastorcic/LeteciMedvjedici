@@ -3,6 +3,7 @@ import AnonHeader from "../../components/AnonHeader/AnonHeader";
 import { FaArrowLeft, FaFire, FaWater, FaBolt, FaMountain, FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom"; 
 import './ReportPage.css';
+import axios from 'axios';
 
 function ReportPage(){
   const navigate = useNavigate();
@@ -11,7 +12,23 @@ function ReportPage(){
   const [searchResults, setSearchResults] = useState([]);
 
   // Simulirana baza podataka s lokacijama
-  const locations = ["New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "Zagreb", "Split", "Dubrovnik"];
+  const [locations, setLocations] = useState([]);
+  useEffect(() => {
+        
+    const fetchLocations = async () => {
+        try {
+            const response = await axios.get("http://localhost:8081/location/settlement"); 
+            setReports(response.data); 
+            setLoading(false); 
+        } catch (error) {
+            console.error("Error fetching locations:", error);
+            setError("Failed to load locations"); 
+            setLoading(false); 
+        }
+    };
+    fetchReports(); 
+}, []); 
+
 
   const goBack = () => {
     navigate(-1); // Go back to the previous page
