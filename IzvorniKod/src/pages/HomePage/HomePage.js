@@ -100,12 +100,7 @@ const HomePage = () => {
                 
                 
             </div>
-
-
-
-
-       
-        
+ 
      );
 }
  
