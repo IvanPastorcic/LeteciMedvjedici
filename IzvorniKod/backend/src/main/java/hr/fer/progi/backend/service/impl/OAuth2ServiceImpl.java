@@ -30,7 +30,7 @@ public class OAuth2ServiceImpl implements OAuth2Service, OAuth2UserService<OidcU
 
     @Transactional
     public AppUser processOAuthPostLogin(String email, String name) {
-
+        System.out.println("korisnik:" + email + name);
         // Check if user already exists
         return userRepository.findByEmail(email).orElseGet(() -> {
             // If not, create a new user
@@ -53,8 +53,8 @@ public class OAuth2ServiceImpl implements OAuth2Service, OAuth2UserService<OidcU
         // Extract the email and name attributes
         String email = (String) oidcUser.getAttribute("email");
         String name = (String) oidcUser.getAttribute("name");
-        processOAuthPostLogin(email, name);
 
+        processOAuthPostLogin(email, name);
         return oidcUser;
     }
 

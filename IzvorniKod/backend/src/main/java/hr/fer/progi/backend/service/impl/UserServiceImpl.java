@@ -51,14 +51,18 @@ public class UserServiceImpl implements UserService {
 
 
     public AppUser loadCurrentUser() {
+
+
         // Retrieve the OAuth2 token from the SecurityContext
         OAuth2AuthenticationToken authentication = (OAuth2AuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
 
         // Extract the email from the token attributes
         String email = authentication.getPrincipal().getAttribute("email");
+        System.out.println(email);
 
+        final String emailToUse = email.isEmpty() ? "anonimna prijava" : email;
         // Fetch the AppUser from the database using the email
         return userRepository.findByEmail(email)
-                .orElseThrow(() -> new WrongInputException("User not found with email: " + email));
+                .orElseThrow(() -> new WrongInputException("User not found with email: " + emailToUse));
     }
 }

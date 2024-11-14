@@ -1,6 +1,7 @@
 package hr.fer.progi.backend.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,16 @@ public class LocationController {
 	List<Settlement> getAllSettlements() {
 		return settlementService.getAll();
 	}
-	
+
+	@GetMapping("/settlementnames")
+	List<String> getAllSettlementNames(){
+		List<Settlement> allSettlements = settlementService.getAll();
+		return allSettlements.stream()
+				.map(Settlement::getSettlementName)
+				.collect(Collectors.toList());
+
+	}
+
 	@GetMapping("/county")
 	List<County> getAllCounties() {
 		return countyService.getAll();

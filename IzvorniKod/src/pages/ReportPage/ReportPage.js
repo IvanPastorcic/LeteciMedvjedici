@@ -1,34 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AnonHeader from "../../components/AnonHeader/AnonHeader";
 import { FaArrowLeft, FaFire, FaWater, FaBolt, FaMountain, FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom"; 
 import './ReportPage.css';
 import axios from 'axios';
+import Footer from "../../components/Footer/Footer";
 
 function ReportPage(){
   const navigate = useNavigate();
   const [activeButton, setActiveButton] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-
-  // Simulirana baza podataka s lokacijama
+  const [locationInput, setLocationInput] = useState(""); // Track user's input for location
+  const [isLocationValid, setIsLocationValid] = useState(true); // Track validity of location
+  const [description, setDescription] = useState(""); // Track short description
   const [locations, setLocations] = useState([]);
-  useEffect(() => {
-        
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); 
+  
+  useEffect(() => {   
     const fetchLocations = async () => {
-        try {
-            const response = await axios.get("http://localhost:8081/location/settlement"); 
-            setReports(response.data); 
-            setLoading(false); 
-        } catch (error) {
-            console.error("Error fetching locations:", error);
-            setError("Failed to load locations"); 
-            setLoading(false); 
-        }
+      try {
+        const response = await axios.get("http://localhost:8081/location/settlementnames"); 
+        const locationNames = response.data.map(location => location.settlementName || location);
+        setLocations(locationNames); 
+        setLoading(false); 
+      } catch (error) {
+        console.error("Error fetching locations:", error);
+        setError("Failed to load locations"); 
+        setLoading(false); 
+      }
     };
-    fetchReports(); 
-}, []); 
-
+    fetchLocations(); 
+  }, []); 
 
   const goBack = () => {
     navigate(-1); // Go back to the previous page
@@ -38,42 +40,59 @@ function ReportPage(){
     setActiveButton(type);
   };
 
-  const handleInputChange = (e) => {
-    const query = e.target.value;
-    setSearchQuery(query);
+  const handleLocationInputChange = (e) => {
+    const value = e.target.value;
+    setLocationInput(value);
+    // Check if the input matches any location in the list
+    setIsLocationValid(locations.includes(value));
+  };
 
-    if (query) {
-      const matches = locations.filter(location => 
-        location.toLowerCase().includes(query.toLowerCase())
-      );
-      setSearchResults(matches.length > 0 ? matches : ["No matching results found"]);
-    } else {
-      setSearchResults([]);
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value); // Set the description state based on user input
+  };
+
+  const handleSubmit = async () => {
+    // Validate input before submitting
+    if (!isLocationValid) {
+      alert("Please enter a valid location from the list.");
+      return;
     }
-  };
 
-  const handleSuggestionClick = (suggestion) => {
-    setSearchQuery(suggestion);
-    setSearchResults([]); // Zatvori padajući izbornik nakon odabira
-  };
+    const typeMapping = {
+      fire: "WILDFIRE",
+      earthquake: "EARTHQUAKE",
+      flooding: "FLOOD",
+      heavy_storm: "HURRICANE",
+      landslide: "TORNADO",
+    };
 
-  const containerStyle = {
-    display: 'flex',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    marginTop: '20px',
-  };
+    const emergencyType = typeMapping[activeButton];
 
-  const iconContainerStyle = {
-    textAlign: 'center',
-    padding: '10px',
-    borderRadius: '5px',
-    cursor: 'pointer',
-  };
+    if (!emergencyType) {
+      alert("Please select an emergency type.");
+      return;
+    }
 
-  const paragraphStyle = {
-    marginTop: '5px',
-    fontSize: '14px',
+    if (!description) {
+      alert("Please enter a description.");
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:8081/reports/add", {
+        settlementName: locationInput,
+        disasterType: emergencyType,
+        shortDescription: description,
+      }, {
+        withCredentials: true,
+      });
+      console.log("Report submitted:", response.data);
+      alert("Report submitted successfully!");
+      navigate("/home");
+    } catch (error) {
+      console.error("Error submitting report:", error);
+      alert("Failed to submit report.");
+    }
   };
 
   return (
@@ -81,98 +100,90 @@ function ReportPage(){
       <AnonHeader />
       <div className="app-container">
       
-      {/* Odvojeni naslov */}
-      <div className="header-container">
+        {/* Header */}
+        <div className="header-container">
           <button className="back-button" onClick={goBack}>
             <FaArrowLeft /> Back
           </button>
           <h1 className="header-title">REPORT AN EMERGENCY:</h1>
-      </div>
-
-      {/* Donji kontejner */}
-      <div className="content-container">
-        <h2 className="section-title">What happened?</h2>
-        <div style={containerStyle}>
-          <button 
-            style={{
-              ...iconContainerStyle, 
-              backgroundColor: activeButton === "fire" ? "gray" : "white"
-            }}
-            onClick={() => handleButtonClick("fire")}
-          >
-            <FaFire size={50} />
-            <p style={paragraphStyle}>FIRE</p>
-          </button>
-          <button 
-            style={{
-              ...iconContainerStyle, 
-              backgroundColor: activeButton === "earthquake" ? "gray" : "white"
-            }}
-            onClick={() => handleButtonClick("earthquake")}
-          >
-            <FaHome size={50}  />
-            <p style={paragraphStyle}>EARTHQUAKE</p>
-          </button>
-          <button 
-            style={{
-              ...iconContainerStyle, 
-              backgroundColor: activeButton === "flooding" ? "gray" : "white"
-            }}
-            onClick={() => handleButtonClick("flooding")}
-          >
-            <FaWater size={50} />
-            <p style={paragraphStyle}>FLOODING</p>
-          </button>
-          <button 
-            style={{
-              ...iconContainerStyle, 
-              backgroundColor: activeButton === "heavy_storm" ? "gray" : "white"
-            }}
-            onClick={() => handleButtonClick("heavy_storm")}
-          >
-            <FaBolt size={50} />
-            <p style={paragraphStyle}>HEAVY STORM</p>
-          </button>
-          <button 
-            style={{
-              ...iconContainerStyle, 
-              backgroundColor: activeButton === "landslide" ? "gray" : "white"
-            }}
-            onClick={() => handleButtonClick("landslide")}
-          >
-            <FaMountain size={50} />
-            <p style={paragraphStyle}>LANDSLIDE</p>
-          </button>
         </div>
 
-        <hr className="divider" />
-        <h2 className="section-title">Where did it happen?</h2>
-        <div className="location-inputs" style={{ position: 'relative' }}>
-          <input 
-            type="text" 
-            placeholder="Input location" 
-            className="address-input" 
-            value={searchQuery}
-            onChange={handleInputChange}
-          />
-          {searchResults.length > 0 && (
-            <ul className="search-dropdown">
-              {searchResults.map((result, index) => (
-                <li key={index} className="search-item" onClick={() => handleSuggestionClick(result)}>
-                  {result}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+        {/* Content */}
+        <div className="content-container">
+          <h2 className="section-title">What happened?</h2>
+          <div className="containerStyle">
+            <button 
+              className="iconContainerStyle"
+              style={{backgroundColor: activeButton === "fire" ? "gray" : "white"}}
+              onClick={() => handleButtonClick("fire")}
+            >
+              <FaFire size={50} />
+              <p className="paragraphStyle">FIRE</p>
+            </button>
+            <button  
+              className="iconContainerStyle"
+              style={{backgroundColor: activeButton === "earthquake" ? "gray" : "white"}}
+              onClick={() => handleButtonClick("earthquake")}
+            >
+              <FaHome size={50} />
+              <p className="paragraphStyle">EARTHQUAKE</p>
+            </button>
+            <button 
+              className="iconContainerStyle"
+              style={{backgroundColor: activeButton === "flooding" ? "gray" : "white"}}
+              onClick={() => handleButtonClick("flooding")}
+            >
+              <FaWater size={50} />
+              <p className="paragraphStyle">FLOODING</p>
+            </button>
+            <button  
+              className="iconContainerStyle"
+              style={{backgroundColor: activeButton === "heavy_storm" ? "gray" : "white"}}
+              onClick={() => handleButtonClick("heavy_storm")}
+            >
+              <FaBolt size={50} />
+              <p className="paragraphStyle">HEAVY STORM</p>
+            </button>
+            <button 
+              className="iconContainerStyle"
+              style={{backgroundColor: activeButton === "landslide" ? "gray" : "white"}}
+              onClick={() => handleButtonClick("landslide")}
+            >
+              <FaMountain size={50} />
+              <p className="paragraphStyle">LANDSLIDE</p>
+            </button>
+          </div>
 
-        <hr className="divider" />
-        
-        {/* Submit button with original position */}
-        <button className="submit-button">SUBMIT REPORT</button>
-        
+          <hr className="divider" />
+          <h2 className="section-title">Where did it happen?</h2>
+          <p>Please use correct capitalization. For Zagreb please choose one of the following: Brezovica, Črnomerec, Donja Dubrava, Donji Grad, Gornja Dubrava, Gornji Grad- Medvešćak, Maksimir, Novi Zagreb-istok, Novi Zagreb-zapad, Pešćenica-Žitnjak, Podsljeme (Šestine-Gračani-Markuševec), Podsused-Vrapče, Sesvete, Stenjevec, Trešnjevka-jug, Trešnjevka-sjever, Trnje </p>
+          <div className="location-inputs" style={{ position: 'relative' }}>
+            <input 
+              type="text" 
+              placeholder="Input location" 
+              className="address-input"
+              value={locationInput}
+              onChange={handleLocationInputChange}
+            />
+            {!isLocationValid && <p className="error-text">Location not found. Please enter a valid location.</p>}
+          </div>
+
+          <hr className="divider" />
+          
+          <div className="containerStyle">
+            <input 
+              type="text" 
+              placeholder="Input short description" 
+              className="inputField" 
+              value={description} 
+              onChange={handleDescriptionChange}
+            />
+            <button className="submit-button" onClick={handleSubmit}>SUBMIT REPORT</button>
+          </div>
+          
+        </div>
       </div>
-    </div>
+      <Footer />
     </div>
   );
 }

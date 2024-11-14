@@ -27,7 +27,8 @@
   }
   
   .location-inputs {
-    display: flex;
+    display: grid;
+  
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
@@ -199,6 +200,39 @@
 
 .search-item:active {
   background-color: #d0d0d0;
+}
+
+.containerStyle {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.iconContainerStyle {
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer,
+}
+
+.paragraphStyle {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.inputField {
+  border-radius: 5px;
+  border: 1px solid gray;
+  width: 40vw;
+  padding: 15px;
+
+
+}
+
+.error-text {
+  margin: 20px;
 }
 
 

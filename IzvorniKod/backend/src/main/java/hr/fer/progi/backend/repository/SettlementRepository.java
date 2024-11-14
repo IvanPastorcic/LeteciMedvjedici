@@ -14,5 +14,9 @@ public interface SettlementRepository extends JpaRepository<Settlement, Long> {
 	
 	 @Query("SELECT s FROM Settlement s WHERE s.county.id = :countyId")
 	 List<Settlement> findByCountyId(Long countyId);
-	
+
+	/* @Query("SELECT s FROM Settlement s WHERE s.settlementName = :settlementName LIMIT 1")
+	Settlement findBySettlementName(String settlementName);*/
+
+	Settlement findFirstBySettlementName(String settlementName);
 }
