@@ -11,7 +11,8 @@ Ovim projektom želimo usavršiti svoja znanja i vještine izrade programske pot
 # Pristup aplikaciji
 Aplikaciju SafeBear se može koristiti putem web preglednika. (Trenutno nije osbosobljeno)
 
-Izvorni kod se nalazi na [GitHub-u projekta](https://github.com/IvanPastorcic/LeteciMedvjedici/tree/main/IzvorniKod) (Trenutno nema koda za prikaz jer je aplikacija u ranoj fazi implementacije)
+Izvorni kod se nalazi na [GitHub-u projekta](https://github.com/IvanPastorcic/LeteciMedvjedici/tree/main/IzvorniKod) 
+Osnovna funkcionalnost (registracija, login i prijava nepogode) mogu se isprobati preuzimanjem i pokretanjem servera lokalno (uz naknadno instalirane node-modules i dodatno axios paket). Frontend server koristi port 3000, a backend server port 8081.
 
 Više informacija o projektu pogledajte na našem [Wiki-ju](https://github.com/IvanPastorcic/LeteciMedvjedici/wiki)
 
