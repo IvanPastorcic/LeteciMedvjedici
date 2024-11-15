@@ -7,8 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-//import Report from './Report';
-//import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 const HomePage = () => {
 
@@ -17,6 +15,7 @@ const HomePage = () => {
     const [loading, setLoading] = useState(true); // Loading state
     const [error, setError] = useState(null); 
     const navigate = useNavigate();
+
 //dummy data samo za prikaz
     const [aids, setAids] = useState([  
         {id: 1, date : "26 Oct 2024 10:35", organisationName: "THE RED CROSS", aidInfo: "informacije o sklonistima"},
@@ -54,6 +53,7 @@ const HomePage = () => {
     const handleInformation = () => {
         setShowInfo(!showInfo); 
     };
+    
     return ( 
             <div className="HomePage">
                 <div className='header'>

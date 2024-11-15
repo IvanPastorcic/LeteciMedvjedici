@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AnonHeader from "../../components/AnonHeader/AnonHeader";
 import { FaArrowLeft, FaFire, FaWater, FaBolt, FaMountain, FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom"; 
@@ -13,6 +13,10 @@ function ReportPage(){
 
   // Simulirana baza podataka s lokacijama
   const [locations, setLocations] = useState([]);
+  const [reports, setReports] = useState([]);   
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null);     
+
   useEffect(() => {
         
     const fetchLocations = async () => {
@@ -26,7 +30,7 @@ function ReportPage(){
             setLoading(false); 
         }
     };
-    fetchReports(); 
+    fetchLocations(); 
 }, []); 
 
 
@@ -57,24 +61,20 @@ function ReportPage(){
     setSearchResults([]); // Zatvori padajući izbornik nakon odabira
   };
 
-  const containerStyle = {
-    display: 'flex',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    marginTop: '20px',
-  };
-
+  
   const iconContainerStyle = {
     textAlign: 'center',
     padding: '10px',
     borderRadius: '5px',
     cursor: 'pointer',
+    margin: '0 15px',  
   };
-
+  
   const paragraphStyle = {
     marginTop: '5px',
     fontSize: '14px',
   };
+  
 
   return (
     <div>
@@ -92,7 +92,7 @@ function ReportPage(){
       {/* Donji kontejner */}
       <div className="content-container">
         <h2 className="section-title">What happened?</h2>
-        <div style={containerStyle}>
+        <div className="container-style">
           <button 
             style={{
               ...iconContainerStyle, 
@@ -110,7 +110,7 @@ function ReportPage(){
             }}
             onClick={() => handleButtonClick("earthquake")}
           >
-            <FaHome size={50}  />
+            <FaHome size={50} />
             <p style={paragraphStyle}>EARTHQUAKE</p>
           </button>
           <button 
@@ -144,6 +144,7 @@ function ReportPage(){
             <p style={paragraphStyle}>LANDSLIDE</p>
           </button>
         </div>
+
 
         <hr className="divider" />
         <h2 className="section-title">Where did it happen?</h2>
