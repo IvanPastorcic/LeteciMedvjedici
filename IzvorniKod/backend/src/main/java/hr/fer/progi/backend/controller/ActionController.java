@@ -1,0 +1,56 @@
+package hr.fer.progi.backend.controller;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import hr.fer.progi.backend.model.Action;
+import hr.fer.progi.backend.model.Report;
+import hr.fer.progi.backend.repository.exception.InputIsNullException;
+import hr.fer.progi.backend.service.ActionService;
+
+@RestController
+@RequestMapping("/actions")
+public class ActionController {
+
+private final ActionService actionService;
+	
+	public ActionController(ActionService actionService) {
+		this.actionService = actionService;
+	}
+	
+	@GetMapping
+	List<Action> reports() {
+		return actionService.getAllReports();
+	}
+	
+	@PostMapping("/add") 
+	Action newAction(@RequestBody Action newAction){
+		return actionService.newAction(newAction);
+	}	
+	
+	@GetMapping("/{id}") 
+	 public ResponseEntity<Action> findById(@PathVariable Long id) {
+		Action action = actionService.findById(id);
+       
+       if (action == null) {
+       	 throw new InputIsNullException("Akcija ne postoji");
+       }
+       
+       return ResponseEntity.ok(action);
+   }
+	
+	@GetMapping("/actionName/{nameOfAction}") 
+	 public List<Action> findByName(@PathVariable String nameOfAction) {
+		return actionService.findByName(nameOfAction);
+  }
+	
+	
+}
+
