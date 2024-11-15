@@ -12,6 +12,11 @@ const Info = () => {
             </div>
             <br></br>
             <div className="info-title"> 
+                <text>FLOODING</text>
+
+            </div>
+            <br></br>
+            <div className="info-title"> 
                 <text>HEAVY STORM</text>
 
             </div>

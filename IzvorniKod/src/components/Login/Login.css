@@ -4,31 +4,56 @@
     flex-direction: column;
     align-items: flex-start;
     margin-left: 30px;
-    margin-right: 70px;
-    max-width: 350px;
+    margin-right: 30px; 
+    width: 100%; 
+    max-width: 350px; 
+    box-sizing: border-box; 
 }
 
 .Login h2 {
     font-size: 25px;
 }
 
-
 .Login button {
     font-family: Poppins;
     background-color: white;
     color: black;
-    font-weight:bold;
-    margin-top: 50px;
+    font-weight: bold;
+    margin-top: 20px; 
     text-align: center;
     padding: 8px 16px;
     border: 1px solid #808080;
     border-radius: 8px;
     cursor: pointer;
-    width:250px;
+    width: 100%; 
 }
 
 
-.Login button:hover{
+.Login button:hover {
     background-color: lightsteelblue;
 }
 
+
+@media (max-width: 768px) {
+    .Login {
+        margin-left: 20px;  
+        margin-right: 20px;
+    }
+
+    .Login button {
+        width: 100%; 
+        max-width: 300px; 
+        margin-top: 20px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .Login h2 {
+        font-size: 20px; 
+    }
+
+    .Login button {
+        width: 100%; 
+        padding: 10px 20px; 
+    }
+}

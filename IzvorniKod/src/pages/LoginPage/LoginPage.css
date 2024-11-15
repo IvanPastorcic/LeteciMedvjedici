@@ -1,21 +1,17 @@
-
 .LoginPageContainer {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  overflow: hidden; 
+  overflow: hidden;
 }
-
 
 .PageBody {
   display: flex;
   justify-content: center;
   flex: 1;
-  height: auto; 
+  height: auto;
   box-sizing: border-box;
 }
-
-
 
 .LeftSection {
   flex: 0.35;
@@ -35,44 +31,71 @@
   align-items: center;
   padding: 40px 20px;
   background-color: #E5E4E2;
+  box-sizing: border-box;
 }
 
 .LoginRegisterBox {
   display: flex;
+  flex-direction: row;
   background-color: #FAF9F6;
   padding: 20px;
   border-radius: 8px;
-  width: 700px;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  width: 100%; 
+  max-width: 700px; 
+  box-sizing: border-box;
 }
-
 
 .Separator {
   border-left: 1px solid #353935;
   margin: 0 15px;
 }
 
-
 @media (max-width: 768px) {
   .PageBody {
     flex-direction: column;
     align-items: center;
-    height: auto; 
+    height: auto;
   }
 
-  .LeftSection, .RightSection {
+ .RightSection {
     width: 100%;
     flex: none;
     padding: 20px;
   }
 
-  .LoginRegisterBox {
-    flex-direction: column;
+  .LeftSection {
+    flex: 0.3; 
+    padding: 20px 10px; 
     width: 100%; 
+    justify-content: flex-start; 
+  }
+
+  .LoginRegisterBox {
+    flex-direction: column; 
+    width: 100%; 
+    max-width: 500px; 
+    padding: 15px;
   }
 
   .Separator {
-    display: none; 
+    display: none;
   }
 }
 
+
+@media (max-width: 480px) {
+  .LoginRegisterBox {
+    max-width: 100%; 
+    padding: 10px; 
+  }
+
+ .Login, .Register {
+    margin: 10px 0; 
+  }
+
+  .LeftSection {
+    padding: 15px 5px; 
+    max-width: 400px; 
+  }
+}
