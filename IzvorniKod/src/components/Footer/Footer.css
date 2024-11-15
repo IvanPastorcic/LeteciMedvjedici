@@ -1,0 +1,21 @@
+.footer {
+    background-color: #CD1434; 
+    color: #ffffff;
+    padding: 15px 20px;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    position: relative;
+    flex-shrink: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.emergency-contacts {
+    display: flex;
+    justify-content: space-around;
+}
+
+.emergency-contacts span {
+    font-weight: 900;
+    font-size: 1.2rem;
+}

@@ -38,30 +38,32 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors() // Ensures CORS is handled at the start of the filter chain
+                .and()
                 .authorizeHttpRequests(authorize -> {
                     authorize.requestMatchers("/", "/reports/add", "/reports", "/location/settlementnames").permitAll();
                     authorize.anyRequest().authenticated();
                 })
                 .oauth2Login(oauth2Login -> oauth2Login
-                        .defaultSuccessUrl("http://localhost:3000/home", true)
+                        .defaultSuccessUrl("https://a598-78-0-76-64.ngrok-free.app/home", true)
                         .userInfoEndpoint(userInfoEndpoint ->
-                                userInfoEndpoint
-                                        .oidcUserService((OAuth2UserService) oAuth2Service)
+                                userInfoEndpoint.oidcUserService((OAuth2UserService) oAuth2Service)
                         )
                 )
                 .sessionManagement(sessionManagement ->
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 );
-        http.csrf(AbstractHttpConfigurer::disable);
-        http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
+
 
         return http.build();
     }
-
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:3000"));
+        configuration.setAllowedOrigins(List.of(
+                "https://a598-78-0-76-64.ngrok-free.app/",
+                "http://localhost:3000/"
+        ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
         configuration.setAllowCredentials(true);
@@ -69,5 +71,4 @@ public class SecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
-    }
-}
+    }}

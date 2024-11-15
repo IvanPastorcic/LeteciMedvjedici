@@ -1,10 +1,10 @@
-import React from 'react';
+/**import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 //import './pages/report_page/ReportPage';
 
 
 
-
+/**
 import ReportPage from './pages/report_page/ReportPage';
 
 
@@ -24,3 +24,4 @@ function App() {
 }
 
 export default App;
+ */

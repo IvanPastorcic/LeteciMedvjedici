@@ -1,24 +1,28 @@
 const ReportComponent = (props) => {
-
     const reports = props.reports;
-    console.log(props, reports);
-    return ( 
+
+
+    console.log("Props dobiven:", props);
+    console.log("Reports before map:", reports);
+
+    return (
         <div>
-            
-                {reports.map((report)=>(
+            {reports && Array.isArray(reports) ? (
+                reports.map((report) => (
                     <div key={report.id} className="Report">
                         <div className="ReportDateName">
-                            <text className="aid-date">{new Date(report.time).toLocaleDateString()}</text>
-                            <text className="username">{report.user.username}</text>
+                            <span className="aid-date">{new Date(report.time).toLocaleDateString()}</span>
+                            <span className="username">{report.user.username}</span>
                         </div>
-                            <h2>{report.disaster.disasterType} REPORT -  {report.disaster.settlement.settlementName} AREA</h2>
-                            <text>{report.shortDescription}</text>
-
-                        
+                        <h2>{report.disaster.disasterType} REPORT - {report.disaster.settlement.settlementName} AREA</h2>
+                        <p>{report.shortDescription}</p>
                     </div>
-                ))}
-    </div>  
-     );
-}
- 
+                ))
+            ) : (
+                <div>No reports available to display.</div> // Fallback in case reports is not an array or empty
+            )}
+        </div>
+    );
+};
+
 export default ReportComponent;

@@ -28,8 +28,16 @@ const HomePage = () => {
         
         const fetchReports = async () => {
             try {
-                const response = await axios.get("http://localhost:8081/reports"); 
-                setReports(response.data); 
+                console.log("prije axios get");
+                const response = await axios.get("https://f3a3-78-0-76-64.ngrok-free.app/reports", {
+                    headers: {
+                        'ngrok-skip-browser-warning': 'true',  // Skip the ngrok browser warning
+                        'Access-Control-Allow-Origin': 'true'
+                    }, withCredentials: true, 
+                });
+                
+                console.log(response);
+                setReports(response.data.reports); 
                 setLoading(false); 
             } catch (error) {
                 console.error("Error fetching reports:", error);

@@ -1,6 +1,7 @@
 package hr.fer.progi.backend.controller;
 
 import hr.fer.progi.backend.model.Enum.DisasterType;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
 
 import hr.fer.progi.backend.dto.ReportDTO;
@@ -26,12 +27,21 @@ public class ReportController {
 		this.reportService = reportService;
 	}
 	
-	//get list of all reports
+	/*//get list of all reports
 	@GetMapping
 	public ResponseEntity<List<Report>> reports() {
+		System.out.println("usli smo u backend");
 		return ResponseEntity.ok(reportService.getAllReports());
+	}*/
+	@GetMapping("/reports")
+	public ResponseEntity<List<Report>> reports(HttpServletRequest request) {
+		System.out.println("Inside backend");
+		return ResponseEntity.ok().header("Access-Control-Allow-Origin", "https://f3a3-78-0-76-64.ngrok-free.app")
+				.header("Access-Control-Allow-Credentials", "true")
+				.body(reportService.getAllReports());
 	}
-	
+
+
 	//add new report
 	@PostMapping("/add")
 	public ResponseEntity<Report> newReport(@RequestBody ReportDTO dto){

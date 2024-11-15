@@ -3,7 +3,7 @@ import './Login.css';
 
 function Login(props) {
     function handleGoogleLogin() {
-        window.location.href = "http://localhost:8081/login"
+        window.location.href = "https://f3a3-78-0-76-64.ngrok-free.app/login"
     }
 
     return (
