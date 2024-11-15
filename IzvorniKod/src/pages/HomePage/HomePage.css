@@ -1,12 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 
+.HomePage{
+  min-width: 1000px;
+}
+
 .PageBodyHome {
     display: flex;
     height: auto;
     box-sizing: border-box;
     width: 100%;
     background-color: #FAF9F6;
+    max-width: 100%;
   }
 
 .LeftSectionHome {
@@ -44,13 +49,11 @@
 
 .buttonsHomePage{
   display: flex;
-  width: 100%;
   background-color: #E5E4E2;
   height: 90px;
   justify-content: space-between;
   padding: 14px 16px;
-
-
+  align-items: center;
 }
 
   
@@ -101,27 +104,42 @@
 }
 
 .see-map-button{
+  display: flex;
   background-color: #FFFFFF;
   padding: 10px 13px;
   border-radius: 8px;
   border: 1px solid #808080;
+  min-width: 150px;
   width: 212px;
   height: 44px;
   cursor: pointer;
   font-family: Poppins;
   font-size: 25px;
+  justify-content: center;
+  align-items: center;
 }
 
 .AidActionItem{
+  display: flex;
+  flex-direction: column;
   border: 1px solid black;
   border-radius: 8px;
   background-color: white;
-  padding: 11px 8px;
+  padding: 8px;
+  min-width: 333px;
+  margin-bottom: 23px;
+}
+
+.aid-section-name{
+  max-height: 58px;
+
 }
 
 .AidDateName{
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
 }
 
 .aid-date{
@@ -130,8 +148,10 @@
   background-color: #E5E4E2;
   border-radius: 8px;
   height: 20px;
-  width: 138px;
+  width: 100px;
+  padding: 2px 5px;
   margin-right: 5px;
+  text-align: center;
 }
 
 .Filter{
@@ -164,9 +184,11 @@
   border-radius: 8px;
   background-color: white;
   padding: 11px 8px;
-  margin-bottom: 7px;
-  width: 100%;
+  margin-bottom: 23px;
+  width: auto;
   min-height: 227px;
+  min-width: 300px;
+  max-width: 721px;
 }
 
 .ReportDateName{

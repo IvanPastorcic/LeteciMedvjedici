@@ -19,9 +19,9 @@ const HomePage = () => {
     const navigate = useNavigate();
 //dummy data samo za prikaz
     const [aids, setAids] = useState([  
-        {id: 1, date : "26 Oct 2024 10:35", organisationName: "THE RED CROSS", aidInfo: "informacije o sklonistima"},
-        {id: 2, date : "27 Oct 2024 11:00", organisationName: "ORGANISATION2", aidInfo: "informacije o HRANI"},
-        {id: 3, date : "28 Oct 2024 15:58", organisationName: "ORGANISATION3", aidInfo: "informacije o VODI"}
+        {id: 1, date : "26.10.2024", organisationName: "THE RED CROSS", aidInfo: "informacije o sklonistima"},
+        {id: 2, date : "27.10.2024", organisationName: "ORGANISATION2", aidInfo: "informacije o HRANI"},
+        {id: 3, date : "28.10.2024", organisationName: "ORGANISATION3", aidInfo: "informacije o VODI"}
     ])
 
     useEffect(() => {
@@ -91,7 +91,10 @@ const HomePage = () => {
                         </div>
                         
                         <div className="RightSectionHome">
-                            <h2>AID ACTIONS:</h2>
+                            <div className='aid-section-name'>
+                                <h2>AID ACTIONS:</h2>
+                            </div>
+                            
                             <br /> 
                             <AidActions aids={aids}/> 
                         </div>
