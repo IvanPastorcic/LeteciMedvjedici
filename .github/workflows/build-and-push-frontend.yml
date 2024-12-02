@@ -20,6 +20,9 @@ jobs:
       - name: Clone the repository
         uses: actions/checkout@v3
 
+      - name: Debug - Prikaz datoteka
+        run: ls -la IzvorniKod
+
       - name: Konvertiranje imena repozitorija u mala slova
         run: echo "REPO_NAME_LOWER=$(echo $REPOSITORY_NAME | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
