@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'IzvorniKod/**'      # Pokreće se samo za promjene u /IzvorniKod direktoriju
+      - 'IzvorniKod/**'
   workflow_dispatch:
 
 jobs:
@@ -26,6 +26,11 @@ jobs:
       - name: Konvertiranje imena repozitorija u mala slova
         run: echo "REPO_NAME_LOWER=$(echo $REPOSITORY_NAME | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
+      - name: Debug - Provjera Node.js i npm verzija
+        run: |
+          node -v
+          npm -v
+
       - name: Postavljanje Node.js 22
         uses: actions/setup-node@v4
         with:
@@ -34,11 +39,11 @@ jobs:
           cache-dependency-path: 'IzvorniKod/package-lock.json'
 
       - name: Instalacija ovisnosti
-        run: npm install
+        run: npm install --verbose
         working-directory: IzvorniKod
 
       - name: Izgradnja aplikacije
-        run: npm run build
+        run: npm run build --verbose
         working-directory: IzvorniKod
 
       - name: Postavljanje Docker Buildx
