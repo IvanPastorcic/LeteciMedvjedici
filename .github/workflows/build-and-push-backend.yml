@@ -47,7 +47,7 @@ jobs:
         with:
           context: ./IzvorniKod/backend
           push: true
-          tags: ghcr.io/${{ github.repository }}/backend:latest
+          tags: ghcr.io/${{ github.repository | toLowerCase }}/backend:latest
 
       - name: Trigger release
         if: ${{ env.BACKEND_DEPLOY_HOOK }}
