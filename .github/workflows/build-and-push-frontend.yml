@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'public/**'      # Trigger only on changes in the /frontend directory
+      - 'IzvorniKod/**'      # Pokreće se samo za promene u /IzvorniKod direktorijumu
   workflow_dispatch:
 
 jobs:
@@ -14,25 +14,29 @@ jobs:
     runs-on: ubuntu-latest
     env:
       FRONTEND_DEPLOY_HOOK: ${{ secrets.FRONTEND_DEPLOY_HOOK }}
+      REPOSITORY_NAME: ${{ github.repository }}
 
     steps:
       - name: Clone the repository
         uses: actions/checkout@v3
+
+      - name: Convert repository name to lowercase
+        run: echo "REPO_NAME_LOWER=$(echo $REPOSITORY_NAME | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: Set Node.js 22
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'yarn'
-          cache-dependency-path: 'frontend/yarn.lock'
+          cache-dependency-path: 'IzvorniKod/yarn.lock'
 
       - name: Yarn install
         run: yarn install
-        working-directory: frontend
+        working-directory: IzvorniKod
 
       - name: Yarn build
         run: yarn run build
-        working-directory: frontend
+        working-directory: IzvorniKod
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -47,9 +51,9 @@ jobs:
       - name: Build and push frontend image
         uses: docker/build-push-action@v6
         with:
-          context: ./frontend
+          context: ./IzvorniKod
           push: true
-          tags: ghcr.io/${{ github.repository }}/frontend:latest
+          tags: ghcr.io/${{ env.REPO_NAME_LOWER }}/frontend:latest
 
       - name: Trigger release
         if: ${{ env.FRONTEND_DEPLOY_HOOK }}
