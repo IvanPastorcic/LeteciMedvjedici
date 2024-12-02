@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BACKEND_DEPLOY_HOOK: ${{ secrets.BACKEND_DEPLOY_HOOK }}
+      REPOSITORY_NAME: ${{ github.repository }}
 
     steps:
       - name: Clone the repository
@@ -27,6 +28,9 @@ jobs:
           architecture: x64
           cache: 'maven'
           cache-dependency-path: 'IzvorniKod/backend/pom.xml'
+
+      - name: Convert repository name to lowercase
+        run: echo "REPO_NAME_LOWER=$(echo $REPOSITORY_NAME | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: Maven build
         run: mvn clean package
@@ -47,7 +51,7 @@ jobs:
         with:
           context: ./IzvorniKod/backend
           push: true
-          tags: ghcr.io/${{ github.repository | toLowerCase }}/backend:latest
+          tags: ghcr.io/${{ env.REPO_NAME_LOWER }}/backend:latest
 
       - name: Trigger release
         if: ${{ env.BACKEND_DEPLOY_HOOK }}
