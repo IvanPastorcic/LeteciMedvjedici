@@ -1,5 +1,4 @@
 package hr.fer.progi.backend.security;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,17 +13,27 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.security.config.http.SessionCreationPolicy;
 
+
+
+
+
+
+
+import java.util.List;
+
 import java.util.List;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
+
     private final OAuth2Service oAuth2Service;
 
     public SecurityConfig(OAuth2Service oAuth2Service) {
         this.oAuth2Service = oAuth2Service;
     }
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -34,17 +43,17 @@ public class SecurityConfig {
                     authorize.anyRequest().authenticated();
                 })
                 .oauth2Login(oauth2Login -> oauth2Login
-                        .defaultSuccessUrl("https://safebear.onrender.com/home", true)  // Update this for production
-                        .userInfoEndpoint(userInfoEndpoint -> 
+                        .defaultSuccessUrl("https://safebear.onrender.com", true)
+                        .userInfoEndpoint(userInfoEndpoint ->
                                 userInfoEndpoint
-                                        .oidcUserService(oAuth2Service)  // No need for casting to OAuth2UserService
+                                        .oidcUserService((OAuth2UserService) oAuth2Service)
                         )
                 )
-                .sessionManagement(sessionManagement -> 
+                .sessionManagement(sessionManagement ->
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 );
-        http.csrf(AbstractHttpConfigurer::disable);  // Disable CSRF for API endpoints
-        http.cors(cors -> cors.configurationSource(corsConfigurationSource()));  // Enable CORS for allowed origins
+        http.csrf(AbstractHttpConfigurer::disable);
+        http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
 
         return http.build();
     }
@@ -52,7 +61,6 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        // Update this with your frontend URL for production
         configuration.setAllowedOrigins(List.of("https://safebear.onrender.com"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
