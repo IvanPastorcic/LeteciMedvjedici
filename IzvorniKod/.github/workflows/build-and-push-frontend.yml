@@ -1,0 +1,68 @@
+name: Build and Push Frontend Image
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'IzvorniKod/**'
+  workflow_dispatch:
+
+jobs:
+  build-and-push-frontend:
+    name: Build and Push Frontend
+    runs-on: ubuntu-latest
+    env:
+      FRONTEND_DEPLOY_HOOK: ${{ secrets.FRONTEND_DEPLOY_HOOK }}
+      REPOSITORY_NAME: ${{ github.repository }}
+
+    steps:
+      - name: Clone the repository
+        uses: actions/checkout@v3
+
+      - name: Debug - Prikaz datoteka
+        run: ls -la IzvorniKod
+
+      - name: Konvertiranje imena repozitorija u mala slova
+        run: echo "REPO_NAME_LOWER=$(echo $REPOSITORY_NAME | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
+      - name: Debug - Provjera Node.js i npm verzija
+        run: |
+          node -v
+          npm -v
+
+      - name: Postavljanje Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+          cache-dependency-path: 'IzvorniKod/package-lock.json'
+
+      - name: Instalacija ovisnosti
+        run: npm install --verbose
+        working-directory: IzvorniKod
+
+      - name: Izgradnja aplikacije
+        run: npm run build --verbose
+        working-directory: IzvorniKod
+
+      - name: Postavljanje Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Prijava u registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Izgradnja i pushanje frontend slike
+        uses: docker/build-push-action@v6
+        with:
+          context: ./IzvorniKod
+          push: true
+          tags: ghcr.io/${{ env.REPO_NAME_LOWER }}/frontend:latest
+
+      - name: Pokretanje release procesa
+        if: ${{ env.FRONTEND_DEPLOY_HOOK }}
+        run: curl ${{ env.FRONTEND_DEPLOY_HOOK }}
