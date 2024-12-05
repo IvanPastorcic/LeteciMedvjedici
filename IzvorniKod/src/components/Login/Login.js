@@ -3,7 +3,8 @@ import './Login.css';
 
 function Login(props) {
     function handleGoogleLogin() {
-        window.location.href = "http://localhost:8081/login"
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8081/safebear-backend';
+        window.location.href = `${backendUrl}/login`;
     }
 
     return (
