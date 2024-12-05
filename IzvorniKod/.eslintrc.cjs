@@ -11,10 +11,10 @@ module.exports = {
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   settings: { react: { version: '18.2' } },
   rules: {
-    'no-unused-vars': 'warn', // Instead of 'error'
-    'react/no-unknown-property': 'warn',
-    'react/no-unescaped-entities': 'warn',
+    'react/prop-types': 'off',
+    'react/jsx-key': 'off',
   },
+  
   
 };
 
