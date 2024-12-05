@@ -1,14 +1,13 @@
-
 FROM nginx:alpine
 
-# Kopira dist folder sadržaj sa stroja u nginx folder u Docker containeru
-COPY dist /usr/share/nginx/html
+# Copy the build folder contents into nginx's html directory in the Docker container
+COPY build /usr/share/nginx/html
 
-# Izlozi port
+# Expose port 80 for nginx
 EXPOSE 80
 
-# Kopira konfiguraciju nginx-a
+# Copy the Nginx configuration file
 COPY nginx.conf /etc/nginx/conf.d/default.template
 
-# postavlja entrypoint
+# Set the entrypoint for the container to substitute environment variables
 ENTRYPOINT ["/bin/sh", "-c", "envsubst '${BACKEND_URL}' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
