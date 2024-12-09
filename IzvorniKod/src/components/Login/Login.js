@@ -3,10 +3,7 @@ import './Login.css';
 
 function Login(props) {
     function handleGoogleLogin() {
-        let BACKEND_URL = 'http://localhost:8081';
-        if(process.env.BACKEND_URL) {
-            BACKEND_URL = process.env.BACKEND_URL;
-        }
+        const  BACKEND_URL = process.env.BACKEND_URL;
         window.location.href = `${BACKEND_URL}/login`
     }
 
