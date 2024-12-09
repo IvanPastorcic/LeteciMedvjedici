@@ -3,7 +3,11 @@ import './Login.css';
 
 function Login(props) {
     function handleGoogleLogin() {
-        window.location.href = "https://safebear-backend.onrender.com/login"
+        let BACKEND_URL = 'http://localhost:8081';
+        if(process.env.BACKEND_URL) {
+            BACKEND_URL = process.env.BACKEND_URL;
+        }
+        window.location.href = `${BACKEND_URL}/login`
     }
 
     return (
