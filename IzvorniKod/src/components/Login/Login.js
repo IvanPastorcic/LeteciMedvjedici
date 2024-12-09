@@ -3,7 +3,7 @@ import './Login.css';
 
 function Login(props) {
     function handleGoogleLogin() {
-        window.location.href = "/login"
+        window.location.href = "https://safebear-backend.onrender.com/login"
     }
 
     return (
