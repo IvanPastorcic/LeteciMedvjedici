@@ -3,9 +3,7 @@ import './Login.css';
 
 function Login(props) {
     function handleGoogleLogin() {
-        const  BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-        console.log('Backend URL from env:', process.env.REACT_APP_BACKEND_URL);
-        window.location.href = `${BACKEND_URL}/login`
+        window.location.href = "/login"
     }
 
     return (
