@@ -4,6 +4,7 @@ import './Login.css';
 function Login(props) {
     function handleGoogleLogin() {
         const  BACKEND_URL = process.env.BACKEND_URL;
+        console.log('Backend URL from env:', process.env.BACKEND_URL);
         window.location.href = `${BACKEND_URL}/login`
     }
 
