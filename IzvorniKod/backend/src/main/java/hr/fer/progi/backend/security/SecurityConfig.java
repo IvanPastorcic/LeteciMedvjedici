@@ -43,7 +43,7 @@ public class SecurityConfig {
                     authorize.anyRequest().authenticated();
                 })
                 .oauth2Login(oauth2Login -> oauth2Login
-                        .defaultSuccessUrl("https://safebear.onrender.com", true)
+                        .defaultSuccessUrl("https://safebear.onrender.com/home", true)
                         .userInfoEndpoint(userInfoEndpoint ->
                                 userInfoEndpoint
                                         .oidcUserService((OAuth2UserService) oAuth2Service)
