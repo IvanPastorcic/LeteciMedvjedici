@@ -19,7 +19,7 @@ function ReportPage(){
   useEffect(() => {   
     const fetchLocations = async () => {
       try {
-        const response = await axios.get("http://localhost:8081/location/settlementnames"); 
+        const response = await axios.get("https://safebear-backend.onrender.com/location/settlementnames"); 
         const locationNames = response.data.map(location => location.settlementName || location);
         setLocations(locationNames); 
         setLoading(false); 
@@ -79,7 +79,7 @@ function ReportPage(){
     }
 
     try {
-      const response = await axios.post("http://localhost:8081/reports/add", {
+      const response = await axios.post("https://safebear-backend.onrender.com/reports/add", {
         settlementName: locationInput,
         disasterType: emergencyType,
         shortDescription: description,
