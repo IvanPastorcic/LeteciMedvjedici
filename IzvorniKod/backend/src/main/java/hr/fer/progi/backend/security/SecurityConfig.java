@@ -1,5 +1,5 @@
 package hr.fer.progi.backend.security;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,20 +13,11 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.security.config.http.SessionCreationPolicy;
 
-
-
-
-
-
-
-import java.util.List;
-
 import java.util.List;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
 
     private final OAuth2Service oAuth2Service;
 
@@ -34,26 +25,27 @@ public class SecurityConfig {
         this.oAuth2Service = oAuth2Service;
     }
 
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> {
-                    authorize.requestMatchers("/", "/reports/add", "/reports", "/location/settlementnames").permitAll();
-                    authorize.anyRequest().authenticated();
+                    authorize
+                            .requestMatchers("/", "/reports/add", "/reports", "/location/settlementnames").permitAll()
+                            .requestMatchers("/login/oauth2/code/google").permitAll() // Permit OAuth2 callback
+                            .requestMatchers("/**").permitAll() // Ensure preflight (OPTIONS) requests are handled
+                            .anyRequest().authenticated();
                 })
                 .oauth2Login(oauth2Login -> oauth2Login
                         .defaultSuccessUrl("https://safebear.onrender.com/home", true)
                         .userInfoEndpoint(userInfoEndpoint ->
-                                userInfoEndpoint
-                                        .oidcUserService((OAuth2UserService) oAuth2Service)
+                                userInfoEndpoint.oidcUserService((OAuth2UserService) oAuth2Service)
                         )
                 )
                 .sessionManagement(sessionManagement ->
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                );
-        http.csrf(AbstractHttpConfigurer::disable);
-        http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
+                )
+                .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())); // Enable CORS here
 
         return http.build();
     }
@@ -61,13 +53,13 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("https://safebear.onrender.com"));
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
-        configuration.setAllowCredentials(true);
+        configuration.setAllowedOrigins(List.of("https://safebear.onrender.com")); // Frontend URL
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Allowed HTTP methods
+        configuration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type")); // Allowed headers
+        configuration.setAllowCredentials(true); // Allow credentials for cookies
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
+        source.registerCorsConfiguration("/**", configuration); // Apply configuration globally
         return source;
     }
 }
