@@ -46,7 +46,8 @@ public class SecurityConfig {
                         )
                 )
                 .sessionManagement(sessionManagement -> 
-                        sessionManagement.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                sessionManagement.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+
                 )
                 .csrf(AbstractHttpConfigurer::disable) // Disabling CSRF (if needed)
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())); // Enable CORS here
