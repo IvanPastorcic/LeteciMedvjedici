@@ -6,7 +6,7 @@ import './ReportPage.css';
 import axios from 'axios';
 import Footer from "../../components/Footer/Footer";
 
-function ReportPage(){
+function ReportPage() {
   const navigate = useNavigate();
   const [activeButton, setActiveButton] = useState(null);
   const [locationInput, setLocationInput] = useState(""); // Track user's input for location
@@ -15,7 +15,7 @@ function ReportPage(){
   const [locations, setLocations] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); 
-  
+
   useEffect(() => {   
     const fetchLocations = async () => {
       try {
@@ -31,6 +31,17 @@ function ReportPage(){
     };
     fetchLocations(); 
   }, []); 
+
+  // Log constants to see what data we have
+  useEffect(() => {
+    console.log("locations:", locations);
+    console.log("loading:", loading);
+    console.log("activeButton:", activeButton);
+    console.log("locationInput:", locationInput);
+    console.log("isLocationValid:", isLocationValid);
+    console.log("description:", description);
+    console.log("error:", error);
+  }, [locations, loading, activeButton, locationInput, isLocationValid, description, error]); 
 
   const goBack = () => {
     navigate(-1); // Go back to the previous page
@@ -52,6 +63,13 @@ function ReportPage(){
   };
 
   const handleSubmit = async () => {
+    // Log all constants before submission
+    console.log("Before submitting report:");
+    console.log("locationInput:", locationInput);
+    console.log("isLocationValid:", isLocationValid);
+    console.log("activeButton:", activeButton);
+    console.log("description:", description);
+
     // Validate input before submitting
     if (!isLocationValid) {
       alert("Please enter a valid location from the list.");
@@ -90,6 +108,7 @@ function ReportPage(){
       alert("Report submitted successfully!");
       navigate("/home");
     } catch (error) {
+      console.log("Error response:", error.response || error); // Log the full error response or message.
       console.error("Error submitting report:", error);
       alert("Failed to submit report.");
     }
