@@ -51,27 +51,21 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
-    public AppUser loadCurrentUser() {
-        // Retrieve the Authentication object from the SecurityContext
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        // Check if the user is authenticated with OAuth2
-        if (authentication instanceof OAuth2AuthenticationToken) {
-            OAuth2AuthenticationToken oauth2Authentication = (OAuth2AuthenticationToken) authentication;
-
-            // Extract the email from the token attributes
-            String email = oauth2Authentication.getPrincipal().getAttribute("email");
-            System.out.println(email);
-
-            final String emailToUse = (email == null || email.isEmpty()) ? "anonimna prijava" : email;
-
-            // Fetch the AppUser from the database using the email
-            return userRepository.findByEmail(email)
-                    .orElseThrow(() -> new WrongInputException("User not found with email: " + emailToUse));
-        }
-
-        // If not authenticated with OAuth2, throw an exception or handle anonymous access
-        throw new IllegalStateException("Current user is not authenticated via OAuth2");
+public AppUser loadCurrentUser() {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    if (authentication == null || !(authentication instanceof OAuth2AuthenticationToken)) {
+        throw new IllegalStateException("User is not authenticated via OAuth2");
     }
+
+    OAuth2AuthenticationToken oauth2Authentication = (OAuth2AuthenticationToken) authentication;
+    String email = oauth2Authentication.getPrincipal().getAttribute("email");
+
+    if (email == null || email.isEmpty()) {
+        email = "anonimna prijava"; // Handle missing email
+    }
+
+    return userRepository.findByEmail(email)
+            .orElseThrow(() -> new WrongInputException("User not found with email: " + email));
+}
+
 }
