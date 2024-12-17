@@ -64,8 +64,9 @@ public AppUser loadCurrentUser() {
         email = "anonimna prijava"; // Handle missing email
     }
 
+    String finalEmail = email;
     return userRepository.findByEmail(email)
-            .orElseThrow(() -> new WrongInputException("User not found with email: " + email));
+            .orElseThrow(() -> new WrongInputException("User not found with email: " + finalEmail));
 }
 
 }
