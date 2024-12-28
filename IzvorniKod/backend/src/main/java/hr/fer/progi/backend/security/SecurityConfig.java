@@ -11,6 +11,15 @@ import hr.fer.progi.backend.service.OAuth2Service;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.security.config.http.SessionCreationPolicy;
+
+
+
+
+
+
+
+import java.util.List;
 
 import java.util.List;
 
@@ -30,7 +39,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> {
-                    authorize.requestMatchers("/", "/reports/add", "/reports").permitAll();
+                    authorize.requestMatchers("/", "/reports/add", "/reports", "/location/settlementnames").permitAll();
                     authorize.anyRequest().authenticated();
                 })
                 .oauth2Login(oauth2Login -> oauth2Login
@@ -38,21 +47,23 @@ public class SecurityConfig {
                         .userInfoEndpoint(userInfoEndpoint ->
                                 userInfoEndpoint
                                         .oidcUserService((OAuth2UserService) oAuth2Service)
-                ));
+                        )
+                )
+                .sessionManagement(sessionManagement ->
+                        sessionManagement.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                );
         http.csrf(AbstractHttpConfigurer::disable);
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
 
         return http.build();
-
     }
-
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("http://localhost:3000"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
