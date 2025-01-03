@@ -19,6 +19,8 @@ public interface UserService {
 
     Optional<AppUser> fetchUserByEmail(String email);
 
-
     AppUser loadCurrentUser();
+
+
+    // AppUser loadCurrentUser();
 }

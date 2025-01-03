@@ -1,5 +1,6 @@
 package hr.fer.progi.backend.controller;
 
+import hr.fer.progi.backend.model.Enum.DisasterType;
 import org.springframework.web.bind.annotation.*;
 
 import hr.fer.progi.backend.dto.ReportDTO;
@@ -34,6 +35,9 @@ public class ReportController {
 	//add new report
 	@PostMapping("/add")
 	public ResponseEntity<Report> newReport(@RequestBody ReportDTO dto){
+		//ReportDTO dto = new ReportDTO(settlementName, disasterType, shortDescription, "");
+		System.out.println(dto.getDisasterType());
+
 		Report report = reportService.newReport(dto);
 		return ResponseEntity.ok(report);
 	}
