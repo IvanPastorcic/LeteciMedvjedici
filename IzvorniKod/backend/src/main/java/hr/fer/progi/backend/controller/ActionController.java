@@ -15,6 +15,8 @@ import hr.fer.progi.backend.model.Report;
 import hr.fer.progi.backend.repository.exception.InputIsNullException;
 import hr.fer.progi.backend.service.ActionService;
 
+
+//controller for managing humanitarian actions
 @RestController
 @RequestMapping("/actions")
 public class ActionController {
@@ -50,7 +52,9 @@ private final ActionService actionService;
 	 public List<Action> findByName(@PathVariable String nameOfAction) {
 		return actionService.findByName(nameOfAction);
   }
-	
+
+
+
 	
 }
 

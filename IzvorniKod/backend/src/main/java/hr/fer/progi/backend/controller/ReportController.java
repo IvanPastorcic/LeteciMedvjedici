@@ -1,5 +1,6 @@
 package hr.fer.progi.backend.controller;
 
+import hr.fer.progi.backend.dto.ReportStatusDTO;
 import hr.fer.progi.backend.model.Enum.DisasterType;
 import org.springframework.web.bind.annotation.*;
 
@@ -85,7 +86,16 @@ public class ReportController {
         
         return ResponseEntity.ok(report);
     }
-	
+
+
+	//change report status (used my admin)
+
+	@PatchMapping("/{id}/status")
+	public ResponseEntity<Report> changeStatus(@PathVariable Long id, @RequestBody ReportStatusDTO dto){
+		Report report = reportService.changeStatus(id, dto);
+
+		return ResponseEntity.ok(report);
+	}
 	
 	
 	
