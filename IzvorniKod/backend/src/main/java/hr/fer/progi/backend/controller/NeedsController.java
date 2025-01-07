@@ -3,6 +3,7 @@ package hr.fer.progi.backend.controller;
 import hr.fer.progi.backend.dto.NeedDTO;
 import hr.fer.progi.backend.dto.ReportDTO;
 import hr.fer.progi.backend.model.Action;
+import hr.fer.progi.backend.model.Embeddable.NeedId;
 import hr.fer.progi.backend.model.Need;
 import hr.fer.progi.backend.model.Report;
 import hr.fer.progi.backend.repository.exception.InputIsNullException;
@@ -30,7 +31,7 @@ public class NeedsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Need> findNeedById(@PathVariable Long id){
+    public ResponseEntity<Need> findNeedById(@PathVariable NeedId id){
         Need need = needsService.findById(id);
 
         if(need == null){
@@ -41,7 +42,7 @@ public class NeedsController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Need> changeStatus(@PathVariable Long id){
+    public ResponseEntity<Need> changeStatus(@PathVariable NeedId id){
         Need need = needsService.changeStatus(id);
 
         return ResponseEntity.ok(need);

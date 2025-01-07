@@ -39,7 +39,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> {
-                    authorize.requestMatchers("/", "/reports/add", "/reports", "/location/settlementnames").permitAll();
+                    authorize.requestMatchers("/", "/reports/add", "/reports"/*, "/location/settlementnames"*/).permitAll();
+                    authorize.requestMatchers("/location/settlementnames").hasRole("USER");
                     authorize.anyRequest().authenticated();
                 })
                 .oauth2Login(oauth2Login -> oauth2Login

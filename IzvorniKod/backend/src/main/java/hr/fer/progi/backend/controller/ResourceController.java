@@ -3,6 +3,7 @@ package hr.fer.progi.backend.controller;
 import hr.fer.progi.backend.dto.ReportDTO;
 import hr.fer.progi.backend.dto.ResourceDTO;
 import hr.fer.progi.backend.dto.ResourceUpdateDTO;
+import hr.fer.progi.backend.model.Embeddable.ResourceId;
 import hr.fer.progi.backend.model.Report;
 import hr.fer.progi.backend.model.Resource;
 import hr.fer.progi.backend.repository.exception.InputIsNullException;
@@ -51,7 +52,7 @@ public class ResourceController {
 
 
     @PatchMapping("/add/{id}")
-    public ResponseEntity<Resource> updateResource(@RequestBody ResourceUpdateDTO dto, @PathVariable Long id){
+    public ResponseEntity<Resource> updateResource(@RequestBody ResourceUpdateDTO dto, @PathVariable ResourceId id){
 
         Resource res = resourceService.updateResource(id, dto);
         return ResponseEntity.ok(res);

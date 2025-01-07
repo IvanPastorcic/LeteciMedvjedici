@@ -2,6 +2,7 @@ package hr.fer.progi.backend.service.impl;
 
 import hr.fer.progi.backend.dto.NeedDTO;
 import hr.fer.progi.backend.model.*;
+import hr.fer.progi.backend.model.Embeddable.NeedId;
 import hr.fer.progi.backend.model.Enum.NeedStatus;
 import hr.fer.progi.backend.model.Enum.NeedType;
 import hr.fer.progi.backend.model.Enum.ReportStatus;
@@ -9,9 +10,10 @@ import hr.fer.progi.backend.repository.NeedsRepository;
 import hr.fer.progi.backend.repository.exception.InputIsNullException;
 import hr.fer.progi.backend.service.NeedsService;
 import hr.fer.progi.backend.service.UserService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class NeedsServiceImpl implements NeedsService {
 
     private final NeedsRepository needsRepository;
@@ -28,12 +30,12 @@ public class NeedsServiceImpl implements NeedsService {
     }
 
     @Override
-    public Need findById(Long id) {
+    public Need findById(NeedId id) {
         return needsRepository.findNeedById(id);
     }
 
     @Override
-    public Need changeStatus(Long id) {
+    public Need changeStatus(NeedId id) {
         Need need = needsRepository.findNeedById(id);
 
         if (need == null){

@@ -2,6 +2,7 @@ package hr.fer.progi.backend.service;
 
 import hr.fer.progi.backend.dto.ResourceDTO;
 import hr.fer.progi.backend.dto.ResourceUpdateDTO;
+import hr.fer.progi.backend.model.Embeddable.ResourceId;
 import hr.fer.progi.backend.model.Resource;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +17,5 @@ public interface ResourceService {
 
     Resource newResource(ResourceDTO dto);
 
-    Resource updateResource(Long id, ResourceUpdateDTO dto);
+    Resource updateResource(ResourceId id, ResourceUpdateDTO dto);
 }
