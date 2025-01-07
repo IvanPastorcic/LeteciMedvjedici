@@ -13,5 +13,7 @@ import java.util.List;
 public interface ResourceRepository extends JpaRepository<Resource, Long> {
     List<Resource> findAll();
 
-    List<Resource> findByIdOrg(Long id);
+    List<Resource> findByHumanitarianOrganizationId(Long id);
+
+    Resource findById(ResourceId id);
 }
