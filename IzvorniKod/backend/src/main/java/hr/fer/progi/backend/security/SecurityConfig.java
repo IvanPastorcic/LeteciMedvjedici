@@ -2,6 +2,7 @@ package hr.fer.progi.backend.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -12,19 +13,12 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.security.config.http.SessionCreationPolicy;
-
-
-
-
-
-
-
-import java.util.List;
-
 import java.util.List;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(securedEnabled = true)
+
 public class SecurityConfig {
 
 
@@ -39,8 +33,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> {
-                    authorize.requestMatchers("/", "/reports/add", "/reports"/*, "/location/settlementnames"*/).permitAll();
-                    authorize.requestMatchers("/location/settlementnames").hasRole("USER");
+                    authorize.requestMatchers("/",
+                            "/reports/{id}", "/reports",
+                            "/location/settlementnames",
+                            "/actions", "/actions/{id}", "/actions/actionName/{nameOfAction}",
+                            "/user/**", //provjeri sa ostalima
+                            "/needs/{id}"
+                                ).permitAll();
                     authorize.anyRequest().authenticated();
                 })
                 .oauth2Login(oauth2Login -> oauth2Login
