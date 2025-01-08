@@ -1,6 +1,9 @@
 package hr.fer.progi.backend.controller;
 
-import hr.fer.progi.backend.model.Enum.DisasterType;
+import hr.fer.progi.backend.dto.ReportStatusDTO;
+import hr.fer.progi.backend.model.AppUser;
+import hr.fer.progi.backend.service.OAuth2Service;
+import hr.fer.progi.backend.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import hr.fer.progi.backend.dto.ReportDTO;
@@ -21,14 +24,20 @@ import org.springframework.http.ResponseEntity;
 public class ReportController {
 	
 	private final ReportService reportService;
+	private final UserService userService;
+	private final OAuth2Service oAuth2Service;
 	
-	public ReportController(ReportService reportService) {
+	public ReportController(ReportService reportService, UserService userService, OAuth2Service oAuth2Service) {
 		this.reportService = reportService;
+		this.userService = userService;
+		this.oAuth2Service = oAuth2Service;
 	}
 	
 	//get list of all reports
 	@GetMapping
 	public ResponseEntity<List<Report>> reports() {
+		//AppUser user = userService.loadCurrentUser();
+		//System.out.println(user);
 		return ResponseEntity.ok(reportService.getAllReports());
 	}
 	
@@ -85,7 +94,16 @@ public class ReportController {
         
         return ResponseEntity.ok(report);
     }
-	
+
+
+	//change report status (used my admin)
+
+	@PatchMapping("/{id}/status")
+	public ResponseEntity<Report> changeStatus(@PathVariable Long id, @RequestBody ReportStatusDTO dto){
+		Report report = reportService.changeStatus(id, dto);
+
+		return ResponseEntity.ok(report);
+	}
 	
 	
 	
