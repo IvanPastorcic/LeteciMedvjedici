@@ -7,6 +7,7 @@ import MapPage from "./pages/MapPage/MapPage";
 import HomePageAuthorities from "./pages/HomePageAuthorities/HomePageAuthorities";
 import ConfirmationScreen from "./pages/ConfirmationScreen/ConfirmationScreen";
 import ReportNeedPage from "./pages/ReportNeedPage/ReportNeedPage";
+import HomePageHumanitarian from "./pages/HomePageHumanitarian/HomePageHumanitarian";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/map" element={<MapPage />} />
 
         <Route path="/homeauthorities" element={<HomePageAuthorities />} />
+        <Route path="/homehumanitarian" element={<HomePageHumanitarian />} />
     
       </Routes>
     </Router>
