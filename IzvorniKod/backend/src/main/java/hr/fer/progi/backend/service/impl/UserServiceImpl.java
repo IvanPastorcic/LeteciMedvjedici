@@ -62,6 +62,8 @@ public class UserServiceImpl implements UserService {
 
         final String emailToUse = email.isEmpty() ? "anonimna prijava" : email;
         // Fetch the AppUser from the database using the email
+
+        //TODO: Dodati anonimnog korisnika u bazu podataka kako bi findByEmail() radilo
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new WrongInputException("User not found with email: " + emailToUse));
     }

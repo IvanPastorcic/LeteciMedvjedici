@@ -9,6 +9,7 @@ import hr.fer.progi.backend.model.Resource;
 import hr.fer.progi.backend.repository.exception.InputIsNullException;
 import hr.fer.progi.backend.service.ResourceService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,13 +26,17 @@ public class ResourceController {
         this.resourceService = resourceService;
     }
 
+
     @GetMapping("/all")
+    @Secured("ROLE_HUMANITARIAN")
     List<Resource> getResources(){
         return resourceService.getAllResources();
 
     }
 
+
     @GetMapping("/all/{id}")
+    @Secured("ROLE_HUMANITARIAN")
     List<Resource> getResourcesByOrganisation(@PathVariable Long id){
         List<Resource> organisationResources = resourceService.getAllResourcesByOrganisation(id);
 
@@ -43,7 +48,9 @@ public class ResourceController {
 
     }
 
+
     @PostMapping("/add/new")
+    @Secured("ROLE_HUMANITARIAN")
     public ResponseEntity<Resource> newResource(@RequestBody ResourceDTO dto){
 
         Resource resource =  resourceService.newResource(dto);
@@ -52,6 +59,7 @@ public class ResourceController {
 
 
     @PatchMapping("/add/{id}")
+    @Secured("ROLE_HUMANITARIAN")
     public ResponseEntity<Resource> updateResource(@RequestBody ResourceUpdateDTO dto, @PathVariable ResourceId id){
 
         Resource res = resourceService.updateResource(id, dto);

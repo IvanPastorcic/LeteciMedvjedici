@@ -9,6 +9,7 @@ import hr.fer.progi.backend.model.Report;
 import hr.fer.progi.backend.repository.exception.InputIsNullException;
 import hr.fer.progi.backend.service.NeedsService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,10 +26,13 @@ public class NeedsController {
         this.needsService = needsService;
     }
 
+
     @GetMapping("/all")
+    @Secured({"ROLE_ADMIN", "ROLE_HUMANITARIAN", "ROLE_AUTHORITY"})
     List<Need> needs() {
         return needsService.getAllNeeds();
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Need> findNeedById(@PathVariable NeedId id){
@@ -41,7 +45,9 @@ public class NeedsController {
         return ResponseEntity.ok(need);
     }
 
+
     @PatchMapping("/{id}")
+    @Secured({"ROLE_ADMIN", "ROLE_HUMANITARIAN"})
     public ResponseEntity<Need> changeStatus(@PathVariable NeedId id){
         Need need = needsService.changeStatus(id);
 
@@ -49,7 +55,9 @@ public class NeedsController {
     }
 
 //users can add their own needs so humanitarian organisations can see who needs help and where
+
     @PostMapping("/add")
+    @Secured("ROLE_USER")
     public ResponseEntity<Need> newNeed(@RequestBody NeedDTO dto){
         Need need = needsService.newNeed(dto);
         return ResponseEntity.ok(need);
