@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import MapPage from "./pages/MapPage/MapPage";
 import HomePageAuthorities from "./pages/HomePageAuthorities/HomePageAuthorities";
 import ConfirmationScreen from "./pages/ConfirmationScreen/ConfirmationScreen";
+import ReportNeedPage from "./pages/ReportNeedPage/ReportNeedPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<LoginPage />} />
         <Route path="/report" element={<ReportPage />} />
         <Route path="/confirmation" element={<ConfirmationScreen />} />
+        <Route path="/report-need" element={<ReportNeedPage />} /> 
 
         <Route path="/home" element={<HomePage />} />
         <Route path="/map" element={<MapPage />} />
