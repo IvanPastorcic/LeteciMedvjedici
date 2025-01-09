@@ -32,10 +32,10 @@ public class DataInitializer { // županije su zasad pogrešne lol
 		for (County county : counties) {
 			countyService.createCounty(county);
 		}
-		List<Settlement> settlements = readSettlementsFromCSV("naselja.csv");
-		for (Settlement settlement : settlements) {
-			settlementService.createSettlement(settlement);
-		}
+//		List<Settlement> settlements = readSettlementsFromCSV("naselja.csv");
+//		for (Settlement settlement : settlements) {
+//			settlementService.createSettlement(settlement);
+//		}
 	}
 
 	private List<County> getCountyData() {
