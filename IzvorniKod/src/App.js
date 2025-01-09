@@ -5,7 +5,7 @@ import ReportPage from "./pages/ReportPage/ReportPage";
 import HomePage from "./pages/HomePage/HomePage";
 import MapPage from "./pages/MapPage/MapPage";
 import HomePageAuthorities from "./pages/HomePageAuthorities/HomePageAuthorities";
-
+import ConfirmationScreen from "./pages/ConfirmationScreen/ConfirmationScreen";
 
 function App() {
   return (
@@ -13,6 +13,8 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/report" element={<ReportPage />} />
+        <Route path="/confirmation" element={<ConfirmationScreen />} />
+
         <Route path="/home" element={<HomePage />} />
         <Route path="/map" element={<MapPage />} />
 
