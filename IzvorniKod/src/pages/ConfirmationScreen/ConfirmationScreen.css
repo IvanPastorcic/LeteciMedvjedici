@@ -1,0 +1,50 @@
+.confirmation-screen {
+    font-family: Poppins;
+    text-align: center;
+    background-color: #FAF9F6;
+    min-height: 100vh;
+}
+
+.confirmation-screen h1 {
+    color: black;
+    margin-bottom: 1rem;
+    margin-top: 10rem;
+}
+
+.confirmation-screen p {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.report-need-button, .go-home-button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.report-need-button{
+    color: white;
+    background-color: #B33951;
+}
+
+.go-home-button{
+    color: white;
+    background-color: gray;
+}
+
+.report-need-button:hover {
+    background-color: #CD1434;
+    color: #fff;
+}
+
+.go-home-button:hover {
+    background-color: #6c757d;
+    color: #fff;
+}
