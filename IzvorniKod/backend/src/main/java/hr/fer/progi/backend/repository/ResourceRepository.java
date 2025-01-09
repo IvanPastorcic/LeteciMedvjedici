@@ -8,12 +8,13 @@ import hr.fer.progi.backend.model.Resource;
 import hr.fer.progi.backend.model.Embeddable.ResourceId;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public interface ResourceRepository extends JpaRepository<Resource, Long> {
+public interface ResourceRepository extends JpaRepository<Resource, ResourceId> {
     List<Resource> findAll();
 
     List<Resource> findByHumanitarianOrganizationId(Long id);
 
-    Resource findById(ResourceId id);
+    Optional<Resource> findById(ResourceId id);
 }
