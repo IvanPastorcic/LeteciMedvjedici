@@ -12,6 +12,7 @@ import hr.fer.progi.backend.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 @Service
 public class ResourceServiceImpl implements ResourceService {
 
@@ -44,7 +45,7 @@ public class ResourceServiceImpl implements ResourceService {
 
     @Override
     public Resource updateResource(ResourceId id, ResourceUpdateDTO dto) {
-        Resource resource = resourceRepository.findById(id);
+        Resource resource = resourceRepository.findById(id).orElseThrow(() -> new InputIsNullException("Resource with id " + id + " not found."));
 
         resource.setQuantity(dto.getQuantity());
 
