@@ -52,14 +52,13 @@ body {
     position: relative;
     justify-content: space-between;
     align-items: center;
-
     gap: 1rem;
 }
 
 .report-button {
     position: relative;
     padding: 1rem 2.5rem;
-    margin: 1rem auto;
+    margin-left: 1rem;
     border-radius: 8px;
     border: 2px solid #CD1434; 
     background-color: #CD1434; 
@@ -76,8 +75,7 @@ body {
 
 .see-map-button {
     padding: 0.5rem 1rem;
-    margin: 1rem;
-    margin-right: 15rem;
+    margin-right: 5rem;
     border-radius: 8px;
     border: 1px solid #808080;
     background-color: #FFFFFF;
@@ -86,6 +84,20 @@ body {
     cursor: pointer;
     text-align: center;
     align-self: flex-end; 
+}
+
+.manage-resources-button, .add-new-action-button{
+    font-family: Poppins;
+    margin:1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #808080;
+    background-color: #FFFFFF;
+    color: #000;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
 }
 
 .AidActionItem {
