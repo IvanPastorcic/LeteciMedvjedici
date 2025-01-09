@@ -10,7 +10,7 @@ body {
   
   .PageBodyAuthorities {
     display: flex;
-    flex-direction: column; /* Default for smaller screens */
+    flex-direction: column; 
     height: auto;
     box-sizing: border-box;
     width: 100%;
@@ -63,8 +63,8 @@ body {
     padding: 1rem 2.5rem;
     margin: 1rem auto;
     border-radius: 8px;
-    border: 2px solid #CD1434; /* Red outline */
-    background-color: #CD1434; /* Red button color */
+    border: 2px solid #CD1434; 
+    background-color: #CD1434; 
     color: white;
     font-size: 1.2rem;
     font-weight: bold;
@@ -87,7 +87,7 @@ body {
     font-size: 1rem;
     cursor: pointer;
     text-align: center;
-    align-self: flex-end; /* Align to the right */
+    align-self: flex-end; 
   }
   
   .AidActionItem {

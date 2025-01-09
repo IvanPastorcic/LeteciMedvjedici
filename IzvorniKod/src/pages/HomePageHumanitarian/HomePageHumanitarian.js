@@ -44,6 +44,14 @@ const HomePageHumanitarian = () => {
         navigate('/report');
     };
 
+    const navigateToManageResources = () => {
+        navigate('/manage-resources');
+    };
+
+    const navigateToAddNewAction = () => {
+        navigate('/add-new-aid-action');
+    };
+
     return (
         <div className="HomePageHumanitarian">
             <div className="header">
@@ -52,7 +60,10 @@ const HomePageHumanitarian = () => {
 
             <div className="buttonsHomePageHumanitarian">
                 <button className="report-button" onClick={handleAnonymousReport}>REPORT</button>
+                <button className="manage-resources-button" onClick={navigateToManageResources}>MANAGE RESOURCES</button>
+                <button className="add-new-action-button" onClick={navigateToAddNewAction}>ADD NEW ACTION</button>
                 <button className="see-map-button" onClick={navigateToMap}>SEE MAP</button>
+                
             </div>
 
             <div className="PageBodyHumanitarian">
