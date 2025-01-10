@@ -26,7 +26,7 @@ function App() {
         <Route path="/report-need" element={<ReportNeedPage />} /> 
 
         <Route path="/home" element={<HomePage />} />
-        <Route path="/map" element={<MapPage />} /
+        <Route path="/map" element={<MapPage />} />
 
 
         <Route path="/homeauthorities" element={<HomePageAuthorities />} />
