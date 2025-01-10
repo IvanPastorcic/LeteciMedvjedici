@@ -8,6 +8,7 @@ import HomePageAuthorities from "./pages/HomePageAuthorities/HomePageAuthorities
 import ConfirmationScreen from "./pages/ConfirmationScreen/ConfirmationScreen";
 import ReportNeedPage from "./pages/ReportNeedPage/ReportNeedPage";
 import HomePageHumanitarian from "./pages/HomePageHumanitarian/HomePageHumanitarian";
+import HomePageAdmin from "./pages/HomePageAdmin/HomePageAdmin";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
 
         <Route path="/homeauthorities" element={<HomePageAuthorities />} />
         <Route path="/homehumanitarian" element={<HomePageHumanitarian />} />
+        <Route path="/homeadmin" element={<HomePageAdmin />} />
     
       </Routes>
     </Router>
