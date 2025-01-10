@@ -1,13 +1,13 @@
-// Import potrebnih biblioteka
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import './MapPage.css'; // Pretpostavlja se da je CSS podešen
+import './MapPage.css'; 
 import AnonHeader from '../../components/AnonHeader/AnonHeader';
 
-// Rješavanje problema s marker ikonama
+
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
