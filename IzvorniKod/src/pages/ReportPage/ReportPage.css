@@ -23,7 +23,8 @@
   }
   
   .location-inputs {
-    display: flex;
+    display: grid;
+  
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
@@ -208,33 +209,40 @@
   background-color: #d0d0d0;
 }
 
-.container-style {
+
+.containerStyle {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin-top: 20px;
-  gap: 20px; 
-  flex-wrap: wrap; 
+  margin-bottom: 20px;
 }
 
+.iconContainerStyle {
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer,
+}
 
+.paragraphStyle {
 
-.paragraph-style {
   margin-top: 5px;
   font-size: 14px;
 }
 
-@media (max-width: 780px) {
-  
-  .container-style {
-    flex-direction: column;  
-    align-items: center; 
-    gap: 10px;
-  }
 
-  .icon-container-style {
-    margin: 10px 0;  
-  }
+.inputField {
+  border-radius: 5px;
+  border: 1px solid gray;
+  width: 40vw;
+  padding: 15px;
+
+
+}
+
+.error-text {
+  margin: 20px;
 }
 
 

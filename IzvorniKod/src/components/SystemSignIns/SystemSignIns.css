@@ -1,0 +1,21 @@
+.SystemSignIns {
+    flex: 0.25;
+    background-color: #e5e4e2;
+    padding: 20px 10px;
+    box-sizing: border-box;
+    margin-top: 0;
+    border-radius: 8px;
+  }
+  
+  .SignInItem {
+    background-color: #ffffff;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .SignInItem:last-child {
+    margin-bottom: 0;
+  }
+  
