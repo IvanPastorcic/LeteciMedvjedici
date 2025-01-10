@@ -44,6 +44,20 @@ const HomePageAuthorities = () => {
         navigate('/report');
     };
 
+    const handleDownloadReports = () => {
+        const jsonString = JSON.stringify(reports, null, 2);
+        const blob = new Blob([jsonString], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'reports.json';
+
+        link.click();
+
+        URL.revokeObjectURL(url);
+    };
+
     return (
         <div className="HomePageAuthorities">
             <div className="header">
@@ -57,7 +71,16 @@ const HomePageAuthorities = () => {
 
             <div className="PageBodyAuthorities">
                 <div className="LeftSectionAuthorities">
-                    <SystemSignIns />
+                   {/*<SystemSignIns />*/}
+
+                   <div className="StatisticalAnalysisSection">
+                        <h3>Statistical Analysis</h3>
+                        <p>Download information about all reports.</p>
+                        <button onClick={handleDownloadReports} className="download-button">
+                            Download Reports as JSON
+                        </button>
+                    </div>
+
                 </div>
 
                 <div className="MiddleSectionAuthorities">
