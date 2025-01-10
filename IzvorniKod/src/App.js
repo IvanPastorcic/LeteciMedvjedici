@@ -14,7 +14,7 @@ function App() {
         <Route path="/report" element={<ReportPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/map" element={<MapPage />} />
-    
+
       </Routes>
     </Router>
   );
