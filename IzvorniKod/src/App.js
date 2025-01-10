@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import ReportPage from "./pages/ReportPage/ReportPage"; 
 import HomePage from "./pages/HomePage/HomePage";
 import MapPage from "./pages/MapPage/MapPage";
+import ReportOpen from "./pages/ReportOpen/ReportOpen";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/report" element={<ReportPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/map" element={<MapPage />} />
+        <Route path="/reportopen" element={<ReportOpen />} />
     
       </Routes>
     </Router>
