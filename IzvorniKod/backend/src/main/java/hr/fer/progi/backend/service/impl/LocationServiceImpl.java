@@ -1,17 +1,23 @@
 package hr.fer.progi.backend.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import hr.fer.progi.backend.model.Location;
 import hr.fer.progi.backend.model.Report;
+import hr.fer.progi.backend.model.Settlement;
 import hr.fer.progi.backend.repository.CountyRepository;
 import hr.fer.progi.backend.repository.LocationRepository;
+import hr.fer.progi.backend.service.LocationService;
 import hr.fer.progi.backend.service.ReportService;
+import hr.fer.progi.backend.service.SettlementService;
 
 @Service
-public class LocationServiceImpl {
+public class LocationServiceImpl implements LocationService{
 	
 	
 	private final LocationRepository locationRepository;
@@ -20,11 +26,25 @@ public class LocationServiceImpl {
 		this.locationRepository = locationRepository;
 	}
 	
-	@Autowired
+	@Autowired 
 	private ReportService reportService;
 	
-	List<String> getAllReported(){
-		List<String> coordinates = locationRepository.findReported();
+	@Autowired
+	private SettlementService settlementService;
+	
+	
+	public List<String> getAllReported(){
+		List<Report> allReports = reportService.getAllReports();
+		List<String> coordinates = new ArrayList<String>();
+		for(Report report : allReports) {
+			Long id = report.getId();
+			Settlement s = settlementService.findById(id);
+			Location location = locationRepository.findBySettlement(s).orElse(null);
+			String geoCoor = location.getGeographicalCoordinates();
+			coordinates.add(geoCoor);
+		}
+		
+		
 		return coordinates;
 	}
 }
