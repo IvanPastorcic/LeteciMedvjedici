@@ -45,7 +45,7 @@ public class ReportController {
 	//add new report
 
 	@PostMapping("/add")
-	@Secured("ROLE_USER")
+	//@Secured("ROLE_USER")
 	public ResponseEntity<Report> newReport(@RequestBody ReportDTO dto){
 		//ReportDTO dto = new ReportDTO(settlementName, disasterType, shortDescription, "");
 		System.out.println(dto.getDisasterType());

@@ -21,12 +21,12 @@ public class Action {
 	private String actionName;
 
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "SETTLEMENT_ID", nullable = false)
 	private Settlement settlement;
 
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "HUMANITARIAN_ORGANIZATION_ID", nullable = false)
 	private HumanitarianOrganization humanitarianOrganization;
 

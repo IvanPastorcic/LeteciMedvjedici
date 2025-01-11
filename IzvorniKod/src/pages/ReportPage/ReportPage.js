@@ -88,11 +88,11 @@ function ReportPage(){
         disasterType: emergencyType,
         shortDescription: description,
       }, {
-        withCredentials: true,
+      withCredentials: true,
       });
       console.log("Report submitted:", response.data);
-      alert("Report submitted successfully!");
-      navigate("/home");
+      //ert("Report submitted successfully!");
+      navigate("/confirmation")
     } catch (error) {
       console.error("Error submitting report:", error);
       alert("Failed to submit report.");

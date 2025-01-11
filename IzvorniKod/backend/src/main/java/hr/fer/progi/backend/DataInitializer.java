@@ -1,4 +1,14 @@
 //package hr.fer.progi.backend;
+
+import hr.fer.progi.backend.model.AppUser;
+import hr.fer.progi.backend.model.Enum.Role;
+import hr.fer.progi.backend.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
+
+//package hr.fer.progi.backend;
 //
 //import hr.fer.progi.backend.model.County;
 //import hr.fer.progi.backend.model.Settlement;
@@ -26,17 +36,16 @@
 //	@Autowired
 //	private CountyService countyService;
 //
-//	@EventListener
-//	public void appReady(ApplicationReadyEvent event) {
-//		List<County> counties = getCountyData();
-//		for (County county : counties) {
-//			countyService.createCounty(county);
-//		}
-//		List<Settlement> settlements = readSettlementsFromCSV("naselja.csv");
-//		for (Settlement settlement : settlements) {
-//			settlementService.createSettlement(settlement);
-//		}
-//	}
+ /*   @Autowired
+    private UserRepository userRepository;
+
+	@EventListener
+	public void appReady(ApplicationReadyEvent event) {
+
+
+        AppUser humanitarna = new AppUser("l.humanitarna.m@gmail.com", "Humanitarna organizacija", Role.ROLE_HUMANITARIAN);
+        userRepository.save(humanitarna);
+	}}*/
 //
 //	private List<County> getCountyData() {
 //	    List<County> counties = new ArrayList<>();

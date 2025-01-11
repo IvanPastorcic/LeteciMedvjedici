@@ -3,7 +3,7 @@ import "./ManageResource.css";
 import AnonHeader from '../../components/AnonHeader/AnonHeader';
 import Footer from "../../components/Footer/Footer";
 
-function ManageReport() {
+function ManageResource(){
   // Sample data for resources
   const [allResources, setAllResources] = useState([
     { type: "Water", location: "Zagreb", quantity: 5000, organization: "A" },
@@ -179,5 +179,5 @@ function ManageReport() {
   );
 }
 
-export default ManageReport;
+export default ManageResource;
 

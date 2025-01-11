@@ -2,6 +2,7 @@ package hr.fer.progi.backend.controller;
 
 import java.util.List;
 
+import hr.fer.progi.backend.dto.ActionDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,15 +31,15 @@ private final ActionService actionService;
 
 
 	//TODO: promijeniti u actions()
-	@GetMapping
-	List<Action> reports() {
-		return actionService.getAllReports();
+	@GetMapping()
+	public ResponseEntity<List<Action>> getActions() {
+		return ResponseEntity.ok(actionService.getAllActions());
 	}
 
 
 	@PostMapping("/add")
 	@Secured("ROLE_HUMANITARIAN")
-	Action newAction(@RequestBody Action newAction){
+	Action newAction(@RequestBody ActionDTO newAction){
 		return actionService.newAction(newAction);
 	}	
 	

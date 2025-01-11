@@ -51,7 +51,7 @@ public class NeedsServiceImpl implements NeedsService {
     public Need newNeed(NeedDTO dto) {
         AppUser appUser = userService.loadCurrentUser();
 
-        Need need = new Need(dto.getType(), appUser, dto.getLocation());
+        Need need = new Need(dto.getType(), appUser, dto.getLocation(), dto.getQuantity());
         need.setNeedStatus(NeedStatus.PROCESSING);
         return needsRepository.save(need);
     }

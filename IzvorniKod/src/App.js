@@ -22,7 +22,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<LoginPage />} /> 
         <Route path="/report" element={<ReportPage />} />
         <Route path="/confirmation" element={<ConfirmationScreen />} />
         <Route path="/report-need" element={<ReportNeedPage />} /> 

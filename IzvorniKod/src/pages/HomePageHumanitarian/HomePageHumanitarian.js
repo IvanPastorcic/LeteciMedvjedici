@@ -11,15 +11,23 @@ const HomePageHumanitarian = () => {
     const [reports, setReports] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [needs, setNeeds] = useState([]);
     const navigate = useNavigate();
+    const [reportsLoading, setReportsLoading] = useState(true);
+    const [reportsError, setReportsError] = useState(null);
 
+    const [actions, setActions] = useState([]);
+    const [actionsLoading, setActionsLoading] = useState(true);
+    const [actionsError, setActionsError] = useState(null);
+    
 
+/*
 //dummy data samo za prikaz
     const [aids, setAids] = useState([  
         {id: 1, date : "26.10.2024", organisationName: "THE RED CROSS", aidInfo: "informacije o sklonistima"},
         {id: 2, date : "27.10.2024", organisationName: "ORGANISATION2", aidInfo: "informacije o HRANI"},
         {id: 3, date : "28.10.2024", organisationName: "ORGANISATION3", aidInfo: "informacije o VODI"}
-    ])
+    ])*/
 
     useEffect(() => {
         const fetchReports = async () => {
@@ -33,7 +41,37 @@ const HomePageHumanitarian = () => {
                 setLoading(false);
             }
         };
+
+         // Fetch Actions
+         const fetchActions = async () => {
+            try {
+                const response = await axios.get("http://localhost:8081/actions");
+                setActions(response.data);
+            } catch (error) {
+                console.error("Error fetching actions:", error);
+                setActionsError("Failed to load actions.");
+            } finally {
+                setActionsLoading(false);
+            }
+        };
+
         fetchReports();
+        fetchActions();
+    }, []);
+
+    useEffect(() => {
+        const fetchNeeds = async() => {
+            try {
+                const needsResponse = await axios.get("http://localhost:8081/needs/all");
+                setNeeds(needsResponse.data);
+                setLoading(false);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                setError("Failed to load data");
+                setLoading(false);
+            }
+        };
+        fetchNeeds();
     }, []);
 
     const navigateToMap = () => {
@@ -45,11 +83,11 @@ const HomePageHumanitarian = () => {
     };
 
     const navigateToManageResources = () => {
-        navigate('/manage-resources');
+        navigate('/manageresource');
     };
 
     const navigateToAddNewAction = () => {
-        navigate('/add-new-aid-action');
+        navigate('/addnewaction');
     };
 
     return (
@@ -68,7 +106,7 @@ const HomePageHumanitarian = () => {
 
             <div className="PageBodyHumanitarian">
                 <div className="LeftSectionHumanitarian">
-                    <ResourceRequests />
+                    <ResourceRequests needs = {needs} />
                 </div>
 
                 <div className="MiddleSectionHumanitarian">
@@ -82,15 +120,18 @@ const HomePageHumanitarian = () => {
                     )}
                 </div>
                 <div className="RightSectionHome">
-                            <div className='aid-section-name'>
-                                <h2>AID ACTIONS:</h2>
-                            </div>
-                            
-                            <br /> 
-                            <AidActions aids={aids}/> 
-                        </div>
-
+                    <div className='aid-section-name'>
+                        <h2>AID ACTIONS:</h2>
                     </div>
+                    {actionsLoading ? (
+                        <p>Loading actions...</p>
+                    ) : actionsError ? (
+                        <p className="error">{actionsError}</p>
+                    ) : (
+                        <AidActions actions={actions} />
+                    )}
+                </div>
+                </div>
                 
                 
             </div>
