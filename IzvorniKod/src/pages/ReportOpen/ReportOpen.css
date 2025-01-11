@@ -5,7 +5,6 @@ body {
 
 .PageBodyHome {
   display: flex;
-  height: auto;
   box-sizing: border-box;
   width: 100%;
   background-color: #FAF9F6;
@@ -14,14 +13,12 @@ body {
 
 
 .MiddleSectionHome {
-  flex: 1; 
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
   margin: 20px;
   background-color: #FAF9F6;
-  box-sizing: border-box;
 }
 
 .buttonsHomePage {
@@ -34,17 +31,14 @@ body {
   padding: 14px 16px;
 }
 
-
-
-
-
 .Report {
+
   border: 1px solid black;
   border-radius: 8px;
   background-color: white;
   padding: 11px 8px;
   margin-bottom: 7px;
-  width: 100%;
+  width: 90%;
   min-height: 227px;
 }
 
@@ -57,13 +51,15 @@ body {
   display: flex;
   flex-direction: row;
   margin: 30px;
+  flex-wrap: nowrap;
 }
 
 .report-image{
   display: flex;
-  width: 30%;
+  width: 20px;
   height: 100%;
   margin: 30px;
+  flex-wrap: nowrap;
 }
 
 .report-content {
