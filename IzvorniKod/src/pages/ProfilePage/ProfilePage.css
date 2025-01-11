@@ -1,0 +1,151 @@
+body {
+  overflow-x: hidden;
+  margin: 0; 
+}
+
+hr{
+  color: black;
+  height: 0.5px;
+  width: 98%;
+}
+
+
+.ProfilePage{
+  display: flex;
+  flex-direction: column;
+  min-width: 1000px;
+}
+
+.PageBodyProfile {
+
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #FAF9F6;
+    max-width: 100%;
+  }
+
+  .header{
+    background-color: FAF9F6;
+  }
+
+.LeftSectionProfile {
+  flex: 0.6; 
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  margin: 8px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: white;
+
+}
+
+.RightSectionProfile {
+  flex: 0.3; 
+  flex-direction: column;
+  justify-content: left;
+  display: flex;
+  padding: 20px 10px;
+  margin: 8px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+
+.User{
+  display: flex;
+  flex-direction: row;
+}
+
+.UserEdit{
+  display: flex;
+  flex-direction: column;
+}
+
+
+.user-icon {
+  width: 50px;
+  height: 40px;
+  margin: 5px;
+  border-radius: 50%;
+  
+}
+
+.UserInfo{
+  display: flex;
+  flex-direction: column;
+}
+
+.username-profile{
+  font-family: Poppins;
+  font-weight: bold;
+  font-size: 30px;
+  margin: 5px;
+}
+
+.mail-profile{
+  font-family: Poppins;
+  font-weight: bold;
+  font-size: 15px;
+  margin: 5px;
+}
+
+.pass-input{
+  width: 50%;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.button-profile{
+  color: white;
+  background-color: lightgray;
+  width: 50%;
+  margin: 5px;
+}
+
+.my-reports{
+  font-family: Poppins;
+  font-size: 20px;
+  margin: 5px;
+  text-align: left;
+}
+
+.Report {
+  border: 1px solid black;
+  border-radius: 8px;
+  background-color: white;
+  padding: 11px 8px;
+  margin-bottom: 23px;
+  width: auto;
+  min-height: 227px;
+  min-width: 300px;
+  max-width: 721px;
+}
+
+.ReportDateName {
+  display: flex;
+  justify-content: start;
+}
+
+.report-content {
+  text-align: left;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  background-color: #CD1434;
+  justify-content: space-between;
+}
+
+.profile-text {
+  color: white;
+  text-align: right;
+  font-family: Poppins;
+  margin: 10px;
+}

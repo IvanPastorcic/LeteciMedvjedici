@@ -14,6 +14,8 @@ import AddNewAction from "./pages/AddNewAction/AddNewAction";
 import ManageResource from "./pages/ManageResource/ManageResource";
 
 import HomePageAdmin from "./pages/HomePageAdmin/HomePageAdmin";
+import ReportOpen from "./pages/ReportOpen/ReportOpen";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 
 function App() {
@@ -24,10 +26,12 @@ function App() {
         <Route path="/report" element={<ReportPage />} />
         <Route path="/confirmation" element={<ConfirmationScreen />} />
         <Route path="/report-need" element={<ReportNeedPage />} /> 
+        <Route path="/reportopen" element={<ReportOpen />} /> 
+
+        <Route path="/profile" element={<ProfilePage />} /> 
 
         <Route path="/home" element={<HomePage />} />
         <Route path="/map" element={<MapPage />} />
-
 
         <Route path="/homeauthorities" element={<HomePageAuthorities />} />
         <Route path="/homehumanitarian" element={<HomePageHumanitarian />} />

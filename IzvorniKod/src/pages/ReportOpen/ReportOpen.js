@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaArrowLeft, FaFire, FaWater, FaBolt, FaMountain, FaHome } from "react-icons/fa";
+import BackButton from '../../components/BackButton/BackButton';
 
 
 const ReportOpen = () => {
@@ -63,9 +64,7 @@ const ReportOpen = () => {
         setShowInfo(!showInfo); 
     };
 
-    const goBack = () => {
-        navigate(-1); // Go back to the previous page
-      };
+    
     
     return ( 
             <div className="ReportOpen">
@@ -79,9 +78,7 @@ const ReportOpen = () => {
 
                         <div className="MiddleSectionHome">
                             <div className="BackReportOpen">
-                                <button className="back-report-button" onClick={goBack}>
-                                    <FaArrowLeft /> Back to newsfeed
-                                </button>
+                                <BackButton/>
                             </div>
                             <div className="Report">
 
