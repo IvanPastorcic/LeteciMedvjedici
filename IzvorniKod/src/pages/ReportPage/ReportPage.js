@@ -13,10 +13,12 @@ function ReportPage(){
   const [isLocationValid, setIsLocationValid] = useState(true); // Track validity of location
   const [description, setDescription] = useState(""); // Track short description
   const [locations, setLocations] = useState([]);
+
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); 
   
   useEffect(() => {   
+
     const fetchLocations = async () => {
       try {
         const response = await axios.get("http://localhost:8081/location/settlementnames"); 
@@ -30,6 +32,7 @@ function ReportPage(){
       }
     };
     fetchLocations(); 
+
   }, []); 
 
   const goBack = () => {
@@ -50,6 +53,7 @@ function ReportPage(){
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value); // Set the description state based on user input
   };
+
 
   const handleSubmit = async () => {
     // Validate input before submitting
@@ -93,7 +97,9 @@ function ReportPage(){
       console.error("Error submitting report:", error);
       alert("Failed to submit report.");
     }
+
   };
+  
 
   return (
     <div>
@@ -106,6 +112,7 @@ function ReportPage(){
             <FaArrowLeft /> Back
           </button>
           <h1 className="header-title">REPORT AN EMERGENCY:</h1>
+
         </div>
 
         {/* Content */}
@@ -181,6 +188,7 @@ function ReportPage(){
             <button className="submit-button" onClick={handleSubmit}>SUBMIT REPORT</button>
           </div>
           
+
         </div>
       </div>
       <Footer />

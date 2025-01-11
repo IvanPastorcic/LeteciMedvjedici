@@ -1,0 +1,106 @@
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; 
+    overflow: hidden; 
+  }
+  
+  .back-button {
+    align-self: flex-start;
+    padding: 0.375rem 0.625rem; 
+    border: none;
+    background-color: #333;
+    color: white;
+    font-size: 1.0625rem; 
+    cursor: pointer;
+    width: 20%; 
+    text-align: center;
+    margin-top: 1rem;
+    margin-left: 1rem;
+  }
+  
+  .back-button:hover {
+    background-color: #d32f2f;
+  }
+  
+  
+  .content-container {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    padding: 1.1rem; 
+    box-sizing: border-box;
+    flex-direction: row; 
+    height: calc(100vh - 4rem); /* Visina sa smanjenjem za marginu, tipičnu za header i gumb */
+    overflow: hidden; 
+    width: 90%;
+  }
+  
+  .map-wrapper {
+    flex: 3; /* Mapa zauzima 75% širine */
+    position: relative;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+    margin-right: 1.25rem; 
+    height: 100%; 
+    width: 100%;
+  }
+  
+  .sidebar {
+    flex: 1; /* Sidebar zauzima 25% širine */
+    background-color: #f8f8f8;
+    padding: 1rem 1.25rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0.125rem solid #ddd;
+    border-radius: 0.3125rem;
+    display: flex;
+    flex-direction: column;
+    height: 95%; 
+  }
+  
+  .filter-button {
+    width: 100%;
+    margin: 0.3125rem 0; 
+    padding: 0.625rem; 
+    border: none;
+    background-color: #e0e0e0;
+    color: #333;
+    cursor: pointer;
+    text-align: left;
+  }
+  
+  .filter-button:hover {
+    background-color: #d6d6d6;
+  }
+  
+  .sidebar h3 {
+    margin-bottom: 0.9375rem; 
+    font-size: 1rem;
+    color: #333;
+  }
+  
+
+  @media (max-width: 48rem) { 
+    .content-container {
+      flex-direction: column; 
+      padding: 0.625rem; 
+      height: auto; 
+    }
+  
+    .map-wrapper {
+      margin-bottom: 1.25rem; 
+    }
+  
+    .sidebar {
+      width: 95%; 
+      margin-top: 1.25rem;
+    }
+  
+    .filter-button {
+      font-size: 0.9rem; 
+      padding: 0.5rem; 
+    }
+  }
+  

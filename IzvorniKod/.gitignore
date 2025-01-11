@@ -1,12 +1,2 @@
-# Ignore node_modules inside izvornikod directory
-izvornikod/node_modules/
+/node_modules
 
-# Ignore general node_modules folder
-node_modules/
-
-# Ignore logs
-*.log
-
-# Ignore temporary files
-.DS_Store
-.vscode/
