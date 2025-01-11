@@ -1,0 +1,150 @@
+.manage-report-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 25px;
+    background-color: #fff;
+  }
+  
+  .anon-header {
+    width: 100vw; /* Force the header to cover full screen width */
+    position: absolute; /* Position absolutely so it overlaps the page content */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure it stays on top */
+  }
+  
+ 
+.ManageReport {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  /* Resource sections: default layout for larger screens */
+  .resources-section, .humanitarian-action {
+    flex: 1;
+    min-width: 300px; /* Ensure minimum size for smaller sections */
+    box-sizing: border-box;
+  }
+  
+  /* Styling for tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+  }
+
+  h2 {
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+  
+  /* Styling for filter section */
+  .filter-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .filter-container > p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 20px;
+  }
+  
+  .filter-container > label {
+    margin-right: 10px;
+  }
+  
+  .filter-container > select, .filter-container > input {
+    padding: 3px;
+    margin-right: 20px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Styling for add new resource section */
+  .humanitarian-action > div {
+    margin-top: 20px;
+  }
+  
+  .humanitarian-action label {
+    margin-right: 10px;
+  }
+  
+  .humanitarian-action input,
+  .humanitarian-action select {
+    padding: 4px;
+    width: 200px;
+    margin-right: 20px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+  
+  .humanitarian-action button {
+    padding: 8px 20px;
+    background-color: #CD1434;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .humanitarian-action button:hover {
+    background-color: #b0122c;
+  }
+
+  /* Container for Add New Resource form */
+.add-resource-container {
+    border: 2px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-top: 20px;
+    width: 100%; /* Full width of parent container */
+    box-sizing: border-box;
+  }
+  
+  /* Individual fields within the form */
+  .add-resource-container .form-field {
+    margin-bottom: 15px; /* Space between fields */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Labels and inputs */
+  .add-resource-container label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  .add-resource-container select,
+  .add-resource-container input {
+    padding: 8px;
+    width: 95%; 
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .ManageReport {
+      flex-direction: column;
+    }
+  }
+  
