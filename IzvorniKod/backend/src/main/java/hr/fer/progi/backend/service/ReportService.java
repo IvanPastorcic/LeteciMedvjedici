@@ -1,6 +1,8 @@
 package hr.fer.progi.backend.service;
 
 import java.util.List;
+
+import hr.fer.progi.backend.dto.ReportStatusDTO;
 import org.springframework.stereotype.Service;
 
 import hr.fer.progi.backend.dto.ReportDTO;
@@ -23,5 +25,7 @@ public interface ReportService {
 	// returns report with matching reportStatus
 
 	public Report deleteById(Long id);
-	// deletes report with matching id
+
+    Report changeStatus(Long id, ReportStatusDTO dto);
+    // deletes report with matching id
 }

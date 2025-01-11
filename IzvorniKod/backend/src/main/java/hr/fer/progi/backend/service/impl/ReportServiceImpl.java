@@ -3,14 +3,13 @@ package hr.fer.progi.backend.service.impl;
 import java.sql.Timestamp;
 import java.util.List;
 
+import hr.fer.progi.backend.dto.ReportStatusDTO;
+import hr.fer.progi.backend.model.*;
+import hr.fer.progi.backend.repository.exception.InputIsNullException;
 import hr.fer.progi.backend.service.OAuth2Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import hr.fer.progi.backend.dto.ReportDTO;
-import hr.fer.progi.backend.model.AppUser;
-import hr.fer.progi.backend.model.NaturalDisaster;
-import hr.fer.progi.backend.model.Report;
-import hr.fer.progi.backend.model.Settlement;
 import hr.fer.progi.backend.model.Enum.ReportStatus;
 import hr.fer.progi.backend.repository.NaturalDisasterRepository;
 import hr.fer.progi.backend.repository.ReportRepository;
@@ -87,6 +86,22 @@ public class ReportServiceImpl implements ReportService {
 			return r;
 		}
 		return null;
+	}
+
+	@Override
+	public Report changeStatus(Long id, ReportStatusDTO dto) {
+		Report report = reportRepository.findById(id)
+				.orElseThrow(() -> new InputIsNullException("Report with id " + id + " not found."));
+
+
+		if(dto.getStatus().equals(ReportStatus.DENIED))
+			report.setStatus(ReportStatus.DENIED);
+		else if(dto.getStatus().equals(ReportStatus.ACCEPTED))
+			report.setStatus(ReportStatus.ACCEPTED);
+		else if(dto.getStatus().equals(ReportStatus.PROCESSING))
+			report.setStatus(ReportStatus.PROCESSING);
+
+		return report;
 	}
 
 }

@@ -17,6 +17,7 @@ import hr.fer.progi.backend.repository.CountyRepository;
 import hr.fer.progi.backend.repository.SettlementRepository;
 import hr.fer.progi.backend.repository.exception.InputIsNullException;
 import hr.fer.progi.backend.service.CountyService;
+import hr.fer.progi.backend.service.LocationService;
 import hr.fer.progi.backend.service.SettlementService;
 
 @RestController
@@ -28,6 +29,14 @@ public class LocationController {
 	
 	@Autowired
 	private SettlementService settlementService;
+	
+	@Autowired
+	private LocationService locationService;
+	
+	@GetMapping("/coordinates") 
+	List<String> getAllReportedCoordinates(){
+		return locationService.getAllReported();
+	}
 	
 	@GetMapping("/settlement")
 	List<Settlement> getAllSettlements() {

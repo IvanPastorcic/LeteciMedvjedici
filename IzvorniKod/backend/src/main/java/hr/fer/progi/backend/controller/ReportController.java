@@ -1,6 +1,10 @@
 package hr.fer.progi.backend.controller;
 
-import hr.fer.progi.backend.model.Enum.DisasterType;
+import hr.fer.progi.backend.dto.ReportStatusDTO;
+import hr.fer.progi.backend.model.AppUser;
+import hr.fer.progi.backend.service.OAuth2Service;
+import hr.fer.progi.backend.service.UserService;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import hr.fer.progi.backend.dto.ReportDTO;
@@ -21,19 +25,27 @@ import org.springframework.http.ResponseEntity;
 public class ReportController {
 	
 	private final ReportService reportService;
+	private final UserService userService;
+	private final OAuth2Service oAuth2Service;
 	
-	public ReportController(ReportService reportService) {
+	public ReportController(ReportService reportService, UserService userService, OAuth2Service oAuth2Service) {
 		this.reportService = reportService;
+		this.userService = userService;
+		this.oAuth2Service = oAuth2Service;
 	}
 	
 	//get list of all reports
 	@GetMapping
 	public ResponseEntity<List<Report>> reports() {
+		//AppUser user = userService.loadCurrentUser();
+		//System.out.println(user);
 		return ResponseEntity.ok(reportService.getAllReports());
 	}
 	
 	//add new report
+
 	@PostMapping("/add")
+	@Secured("ROLE_USER")
 	public ResponseEntity<Report> newReport(@RequestBody ReportDTO dto){
 		//ReportDTO dto = new ReportDTO(settlementName, disasterType, shortDescription, "");
 		System.out.println(dto.getDisasterType());
@@ -55,7 +67,9 @@ public class ReportController {
     }
 	
 	//get report with matching reportStatus
-	@GetMapping("/status/{status}") 
+
+	@GetMapping("/status/{status}")
+	@Secured({"ROLE_AUTHORITY", "ROLE_ADMIN"})
 	 public ResponseEntity<List<Report>> filterByStatus(@PathVariable String status) { // mislim da je moglo i bez responseentity ovdje jer u najgorem slucaju vraca praznu listu
 		ReportStatus rstatus;
 		if(status.equalsIgnoreCase("accepted")) {
@@ -75,7 +89,9 @@ public class ReportController {
    }
 	
 	//delete report
+
 	@DeleteMapping("/{id}/delete")
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	public ResponseEntity<Report> deleteById(@PathVariable Long id) {
         Report report = reportService.deleteById(id);
         
@@ -85,7 +101,17 @@ public class ReportController {
         
         return ResponseEntity.ok(report);
     }
-	
+
+
+	//change report status (used my admin)
+
+	@PatchMapping("/{id}/status")
+	@Secured("ROLE_ADMIN")
+	public ResponseEntity<Report> changeStatus(@PathVariable Long id, @RequestBody ReportStatusDTO dto){
+		Report report = reportService.changeStatus(id, dto);
+
+		return ResponseEntity.ok(report);
+	}
 	
 	
 	
