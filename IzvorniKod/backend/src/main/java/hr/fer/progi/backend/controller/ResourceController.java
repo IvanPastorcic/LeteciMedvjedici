@@ -34,11 +34,24 @@ public class ResourceController {
 
     }
 
-
+/*
     @GetMapping("/all/{id}")
     @Secured("ROLE_HUMANITARIAN")
     List<Resource> getResourcesByOrganisation(@PathVariable Long id){
         List<Resource> organisationResources = resourceService.getAllResourcesByOrganisation(id);
+
+        if(organisationResources == null){
+            throw new InputIsNullException("Organizacija nema resurse.");
+        }
+
+        return organisationResources;
+
+    }*/
+
+    @GetMapping("/own")
+    @Secured("ROLE_HUMANITARIAN")
+    List<Resource> getResourcesByOrganisation(){
+        List<Resource> organisationResources = resourceService.getAllResourcesByOrganisation();
 
         if(organisationResources == null){
             throw new InputIsNullException("Organizacija nema resurse.");
@@ -58,11 +71,11 @@ public class ResourceController {
     }
 
 
-    @PatchMapping("/add/{id}")
+    @PatchMapping("/update")
     @Secured("ROLE_HUMANITARIAN")
-    public ResponseEntity<Resource> updateResource(@RequestBody ResourceUpdateDTO dto, @PathVariable ResourceId id){
+    public ResponseEntity<Resource> updateResource(@RequestBody ResourceUpdateDTO dto){
 
-        Resource res = resourceService.updateResource(id, dto);
+        Resource res = resourceService.updateResource(dto);
         return ResponseEntity.ok(res);
     }
 
