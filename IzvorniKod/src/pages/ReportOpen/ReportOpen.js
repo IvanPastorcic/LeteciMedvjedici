@@ -22,9 +22,8 @@ const ReportOpen = () => {
 //dummy data samo za prikaz
 
     const [reports, setReports] = useState([  
-        {id: 1, date : "26 Oct 2024 10:35", organisationName: "THE RED CROSS", aidInfo: "informacije o sklonistima"},
-        {id: 2, date : "27 Oct 2024 11:00", organisationName: "ORGANISATION2", aidInfo: "informacije o HRANI"},
-        {id: 3, date : "28 Oct 2024 15:58", organisationName: "ORGANISATION3", aidInfo: "informacije o VODI"}
+        {id: 1, date : "26 Oct 2024 10:35", username: "Marko", disasterType:"FIRE", area:"Zagreb", information: "informacije o pozaru"},
+
     ])
 
     const [aids, setAids] = useState([  
@@ -82,18 +81,23 @@ const ReportOpen = () => {
                             </div>
                             <div className="Report">
 
-                                <div className="ReportDateName">
-                                    <text className="aid-date">12.12.1212.</text>
-                                    <text className="username">Marko Markic</text>
+                                {reports.map((report) => (
+
+                                    <div classname="ReportPreview" key ={report.id}>
+                                         <div className="ReportDateName">
+                                    <text className="aid-date">{report.date}</text>
+                                    <text className="username">{report.username}</text>
                                 </div>
 
-                                <h2>aaaaaaaa REPORT -  deadly AREA</h2>
-                                <text>description</text>
+                                <h2>{report.disasterType} REPORT -  {report.area} AREA</h2>
+                                <text>{report.information}</text>
                                 <div classname="ReportImages">
-                                    <img classname="report-image" src="/images/Pozar1.webp" alt="pozar1" />
-                                    <img classname="report-image" src="/images/pozar2.jpg" alt="pozar2" />
-                                    <img classname="report-image" src="/images/pozar2.jpg" alt="pozar2" />
-                                </div>
+                                    </div>
+                                        </div>
+
+                               
+
+                                ))}
 
 
                             </div>

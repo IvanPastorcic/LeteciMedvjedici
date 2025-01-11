@@ -79,3 +79,8 @@ body {
   font-family: Poppins;
   margin: 10px;
 }
+
+.BackReportOpen{
+  display: flex;
+  flex-direction: row;
+}
