@@ -38,10 +38,14 @@ public class LocationServiceImpl implements LocationService{
 		List<String> coordinates = new ArrayList<String>();
 		for(Report report : allReports) {
 			Long id = report.getId();
-			Settlement s = settlementService.findById(id);
+			Report rep = reportService.findById(id);
+			Settlement s = rep.getDisaster().getSettlement();
 			Location location = locationRepository.findBySettlement(s).orElse(null);
 			String geoCoor = location.getGeographicalCoordinates();
+			
+			if(geoCoor.split(",").length == 2)
 			coordinates.add(geoCoor);
+			
 		}
 		
 		
