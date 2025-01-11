@@ -13,6 +13,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 //controller for managing users needs for shelter, food, water ...
@@ -28,7 +29,7 @@ public class NeedsController {
 
 
     @GetMapping("/all")
-    @Secured({"ROLE_ADMIN", "ROLE_HUMANITARIAN", "ROLE_AUTHORITY"})
+   // @Secured({"ROLE_ADMIN", "ROLE_HUMANITARIAN", "ROLE_AUTHORITY"})
     List<Need> needs() {
         return needsService.getAllNeeds();
     }
@@ -56,11 +57,23 @@ public class NeedsController {
 
 //users can add their own needs so humanitarian organisations can see who needs help and where
 
+    /*
     @PostMapping("/add")
     @Secured("ROLE_USER")
     public ResponseEntity<Need> newNeed(@RequestBody NeedDTO dto){
         Need need = needsService.newNeed(dto);
         return ResponseEntity.ok(need);
+    }*/
+
+    @PostMapping("/add")
+    @Secured("ROLE_USER")
+    public ResponseEntity<List<Need>> newNeeds(@RequestBody List<NeedDTO> dtoList) {
+        List<Need> needs = dtoList.stream()
+                .map(dto -> needsService.newNeed(dto))
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(needs);
     }
+
 
 }

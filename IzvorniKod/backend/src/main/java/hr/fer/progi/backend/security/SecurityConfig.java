@@ -34,7 +34,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorize -> {
                     authorize.requestMatchers("/",
-                            "/reports/{id}", "/reports",
+                            "/reports/{id}", "/reports", "reports/add",
                             "/location/settlementnames",
                             "/actions", "/actions/{id}", "/actions/actionName/{nameOfAction}",
                             "/user/**", //provjeri sa ostalima
@@ -42,13 +42,18 @@ public class SecurityConfig {
                                 ).permitAll();
                     authorize.anyRequest().authenticated();
                 })
-                .oauth2Login(oauth2Login -> oauth2Login
+                /*.oauth2Login(oauth2Login -> oauth2Login
                         .defaultSuccessUrl("http://localhost:3000/home", true)
                         .userInfoEndpoint(userInfoEndpoint ->
                                 userInfoEndpoint
                                         .oidcUserService((OAuth2UserService) oAuth2Service)
                         )
-                )
+                )*/
+                .oauth2Login(oauth2Login -> oauth2Login
+                        .successHandler(successHandler())  // Use the custom success handler
+                        .userInfoEndpoint(userInfoEndpoint ->
+                                userInfoEndpoint.oidcUserService((OAuth2UserService) oAuth2Service)
+                        ))
                 .sessionManagement(sessionManagement ->
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 );
@@ -69,5 +74,10 @@ public class SecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
+    }
+
+    @Bean
+    public AuthSuccessHandler successHandler() {
+        return new AuthSuccessHandler();
     }
 }

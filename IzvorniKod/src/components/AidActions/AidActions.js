@@ -2,22 +2,20 @@
 
 const AidActions = (props) => {
 
-    const aids = props.aids;
-    console.log(props, aids);
+    const actions = props.actions;
+    console.log(props, actions);
 
     return (  
         <div>
-            {aids.map((aid)=>(  
+            {actions.map((action)=>(  
                 <div className="AidActionItem">
                     <div className="AidDateName">
-                        <text className="aid-date">{aid.date}</text>
-                        <h4>{aid.organisationName}</h4>
+                        
+                        <h4>{action.actionName}</h4>
                     </div>
-                        <ul>
-                        <li>{aid.aidInfo}</li>
-                        <li>hrana</li>
-                        <li>...</li>
-                        </ul>
+                        <p>{action.actionDescription}</p>
+                        <p>At location: {action.settlement.settlementName}</p>
+                        <p>Organised by: {action.humanitarianOrganization.organizationName}</p>
                 </div>
             ))}
         </div>

@@ -1,34 +1,19 @@
 import React, { useState } from "react";
 import "./ResourceRequests.css";
 
-function ResourceRequests() {
+function ResourceRequests(props) {
+  const needs = props.needs;
+
   const [filter, setFilter] = useState("");
 
-  // Sample data za sad
-  const resourceRequests = [
-    {
-      location: "LOCATION",
-      needs: { water: "50L", "first aid kit": "30" },
-    },
-    {
-      location: "LOCATION",
-      needs: { water: "50L", "first aid kit": "30" },
-    },
-    {
-      location: "LOCATION",
-      needs: { water: "50L", "first aid kit": "30" },
-    },
-  ];
-
-  const filteredRequests = resourceRequests.filter((request) =>
-    filter
-      ? Object.keys(request.needs).includes(filter.toLowerCase())
-      : true
-  );
-
   const handleFilterClick = (resource) => {
-    setFilter(resource === filter ? "" : resource); 
+    setFilter(resource === filter ? "" : resource); // Toggle filter
   };
+
+  // Filter the needs based on the selected filter
+  const filteredNeeds = filter
+    ? needs.filter((need) => need.needType.toLowerCase() === filter.toLowerCase())
+    : needs;
 
   return (
     <div className="resource-requests-container">
@@ -50,16 +35,16 @@ function ResourceRequests() {
           )}
         </div>
       </div>
+
       <div className="requests-container">
-        {filteredRequests.map((request, index) => (
-          <div key={index} className="request-card">
-            <p className="request-location">{request.location}</p>
-            <p className="request-needs">
-              needs:{" "}
-              {Object.entries(request.needs)
-                .map(([key, value]) => `${key} ${value}`)
-                .join(", ")}
-            </p>
+        {filteredNeeds.map((need) => (
+          <div key={need.id} className="request-card">
+            <p className="request-user">{need.appUser.username}</p>
+            <div className="request-needs">
+              <p>Need type: {need.needType}</p>
+              <p>Need quantity: {need.quantity}</p>
+              <p>Need location: {need.address}</p>
+            </div>
           </div>
         ))}
       </div>
