@@ -13,9 +13,9 @@ public interface ResourceService {
 
     List<Resource> getAllResources();
 
-    List<Resource> getAllResourcesByOrganisation(Long id);
+    List<Resource> getAllResourcesByOrganisation();
 
     Resource newResource(ResourceDTO dto);
 
-    Resource updateResource(ResourceId id, ResourceUpdateDTO dto);
+    Resource updateResource(ResourceUpdateDTO dto);
 }
