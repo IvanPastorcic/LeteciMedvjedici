@@ -63,7 +63,7 @@ public class OAuth2ServiceImpl implements OAuth2Service, OAuth2UserService<OidcU
         GrantedAuthority authority = new SimpleGrantedAuthority(appUser.getRole().name());
 
         //POTENCIJALNA GREŠKA
-        return new DefaultOidcUser((Collection<? extends GrantedAuthority>) Collections.singletonList(authority), userRequest.getIdToken(), email);
+        return new DefaultOidcUser((Collection<? extends GrantedAuthority>) Collections.singletonList(authority), userRequest.getIdToken(), "email");
 
     }
 
