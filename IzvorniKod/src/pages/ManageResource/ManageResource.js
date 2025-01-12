@@ -105,12 +105,11 @@ const fetchMyResources = async () => {
         // Prepare the request body as per the backend DTO
         const requestBody = {
           quantity: newQuantity,
-          id: {
-            resourceType: currentResource.id.resourceType,
-            address: currentResource.id.address,
-          },
+          resourceType: currentResource.id.resourceType,
+          address: currentResource.id.address
+          
         };
-  
+          console.log(requestBody);
         // Make the PATCH request
         await axios.patch("http://localhost:8081/resource/update", requestBody, {headers: {
       "Content-Type": "application/json",

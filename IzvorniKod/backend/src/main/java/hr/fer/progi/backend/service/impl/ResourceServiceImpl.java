@@ -95,7 +95,9 @@ public Resource updateResource(ResourceUpdateDTO resourceUpdateDTO) {
         throw new IllegalArgumentException("Quantity cannot be negative.");
     }
 
-    ResourceId resourceId = resourceUpdateDTO.getId();
+    String address = resourceUpdateDTO.getAddress();
+    ResourceType resourceType = resourceUpdateDTO.getResourceType();
+    ResourceId resourceId = new ResourceId(resourceType, address);
     Resource resource = resourceRepository.findById(resourceId)
             .orElseThrow(() -> new InputIsNullException(
                     "Resource with ID (" + resourceId.getResourceType() + ", " + resourceId.getAddress() + ") not found."));
