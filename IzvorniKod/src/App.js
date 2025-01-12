@@ -15,7 +15,6 @@ import ManageResource from "./pages/ManageResource/ManageResource";
 
 import HomePageAdmin from "./pages/HomePageAdmin/HomePageAdmin";
 import ReportOpen from "./pages/ReportOpen/ReportOpen";
-import NeedsOpen from "./pages/NeedsOpen/NeedsOpen";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 
@@ -36,7 +35,6 @@ function App() {
 
         <Route path="/homeauthorities" element={<HomePageAuthorities />} />
         <Route path="/homehumanitarian" element={<HomePageHumanitarian />} />
-        <Route path="/needsopen" element={<NeedsOpen />} /> 
 
 
         <Route path="/addnewaction" element={<AddNewAction />} />
