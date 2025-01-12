@@ -1,4 +1,4 @@
-//package hr.fer.progi.backend;
+//package hr.fer.progi.backend;//package hr.fer.progi.backend;
 
 import hr.fer.progi.backend.model.AppUser;
 import hr.fer.progi.backend.model.Enum.Role;
@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 //package hr.fer.progi.backend;
 //
@@ -27,8 +29,8 @@ import org.springframework.stereotype.Component;
 //import java.util.Objects;
 //
 //
-//@Component
-//public class DataInitializer { // županije su zasad pogrešne lol
+/*@Component
+public class DataInitializer { // županije su zasad pogrešne lol*/
 //
 //	@Autowired
 //	private SettlementService settlementService;
@@ -36,15 +38,18 @@ import org.springframework.stereotype.Component;
 //	@Autowired
 //	private CountyService countyService;
 //
- /*   @Autowired
+  /*  @Autowired
     private UserRepository userRepository;
 
 	@EventListener
 	public void appReady(ApplicationReadyEvent event) {
 
 
-        AppUser humanitarna = new AppUser("l.humanitarna.m@gmail.com", "Humanitarna organizacija", Role.ROLE_HUMANITARIAN);
-        userRepository.save(humanitarna);
+        AppUser user = userRepository.findByEmail("predstavnikvlasti@gmail.com").orElseThrow();
+        userRepository.delete(user);
+
+        AppUser vlast = new AppUser("predstavnikvlasti@gmail.com", "Predstavnik vlasti", Role.ROLE_AUTHORITY);
+        userRepository.save(vlast);
 	}}*/
 //
 //	private List<County> getCountyData() {
