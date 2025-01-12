@@ -1,9 +1,12 @@
 package hr.fer.progi.backend.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import hr.fer.progi.backend.dto.ReportStatusDTO;
 import hr.fer.progi.backend.model.AppUser;
 import hr.fer.progi.backend.service.OAuth2Service;
 import hr.fer.progi.backend.service.UserService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
@@ -112,7 +115,21 @@ public class ReportController {
 
 		return ResponseEntity.ok(report);
 	}
-	
+
+	@GetMapping("/download")
+	@Secured("ROLE_AUTHORITY")
+	public ResponseEntity<byte[]> downloadReports() throws JsonProcessingException {
+		List<Report> reports = reportService.getAllReports();
+		String jsonString = new com.fasterxml.jackson.databind.ObjectMapper().writeValueAsString(reports);
+
+		byte[] jsonBytes = jsonString.getBytes();
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=reports.json");
+		headers.setContentType(org.springframework.http.MediaType.APPLICATION_JSON);
+
+		return new ResponseEntity<>(jsonBytes, headers, HttpStatus.OK);
+	}
 	
 	
 }

@@ -13,6 +13,11 @@ const HomePageAuthorities = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
+    
+    const [actions, setActions] = useState([]);
+    const [actionsLoading, setActionsLoading] = useState(true);
+    const [actionsError, setActionsError] = useState(null);
+    
 
 //dummy data samo za prikaz
     const [aids, setAids] = useState([  
@@ -33,6 +38,20 @@ const HomePageAuthorities = () => {
                 setLoading(false);
             }
         };
+
+        // Fetch Actions
+        const fetchActions = async () => {
+            try {
+                const response = await axios.get("http://localhost:8081/actions");
+                setActions(response.data);
+            } catch (error) {
+                console.error("Error fetching actions:", error);
+                setActionsError("Failed to load actions.");
+            } finally {
+                setActionsLoading(false);
+            }
+        };
+        fetchActions();
         fetchReports();
     }, []);
 
@@ -44,19 +63,26 @@ const HomePageAuthorities = () => {
         navigate('/report');
     };
 
-    const handleDownloadReports = () => {
-        const jsonString = JSON.stringify(reports, null, 2);
-        const blob = new Blob([jsonString], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'reports.json';
-
-        link.click();
-
-        URL.revokeObjectURL(url);
+    const handleDownloadReports = async () => {
+        try {
+            const response = await axios.get("http://localhost:8081/reports/download", {
+                responseType: "blob", withCredentials: true, // Important for file downloads
+            });
+    
+            const blob = new Blob([response.data], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+    
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "reports.json";
+            link.click();
+    
+            URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error("Error downloading reports:", error);
+        }
     };
+    
 
     return (
         <div className="HomePageAuthorities">
@@ -65,7 +91,7 @@ const HomePageAuthorities = () => {
             </div>
 
             <div className="buttonsHomePageAuthorities">
-                <button className="report-button" onClick={handleAnonymousReport}>REPORT</button>
+                
                 <button className="see-map-button" onClick={navigateToMap}>SEE MAP</button>
             </div>
 
@@ -94,13 +120,17 @@ const HomePageAuthorities = () => {
                     )}
                 </div>
                 <div className="RightSectionHome">
-                            <div className='aid-section-name'>
-                                <h2>AID ACTIONS:</h2>
-                            </div>
-                            
-                            <br /> 
-                            <AidActions aids={aids}/> 
-                        </div>
+                    <div className='aid-section-name'>
+                        <h2>AID ACTIONS:</h2>
+                    </div>
+                    {actionsLoading ? (
+                        <p>Loading actions...</p>
+                    ) : actionsError ? (
+                        <p className="error">{actionsError}</p>
+                    ) : (
+                        <AidActions actions={actions} />
+                    )}
+                </div>
 
                     </div>
                 
