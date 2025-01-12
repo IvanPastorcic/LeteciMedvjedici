@@ -1,14 +1,20 @@
 package hr.fer.progi.backend.dto;
 
 import hr.fer.progi.backend.model.Embeddable.ResourceId;
+import hr.fer.progi.backend.model.Enum.ResourceType;
+import jakarta.validation.constraints.NotEmpty;
 
 public class ResourceUpdateDTO {
     int quantity;
-    private ResourceId id;
+    private ResourceType resourceType;
 
-    public ResourceUpdateDTO(int quantity, ResourceId id) {
+
+    private String address;
+
+    public ResourceUpdateDTO(int quantity, ResourceType resourceType, String address) {
         this.quantity = quantity;
-        this.id = id;
+        this.resourceType = resourceType;
+        this.address = address;
     }
 
     public int getQuantity() {
@@ -19,11 +25,19 @@ public class ResourceUpdateDTO {
         this.quantity = quantity;
     }
 
-    public ResourceId getId() {
-        return id;
+    public ResourceType getResourceType() {
+        return resourceType;
     }
 
-    public void setId(ResourceId id) {
-        this.id = id;
+    public void setResourceType(ResourceType resourceType) {
+        this.resourceType = resourceType;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

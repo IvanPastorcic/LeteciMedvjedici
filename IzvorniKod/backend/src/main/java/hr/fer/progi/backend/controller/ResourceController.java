@@ -74,7 +74,7 @@ public class ResourceController {
     @PatchMapping("/update")
     @Secured("ROLE_HUMANITARIAN")
     public ResponseEntity<Resource> updateResource(@RequestBody ResourceUpdateDTO dto){
-
+        System.out.println("ušli smo u patch DTO: " + dto );
         Resource res = resourceService.updateResource(dto);
         return ResponseEntity.ok(res);
     }
