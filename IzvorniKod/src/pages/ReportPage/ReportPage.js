@@ -67,7 +67,7 @@ function ReportPage(){
       earthquake: "EARTHQUAKE",
       flooding: "FLOOD",
       heavy_storm: "HURRICANE",
-      landslide: "TORNADO",
+      landslide: "LANDSLIDE",
     };
 
     const emergencyType = typeMapping[activeButton];
