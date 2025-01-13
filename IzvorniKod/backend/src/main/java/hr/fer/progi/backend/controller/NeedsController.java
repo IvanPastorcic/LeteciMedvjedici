@@ -69,7 +69,7 @@ public class NeedsController {
     @Secured("ROLE_USER")
     public ResponseEntity<List<Need>> newNeeds(@RequestBody List<NeedDTO> dtoList) {
         List<Need> needs = dtoList.stream()
-                .map(dto -> needsService.newNeed(dto))
+                .map(needsService::newNeed)
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(needs);

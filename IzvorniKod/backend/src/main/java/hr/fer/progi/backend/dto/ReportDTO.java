@@ -6,6 +6,7 @@ import hr.fer.progi.backend.model.Enum.ReportStatus;
 
 public class ReportDTO {
 
+
 	private String settlementName;
 	private DisasterType disasterType;;
 	private String shortDescription;
