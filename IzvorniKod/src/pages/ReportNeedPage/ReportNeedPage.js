@@ -6,6 +6,7 @@ import axios from "axios";
 
 function ReportNeedPage() {
     const [needs, setNeeds] = useState({});
+    const reportId = localStorage.getItem("reportId")
     const navigate = useNavigate();
   
     const needUnits = {
@@ -118,6 +119,7 @@ function ReportNeedPage() {
         type: need.toUpperCase(),
         location: "Some Location", // Replace with actual input
         quantity: parseInt(quantity, 10),
+        id: reportId,
       }));
     
       try {
@@ -129,10 +131,12 @@ function ReportNeedPage() {
         );
     
         console.log("Submitted successfully:", response.data);
+        console.log(reportId);
         alert("Needs submitted successfully!");
         navigate("/home");
       } catch (error) {
         console.error("Error submitting needs:", error);
+        console.log(reportId);
         alert("Failed to submit needs. Please try again.");
       }
     };

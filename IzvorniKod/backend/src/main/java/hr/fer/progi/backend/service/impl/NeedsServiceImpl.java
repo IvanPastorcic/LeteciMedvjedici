@@ -4,9 +4,8 @@ import hr.fer.progi.backend.dto.NeedDTO;
 import hr.fer.progi.backend.model.*;
 import hr.fer.progi.backend.model.Embeddable.NeedId;
 import hr.fer.progi.backend.model.Enum.NeedStatus;
-import hr.fer.progi.backend.model.Enum.NeedType;
-import hr.fer.progi.backend.model.Enum.ReportStatus;
 import hr.fer.progi.backend.repository.NeedsRepository;
+import hr.fer.progi.backend.repository.ReportRepository;
 import hr.fer.progi.backend.repository.exception.InputIsNullException;
 import hr.fer.progi.backend.service.NeedsService;
 import hr.fer.progi.backend.service.UserService;
@@ -18,10 +17,12 @@ public class NeedsServiceImpl implements NeedsService {
 
     private final NeedsRepository needsRepository;
     private final UserService userService;
+    private final ReportRepository reportRepository;
 
-    public NeedsServiceImpl(NeedsRepository needsRepository, UserService userService) {
+    public NeedsServiceImpl(NeedsRepository needsRepository, UserService userService, ReportRepository reportRepository) {
         this.needsRepository = needsRepository;
         this.userService = userService;
+        this.reportRepository = reportRepository;
     }
 
     @Override
@@ -49,9 +50,10 @@ public class NeedsServiceImpl implements NeedsService {
 
     @Override
     public Need newNeed(NeedDTO dto) {
-        AppUser appUser = userService.loadCurrentUser();
+        //AppUser appUser = userService.loadCurrentUser();
 
-        Need need = new Need(dto.getType(), appUser, dto.getLocation(), dto.getQuantity());
+        Report report = reportRepository.findById(dto.getId()).orElseThrow(() -> new InputIsNullException("Report with id " + dto.getId() + " not found."));
+        Need need = new Need(dto.getType(), report, dto.getLocation(), dto.getQuantity());
         need.setNeedStatus(NeedStatus.PROCESSING);
         return needsRepository.save(need);
     }
