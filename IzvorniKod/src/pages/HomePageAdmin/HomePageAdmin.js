@@ -12,9 +12,15 @@ const HomePageAdmin = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
- const [actions, setActions] = useState([]);
+    const [actions, setActions] = useState([]);
     const [actionsLoading, setActionsLoading] = useState(true);
     const [actionsError, setActionsError] = useState(null);
+
+    const [searchReportName, setSearchReportName] = useState('')
+    const handleInputChange = (e) =>{
+        const searchTerm = e.target.value;
+        setSearchReportName(searchTerm)
+    }
 
 
     useEffect(() => {
@@ -65,7 +71,29 @@ const HomePageAdmin = () => {
             </div>
 
             <div className="PageBodyAdmin">
+                <div className='LeftSectionAdmin'>
+                    
+                    <h2>Users</h2>
+                    <button className='addUser'>Add new user</button>
+
+
+                </div>
+
                 <div className="MiddleSectionAdmin">
+                    <div className='search'>
+                        <input type='text'
+                        value={searchReportName}
+                        onChange={handleInputChange}
+                        placeholder='Type to search the reports'/>
+
+                        <select  name="reportStatus">
+                                <option value="Accepted">Accepted</option>
+                                <option value="Processing">Processing...</option>
+                                <option value="Denied">Denied</option>
+                        </select>
+                        <button className='changeStatus'>Change status</button>
+                        
+                    </div>
                     <h2>Reports</h2>
                     {loading ? (
                         <p>Loading reports...</p>
