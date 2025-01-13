@@ -34,6 +34,7 @@ public class ActionServiceImpl implements ActionService{
 	public List<Action> getAllActions() {
 		return actionRepository.findAll();
 	}
+	/*
 	@Override
 	public Action newAction(ActionDTO newAction) {
 
@@ -47,9 +48,38 @@ public class ActionServiceImpl implements ActionService{
 			humanitarianOrganizationRepository.save(organisation);
 		}
 
+		System.out.println(newAction.getDescription() + " " + newAction.getActionName());
+
 		Action action = new Action(newAction.getDescription(), newAction.getActionName(), settlement, organisation);
 		return actionRepository.save(action);
+	}*/
+
+	@Override
+	public Action newAction(ActionDTO newAction) {
+		AppUser appUser = userService.loadCurrentUser();
+		HumanitarianOrganization organisation = new HumanitarianOrganization(appUser.getUsername());
+		Settlement settlement = settlementRepository.findFirstBySettlementName(newAction.getSettlementName());
+
+		System.out.println(appUser.getEmail() + " " + organisation.getOrganizationName() + " " + settlement.getSettlementName());
+
+		// Check if the organization already exists in the database
+		HumanitarianOrganization existingOrganisation =
+				humanitarianOrganizationRepository.findByOrganizationName(organisation.getOrganizationName());
+
+		if (existingOrganisation == null) {
+			// Save the new organization if it doesn't exist
+			existingOrganisation = humanitarianOrganizationRepository.save(organisation);
+		}
+
+		System.out.println(newAction.getDescription() + " " + newAction.getActionName());
+
+		// Create the Action entity, associating it with the persisted organisation
+		Action action = new Action(newAction.getDescription(), newAction.getActionName(), settlement, existingOrganisation);
+
+		// Save the action
+		return actionRepository.save(action);
 	}
+
 
 	@Override
 	public Action findById(Long id) {
