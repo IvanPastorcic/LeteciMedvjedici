@@ -1,20 +1,12 @@
-//package hr.fer.progi.backend;//package hr.fer.progi.backend;
-
-import hr.fer.progi.backend.model.AppUser;
-import hr.fer.progi.backend.model.Enum.Role;
-import hr.fer.progi.backend.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
-import org.springframework.stereotype.Component;
-
-import java.util.Optional;
-
 //package hr.fer.progi.backend;
 //
+//
+//import hr.fer.progi.backend.model.AppUser;
 //import hr.fer.progi.backend.model.County;
 //import hr.fer.progi.backend.model.Settlement;
 //import hr.fer.progi.backend.model.Enum.Region;
+//import hr.fer.progi.backend.model.Enum.Role;
+//import hr.fer.progi.backend.repository.UserRepository;
 //import hr.fer.progi.backend.service.CountyService;
 //import hr.fer.progi.backend.service.SettlementService;
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +21,8 @@ import java.util.Optional;
 //import java.util.Objects;
 //
 //
-/*@Component
-public class DataInitializer { // županije su zasad pogrešne lol*/
+//@Component
+//public class DataInitializer { // županije su zasad pogrešne lol
 //
 //	@Autowired
 //	private SettlementService settlementService;
@@ -38,19 +30,28 @@ public class DataInitializer { // županije su zasad pogrešne lol*/
 //	@Autowired
 //	private CountyService countyService;
 //
-  /*  @Autowired
-    private UserRepository userRepository;
-
-	@EventListener
-	public void appReady(ApplicationReadyEvent event) {
-
-
-        AppUser user = userRepository.findByEmail("predstavnikvlasti@gmail.com").orElseThrow();
-        userRepository.delete(user);
-
-        AppUser vlast = new AppUser("predstavnikvlasti@gmail.com", "Predstavnik vlasti", Role.ROLE_AUTHORITY);
-        userRepository.save(vlast);
-	}}*/
+//    @Autowired
+//    private UserRepository userRepository;
+//
+//	@EventListener
+//	public void appReady(ApplicationReadyEvent event) {
+//        AppUser humanitarna = new AppUser("l.humanitarna.m@gmail.com", "Humanitarna organizacija", Role.ROLE_HUMANITARIAN);
+//        userRepository.save(humanitarna);
+//        
+//        AppUser admin = new AppUser("l.controller.m@gmail.com", "Admin", Role.ROLE_ADMIN);
+//        userRepository.save(admin);
+//        
+//        AppUser vlast = new AppUser("l.vlast.m@gmail.com", "Predstavnik vlasti", Role.ROLE_AUTHORITY);
+//        userRepository.save(vlast);
+//        
+//        AppUser anom = new AppUser("Anonimni korisnik", "Anonimni korisnik", Role.ROLE_USER);
+//        userRepository.save(anom);
+//		
+//		List<County> counties = getCountyData();
+//		for (County county : counties) {
+//			countyService.createCounty(county);
+//		}
+//	}
 //
 //	private List<County> getCountyData() {
 //	    List<County> counties = new ArrayList<>();
@@ -78,27 +79,27 @@ public class DataInitializer { // županije su zasad pogrešne lol*/
 //	    return counties;
 //	}
 //
-//
-//	private List<Settlement> readSettlementsFromCSV(String fileName) {
-//		List<Settlement> settlements = new ArrayList<>();
-//		try (BufferedReader br = new BufferedReader(new InputStreamReader(
-//				Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(fileName))))) {
-//			Long id = 0L;
-//			String line;
-//			while ((line = br.readLine()) != null) {
-//				String[] data = line.split(",");
-//				id++;
-//				Long countyId = Long.parseLong(data[1]); 
-//				String settlementName = data[4]; 
-//
-//				County county = countyService.findById(countyId);
-//				Settlement settlement = new Settlement(settlementName, county);
-//
-//				settlements.add(settlement);
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return settlements;
-//	}
+////
+////	private List<Settlement> readSettlementsFromCSV(String fileName) {
+////		List<Settlement> settlements = new ArrayList<>();
+////		try (BufferedReader br = new BufferedReader(new InputStreamReader(
+////				Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(fileName))))) {
+////			Long id = 0L;
+////			String line;
+////			while ((line = br.readLine()) != null) {
+////				String[] data = line.split(",");
+////				id++;
+////				Long countyId = Long.parseLong(data[1]); 
+////				String settlementName = data[4]; 
+////
+////				County county = countyService.findById(countyId);
+////				Settlement settlement = new Settlement(settlementName, county);
+////
+////				settlements.add(settlement);
+////			}
+////		} catch (Exception e) {
+////			e.printStackTrace();
+////		}
+////		return settlements;
+////	}
 //}
