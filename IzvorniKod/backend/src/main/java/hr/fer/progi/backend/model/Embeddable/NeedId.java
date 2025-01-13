@@ -15,7 +15,7 @@ public class NeedId implements Serializable {
 	private NeedType needType;
 
 	@NotNull
-	private Long appUserId;
+	private Long id;
 
 	public NeedId() {
 	}
@@ -32,8 +32,8 @@ public class NeedId implements Serializable {
 		this.needType = needType;
 	}
 
-	public Long getAppUserId() {
-		return appUserId;
+	public Long getId() {
+		return id;
 	}
 
 	public static long getSerialversionuid() {
