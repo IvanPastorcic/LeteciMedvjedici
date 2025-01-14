@@ -71,39 +71,36 @@ const ReportOpen = () => {
                     <AnonHeader /> 
                 </div>
 
+                	<div className="BackReportOpen">
+                        <BackButton/>
+                    </div>
+                <div className="PageBodyHomeReportOpen">
             
-                <div className="PageBodyHome">
-                        
+                    <div className="Report">
 
-                        <div className="MiddleSectionHome">
-                            <div className="BackReportOpen">
-                                <BackButton/>
+                        {reports.map((report) => (
+
+                            <div classname="ReportPreview" key ={report.id}>
+                                    <div className="ReportDateName">
+                            <text className="aid-date">{report.date}</text>
+                            <text className="username">{report.username}</text>
+                        </div>
+
+                        <h2>{report.disasterType} REPORT -  {report.area} AREA</h2>
+                        <text>{report.information}</text>
+                        <div classname="ReportImages">
                             </div>
-                            <div className="Report">
-
-                                {reports.map((report) => (
-
-                                    <div classname="ReportPreview" key ={report.id}>
-                                         <div className="ReportDateName">
-                                    <text className="aid-date">{report.date}</text>
-                                    <text className="username">{report.username}</text>
                                 </div>
 
-                                <h2>{report.disasterType} REPORT -  {report.area} AREA</h2>
-                                <text>{report.information}</text>
-                                <div classname="ReportImages">
-                                    </div>
-                                        </div>
+                        
 
-                               
-
-                                ))}
+                        ))}
 
 
-                            </div>
+                    </div>
                         
                            
-                        </div>
+                        
                         
                        
 
