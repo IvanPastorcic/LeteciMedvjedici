@@ -1,9 +1,7 @@
 .back-button{
   background-color: black;
   color: white;
-  border-radius: 5px;
-  border: 2px;
-  height: 10px;
-  width: 50px;
-
+  border-radius: 8px;
+  height: 4rem;
+  width: 4rem;
 }

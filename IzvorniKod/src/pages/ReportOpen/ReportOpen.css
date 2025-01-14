@@ -1,34 +1,12 @@
-body {
-  overflow-x: hidden;
-  margin: 0; 
-}
 
-.PageBodyHome {
+.PageBodyHomeReportOpen {
   display: flex;
   box-sizing: border-box;
   width: 100%;
   background-color: #FAF9F6;
   overflow-x: hidden;
-}
-
-
-.MiddleSectionHome {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  margin: 20px;
-  background-color: #FAF9F6;
-}
-
-.buttonsHomePage {
-  display: flex;
-  width: 100%;
-  background-color: #E5E4E2;
-  height: 90px;
-  justify-content: space-evenly; 
-  align-items: center;
-  padding: 14px 16px;
+  height: 85vh;
+  justify-content: center;
 }
 
 .Report {
@@ -66,12 +44,6 @@ body {
   text-align: left;
 }
 
-.header {
-  display: flex;
-  flex-direction: row;
-  background-color: #CD1434;
-  justify-content: space-between;
-}
 
 .profile-text {
   color: white;
@@ -83,4 +55,6 @@ body {
 .BackReportOpen{
   display: flex;
   flex-direction: row;
+  padding-top: 3rem;
+  background-color: #FAF9F6;
 }

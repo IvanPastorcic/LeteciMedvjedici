@@ -1,8 +1,5 @@
 import './NeedsOpen.css';
-import Info from "../../components/Info/Info";
 import AnonHeader from "../../components/AnonHeader/AnonHeader";
-import ReportComponent from "../../components/Report/ReportComponent";
-import AidActions from "../../components/AidActions/AidActions";
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -66,48 +63,41 @@ const NeedsOpen = () => {
     
     
     return ( 
-            <div className="ReportOpen">
-                <div className='header'>
-                    <AnonHeader /> 
+            <div className="NeedsOpen">
+                    <div className='header'>
+                        <AnonHeader /> 
+                    </div>
+
+                <div className="BackNeedsOpen">
+                    <BackButton/>
                 </div>
 
-            
-                <div className="PageBodyHome">
+                <div className="PageBodyNeedsOpen">
                         
+                    <div className="Report">
 
-                        <div className="MiddleSectionHome">
-                            <div className="BackReportOpen">
-                                <BackButton/>
-                            </div>
-                            <div className="Report">
+                        {reports.map((report) => (
 
-                                {reports.map((report) => (
-
-                                    <div classname="ReportPreview" key ={report.id}>
-                                         <div className="ReportDateName">
-                                    <text className="aid-date">{report.date}</text>
-                                    <text className="username">{report.username}</text>
-                                </div>
-
-                                <h2>{report.needType} NEED REPORT -  {report.area} AREA</h2>
-                                <text>{report.information}</text>
-                                
-                                </div>
-
-                               
-
-                                ))}
-
-
-                            </div>
-                        
-                           
+                            <div classname="ReportPreview" key ={report.id}>
+                                    <div className="ReportDateName">
+                            <text className="aid-date">{report.date}</text>
+                            <text className="username">{report.username}</text>
                         </div>
-                        
-                       
 
-                </div>
-                
+                        <h2>{report.needType} NEED REPORT -  {report.area} AREA</h2>
+                        <text>{report.information}</text>
+                        
+                        </div>
+                        ))}
+                    </div>
+                            
+                            
+                            
+                            
+                        
+
+                    </div>
+                    
                 
             </div>
 
