@@ -11,7 +11,7 @@ body {
 
 .PageBodyAdmin {
     display: flex;
-    flex-direction: column; 
+    flex-direction: row; 
     height: auto;
     box-sizing: border-box;
     width: 100%;
@@ -19,27 +19,21 @@ body {
     justify-content: space-between;
 }
 
-
-
-.MiddleSectionAdmin {
-    flex: 2;
+.ReportSectionAdmin{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 2%;
-    background-color: #FAF9F6;
+    width: 50%;
+    margin: 20px;
 }
 
-.RightSectionHome {
-    flex: 1;
+.UserSectionAdmin{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 2%;
-    margin: 1%;
-    background-color: #FAF9F6;
+    width: 50%;
+    margin: 20px;
 }
+
+
 
 .buttonsHomePageAdmin {
     display: flex;
@@ -50,25 +44,8 @@ body {
     gap: 1rem;
 }
 
-.report-button {
-    position: relative;
-    padding: 1rem 2.5rem;
-    margin: 1rem auto;
-    border-radius: 8px;
-    border: 2px solid #CD1434; 
-    background-color: #CD1434; 
-    color: white;
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
 
-.report-button:hover {
-    transform: scale(1.05);
-}
-
-.see-map-button {
+.see-map-button-admin {
     align-self: right;
     padding: 0.5rem 1rem;
     margin: 1rem;
@@ -83,39 +60,7 @@ body {
     align-self: flex-end; 
 }
 
-.AidActionItem {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black;
-    border-radius: 8px;
-    background-color: white;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    width: 100%;
-    max-width: 350px;
-}
 
-.aid-date {
-    font-size: 0.8rem;
-    background-color: #E5E4E2;
-    border-radius: 8px;
-    padding: 0.2rem 0.4rem;
-    text-align: center;
-}
-
-.Filter {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    background-color: #E5E4E2;
-    border: 1px solid black;
-    width: 100%;
-    height: auto;
-    font-size: 0.8rem;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 0.5rem;
-}
 
 .Report {
     border: 1px solid black;
@@ -146,27 +91,21 @@ body {
     margin: 0.5rem;
 }
 
-@media (min-width: 768px) {
-    .PageBodyAdmin {
-        flex-direction: row;
-    }
 
-   
+.ReportsAdmin{
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}
 
-    .MiddleSectionAdmin {
-        flex: 0.5;
-    }
 
-    .RightSectionHome {
-        flex: 0.25;
-    }
+.searchAndEdit{
+    display: flex;
+    flex-direction: row;
+}
 
-    .buttonsHomePageAdmin {
-        flex-direction: row;
-    }
-
-    .see-map-button {
-        width: auto;
-        text-align: right;
-    }
+.UsersAdmin{
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
 }

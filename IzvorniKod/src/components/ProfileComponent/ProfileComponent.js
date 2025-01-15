@@ -1,4 +1,4 @@
-const ReportComponent = (props) => {
+const ProfileComponent = (props) => {
 
     const reports = props.reports;
     const isAdmin = 1;
@@ -9,7 +9,6 @@ const ReportComponent = (props) => {
                 {reports.map((report)=>(
                     <div key={report.id} className="Report">
                         <div className="ReportDateName">
-                            <text className="aid-date">{new Date(report.time).toLocaleDateString()}</text>
                             <text className="username">{report.user.username}</text>
                         </div>
                             <h2>{report.disaster.disasterType} REPORT -  {report.disaster.settlement.settlementName} AREA</h2>
@@ -33,4 +32,4 @@ const ReportComponent = (props) => {
      );
 }
  
-export default ReportComponent;
+export default ProfileComponent;

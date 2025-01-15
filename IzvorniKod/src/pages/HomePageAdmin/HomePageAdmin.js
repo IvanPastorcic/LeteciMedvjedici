@@ -1,6 +1,7 @@
 import './HomePageAdmin.css';
 import AnonHeader from "../../components/AnonHeader/AnonHeader";
 import ReportComponent from "../../components/Report/ReportComponent";
+import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
 import AidActions from "../../components/AidActions/AidActions";
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
@@ -17,6 +18,7 @@ const HomePageAdmin = () => {
     const [actionsError, setActionsError] = useState(null);
 
     const [searchReportName, setSearchReportName] = useState('')
+
     const handleInputChange = (e) =>{
         const searchTerm = e.target.value;
         setSearchReportName(searchTerm)
@@ -67,54 +69,63 @@ const HomePageAdmin = () => {
 
             <div className="buttonsHomePageAdmin">
                
-                <button className="see-map-button" onClick={navigateToMap}>SEE MAP</button>
+                <button className="see-map-button-admin" onClick={navigateToMap}>SEE MAP</button>
             </div>
 
             <div className="PageBodyAdmin">
-                <div className='LeftSectionAdmin'>
-                    
-                    <h2>Users</h2>
-                    <button className='addUser'>Add new user</button>
-
-
-                </div>
-
-                <div className="MiddleSectionAdmin">
-                    <div className='search'>
-                        <input type='text'
-                        value={searchReportName}
-                        onChange={handleInputChange}
-                        placeholder='Type to search the reports'/>
-
-                        <select  name="reportStatus">
-                                <option value="Accepted">Accepted</option>
-                                <option value="Processing">Processing...</option>
-                                <option value="Denied">Denied</option>
-                        </select>
-                        <button className='changeStatus'>Change status</button>
+                <div className="ReportSectionAdmin">
+                    <div>
+                        <h2>Reports</h2>
+                        <div className='search'>
+                            <input type='text'
+                                value={searchReportName}
+                                onChange={handleInputChange}
+                                placeholder='Type to search the reports'/>
+                        </div>
                         
                     </div>
-                    <h2>Reports</h2>
-                    {loading ? (
-                        <p>Loading reports...</p>
-                    ) : error ? (
-                        <p>{error}</p>
-                    ) : (
-                        <ReportComponent reports={reports} />
-                    )}
-                </div>
-                <div className="RightSectionHome">
-                    <div className='aid-section-name'>
-                        <h2>AID ACTIONS:</h2>
+                    
+                    <div className='ReportsAdmin'>
+                        {loading ? (
+                            <p>Loading reports...</p>
+                        ) : error ? (
+                            <p>{error}</p>
+                        ) : (
+                            <ReportComponent reports={reports} />
+                        )}
+
                     </div>
-                    {actionsLoading ? (
-                        <p>Loading actions...</p>
-                    ) : actionsError ? (
-                        <p className="error">{actionsError}</p>
-                    ) : (
-                        <AidActions actions={actions} />
-                    )}
+                    
                 </div>
+
+                
+
+                <div className='UserSectionAdmin'>
+                    
+                    <h2>Users</h2>
+                    <div className='searchAndEdit'>
+                        <input type='text'
+                            value={searchReportName}
+                            onChange={handleInputChange}
+                            placeholder='Type to search the users'/>
+
+                        <button className='addUser'>Add new user</button>
+
+                    </div>
+                    <div className='UsersAdmin'>
+                        {loading ? (
+                            <p>Loading users...</p>
+                        ) : error ? (
+                            <p>{error}</p>
+                        ) : (
+                            <ProfileComponent reports={reports} />
+                        )}
+
+                    </div>
+
+
+                </div>
+
                 </div>
                 
             </div>
