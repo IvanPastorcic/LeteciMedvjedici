@@ -94,7 +94,7 @@ function ReportPage(){
       const reportId = response.data.id;
       localStorage.setItem("reportId", reportId); //save reportId to localStorage to use when reporting need
       //ert("Report submitted successfully!");
-      navigate("/confirmation")
+      navigate(`/confirmation/${reportId}`);
     } catch (error) {
       console.error("Error submitting report:", error);
       alert("Failed to submit report.");
