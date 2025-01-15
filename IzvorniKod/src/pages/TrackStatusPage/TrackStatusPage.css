@@ -1,0 +1,12 @@
+.track-status{
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    background-color: #FAF9F6;
+}
+
+.trackstatus-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

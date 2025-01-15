@@ -18,6 +18,8 @@ import ReportOpen from "./pages/ReportOpen/ReportOpen";
 import NeedsOpen from "./pages/NeedsOpen/NeedsOpen";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
+import TrackStatus from "./pages/TrackStatusPage/TrackStatusPage";
+
 
 function App() {
   return (
@@ -25,7 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} /> 
         <Route path="/report" element={<ReportPage />} />
-        <Route path="/confirmation" element={<ConfirmationScreen />} />
+        <Route path="/confirmation/:reportID" element={<ConfirmationScreen />} />
         <Route path="/report-need" element={<ReportNeedPage />} /> 
         <Route path="/reportopen" element={<ReportOpen />} /> 
 
@@ -43,6 +45,8 @@ function App() {
         <Route path="/manageresource" element={<ManageResource />} />
 
         <Route path="/homeadmin" element={<HomePageAdmin />} />
+
+        <Route path ="/track-status/:reportID" element={<TrackStatus/> } /> 
 
     
 

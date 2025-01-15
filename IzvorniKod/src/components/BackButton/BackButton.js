@@ -14,7 +14,7 @@ const BackButton = () => {
     return ( 
         <div>
             <button className="back-button" onClick={goBack}>
-                <FaArrowLeft /> Back to newsfeed
+                <FaArrowLeft /> 
             </button>
         </div>  
      );
