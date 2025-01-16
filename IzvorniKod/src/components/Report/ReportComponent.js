@@ -1,8 +1,20 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
 const ReportComponent = (props) => {
 
     const reports = props.reports;
     const isAdmin = 1;
     console.log(props, reports);
+
+
+    const navigate = useNavigate();
+
+    const handleReportClick = (reportId) => {
+        navigate(`/reportopen/${reportId}`); 
+    };
+
+
     return ( 
         <div>
             
@@ -12,8 +24,12 @@ const ReportComponent = (props) => {
                             <text className="aid-date">{new Date(report.time).toLocaleDateString()}</text>
                             <text className="username">{report.user.username}</text>
                         </div>
-                            <h2>{report.disaster.disasterType} REPORT -  {report.disaster.settlement.settlementName} AREA</h2>
-                            <text>{report.shortDescription}</text>
+                        
+                        <h2 onClick={() => handleReportClick(report.id)} className="clickable-title">
+                        {report.disaster.disasterType} REPORT - {report.disaster.settlement.settlementName} AREA
+                        </h2>
+                        
+                    <text>{report.shortDescription}</text>
 
 
                         {isAdmin && (

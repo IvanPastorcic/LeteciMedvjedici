@@ -9,15 +9,14 @@
   justify-content: center;
 }
 
-.Report {
-
+.ReportDetails {
   border: 1px solid black;
   border-radius: 8px;
   background-color: white;
-  padding: 11px 8px;
-  margin-bottom: 7px;
   width: 90%;
-  min-height: 227px;
+  height: 70%;
+  padding: 1rem;
+  margin-top: 1rem;
 }
 
 .ReportDateName {
@@ -55,6 +54,5 @@
 .BackReportOpen{
   display: flex;
   flex-direction: row;
-  padding-top: 3rem;
   background-color: #FAF9F6;
 }
