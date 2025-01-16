@@ -29,7 +29,7 @@ function App() {
         <Route path="/report" element={<ReportPage />} />
         <Route path="/confirmation/:reportID" element={<ConfirmationScreen />} />
         <Route path="/report-need" element={<ReportNeedPage />} /> 
-        <Route path="/reportopen" element={<ReportOpen />} /> 
+        <Route path="/reportopen/:reportId" element={<ReportOpen />} /> 
 
         <Route path="/profile" element={<ProfilePage />} /> 
 
