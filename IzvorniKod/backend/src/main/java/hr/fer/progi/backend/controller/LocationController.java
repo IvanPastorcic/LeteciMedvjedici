@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import hr.fer.progi.backend.model.County;
 import hr.fer.progi.backend.model.Report;
 import hr.fer.progi.backend.model.Settlement;
+import hr.fer.progi.backend.model.Enum.DisasterType;
 import hr.fer.progi.backend.repository.CountyRepository;
+import hr.fer.progi.backend.repository.LocationRepository;
 import hr.fer.progi.backend.repository.SettlementRepository;
 import hr.fer.progi.backend.repository.exception.InputIsNullException;
 import hr.fer.progi.backend.service.CountyService;
@@ -33,9 +35,15 @@ public class LocationController {
 	@Autowired
 	private LocationService locationService;
 	
+	
 	@GetMapping("/coordinates") 
 	List<String> getAllReportedCoordinates(){
 		return locationService.getAllReported();
+	}
+	
+	@GetMapping("/coordinates/byDisaster/{disasterType}") 
+	List<String> getCoordinatesByType(@PathVariable("disasterType") DisasterType disasterType){	
+		return locationService.getCoordinatesByType(disasterType);
 	}
 	
 	@GetMapping("/settlement")
