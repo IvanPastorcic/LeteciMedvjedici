@@ -17,6 +17,7 @@ import HomePageAdmin from "./pages/HomePageAdmin/HomePageAdmin";
 import ReportOpen from "./pages/ReportOpen/ReportOpen";
 import NeedsOpen from "./pages/NeedsOpen/NeedsOpen";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import ProfilePageAdmin from "./pages/ProfilePageAdmin/ProfilePageAdmin";
 
 import TrackStatus from "./pages/TrackStatusPage/TrackStatusPage";
 
@@ -45,6 +46,7 @@ function App() {
         <Route path="/manageresource" element={<ManageResource />} />
 
         <Route path="/homeadmin" element={<HomePageAdmin />} />
+        <Route path="/profileadmin" element={<ProfilePageAdmin />} />
 
         <Route path ="/track-status/:reportID" element={<TrackStatus/> } /> 
 

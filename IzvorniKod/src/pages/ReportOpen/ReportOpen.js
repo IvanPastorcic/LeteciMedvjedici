@@ -19,6 +19,7 @@ const ReportOpen = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+    const isAdmin = 1;
 
 //dummy data samo za prikaz
 
@@ -96,6 +97,23 @@ const ReportOpen = () => {
                             <img key={index} src={image.url} alt={`Report Image ${index + 1}`} />
                         ))}
                     </div>
+                    
+                    {isAdmin && (
+                    
+                    <div className="adminStatus">
+                        <div className='currentStatus'>
+                            <p>Current status:</p>
+                            <p>{report.status}</p>
+                        </div>
+                        <select  name="reportStatus">
+                                <option value="Accepted">Accepted</option>
+                                <option value="Processing">Processing...</option>
+                                <option value="Denied">Denied</option>
+                        </select>
+                        <button className='changeStatus'>Change status</button>
+                    </div>
+                    )}
+
                 </div>
             </div>
         </div>

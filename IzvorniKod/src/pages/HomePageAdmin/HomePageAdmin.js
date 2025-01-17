@@ -104,10 +104,16 @@ const HomePageAdmin = () => {
                     
                     <h2>Users</h2>
                     <div className='searchAndEdit'>
-                        <input type='text'
-                            value={searchReportName}
-                            onChange={handleInputChange}
-                            placeholder='Type to search the users'/>
+                        <div className='searchSection'>
+                            <input type='text'
+                                value={searchReportName}
+                                onChange={handleInputChange}
+                                placeholder='Type to search the users'/>
+                            
+                            <button className='searchUser'>Search</button>
+
+                        </div>
+                        
 
                         <button className='addUser'>Add new user</button>
 

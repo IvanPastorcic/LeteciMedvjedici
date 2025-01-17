@@ -29,7 +29,7 @@ const ReportComponent = (props) => {
                         {report.disaster.disasterType} REPORT - {report.disaster.settlement.settlementName} AREA
                         </h2>
                         
-                    <text>{report.shortDescription}</text>
+                        <text>{report.shortDescription}</text>
 
 
                         {isAdmin && (
