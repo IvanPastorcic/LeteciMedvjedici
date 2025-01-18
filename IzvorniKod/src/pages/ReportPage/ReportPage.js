@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import './ReportPage.css';
 import axios from 'axios';
 import Footer from "../../components/Footer/Footer";
+import BackButton from "../../components/BackButton/BackButton";
 
 function ReportPage(){
   const navigate = useNavigate();
@@ -110,9 +111,7 @@ function ReportPage(){
       
         {/* Header */}
         <div className="header-container">
-          <button className="back-button" onClick={goBack}>
-            <FaArrowLeft /> Back
-          </button>
+            <BackButton /> 
           <h1 className="header-title">REPORT AN EMERGENCY:</h1>
 
         </div>

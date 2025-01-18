@@ -1,9 +1,8 @@
-
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AddNewAction.css"; 
 import AnonHeader from '../../components/AnonHeader/AnonHeader';
+import BackButton from '../../components/BackButton/BackButton';
 import Footer from "../../components/Footer/Footer";
 import axios from 'axios';
 
@@ -72,9 +71,7 @@ const AddNewAction = () => {
     <div className="page-container">
       <AnonHeader />
       <div className="header-container">
-        <button className="back-button" onClick={() => navigate('/home')}>
-          &lt; Back to newsfeed
-        </button>
+        <BackButton /> 
         <h1>ADD NEW ACTION</h1>
       </div>
 

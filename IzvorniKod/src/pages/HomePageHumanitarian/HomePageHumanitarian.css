@@ -33,17 +33,14 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 2%;
     background-color: #FAF9F6;
 }
 
-.RightSectionHome {
+.RightSectionHumanitarian {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2%;
-    margin: 1%;
     background-color: #FAF9F6;
 }
 
@@ -76,6 +73,7 @@ body {
 .see-map-button {
     padding: 0.5rem 1rem;
     margin-right: 5rem;
+    margin-bottom: 1.55rem;
     border-radius: 8px;
     border: 1px solid #808080;
     background-color: #FFFFFF;
@@ -149,14 +147,6 @@ body {
     justify-content: start;
 }
 
-.header {
-    display: flex;
-    flex-direction: row;
-    background-color: #CD1434;
-    justify-content: space-between;
-    padding: 1rem;
-}
-
 .profile-text {
     color: white;
     text-align: right;
@@ -176,7 +166,7 @@ body {
     flex: 0.5;
 }
 
-.RightSectionHome {
+.RightSectionHumanitarian {
     flex: 0.25;
 }
 

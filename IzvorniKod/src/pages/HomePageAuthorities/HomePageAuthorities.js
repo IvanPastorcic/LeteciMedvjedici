@@ -1,7 +1,6 @@
 import './HomePageAuthorities.css';
 import AnonHeader from "../../components/AnonHeader/AnonHeader";
 import ReportComponent from "../../components/Report/ReportComponent";
-import SystemSignIns from "../../components/SystemSignIns/SystemSignIns";
 import AidActions from "../../components/AidActions/AidActions";
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
@@ -11,35 +10,28 @@ const HomePageAuthorities = () => {
     const [reports, setReports] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
+    const [visibleReports, setVisibleReports] = useState(5);
 
-    
     const [actions, setActions] = useState([]);
     const [actionsLoading, setActionsLoading] = useState(true);
     const [actionsError, setActionsError] = useState(null);
-    
+    const [visibleActions, setVisibleActions] = useState(5);
 
-//dummy data samo za prikaz
-    const [aids, setAids] = useState([  
-        {id: 1, date : "26.10.2024", organisationName: "THE RED CROSS", aidInfo: "informacije o sklonistima"},
-        {id: 2, date : "27.10.2024", organisationName: "ORGANISATION2", aidInfo: "informacije o HRANI"},
-        {id: 3, date : "28.10.2024", organisationName: "ORGANISATION3", aidInfo: "informacije o VODI"}
-    ])
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchReports = async () => {
             try {
-                const reportsResponse = await axios.get("http://localhost:8081/reports");
-                setReports(reportsResponse.data);
-                setLoading(false);
+                const response = await axios.get("http://localhost:8081/reports");
+                setReports(response.data);
             } catch (error) {
-                console.error("Error fetching data:", error);
-                setError("Failed to load data");
+                console.error("Error fetching reports:", error);
+                setError("Failed to load data.");
+            } finally {
                 setLoading(false);
             }
         };
 
-        // Fetch Actions
         const fetchActions = async () => {
             try {
                 const response = await axios.get("http://localhost:8081/actions");
@@ -51,38 +43,47 @@ const HomePageAuthorities = () => {
                 setActionsLoading(false);
             }
         };
-        fetchActions();
+
         fetchReports();
+        fetchActions();
     }, []);
 
     const navigateToMap = () => {
         navigate('/map');
     };
 
-    const handleAnonymousReport = () => {
-        navigate('/report');
-    };
-
     const handleDownloadReports = async () => {
         try {
             const response = await axios.get("http://localhost:8081/reports/download", {
-                responseType: "blob", withCredentials: true, // Important for file downloads
+                responseType: "blob", 
+                withCredentials: true, 
             });
-    
+
             const blob = new Blob([response.data], { type: "application/json" });
             const url = URL.createObjectURL(blob);
-    
+
             const link = document.createElement("a");
             link.href = url;
             link.download = "reports.json";
             link.click();
-    
+
             URL.revokeObjectURL(url);
         } catch (error) {
             console.error("Error downloading reports:", error);
         }
     };
-    
+
+    const loadMoreReports = () => {
+        setVisibleReports((prev) => prev + 5);
+    };
+
+    const loadMoreActions = () => {
+        setVisibleActions((prev) => prev + 5);
+    };
+
+    const handleAnonymousReport = () => {
+        navigate('/report');
+    };
 
     return (
         <div className="HomePageAuthorities">
@@ -91,22 +92,19 @@ const HomePageAuthorities = () => {
             </div>
 
             <div className="buttonsHomePageAuthorities">
-                
+            <button className="report-button" onClick={handleAnonymousReport}>REPORT</button>
                 <button className="see-map-button" onClick={navigateToMap}>SEE MAP</button>
             </div>
 
             <div className="PageBodyAuthorities">
                 <div className="LeftSectionAuthorities">
-                   {/*<SystemSignIns />*/}
-
-                   <div className="StatisticalAnalysisSection">
+                    <div className="StatisticalAnalysisSection">
                         <h3>Statistical Analysis</h3>
                         <p>Download information about all reports.</p>
                         <button onClick={handleDownloadReports} className="download-button">
                             Download Reports as JSON
                         </button>
                     </div>
-
                 </div>
 
                 <div className="MiddleSectionAuthorities">
@@ -116,10 +114,18 @@ const HomePageAuthorities = () => {
                     ) : error ? (
                         <p>{error}</p>
                     ) : (
-                        <ReportComponent reports={reports} />
+                        <>
+                            <ReportComponent reports={reports.slice(0, visibleReports)} />
+                            {visibleReports < reports.length && (
+                                <button className="load-more-button" onClick={loadMoreReports}>
+                                    Load More Reports
+                                </button>
+                            )}
+                        </>
                     )}
                 </div>
-                <div className="RightSectionHome">
+
+                <div className="RightSectionAuthorities">
                     <div className='aid-section-name'>
                         <h2>AID ACTIONS:</h2>
                     </div>
@@ -128,14 +134,18 @@ const HomePageAuthorities = () => {
                     ) : actionsError ? (
                         <p className="error">{actionsError}</p>
                     ) : (
-                        <AidActions actions={actions} />
+                        <>
+                            <AidActions actions={actions.slice(0, visibleActions)} />
+                            {visibleActions < actions.length && (
+                                <button className="load-more-button" onClick={loadMoreActions}>
+                                    Load More Actions
+                                </button>
+                            )}
+                        </>
                     )}
                 </div>
-
-                    </div>
-                
-                
             </div>
+        </div>
     );
 };
 

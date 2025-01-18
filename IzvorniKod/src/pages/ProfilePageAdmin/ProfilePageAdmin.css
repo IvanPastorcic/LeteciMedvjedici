@@ -26,10 +26,6 @@ hr{
     max-width: 100%;
   }
 
-  .header{
-    background-color: FAF9F6;
-  }
-
 .LeftSectionProfile {
   flex: 0.6; 
   display: flex;
@@ -136,12 +132,6 @@ hr{
   text-align: left;
 }
 
-.header {
-  display: flex;
-  flex-direction: row;
-  background-color: #CD1434;
-  justify-content: space-between;
-}
 
 .profile-text {
   color: white;
