@@ -107,17 +107,17 @@ function ReportPage(){
   return (
     <div>
       <AnonHeader />
-      <div className="app-container">
+      <div className="report-app-container">
       
         {/* Header */}
-        <div className="header-container">
+        <div className="report-header-container">
             <BackButton /> 
-          <h1 className="header-title">REPORT AN EMERGENCY:</h1>
+          <h1 className="report-header-title">REPORT AN EMERGENCY:</h1>
 
         </div>
 
         {/* Content */}
-        <div className="content-container">
+        <div className="report-content-container">
           <h2 className="section-title">What happened?</h2>
           <div className="containerStyle">
             <button 
@@ -162,9 +162,9 @@ function ReportPage(){
             </button>
           </div>
 
-          <hr className="divider" />
+          <hr className="report-divider" />
           <h2 className="section-title">Where did it happen?</h2>
-          <p>Please use correct capitalization. For Zagreb please choose one of the following: Brezovica, Črnomerec, Donja Dubrava, Donji Grad, Gornja Dubrava, Gornji Grad- Medvešćak, Maksimir, Novi Zagreb-istok, Novi Zagreb-zapad, Pešćenica-Žitnjak, Podsljeme (Šestine-Gračani-Markuševec), Podsused-Vrapče, Sesvete, Stenjevec, Trešnjevka-jug, Trešnjevka-sjever, Trnje </p>
+          <p className="report-location-info">Please use correct capitalization. For Zagreb please choose one of the following: Brezovica, Črnomerec, Donja Dubrava, Donji Grad, Gornja Dubrava, Gornji Grad- Medvešćak, Maksimir, Novi Zagreb-istok, Novi Zagreb-zapad, Pešćenica-Žitnjak, Podsljeme (Šestine-Gračani-Markuševec), Podsused-Vrapče, Sesvete, Stenjevec, Trešnjevka-jug, Trešnjevka-sjever, Trnje </p>
           <div className="location-inputs" style={{ position: 'relative' }}>
             <input 
               type="text" 
@@ -176,9 +176,10 @@ function ReportPage(){
             {!isLocationValid && <p className="error-text">Location not found. Please enter a valid location.</p>}
           </div>
 
-          <hr className="divider" />
+          <hr className="report-divider" />
           
-          <div className="containerStyle">
+          <div className="containerStylebottom">
+          <h2 className="section-title-last">Add a short description</h2>
             <input 
               type="text" 
               placeholder="Input short description" 
@@ -186,7 +187,7 @@ function ReportPage(){
               value={description} 
               onChange={handleDescriptionChange}
             />
-            <button className="submit-button" onClick={handleSubmit}>SUBMIT REPORT</button>
+            <button className="report-submit-button" onClick={handleSubmit}>SUBMIT REPORT</button>
           </div>
           
 

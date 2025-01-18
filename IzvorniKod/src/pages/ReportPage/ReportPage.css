@@ -1,11 +1,12 @@
-.header-container {
+.report-header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  background-color: #FAF9F6;
 }
 
-.header-title {
+.report-header-title {
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -46,11 +47,15 @@
   
   .address-input {
     flex: 1;
+    font-family: Poppins;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 8px;
   }
   
+  .report-location-info{
+    width: 85%;
+  }
   
   
   .optional-section p {
@@ -68,7 +73,7 @@
     align-items: center;
     border: 1px solid #ccc;
     padding: 5px;
-    border-radius: 4px;
+    border-radius: 8px;
   }
   
   .camera-icon {
@@ -95,31 +100,26 @@
     border-color: #b30000; 
   }
 
-  .submit-button {
+  .report-submit-button {
+    font-family: Poppins;
+    font-size: 1.2rem;
     background-color: #b30000;
     color: white;
     padding: 15px 30px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
     text-align: center;
     flex: 0 0 45%; 
-    margin-left: 20px;  
     display: block;    
     margin: 30px auto;  
     width: auto;        
-    max-width: 300px; 
-   
+
   }
 
-  .content-container {
+  .report-content-container {
     background-color: white;
-    padding: 5px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin: 25px auto;
-    max-width: 100%;    
-    width: 900px;      
+    max-width: 100%;       
     display: flex;
     flex-direction: column;
     justify-content: flex-start;  
@@ -127,9 +127,8 @@
   }
   
 
-  .app-container {
+  .report-app-container {
     background-color: #d9d9d9;
-    padding: 10px 15px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;  
@@ -143,11 +142,14 @@
     margin-top: 20px;
   } 
   
-  .divider {
+  .section-title-last{
+    text-align: center;
+    margin: 0.5rem;
+  }
+  .report-divider {
     border: 0;
     border-top: 2px solid #666; 
-    width: 85%; 
-    margin: 20px auto; 
+    width: 90%; 
   }
 
 
@@ -186,7 +188,7 @@
   right: 0;
   background-color: white;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 8px;
   max-height: 150px;
   overflow-y: auto;
   list-style: none;
@@ -213,18 +215,18 @@
 
 .containerStyle {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 
 .iconContainerStyle {
   text-align: center;
+  font-family: Poppins;
   padding: 10px;
-  border-radius: 5px;
-  cursor: pointer,
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0.5rem;
 }
 
 .paragraphStyle {
@@ -235,12 +237,11 @@
 
 
 .inputField {
-  border-radius: 5px;
+  border-radius: 8px;
   border: 1px solid gray;
   width: 40vw;
   padding: 15px;
-
-
+  font-family: Poppins;
 }
 
 .error-text {
