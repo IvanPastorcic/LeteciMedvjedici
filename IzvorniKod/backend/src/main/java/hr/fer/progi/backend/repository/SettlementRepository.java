@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import hr.fer.progi.backend.model.Settlement;
@@ -19,4 +20,9 @@ public interface SettlementRepository extends JpaRepository<Settlement, Long> {
 	Settlement findBySettlementName(String settlementName);*/
 
 	Settlement findFirstBySettlementName(String settlementName);
+
+
+	@Query(value = "SELECT * FROM settlement WHERE LOWER(REPLACE(TRIM(settlement_name), ' ', '')) = LOWER(REPLACE(TRIM(:settlementName), ' ', ''))", nativeQuery = true)
+	Settlement findBySettlementNameIgnoringCaseAndSpaces(@Param("settlementName") String settlementName);
+
 }
