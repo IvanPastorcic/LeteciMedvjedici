@@ -37,23 +37,18 @@ public class SecurityConfig {
                             "/reports/{id}", "/reports", "reports/add",
                             "/location/settlementnames",
                             "/actions", "/actions/{id}", "/actions/actionName/{nameOfAction}",
-                            "/user/**", //provjeri sa ostalima
+                            "/user/logout", //provjeri sa ostalima
                             "/needs/{id}"
                                 ).permitAll();
                     authorize.anyRequest().authenticated();
                 })
-                /*.oauth2Login(oauth2Login -> oauth2Login
-                        .defaultSuccessUrl("http://localhost:3000/home", true)
-                        .userInfoEndpoint(userInfoEndpoint ->
-                                userInfoEndpoint
-                                        .oidcUserService((OAuth2UserService) oAuth2Service)
-                        )
-                )*/
+
                 .oauth2Login(oauth2Login -> oauth2Login
                         .successHandler(successHandler())  // Use the custom success handler
                         .userInfoEndpoint(userInfoEndpoint ->
                                 userInfoEndpoint.oidcUserService((OAuth2UserService) oAuth2Service)
                         ))
+
                 .sessionManagement(sessionManagement ->
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 );

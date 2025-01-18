@@ -5,6 +5,9 @@ import hr.fer.progi.backend.model.Enum.ReportStatus;
 public class ReportStatusDTO {
 
     ReportStatus status;
+    public ReportStatusDTO(){
+
+    }
 
     public ReportStatusDTO(ReportStatus status) {
         this.status = status;

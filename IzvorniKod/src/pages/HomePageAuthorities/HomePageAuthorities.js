@@ -22,7 +22,9 @@ const HomePageAuthorities = () => {
     useEffect(() => {
         const fetchReports = async () => {
             try {
-                const response = await axios.get("http://localhost:8081/reports");
+                const response = await axios.get("http://localhost:8081/reports/accepted", {
+                    withCredentials: true,
+                  });
                 setReports(response.data);
             } catch (error) {
                 console.error("Error fetching reports:", error);
@@ -34,7 +36,9 @@ const HomePageAuthorities = () => {
 
         const fetchActions = async () => {
             try {
-                const response = await axios.get("http://localhost:8081/actions");
+                const response = await axios.get("http://localhost:8081/actions", {
+                    withCredentials: true,
+                  });
                 setActions(response.data);
             } catch (error) {
                 console.error("Error fetching actions:", error);

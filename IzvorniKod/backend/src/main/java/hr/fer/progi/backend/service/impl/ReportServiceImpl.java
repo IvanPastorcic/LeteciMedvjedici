@@ -90,18 +90,35 @@ public class ReportServiceImpl implements ReportService {
 
 	@Override
 	public Report changeStatus(Long id, ReportStatusDTO dto) {
+		System.out.println("servis " + dto.getStatus());
 		Report report = reportRepository.findById(id)
 				.orElseThrow(() -> new InputIsNullException("Report with id " + id + " not found."));
 
 
-		if(dto.getStatus().equals(ReportStatus.DENIED))
+		if(dto.getStatus() == (ReportStatus.DENIED))
 			report.setStatus(ReportStatus.DENIED);
-		else if(dto.getStatus().equals(ReportStatus.ACCEPTED))
+		else if(dto.getStatus() == (ReportStatus.ACCEPTED))
 			report.setStatus(ReportStatus.ACCEPTED);
-		else if(dto.getStatus().equals(ReportStatus.PROCESSING))
+		else if(dto.getStatus() == (ReportStatus.PROCESSING))
 			report.setStatus(ReportStatus.PROCESSING);
 
-		return report;
+		return reportRepository.save(report);
 	}
+
+	@Override
+	public List<Report> getAcceptedReports() {
+		return reportRepository.findAllByReportStatus(ReportStatus.ACCEPTED);
+	}
+
+	@Override
+	public List<Report> getProcessingReports() {
+		return reportRepository.findAllByReportStatus(ReportStatus.PROCESSING);
+	}
+
+	public List<Report> getDeniedReports(){
+		return reportRepository.findAllByReportStatus(ReportStatus.DENIED);
+	}
+
+
 
 }

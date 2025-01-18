@@ -19,9 +19,9 @@ body {
 }
 
 .ReportSectionAdmin{
-    display: flex;
-    flex-direction: column;
-    width: 50%;
+    display: grid;
+    grid-template-columns:  auto auto auto;
+    width: 90vw;
     margin: 20px;
 }
 

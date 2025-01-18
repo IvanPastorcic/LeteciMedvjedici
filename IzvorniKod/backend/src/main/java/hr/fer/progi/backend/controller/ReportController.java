@@ -44,7 +44,25 @@ public class ReportController {
 		//System.out.println(user);
 		return ResponseEntity.ok(reportService.getAllReports());
 	}
-	
+
+	@GetMapping("/accepted")
+	@Secured({"ROLE_ADMIN"})
+	public ResponseEntity<List<Report>> acceptedReports(){
+		return ResponseEntity.ok(reportService.getAcceptedReports());
+	}
+
+
+	@GetMapping("/processing")
+	@Secured({"ROLE_ADMIN"})
+	public ResponseEntity<List<Report>> processingReports(){
+		return ResponseEntity.ok(reportService.getProcessingReports());
+	}
+
+	@GetMapping("/denied")
+	@Secured({"ROLE_ADMIN"})
+	public ResponseEntity<List<Report>> deniedReports(){
+		return ResponseEntity.ok(reportService.getDeniedReports());
+	}
 	//add new report
 
 	@PostMapping("/add")
@@ -94,7 +112,7 @@ public class ReportController {
 	//delete report
 
 	@DeleteMapping("/{id}/delete")
-	@Secured({"ROLE_ADMIN", "ROLE_USER"})
+	@Secured({"ROLE_ADMIN"})
 	public ResponseEntity<Report> deleteById(@PathVariable Long id) {
         Report report = reportService.deleteById(id);
         
@@ -111,6 +129,8 @@ public class ReportController {
 	@PatchMapping("/{id}/status")
 	@Secured("ROLE_ADMIN")
 	public ResponseEntity<Report> changeStatus(@PathVariable Long id, @RequestBody ReportStatusDTO dto){
+
+		System.out.println(dto.getStatus());
 		Report report = reportService.changeStatus(id, dto);
 
 		return ResponseEntity.ok(report);
