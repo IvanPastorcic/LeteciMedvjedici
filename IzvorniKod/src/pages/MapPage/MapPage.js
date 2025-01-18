@@ -23,10 +23,10 @@ L.Icon.Default.mergeOptions({
 const MapPage = () => {
   const navigate = useNavigate();
   return (
-    <div className="page-container">
+    <div className="map-page-container">
     <AnonHeader />
     <BackButton /> 
-    <div className="content-container">
+    <div className="map-content-container">
       <div className="map-wrapper">
         <MapContainer
           center={[45.1, 15.2]}
@@ -43,7 +43,7 @@ const MapPage = () => {
           </Marker>
         </MapContainer>
       </div>
-      <aside className="sidebar">
+      <aside className="map-sidebar">
         <h3>Filter by category</h3>
         {['Fire', 'Earthquake', 'Heavy storms', 'Flooding', 'Landslide'].map((category, index) => (
             <button key={index} className="filter-button">
