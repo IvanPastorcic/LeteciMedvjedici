@@ -21,4 +21,6 @@ public interface ReportRepository extends JpaRepository<Report, Long> {
 
 	@Query("select f from Report f where f.appUser.id = :userId")
 	List<Report> findByUserIdJPQL(Long userId);
+
+    List<Report> findAllByReportStatus(ReportStatus status);
 }

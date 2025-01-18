@@ -27,5 +27,10 @@ public interface ReportService {
 	public Report deleteById(Long id);
 
     Report changeStatus(Long id, ReportStatusDTO dto);
-    // deletes report with matching id
+
+    List<Report> getAcceptedReports();
+
+	List<Report> getProcessingReports();
+
+	List<Report> getDeniedReports();
 }
