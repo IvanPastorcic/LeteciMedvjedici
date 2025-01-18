@@ -11,39 +11,30 @@ const HomePageHumanitarian = () => {
     const [reports, setReports] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [needs, setNeeds] = useState([]);
-    const navigate = useNavigate();
-    const [reportsLoading, setReportsLoading] = useState(true);
-    const [reportsError, setReportsError] = useState(null);
+    const [visibleReports, setVisibleReports] = useState(5);
 
     const [actions, setActions] = useState([]);
     const [actionsLoading, setActionsLoading] = useState(true);
     const [actionsError, setActionsError] = useState(null);
-    
+    const [visibleActions, setVisibleActions] = useState(5);
 
-/*
-//dummy data samo za prikaz
-    const [aids, setAids] = useState([  
-        {id: 1, date : "26.10.2024", organisationName: "THE RED CROSS", aidInfo: "informacije o sklonistima"},
-        {id: 2, date : "27.10.2024", organisationName: "ORGANISATION2", aidInfo: "informacije o HRANI"},
-        {id: 3, date : "28.10.2024", organisationName: "ORGANISATION3", aidInfo: "informacije o VODI"}
-    ])*/
+    const [needs, setNeeds] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchReports = async () => {
             try {
-                const reportsResponse = await axios.get("http://localhost:8081/reports");
-                setReports(reportsResponse.data);
-                setLoading(false);
+                const response = await axios.get("http://localhost:8081/reports");
+                setReports(response.data);
             } catch (error) {
-                console.error("Error fetching data:", error);
+                console.error("Error fetching reports:", error);
                 setError("Failed to load data");
+            } finally {
                 setLoading(false);
             }
         };
 
-         // Fetch Actions
-         const fetchActions = async () => {
+        const fetchActions = async () => {
             try {
                 const response = await axios.get("http://localhost:8081/actions");
                 setActions(response.data);
@@ -60,17 +51,16 @@ const HomePageHumanitarian = () => {
     }, []);
 
     useEffect(() => {
-        const fetchNeeds = async() => {
+        const fetchNeeds = async () => {
             try {
-                const needsResponse = await axios.get("http://localhost:8081/needs/all");
-                setNeeds(needsResponse.data);
-                setLoading(false);
+                const response = await axios.get("http://localhost:8081/needs/all");
+                setNeeds(response.data);
             } catch (error) {
-                console.error("Error fetching data:", error);
+                console.error("Error fetching needs:", error);
                 setError("Failed to load data");
-                setLoading(false);
             }
         };
+
         fetchNeeds();
     }, []);
 
@@ -90,6 +80,14 @@ const HomePageHumanitarian = () => {
         navigate('/addnewaction');
     };
 
+    const loadMoreReports = () => {
+        setVisibleReports((prev) => prev + 5);
+    };
+
+    const loadMoreActions = () => {
+        setVisibleActions((prev) => prev + 5);
+    };
+
     return (
         <div className="HomePageHumanitarian">
             <div className="header">
@@ -101,12 +99,11 @@ const HomePageHumanitarian = () => {
                 <button className="manage-resources-button" onClick={navigateToManageResources}>MANAGE RESOURCES</button>
                 <button className="add-new-action-button" onClick={navigateToAddNewAction}>ADD NEW ACTION</button>
                 <button className="see-map-button" onClick={navigateToMap}>SEE MAP</button>
-                
             </div>
 
             <div className="PageBodyHumanitarian">
                 <div className="LeftSectionHumanitarian">
-                    <ResourceRequests needs = {needs} />
+                    <ResourceRequests needs={needs} />
                 </div>
 
                 <div className="MiddleSectionHumanitarian">
@@ -116,11 +113,19 @@ const HomePageHumanitarian = () => {
                     ) : error ? (
                         <p>{error}</p>
                     ) : (
-                        <ReportComponent reports={reports} />
+                        <>
+                            <ReportComponent reports={reports.slice(0, visibleReports)} />
+                            {visibleReports < reports.length && (
+                                <button className="load-more-button" onClick={loadMoreReports}>
+                                    Load More Reports
+                                </button>
+                            )}
+                        </>
                     )}
                 </div>
-                <div className="RightSectionHome">
-                    <div className='aid-section-name'>
+
+                <div className="RightSectionHumanitarian">
+                    <div className="aid-section-name">
                         <h2>AID ACTIONS:</h2>
                     </div>
                     {actionsLoading ? (
@@ -128,13 +133,18 @@ const HomePageHumanitarian = () => {
                     ) : actionsError ? (
                         <p className="error">{actionsError}</p>
                     ) : (
-                        <AidActions actions={actions} />
+                        <>
+                            <AidActions actions={actions.slice(0, visibleActions)} />
+                            {visibleActions < actions.length && (
+                                <button className="load-more-button" onClick={loadMoreActions}>
+                                    Load More Actions
+                                </button>
+                            )}
+                        </>
                     )}
                 </div>
-                </div>
-                
-                
             </div>
+        </div>
     );
 };
 

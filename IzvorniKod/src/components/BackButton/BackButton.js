@@ -12,11 +12,11 @@ const BackButton = () => {
         navigate(-1); // Go back to the previous page
       };
     return ( 
-        <div>
+        
             <button className="back-button" onClick={goBack}>
                 <FaArrowLeft /> 
             </button>
-        </div>  
+         
      );
 }
  

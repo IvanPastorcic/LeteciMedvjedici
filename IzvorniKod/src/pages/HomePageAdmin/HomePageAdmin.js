@@ -3,6 +3,7 @@ import AnonHeader from "../../components/AnonHeader/AnonHeader";
 import ReportComponent from "../../components/Report/ReportComponent";
 import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
 import AidActions from "../../components/AidActions/AidActions";
+import BackButton from "../../components/BackButton/BackButton";
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -68,8 +69,9 @@ const HomePageAdmin = () => {
             </div>
 
             <div className="buttonsHomePageAdmin">
-               
+                <BackButton /> 
                 <button className="see-map-button-admin" onClick={navigateToMap}>SEE MAP</button>
+               
             </div>
 
             <div className="PageBodyAdmin">

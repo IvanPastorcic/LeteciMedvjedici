@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import './MapPage.css'; 
 import AnonHeader from '../../components/AnonHeader/AnonHeader';
+import BackButton from '../../components/BackButton/BackButton';
 
 
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
@@ -24,8 +25,7 @@ const MapPage = () => {
   return (
     <div className="page-container">
     <AnonHeader />
-    <button className="back-button" onClick={() => navigate('/home')}>
-        &lt; Back to newsfeed</button>
+    <BackButton /> 
     <div className="content-container">
       <div className="map-wrapper">
         <MapContainer

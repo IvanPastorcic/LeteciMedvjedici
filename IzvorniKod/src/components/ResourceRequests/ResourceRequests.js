@@ -10,10 +10,13 @@ function ResourceRequests(props) {
     setFilter(resource === filter ? "" : resource); // Toggle filter
   };
 
-  // Filter the needs based on the selected filter
+  // Filter the needs based on the selected filter and valid appUser
   const filteredNeeds = filter
-    ? needs.filter((need) => need.needType.toLowerCase() === filter.toLowerCase())
-    : needs;
+    ? needs.filter(
+        (need) =>
+          need.needType.toLowerCase() === filter.toLowerCase() && need.appUser
+      )
+    : needs.filter((need) => need.appUser);
 
   return (
     <div className="resource-requests-container">
@@ -39,7 +42,9 @@ function ResourceRequests(props) {
       <div className="requests-container">
         {filteredNeeds.map((need) => (
           <div key={need.id} className="request-card">
-            <p className="request-user">{need.appUser.username}</p>
+            <p className="request-user">
+              {need.appUser?.username || "Unknown User"}
+            </p>
             <div className="request-needs">
               <p>Need type: {need.needType}</p>
               <p>Need quantity: {need.quantity}</p>
