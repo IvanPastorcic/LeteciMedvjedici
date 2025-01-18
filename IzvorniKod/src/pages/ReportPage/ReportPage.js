@@ -59,10 +59,11 @@ function ReportPage(){
 
   const handleSubmit = async () => {
     const sanitizedLocation = locationInput.trim();
-    if (!isLocationValid || !locations.includes(sanitizedLocation)) {
+    if (!isLocationValid || !locations.some(location => location.trim().toLowerCase() === sanitizedLocation.toLowerCase())) {
       alert("Please enter a valid location from the list.");
       return;
     }
+    
 
     const typeMapping = {
       fire: "WILDFIRE",
