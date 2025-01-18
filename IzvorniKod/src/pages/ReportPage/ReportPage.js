@@ -10,34 +10,32 @@ import BackButton from "../../components/BackButton/BackButton";
 function ReportPage(){
   const navigate = useNavigate();
   const [activeButton, setActiveButton] = useState(null);
-  const [locationInput, setLocationInput] = useState(""); // Track user's input for location
-  const [isLocationValid, setIsLocationValid] = useState(true); // Track validity of location
-  const [description, setDescription] = useState(""); // Track short description
+  const [locationInput, setLocationInput] = useState(""); 
+  const [isLocationValid, setIsLocationValid] = useState(true);
+  const [description, setDescription] = useState(""); 
   const [locations, setLocations] = useState([]);
-
-  const [loading, setLoading] = useState(true); // Loading state
+  const [filteredLocations, setFilteredLocations] = useState([]); 
+  const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); 
-  
-  useEffect(() => {   
 
+  useEffect(() => {   
     const fetchLocations = async () => {
       try {
         const response = await axios.get("http://localhost:8081/location/settlementnames"); 
         const locationNames = response.data.map(location => location.settlementName || location);
-        setLocations(locationNames); 
+        setLocations(locationNames);
+        setFilteredLocations(locationNames); 
         setLoading(false); 
       } catch (error) {
-        console.error("Error fetching locations:", error);
         setError("Failed to load locations"); 
         setLoading(false); 
       }
     };
     fetchLocations(); 
-
   }, []); 
 
   const goBack = () => {
-    navigate(-1); // Go back to the previous page
+    navigate(-1); 
   };
 
   const handleButtonClick = (type) => {
@@ -47,18 +45,21 @@ function ReportPage(){
   const handleLocationInputChange = (e) => {
     const value = e.target.value;
     setLocationInput(value);
-    // Check if the input matches any location in the list
-    setIsLocationValid(locations.includes(value));
+    const sanitizedValue = value.trimEnd().toLowerCase();
+    const filtered = locations.filter(location => 
+      location.toLowerCase().includes(sanitizedValue)
+    );
+    setFilteredLocations(filtered);
+    setIsLocationValid(filtered.length > 0);
   };
 
   const handleDescriptionChange = (e) => {
-    setDescription(e.target.value); // Set the description state based on user input
+    setDescription(e.target.value); 
   };
 
-
   const handleSubmit = async () => {
-    // Validate input before submitting
-    if (!isLocationValid) {
+    const sanitizedLocation = locationInput.trim();
+    if (!isLocationValid || !locations.includes(sanitizedLocation)) {
       alert("Please enter a valid location from the list.");
       return;
     }
@@ -78,45 +79,35 @@ function ReportPage(){
       return;
     }
 
-    if (!description) {
+    if (!description.trim()) {
       alert("Please enter a description.");
       return;
     }
 
     try {
       const response = await axios.post("http://localhost:8081/reports/add", {
-        settlementName: locationInput,
+        settlementName: sanitizedLocation,
         disasterType: emergencyType,
-        shortDescription: description,
+        shortDescription: description.trim(),
       }, {
-      withCredentials: true,
+        withCredentials: true,
       });
-      console.log("Report submitted:", response.data);
       const reportId = response.data.id;
-      localStorage.setItem("reportId", reportId); //save reportId to localStorage to use when reporting need
-      //ert("Report submitted successfully!");
+      localStorage.setItem("reportId", reportId); 
       navigate(`/confirmation/${reportId}`);
     } catch (error) {
-      console.error("Error submitting report:", error);
       alert("Failed to submit report.");
     }
-
   };
-  
 
   return (
     <div>
       <AnonHeader />
       <div className="report-app-container">
-      
-        {/* Header */}
         <div className="report-header-container">
-            <BackButton /> 
+          <BackButton /> 
           <h1 className="report-header-title">REPORT AN EMERGENCY:</h1>
-
         </div>
-
-        {/* Content */}
         <div className="report-content-container">
           <h2 className="section-title">What happened?</h2>
           <div className="containerStyle">
@@ -161,11 +152,10 @@ function ReportPage(){
               <p className="paragraphStyle">LANDSLIDE</p>
             </button>
           </div>
-
           <hr className="report-divider" />
           <h2 className="section-title">Where did it happen?</h2>
-          <p className="report-location-info">Please use correct capitalization. For Zagreb please choose one of the following: Brezovica, Črnomerec, Donja Dubrava, Donji Grad, Gornja Dubrava, Gornji Grad- Medvešćak, Maksimir, Novi Zagreb-istok, Novi Zagreb-zapad, Pešćenica-Žitnjak, Podsljeme (Šestine-Gračani-Markuševec), Podsused-Vrapče, Sesvete, Stenjevec, Trešnjevka-jug, Trešnjevka-sjever, Trnje </p>
-          <div className="location-inputs" style={{ position: 'relative' }}>
+          <p className="report-location-info">For Zagreb please choose one of the following: Brezovica, Črnomerec, Donja Dubrava, Donji Grad, Gornja Dubrava, Gornji Grad- Medvešćak, Maksimir, Novi Zagreb-istok, Novi Zagreb-zapad, Pešćenica-Žitnjak, Podsljeme (Šestine-Gračani-Markuševec), Podsused-Vrapče, Sesvete, Stenjevec, Trešnjevka-jug, Trešnjevka-sjever, Trnje </p>
+          <div className="location-inputs">
             <input 
               type="text" 
               placeholder="Input location" 
@@ -174,12 +164,27 @@ function ReportPage(){
               onChange={handleLocationInputChange}
             />
             {!isLocationValid && <p className="error-text">Location not found. Please enter a valid location.</p>}
+            {filteredLocations.length > 0 && locationInput && (
+              <div className="location-dropdown">
+                {filteredLocations.map((location, index) => (
+                  <div 
+                    key={index} 
+                    className="location-dropdown-item"
+                    onClick={() => {
+                      setLocationInput(location);
+                      setIsLocationValid(true); 
+                      setFilteredLocations([]); 
+                    }}
+                  >
+                    {location}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-
           <hr className="report-divider" />
-          
           <div className="containerStylebottom">
-          <h2 className="section-title-last">Add a short description</h2>
+            <h2 className="section-title-last">Add a short description</h2>
             <input 
               type="text" 
               placeholder="Input short description" 
@@ -189,8 +194,6 @@ function ReportPage(){
             />
             <button className="report-submit-button" onClick={handleSubmit}>SUBMIT REPORT</button>
           </div>
-          
-
         </div>
       </div>
       <Footer />

@@ -23,14 +23,14 @@
     margin-top: 20px;
   }
   
-  .location-inputs {
-    display: grid;
-  
-    justify-content: space-between;
+  .location-inputs,
+  .containerStylebottom {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    margin-top: 20px;
-    max-width: 600px; 
-    margin: 20px auto;
+    justify-content: space-between;
+    max-width: 37.5rem; 
+    margin: 0 auto;
   }
   
   .location-button {
@@ -45,13 +45,23 @@
     margin-right: 10px;
   }
   
-  .address-input {
-    flex: 1;
-    font-family: Poppins;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-  }
+  .location-input,
+  .inputField {
+  width: 100%; 
+  padding: 1rem; 
+  font-family: Poppins; 
+  border:1px solid #ccc; 
+  border-radius: 8px; 
+  box-sizing: border-box; 
+}
+
+.address-input{
+  width: 10rem; 
+  padding: 1rem; 
+  font-family: Poppins; 
+  border:1px solid #ccc; 
+  border-radius: 8px; 
+}
   
   .report-location-info{
     width: 85%;
@@ -197,6 +207,7 @@
   z-index: 1000;
 }
 
+
 .search-item {
   padding: 10px;
   cursor: pointer;
@@ -235,14 +246,6 @@
   font-size: 14px;
 }
 
-
-.inputField {
-  border-radius: 8px;
-  border: 1px solid gray;
-  width: 40vw;
-  padding: 15px;
-  font-family: Poppins;
-}
 
 .error-text {
   margin: 20px;
