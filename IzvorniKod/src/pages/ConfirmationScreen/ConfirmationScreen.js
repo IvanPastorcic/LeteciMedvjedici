@@ -32,7 +32,7 @@ function ConfirmationScreen() {
         <AnonHeader /> 
         
         <div className='back-button-confirmation'>
-                <BackButton /> 
+            <BackButton /> 
         </div>
         <div className='confirmation-screen-content'> 
             

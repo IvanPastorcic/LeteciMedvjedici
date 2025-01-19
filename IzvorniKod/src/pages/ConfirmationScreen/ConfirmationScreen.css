@@ -29,7 +29,10 @@
     flex-direction: column;
 }
 
-
+.back-button-confirmation{
+    display: flex;
+    align-items: flex-start;
+}
 
 .button-container {
     display: flex;

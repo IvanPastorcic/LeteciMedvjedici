@@ -50,8 +50,8 @@ function App() {
         <Route path="/editusersadmin" element={<EditUsersAdmin />} />
         <Route path="/profileadmin" element={<ProfilePageAdmin />} />
 
+        <Route path ="/track-status/" element={<TrackStatus/> } /> 
         <Route path ="/track-status/:reportID" element={<TrackStatus/> } /> 
-
     
 
       </Routes>

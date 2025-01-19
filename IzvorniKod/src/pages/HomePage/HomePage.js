@@ -70,6 +70,10 @@ const HomePage = () => {
         navigate('/map');
     };
 
+    const navigateToTrack = () => {
+        navigate('/track-status');
+    };
+
     const handleInformation = () => {
         setShowInfo(!showInfo);
     };
@@ -125,6 +129,7 @@ const HomePage = () => {
                 <button className="information-button" onClick={handleInformation}>INFORMATION</button>
                 <button className="report-button" onClick={handleAnonymousReport}>REPORT</button>
                 <button className="see-map-button" onClick={navigateToMap}>SEE MAP</button>
+                <button className="track-status-button" onClick={navigateToTrack}>TRACK REPORTS</button>
                 <button className="logout" onClick={logout}>Logout</button>
             </div>
 
