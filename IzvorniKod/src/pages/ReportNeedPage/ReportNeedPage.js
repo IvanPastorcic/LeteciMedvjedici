@@ -19,10 +19,18 @@ function ReportNeedPage() {
     };
   
     const handleNeedClick = (need) => {
-      setNeeds((prevNeeds) => ({
-        ...prevNeeds,
-        [need]: prevNeeds[need] || "", 
-      }));
+      setNeeds((prevNeeds) => {
+        if (prevNeeds[need] !== undefined) {
+          const updatedNeeds = { ...prevNeeds };
+          delete updatedNeeds[need]; 
+          return updatedNeeds;
+        } else {
+          return {
+            ...prevNeeds,
+            [need]: "", 
+          };
+        }
+      });
     };
   
     const handleQuantityChange = (need, value) => {
