@@ -122,7 +122,6 @@ const HomePage = () => {
         <div className="HomePage">
             <div className='header'>
                 <AnonHeader />
-                <ProfileHeader />
             </div>
 
             <div className="buttonsHomePage">
