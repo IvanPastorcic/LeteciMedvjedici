@@ -88,18 +88,32 @@ body {
 
 .see-map-button{
   display: flex;
-
   background-color: #FFFFFF;
   border: 1px solid #808080;
-
   min-width: 150px;
   width: 212px;
   height: 44px;
   cursor: pointer;
   font-family: Poppins;
-  font-size: 25px;
+  font-size: 1rem;
   justify-content: center;
   align-items: center;
+}
+
+.track-status-button{
+  font-family: Poppins;
+  padding: 0.5rem 1rem;
+  margin-right: 5rem;
+  margin-bottom: 1.55rem;
+  border-radius: 8px;
+  border: 1px solid #808080;
+  background-color: #FFFFFF;
+  color: #000;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  align-self: flex-end;
+  font-weight: bold;
 }
 
 .AidActionItem{
