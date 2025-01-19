@@ -1,6 +1,7 @@
 import './HomePage.css';
 import Info from "../../components/Info/Info";
 import AnonHeader from "../../components/AnonHeader/AnonHeader";
+import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import ReportComponent from "../../components/Report/ReportComponent";
 import AidActions from "../../components/AidActions/AidActions";
 import { useNavigate } from 'react-router-dom';
@@ -117,6 +118,7 @@ const HomePage = () => {
         <div className="HomePage">
             <div className='header'>
                 <AnonHeader />
+                <ProfileHeader />
             </div>
 
             <div className="buttonsHomePage">
