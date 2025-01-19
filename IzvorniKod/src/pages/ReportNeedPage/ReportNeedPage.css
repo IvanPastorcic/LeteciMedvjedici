@@ -76,3 +76,7 @@
     background-color: darkgray;
 }
 
+.backbutton-report-need{
+    display: flex;
+    align-items: flex-start;
+}
