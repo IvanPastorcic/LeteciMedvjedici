@@ -1,0 +1,101 @@
+body {
+    overflow-x: hidden;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.HomePageAdmin {
+    min-width: 100vw;
+}
+
+.PageBodyAdmin {
+    display: flex;
+    flex-direction: row; 
+    height: auto;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #FAF9F6;
+    justify-content: space-between;
+}
+
+.ReportSectionAdmin{
+    display: grid;
+    grid-template-columns:  auto auto auto;
+    width: 90vw;
+    margin: 20px;
+}
+
+.UserSectionAdmin{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 20px;
+}
+
+
+
+.buttonsHomePageAdmin {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+.see-map-button-admin {
+    font-family: Poppins;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+    margin-right: 3rem;
+    border-radius: 8px;
+    border: 1px solid #808080;
+    background-color: #FFFFFF;
+    color: #000;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.Report {
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 700px;
+}
+
+.ReportDateName {
+    display: flex;
+    justify-content: start;
+}
+
+
+
+.profile-text {
+    color: white;
+    text-align: right;
+    margin: 0.5rem;
+}
+
+
+.ReportsAdmin{
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}
+
+
+.searchAndEdit{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.UsersAdmin{
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}

@@ -74,6 +74,7 @@ const ReportComponent = (props) => {
             {report.disaster.settlement.settlementName} AREA
           </h2>
 
+          <p>ID: {report.id}</p>
           <p>{report.shortDescription}</p>
 
           {isAdmin && (

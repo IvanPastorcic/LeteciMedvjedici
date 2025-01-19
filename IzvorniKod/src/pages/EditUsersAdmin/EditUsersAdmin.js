@@ -1,12 +1,13 @@
-import './HomePageAdmin.css';
+import './EditUsersAdmin.css';
 import AnonHeader from "../../components/AnonHeader/AnonHeader";
 import ReportComponent from "../../components/Report/ReportComponent";
+import ProfileComponent from "../../components/ProfileComponent/ProfileComponent";
 import BackButton from "../../components/BackButton/BackButton";
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const HomePageAdmin = () => {
+const EditUsersAdmin = () => {
     const [reports, setReports] = useState([]);
     const [denied, setDenied] = useState([]);
     const [processing, setProcessing] = useState([]);
@@ -75,20 +76,20 @@ const HomePageAdmin = () => {
     const navigateToMap = () => {
         navigate('/map');
     };
-    const navigateToEditUsers = () => {
-        navigate('/editusersadmin');
+    const navigateToHomeAdmin = () => {
+        navigate('/homeadmin');
     };
 
     return (
-        <div className="HomePageAdmin">
+        <div className="EditUsersAdmin">
             <div className="header">
                 <AnonHeader />
             </div>
 
             <div className="buttonsHomePageAdmin">
                 <BackButton />
-                <button className="edit-users" onClick={navigateToEditUsers}>
-                    EDIT USERS
+                <button className="edit-users" onClick={navigateToHomeAdmin}>
+                    EDIT REPORTS
                 </button>
                 <button className="see-map-button-admin" onClick={navigateToMap}>
                     SEE MAP
@@ -98,13 +99,29 @@ const HomePageAdmin = () => {
             <div className="PageBodyAdmin">
                 <div className="ReportSectionAdmin">
                     <div>
-                        <h2>Reports</h2>
+                        <h2>Users</h2>
                         <div className="search">
                             <input
                                 type="text"
                                 value={searchReportId}
                                 onChange={handleInputChange}
-                                placeholder="Search reports by ID"
+                                placeholder="Search users by username"
+                            />
+                            <button onClick={handleSearch} className="search-button">
+                                Search
+                            </button>
+                            {searchedReport && (
+                                <button onClick={handleClearSearch} className="clear-search-button">
+                                    Clear Search
+                                </button>
+                            )}
+                        </div>
+                        <div className="search">
+                            <input
+                                type="text"
+                                value={searchReportId}
+                                onChange={handleInputChange}
+                                placeholder="Search users by email"
                             />
                             <button onClick={handleSearch} className="search-button">
                                 Search
@@ -121,42 +138,21 @@ const HomePageAdmin = () => {
                         {searchedReport ? (
                             <div className="SearchedReport">
                                 <h3>Searched Report:</h3>
-                                <ReportComponent reports={[searchedReport]} />
+                                <ProfileComponent reports={[searchedReport]} />
                             </div>
                         ) : (
                             <>
                                 <div className="AcceptedReports">
-                                    <h4>Accepted Reports:</h4>
+                                    <h4>Users:</h4>
                                     {loading ? (
-                                        <p>Loading accepted reports...</p>
+                                        <p>Loading the users...</p>
                                     ) : error ? (
                                         <p>{error}</p>
                                     ) : (
-                                        <ReportComponent reports={reports} />
+                                        <ProfileComponent reports={reports} />
                                     )}
                                 </div>
 
-                                <div className="DeniedReports">
-                                    <h4>Denied Reports:</h4>
-                                    {loading ? (
-                                        <p>Loading denied reports...</p>
-                                    ) : error ? (
-                                        <p>{error}</p>
-                                    ) : (
-                                        <ReportComponent reports={denied} />
-                                    )}
-                                </div>
-
-                                <div className="ProcessingReports">
-                                    <h4>Processing Reports:</h4>
-                                    {loading ? (
-                                        <p>Loading processing reports...</p>
-                                    ) : error ? (
-                                        <p>{error}</p>
-                                    ) : (
-                                        <ReportComponent reports={processing} />
-                                    )}
-                                </div>
                             </>
                         )}
                     </div>
@@ -166,4 +162,4 @@ const HomePageAdmin = () => {
     );
 };
 
-export default HomePageAdmin;
+export default EditUsersAdmin;

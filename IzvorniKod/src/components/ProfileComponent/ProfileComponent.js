@@ -1,3 +1,5 @@
+import './ProfileComponent.css';
+
 const ProfileComponent = (props) => {
 
     const reports = props.reports;
@@ -7,25 +9,19 @@ const ProfileComponent = (props) => {
         <div>
             
                 {reports.map((report)=>(
-                    <div key={report.id} className="Report">
-                        <div className="ReportDateName">
-                            <text className="username">{report.user.username}</text>
+                    <div key={report.user.id} className="User">
+                        <div className="userData">
+                            <text className="username">Username: {report.user.username}</text>
+                            <text className="username">Email: {report.user.email}</text>
+                            <text className="username">Role: {report.user.role}</text>
+                            <text className="username">ID: {report.user.id}</text>
                         </div>
-                            <h2>{report.disaster.disasterType} REPORT -  {report.disaster.settlement.settlementName} AREA</h2>
-                            <text>{report.shortDescription}</text>
+                        
+                            
 
-
-                        {isAdmin && (
-
-                            <div className="adminStatus">
-                                <select  name="reportStatus">
-                                        <option value="Accepted">Accepted</option>
-                                        <option value="Processing">Processing...</option>
-                                        <option value="Denied">Denied</option>
-                                </select>
-                                <button className='changeStatus'>Change status</button>
-                            </div>
-                        )}
+                        <div className="adminStatus">
+                                <button className='delete-user'>Delete the user</button>
+                        </div>
                     </div>
                 ))}
     </div>  

@@ -87,7 +87,11 @@ const ReportOpen = () => {
                     <h2>
                         {report.disaster.disasterType} REPORT - {report.disaster.settlement.settlementName} AREA
                     </h2>
-                    <text>{report.shortDescription}</text>
+                    <div className='ReportAndDescription'>
+                        <text>ID: {report.id}</text>
+                        <text>{report.shortDescription}</text>
+                    </div>
+                    
                     <div className="ReportExtendedDetails">
                         <p>Additional Information:</p>
                         <p>{report.additionalInformation}</p>

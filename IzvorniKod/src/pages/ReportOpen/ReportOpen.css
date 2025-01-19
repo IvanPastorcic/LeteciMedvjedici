@@ -18,6 +18,11 @@
   padding: 1rem;
   margin-top: 1rem;
 }
+.ReportAndDescription{
+  display: flex;
+  flex-direction: column;
+
+}
 
 .ReportDateName {
   display: flex;
