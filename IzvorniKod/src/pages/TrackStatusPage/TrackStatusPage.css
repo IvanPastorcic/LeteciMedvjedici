@@ -10,3 +10,24 @@
     flex-direction: column;
     align-items: center;
 }
+
+.trackstatus-input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.report-id-input{
+    font-family: Poppins;
+    border-radius: 8px;
+    padding: 0.5rem;
+    margin: 0.5rem;
+}
+
+.track-button{
+    font-family: Poppins;
+    font-size: 1rem;
+    border-radius: 8px;
+    padding: 0.5rem;
+    margin: 0.5rem;
+}
