@@ -30,8 +30,8 @@ public class NeedsController {
 
     @GetMapping("/all")
    // @Secured({"ROLE_ADMIN", "ROLE_HUMANITARIAN", "ROLE_AUTHORITY"})
-    List<Need> needs() {
-        return needsService.getAllNeeds();
+    public ResponseEntity<List<Need>> needs() {
+        return ResponseEntity.ok(needsService.getAllNeeds());
     }
 
 

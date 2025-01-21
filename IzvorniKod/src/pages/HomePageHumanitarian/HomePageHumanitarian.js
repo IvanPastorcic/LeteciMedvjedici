@@ -57,7 +57,7 @@ const HomePageHumanitarian = () => {
     useEffect(() => {
         const fetchNeeds = async () => {
             try {
-                const response = await axios.get("http://localhost:8081/needs/all");
+                const response = await axios.get("http://localhost:8081/needs/all", {withCredentials: true} );
                 setNeeds(response.data);
             } catch (error) {
                 console.error("Error fetching needs:", error);
