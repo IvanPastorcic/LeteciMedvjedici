@@ -3,6 +3,7 @@ import "./ResourceRequests.css";
 
 function ResourceRequests(props) {
   const needs = props.needs;
+  console.log(props, needs);
 
   const [filter, setFilter] = useState("");
 
@@ -14,16 +15,17 @@ function ResourceRequests(props) {
   const filteredNeeds = filter
     ? needs.filter(
         (need) =>
-          need.needType.toLowerCase() === filter.toLowerCase() && need.appUser
+            need.needType.toLowerCase() === filter.toLowerCase() && need.report.user
       )
-    : needs.filter((need) => need.appUser);
+    : needs.filter((need) => need.report.user);
+
 
   return (
     <div className="resource-requests-container">
       <div className="filter-container">
         <p className="filter-title">Filter by resource:</p>
         <div className="filter-buttons">
-          {["water", "food", "shelter", "first aid kit", "heater", "sand"].map(
+          {["water", "food", "shelter", "first aid kit", "heaters", "sand"].map(
             (resource) => (
               <button
                 key={resource}
@@ -40,19 +42,20 @@ function ResourceRequests(props) {
       </div>
 
       <div className="requests-container">
-        {filteredNeeds.map((need) => (
-          <div key={need.id} className="request-card">
+    {filteredNeeds.map((need) => (
+        <div key={`${need.id.needType}-${need.id.id}`} className="request-card">
             <p className="request-user">
-              {need.appUser?.username || "Unknown User"}
+                {need.report.user?.username || "Unknown User"}
             </p>
             <div className="request-needs">
-              <p>Need type: {need.needType}</p>
-              <p>Need quantity: {need.quantity}</p>
-              <p>Need location: {need.address}</p>
+                <p>Need type: {need.needType}</p>
+                <p>Need quantity: {need.quantity}</p>
+                <p>Need location: {need.address}</p>
             </div>
-          </div>
-        ))}
-      </div>
+        </div>
+    ))}
+</div>
+
     </div>
   );
 }

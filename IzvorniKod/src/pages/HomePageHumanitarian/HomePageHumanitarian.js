@@ -49,24 +49,24 @@ const HomePageHumanitarian = () => {
                 setActionsLoading(false);
             }
         };
-
-        fetchReports();
-        fetchActions();
-    }, []);
-
-    useEffect(() => {
         const fetchNeeds = async () => {
             try {
                 const response = await axios.get("http://localhost:8081/needs/all", {withCredentials: true} );
                 setNeeds(response.data);
+                console.log("needs: ", response.data);
             } catch (error) {
                 console.error("Error fetching needs:", error);
                 setError("Failed to load data");
             }
         };
 
+        fetchReports();
+        fetchActions();
         fetchNeeds();
     }, []);
+
+   /* useEffect(() => {    
+    }, []);*/
 
     const navigateToMap = () => {
         navigate('/map');
@@ -99,7 +99,7 @@ const HomePageHumanitarian = () => {
             </div>
 
             <div className="buttonsHomePageHumanitarian">
-                <button className="report-button" onClick={handleAnonymousReport}>REPORT</button>
+                {/*<button className="report-button" onClick={handleAnonymousReport}>REPORT</button>*/}
                 <button className="manage-resources-button" onClick={navigateToManageResources}>MANAGE RESOURCES</button>
                 <button className="add-new-action-button" onClick={navigateToAddNewAction}>ADD NEW ACTION</button>
                 <button className="see-map-button" onClick={navigateToMap}>SEE MAP</button>
