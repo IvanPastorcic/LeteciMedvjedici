@@ -46,7 +46,7 @@ public class ReportController {
 	}
 
 	@GetMapping("/accepted")
-	@Secured({"ROLE_ADMIN"})
+
 	public ResponseEntity<List<Report>> acceptedReports(){
 		return ResponseEntity.ok(reportService.getAcceptedReports());
 	}

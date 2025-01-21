@@ -34,7 +34,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorize -> {
                     authorize.requestMatchers("/",
-                            "/reports/{id}", "/reports", "reports/add",
+                            "/reports/{id}", "/reports", "reports/add", "reports/accepted",
                             "/location/settlementnames",
                             "/actions", "/actions/{id}", "/actions/actionName/{nameOfAction}",
                             "/user/logout", //provjeri sa ostalima

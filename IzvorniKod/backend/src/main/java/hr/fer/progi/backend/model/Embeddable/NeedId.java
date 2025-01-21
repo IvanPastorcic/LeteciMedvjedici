@@ -7,7 +7,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 @Embeddable
-public class NeedId implements Serializable {
+public class
+NeedId implements Serializable {
 	private static final long serialVersionUID = 2102611351575520855L;
 
 	@NotNull
