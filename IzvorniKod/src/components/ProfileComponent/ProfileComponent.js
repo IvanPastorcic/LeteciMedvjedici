@@ -1,30 +1,48 @@
 import './ProfileComponent.css';
+import axios from 'axios';
 
 const ProfileComponent = (props) => {
-
     const users = props.users;
-    console.log(props, users);
+
+    // Function to handle user deletion
+    const handleDeleteUser = async (userId) => {
+        if (window.confirm(`Are you sure you want to delete user with ID: ${userId}?`)) {
+            try {
+                await axios.delete(`http://localhost:8081/user/${userId}`, { withCredentials: true });
+
+                // Notify parent component to refresh the user list
+                props.onUserDeleted(userId);
+            } catch (error) {
+                console.error("Error deleting user:", error);
+                alert("Failed to delete user. Please try again.");
+            }
+        }
+    };
+
     return ( 
         <div>
-            
-                {users.map((user)=>(
-                    <div key={user.id} className="User">
-                        <div className="userData">
-                            <text className="username">Username: {user.username}</text>
-                            <text className="username">Email: {user.email}</text>
-                            <text className="username">Role: {user.role}</text>
-                            <text className="username">ID: {user.id}</text>
-                        </div>
-                        
-                            
-
-                        <div className="adminStatus">
-                                <button className='delete-user'>Delete the user</button>
-                        </div>
+            {users.map((user) => (
+                <div key={user.id} className="User">
+                    <div className="userData">
+                        <p className="username">Username: {user.username}</p>
+                        <p className="username">Email: {user.email}</p>
+                        <p className="username">Role: {user.role}</p>
+                        <p className="username">ID: {user.id}</p>
                     </div>
-                ))}
-    </div>  
-     );
+
+                    <div className="adminStatus">
+                        <button 
+                            className='delete-user' 
+                            onClick={() => handleDeleteUser(user.id)}
+                            disabled={user.role === 'ROLE_ADMIN'}
+                        >
+                            {user.role === 'ROLE_ADMIN' ? 'Cannot Delete Admin' : 'Delete the user'}
+                        </button>
+                    </div>
+                </div>
+            ))}
+        </div>  
+    );
 }
- 
+
 export default ProfileComponent;
