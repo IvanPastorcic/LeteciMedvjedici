@@ -1,10 +1,10 @@
 import './HomePageAdmin.css';
 import AnonHeader from "../../components/AnonHeader/AnonHeader";
-import ReportComponent from "../../components/Report/ReportComponent";
 import BackButton from "../../components/BackButton/BackButton";
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ReportComponentAdmin from '../../components/Report/ReportComponentAdmin';
 
 const HomePageAdmin = () => {
     const [reports, setReports] = useState([]);
@@ -79,6 +79,8 @@ const HomePageAdmin = () => {
         navigate('/editusersadmin');
     };
 
+    const ITEMS_PER_PAGE = 5;
+
     return (
         <div className="HomePageAdmin">
             <div className="header">
@@ -121,7 +123,7 @@ const HomePageAdmin = () => {
                         {searchedReport ? (
                             <div className="SearchedReport">
                                 <h3>Searched Report:</h3>
-                                <ReportComponent reports={[searchedReport]} />
+                                <ReportComponentAdmin reports={[searchedReport]} />
                             </div>
                         ) : (
                             <>
@@ -132,7 +134,8 @@ const HomePageAdmin = () => {
                                     ) : error ? (
                                         <p>{error}</p>
                                     ) : (
-                                        <ReportComponent reports={reports} />
+                                        <ReportComponentAdmin reports={reports} />
+                                        
                                     )}
                                 </div>
 
@@ -143,7 +146,7 @@ const HomePageAdmin = () => {
                                     ) : error ? (
                                         <p>{error}</p>
                                     ) : (
-                                        <ReportComponent reports={denied} />
+                                        <ReportComponentAdmin reports={denied} />
                                     )}
                                 </div>
 
@@ -154,7 +157,7 @@ const HomePageAdmin = () => {
                                     ) : error ? (
                                         <p>{error}</p>
                                     ) : (
-                                        <ReportComponent reports={processing} />
+                                        <ReportComponentAdmin reports={processing} />
                                     )}
                                 </div>
                             </>

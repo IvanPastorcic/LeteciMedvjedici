@@ -18,21 +18,21 @@ body {
     justify-content: space-between;
 }
 
-.ReportSectionAdmin{
-    display: grid;
-    grid-template-columns:  auto auto auto;
-    width: 90vw;
-    margin: 20px;
-}
+
 
 .UserSectionAdmin{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 30%;
     margin: 20px;
 }
 
-
+.UsersAdmin{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 20px;
+}
 
 .buttonsHomePageAdmin {
     font-family: Poppins;

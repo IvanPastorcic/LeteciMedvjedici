@@ -15,6 +15,7 @@ const AddNewAction = () => {
   const [locations, setLocations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [filteredLocations, setFilteredLocations] = useState([]); 
 
   useEffect(() => {
     const fetchLocations = async () => {
@@ -22,6 +23,7 @@ const AddNewAction = () => {
         const response = await axios.get("http://localhost:8081/location/settlementnames");
         const locationNames = response.data.map(location => location.settlementName || location);
         setLocations(locationNames);
+        setFilteredLocations(locationNames); 
         setLoading(false);
       } catch (error) {
         console.error("Error fetching locations:", error);
@@ -35,7 +37,12 @@ const AddNewAction = () => {
   const handleLocationInputChange = (e) => {
     const value = e.target.value;
     setLocationInput(value);
-    setIsLocationValid(locations.includes(value));
+    const sanitizedValue = value.trimEnd().toLowerCase();
+    const filtered = locations.filter(location => 
+      location.toLowerCase().includes(sanitizedValue)
+    );
+    setFilteredLocations(filtered);
+    setIsLocationValid(filtered.length > 0);
   };
 
   const handleSubmit = async (e) => {
@@ -89,17 +96,33 @@ const AddNewAction = () => {
             />
 
             <p className="section-title">Location</p>
-            <p>Please use correct capitalization. For Zagreb please choose one of the following: Brezovica, Črnomerec, Donja Dubrava, Donji Grad, Gornja Dubrava, Gornji Grad- Medvešćak, Maksimir, Novi Zagreb-istok, Novi Zagreb-zapad, Pešćenica-Žitnjak, Podsljeme (Šestine-Gračani-Markuševec), Podsused-Vrapče, Sesvete, Stenjevec, Trešnjevka-jug, Trešnjevka-sjever, Trnje</p>
-            <div className="location-inputs" style={{ position: 'relative' }}>
-              <input
-                type="text"
-                placeholder="Input location"
-                className="address-input"
-                value={locationInput}
-                onChange={handleLocationInputChange}
-              />
-              {!isLocationValid && <p className="error-text">Location not found. Please enter a valid location.</p>}
-            </div>
+            <div className="location-inputs">
+            <input 
+              type="text" 
+              placeholder="Input location" 
+              className="address-input"
+              value={locationInput}
+              onChange={handleLocationInputChange}
+            />
+            {!isLocationValid && <p className="error-text">Location not found. Please enter a valid location.</p>}
+            {filteredLocations.length > 0 && locationInput && (
+              <div className="location-dropdown">
+                {filteredLocations.map((location, index) => (
+                  <div 
+                    key={index} 
+                    className="location-dropdown-item"
+                    onClick={() => {
+                      setLocationInput(location);
+                      setIsLocationValid(true); 
+                      setFilteredLocations([]); 
+                    }}
+                  >
+                    {location}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
           </div>
 
           <div className="right-column">

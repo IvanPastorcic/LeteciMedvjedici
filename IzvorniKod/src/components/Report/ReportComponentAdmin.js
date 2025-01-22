@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const ReportComponent = (props) => {
+const ReportComponentAdmin = (props) => {
   const reports = props.reports;
-  const isAdmin = 0; // Assuming `isAdmin` is a boolean
+  const isAdmin = 1; // Assuming `isAdmin` is a boolean
   const navigate = useNavigate();
 
   // State to manage report statuses
@@ -73,14 +73,33 @@ const ReportComponent = (props) => {
             {report.disaster.disasterType} REPORT -{" "}
             {report.disaster.settlement.settlementName} AREA
           </h2>
+
+          <p>ID: {report.id}</p>
           <p>{report.shortDescription}</p>
 
-          
-          
+          {isAdmin && (
+            <div className="adminStatus">
+              <select
+                name="reportStatus"
+                value={statuses[report.id] || ""}
+                onChange={(e) => handleStatusChange(report.id, e.target.value)}
+              >
+                <option value="ACCEPTED">Accepted</option>
+                <option value="PROCESSING">Processing...</option>
+                <option value="DENIED">Denied</option>
+              </select>
+              <button
+                className="changeStatus"
+                onClick={() => handleChangeStatus(report.id)}
+              >
+                Change status
+              </button>
+            </div>
+          )}
         </div>
       ))}
     </div>
   );
 };
 
-export default ReportComponent;
+export default ReportComponentAdmin;

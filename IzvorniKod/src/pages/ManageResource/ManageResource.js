@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./ManageResource.css";
 import AnonHeader from '../../components/AnonHeader/AnonHeader';
+import BackButton from '../../components/BackButton/BackButton';
 import Footer from "../../components/Footer/Footer";
 import axios from 'axios';
 
@@ -148,6 +149,7 @@ const fetchMyResources = async () => {
     <div className="manage-report-page">
       <AnonHeader />
       <div className="ManageReport">
+        <BackButton />
         <div className="resources-section">
           <h1>All resources</h1>
           <div className="filter-container">

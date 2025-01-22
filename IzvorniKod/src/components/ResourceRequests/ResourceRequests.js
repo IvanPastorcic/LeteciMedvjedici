@@ -23,7 +23,7 @@ function ResourceRequests(props) {
   return (
     <div className="resource-requests-container">
       <div className="filter-container">
-        <p className="filter-title">Filter by resource:</p>
+        <p className="filter-title">Filter by user needs:</p>
         <div className="filter-buttons">
           {["water", "food", "shelter", "first aid kit", "heaters", "sand"].map(
             (resource) => (
@@ -51,6 +51,7 @@ function ResourceRequests(props) {
                 <p>Need type: {need.needType}</p>
                 <p>Need quantity: {need.quantity}</p>
                 <p>Need location: {need.address}</p>
+                <p>Need status: {need.status}</p>
             </div>
         </div>
     ))}
