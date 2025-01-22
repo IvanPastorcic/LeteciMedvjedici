@@ -109,6 +109,20 @@ body {
     justify-content: space-between;
 }
 
+.search-button, .clear-search-button{
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    padding: 0.5rem;
+    font-family: Poppins;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+}
+
+.inputbox{
+    border-radius: 8px;
+    font-size: 1rem;
+    padding: 0.2rem;
+}
 .UsersAdmin{
     display: flex;
     flex-direction: column;
