@@ -6,6 +6,7 @@ import java.util.List;
 import hr.fer.progi.backend.dto.ReportStatusDTO;
 import hr.fer.progi.backend.model.*;
 import hr.fer.progi.backend.repository.exception.InputIsNullException;
+import hr.fer.progi.backend.service.GeocodingService;
 import hr.fer.progi.backend.service.OAuth2Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,9 @@ public class ReportServiceImpl implements ReportService {
 
 	@Autowired
 	private NaturalDisasterRepository naturalDisasterRepository;
+	
+	@Autowired
+	private GeocodingService geocodingService;
 
 	@Autowired
 	private UserService userService;
@@ -78,6 +82,10 @@ public Report newReport(ReportDTO dto) {
         // Ako naselje nije "Current Location", stvaramo prirodnu katastrofu sa stvarnim naseljem
         NaturalDisaster naturalDisaster = new NaturalDisaster(dto.getDisasterType(), settlement);
         naturalDisaster = naturalDisasterRepository.save(naturalDisaster);
+        
+        String coordinates = geocodingService.geocode(settlement.getSettlementName()); 
+        System.out.println("ELOOOOOOOOO");
+        System.out.println(coordinates);
         
         Report report = new Report(
             ReportStatus.PROCESSING,
