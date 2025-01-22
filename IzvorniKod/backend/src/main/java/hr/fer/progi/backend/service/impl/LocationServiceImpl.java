@@ -2,7 +2,6 @@ package hr.fer.progi.backend.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,61 +10,63 @@ import hr.fer.progi.backend.model.Location;
 import hr.fer.progi.backend.model.Report;
 import hr.fer.progi.backend.model.Settlement;
 import hr.fer.progi.backend.model.Enum.DisasterType;
-import hr.fer.progi.backend.repository.CountyRepository;
 import hr.fer.progi.backend.repository.LocationRepository;
 import hr.fer.progi.backend.service.LocationService;
 import hr.fer.progi.backend.service.ReportService;
-import hr.fer.progi.backend.service.SettlementService;
 
 @Service
 public class LocationServiceImpl implements LocationService {
 
-	private final LocationRepository locationRepository;
+    private final LocationRepository locationRepository;
 
-	public LocationServiceImpl(LocationRepository locationRepository) {
-		this.locationRepository = locationRepository;
-	}
+    @Autowired
+    private ReportService reportService;
 
-	@Autowired
-	private ReportService reportService;
+    public LocationServiceImpl(LocationRepository locationRepository) {
+        this.locationRepository = locationRepository;
+    }
 
-	@Autowired
-	private SettlementService settlementService;
+    @Override
+    public List<Location> getAllReported() {
+        List<Report> allReports = reportService.getAllReports();
+        List<Location> locations = new ArrayList<>();
+        
+        // Iteriramo kroz sve izvještaje i dohvaćamo odgovarajuće lokacije
+        for (Report report : allReports) {
+            Long id = report.getId();
+            Report rep = reportService.findById(id);
+            Settlement settlement = rep.getDisaster().getSettlement();
+            Location location = locationRepository.findBySettlement(settlement).orElse(null);
+            
+            // Provjeravamo da li je pronađena lokacija
+            if (location != null) {
+                locations.add(location);  // Dodajemo cijeli objekt Location
+            }
+        }
 
-	public List<String> getAllReported() {
-		List<Report> allReports = reportService.getAllReports();
-		List<String> coordinates = new ArrayList<String>();
-		for (Report report : allReports) {
-			Long id = report.getId();
-			Report rep = reportService.findById(id);
-			Settlement s = rep.getDisaster().getSettlement();
-			Location location = locationRepository.findBySettlement(s).orElse(null);
-			String geoCoor = location.getGeographicalCoordinates();
+        return locations;
+    }
 
-			if (geoCoor.split(",").length == 2)
-				coordinates.add(geoCoor);
+    @Override
+    public List<Location> getCoordinatesByType(DisasterType disasterType) {
+        List<Report> allReports = reportService.getAllReports();
+        List<Location> locations = new ArrayList<>();
+        
+        // Filtriramo izvještaje prema vrsti katastrofe i dohvaćamo odgovarajuće lokacije
+        for (Report report : allReports) {
+            if (report.getDisaster().getDisasterType().equals(disasterType)) {
+                Long id = report.getId();
+                Report rep = reportService.findById(id);
+                Settlement settlement = rep.getDisaster().getSettlement();
+                Location location = locationRepository.findBySettlement(settlement).orElse(null);
+                
+                // Provjeravamo da li je pronađena lokacija
+                if (location != null) {
+                    locations.add(location);  // Dodajemo cijeli objekt Location
+                }
+            }
+        }
 
-		}
-
-		return coordinates;
-	}
-
-	@Override
-	public List<String> getCoordinatesByType(DisasterType disasterType) {
-		List<Report> allReports = reportService.getAllReports();
-		List<String> coordinates = new ArrayList<String>();
-		for (Report report : allReports) {
-			if (report.getDisaster().getDisasterType().equals(disasterType)) {
-				Long id = report.getId();
-				Report rep = reportService.findById(id);
-				Settlement s = rep.getDisaster().getSettlement();
-				Location location = locationRepository.findBySettlement(s).orElse(null);
-				String geoCoor = location.getGeographicalCoordinates();
-
-				if (geoCoor.split(",").length == 2)
-					coordinates.add(geoCoor);
-			}
-		}
-		return coordinates;
-	}
+        return locations;
+    }
 }

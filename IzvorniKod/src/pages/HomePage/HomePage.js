@@ -34,6 +34,7 @@ const HomePage = () => {
                 const response = await axios.get(`http://localhost:8081/reports/accepted`, {
                     withCredentials: true,
                   });
+                console.log(response.data);
                 setReports(response.data);
             } catch (error) {
                 console.error("Error fetching reports:", error);

@@ -38,11 +38,12 @@ public class Report {
 	 * 
 	 * @JoinColumn(name ="ovdje_ide_NAZIVTABLICE_NAZIVCOLUMNA", nullable=false)
 	 * 
-	 * 
-	 * @ManyToOne(fetch = FetchType.LAZY)
-	 * @JoinColumn(name = "LOCATION_GEOGRAPHICCOORDINATES", nullable =
-	 * false) private String reportGeographicCoordinates;
-	 */
+	 */ 
+
+	 @ManyToOne(fetch = FetchType.LAZY)
+	 @JoinColumn(name = "LOCATION_GEOGRAPHICCOORDINATES", nullable =
+	  false) private String reportGeographicCoordinates;
+	 
 	
 	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -66,11 +67,11 @@ public class Report {
 	}
 
 	// with relationships
-	public Report(ReportStatus reportStatus, Timestamp time/* , @NotEmpty String reportGeographicCoordinates */,
+	public Report(ReportStatus reportStatus, Timestamp time , @NotEmpty String reportGeographicCoordinates ,
 			String shortDescription, String photo, AppUser appUser, NaturalDisaster naturalDisaster) {
 		this.reportStatus = reportStatus;
 		this.time = time;
-		/* this.reportGeographicCoordinates = reportGeographicCoordinates; */
+		this.reportGeographicCoordinates = reportGeographicCoordinates; 
 		this.shortDescription = shortDescription;
 		this.photo = photo;
 		this.appUser = appUser;
@@ -97,13 +98,14 @@ public class Report {
 		this.time = time;
 	}
 
-	/*
-	 * public String getGeographicCoordinates() { return
-	 * reportGeographicCoordinates; }
-	 * 
-	 * public void setGeographicCoordinates(String reportGeographicCoordinates) {
-	 * this.reportGeographicCoordinates = reportGeographicCoordinates; }
-	 */
+
+	public String getGeographicCoordinates() {
+         return reportGeographicCoordinates; }
+ 
+	public void setCoordinates(Double latitude, Double longitude) {
+        this.reportGeographicCoordinates = latitude + "," + longitude;
+    }
+	
 
 	public String getShortDescription() {
 		return shortDescription;

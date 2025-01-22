@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import hr.fer.progi.backend.model.Location;
 import hr.fer.progi.backend.model.Enum.DisasterType;
 
 @Service
 public interface LocationService {
 
-	public List<String> getAllReported();
+	public List<Location> getAllReported();
 
-	public List<String> getCoordinatesByType(DisasterType disasterType);
+	public List<Location> getCoordinatesByType(DisasterType disasterType);
 
 }

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import AnonHeader from "../../components/AnonHeader/AnonHeader";
-import { FaArrowLeft, FaFire, FaWater, FaBolt, FaMountain, FaHome } from "react-icons/fa";
+import { FaFire, FaWater, FaBolt, FaMountain, FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom"; 
 import './ReportPage.css';
 import axios from 'axios';
 import Footer from "../../components/Footer/Footer";
 import BackButton from "../../components/BackButton/BackButton";
 
-function ReportPage(){
+function ReportPage() {
   const navigate = useNavigate();
   const [activeButton, setActiveButton] = useState(null);
   const [locationInput, setLocationInput] = useState(""); 
@@ -16,7 +16,9 @@ function ReportPage(){
   const [locations, setLocations] = useState([]);
   const [filteredLocations, setFilteredLocations] = useState([]); 
   const [loading, setLoading] = useState(true); 
-  const [error, setError] = useState(null); 
+  const [latitude, setLatitude] = useState(null); 
+  const [longitude, setLongitude] = useState(null); 
+  const [isUsingCurrentLocation, setIsUsingCurrentLocation] = useState(false); 
 
   useEffect(() => {   
     const fetchLocations = async () => {
@@ -27,12 +29,28 @@ function ReportPage(){
         setFilteredLocations(locationNames); 
         setLoading(false); 
       } catch (error) {
-        setError("Failed to load locations"); 
-        setLoading(false); 
+        setLoading(false);
       }
     };
     fetchLocations(); 
-  }, []); 
+    
+    // Ako korisnik ne koristi trenutnu lokaciju, onda dohvatiti geolokaciju
+    if (navigator.geolocation && !isUsingCurrentLocation) {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          setLatitude(position.coords.latitude);
+          setLongitude(position.coords.longitude);
+        },
+        error => {
+          alert("Geolocation not available. Please manually input location.");
+        }
+      );
+    } else if (navigator.geolocation && isUsingCurrentLocation) {
+      // Ako je trenutna lokacija već postavljena, ne dohvaćamo je ponovo
+      setLatitude(latitude);
+      setLongitude(longitude);
+    }
+  }, [isUsingCurrentLocation]);
 
   const goBack = () => {
     navigate(-1); 
@@ -50,7 +68,7 @@ function ReportPage(){
       location.toLowerCase().includes(sanitizedValue)
     );
     setFilteredLocations(filtered);
-    setIsLocationValid(filtered.length > 0);
+    setIsLocationValid(filtered.length > 0 || value.trim() === ""); // Ako korisnik unese bilo koji tekst, filtriraj
   };
 
   const handleDescriptionChange = (e) => {
@@ -58,48 +76,91 @@ function ReportPage(){
   };
 
   const handleSubmit = async () => {
+    // Sanitiziraj lokaciju
     const sanitizedLocation = locationInput.trim();
-    if (!isLocationValid || !locations.some(location => location.trim().toLowerCase() === sanitizedLocation.toLowerCase())) {
-      alert("Please enter a valid location from the list.");
-      return;
-    }
-    
 
+    // Provjera vrste hitne situacije
     const typeMapping = {
-      fire: "WILDFIRE",
-      earthquake: "EARTHQUAKE",
-      flooding: "FLOOD",
-      heavy_storm: "HURRICANE",
-      landslide: "LANDSLIDE",
+        fire: "WILDFIRE",
+        earthquake: "EARTHQUAKE",
+        flooding: "FLOOD",
+        heavy_storm: "HURRICANE",
+        landslide: "LANDSLIDE",
     };
 
     const emergencyType = typeMapping[activeButton];
 
     if (!emergencyType) {
-      alert("Please select an emergency type.");
-      return;
+        alert("Please select an emergency type.");
+        return;
     }
 
+    // Provjera opisa
     if (!description.trim()) {
-      alert("Please enter a description.");
-      return;
+        alert("Please enter a description.");
+        return;
     }
 
-    try {
-      const response = await axios.post("http://localhost:8081/reports/add", {
-        settlementName: sanitizedLocation,
+    // Podaci za izvještaj
+    const reportData = {
+        settlementName: isUsingCurrentLocation ? "Current Location" : sanitizedLocation, // Ako je "use current location", koristi "Current Location"
         disasterType: emergencyType,
         shortDescription: description.trim(),
-      }, {
-        withCredentials: true,
-      });
-      const reportId = response.data.id;
-      localStorage.setItem("reportId", reportId); 
-      navigate(`/confirmation/${reportId}`);
+        latitude: latitude, 
+        longitude: longitude, 
+        photo: "", 
+    };
+
+    try {
+        // Slanje izvještaja
+        const response = await axios.post("http://localhost:8081/reports/add", reportData, {
+            withCredentials: true,
+        });
+
+        // Preusmjeri na stranicu s potvrdom
+        const reportId = response.data.id;
+        localStorage.setItem("reportId", reportId);
+        navigate(`/confirmation/${reportId}`);
     } catch (error) {
-      alert("Failed to submit report.");
+        alert("Failed to submit report.");
+        console.error("Error submitting report:", error);
     }
-  };
+};
+
+
+const useCurrentLocation = () => {
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+          position => {
+              setLatitude(position.coords.latitude);
+              setLongitude(position.coords.longitude);
+              setIsUsingCurrentLocation(true);
+              setLocationInput(""); // Resetiraj unos lokacije kada se koristi trenutna lokacija
+              alert("Your current location has been set.");
+          },
+          error => {
+              alert("Geolocation failed. Please enable location services.");
+          }
+      );
+  } else {
+      alert("Geolocation is not supported by your browser.");
+  }
+};
+
+useEffect(() => {
+  if (navigator.geolocation && !isUsingCurrentLocation) {
+      navigator.geolocation.getCurrentPosition(
+          position => {
+              setLatitude(position.coords.latitude);
+              setLongitude(position.coords.longitude);
+          },
+          error => {
+              alert("Geolocation not available. Please manually input location.");
+          }
+      );
+  }
+}, [isUsingCurrentLocation]);
+
 
   return (
     <div>
@@ -157,32 +218,42 @@ function ReportPage(){
           <h2 className="section-title">Where did it happen?</h2>
           <p className="report-location-info">For Zagreb please choose one of the following: Brezovica, Črnomerec, Donja Dubrava, Donji Grad, Gornja Dubrava, Gornji Grad- Medvešćak, Maksimir, Novi Zagreb-istok, Novi Zagreb-zapad, Pešćenica-Žitnjak, Podsljeme (Šestine-Gračani-Markuševec), Podsused-Vrapče, Sesvete, Stenjevec, Trešnjevka-jug, Trešnjevka-sjever, Trnje </p>
           <div className="location-inputs">
-            <input 
-              type="text" 
-              placeholder="Input location" 
-              className="address-input"
-              value={locationInput}
-              onChange={handleLocationInputChange}
-            />
-            {!isLocationValid && <p className="error-text">Location not found. Please enter a valid location.</p>}
-            {filteredLocations.length > 0 && locationInput && (
-              <div className="location-dropdown">
-                {filteredLocations.map((location, index) => (
-                  <div 
-                    key={index} 
-                    className="location-dropdown-item"
-                    onClick={() => {
-                      setLocationInput(location);
-                      setIsLocationValid(true); 
-                      setFilteredLocations([]); 
-                    }}
-                  >
-                    {location}
+            {isUsingCurrentLocation ? (
+              <p>Location: Current Location</p>
+            ) : (
+              <>
+                <input 
+                  type="text" 
+                  placeholder="Input location" 
+                  className="address-input"
+                  value={locationInput}
+                  onChange={handleLocationInputChange}
+                  disabled={isUsingCurrentLocation} // Onemogući unos kada je trenutna lokacija aktivna
+                />
+                {!isLocationValid && <p className="error-text">Location not found. Please enter a valid location.</p>}
+                {filteredLocations.length > 0 && locationInput && (
+                  <div className="location-dropdown">
+                    {filteredLocations.map((location, index) => (
+                      <div 
+                        key={index} 
+                        className="location-dropdown-item"
+                        onClick={() => {
+                          setLocationInput(location);
+                          setIsLocationValid(true); 
+                          setFilteredLocations([]); 
+                        }}
+                      >
+                        {location}
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                )}
+              </>
             )}
           </div>
+          <button className="use-location-button" onClick={useCurrentLocation}>
+            Use My Current Location
+          </button>
           <hr className="report-divider" />
           <div className="containerStylebottom">
             <h2 className="section-title-last">Add a short description</h2>

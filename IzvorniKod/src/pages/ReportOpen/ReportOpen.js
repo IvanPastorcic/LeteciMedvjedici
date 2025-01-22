@@ -10,33 +10,16 @@ import axios from 'axios';
 import { FaArrowLeft, FaFire, FaWater, FaBolt, FaMountain, FaHome } from "react-icons/fa";
 import BackButton from '../../components/BackButton/BackButton';
 
-
 const ReportOpen = () => {
-
-    
     const [showInfo, setShowInfo] = useState(false);
     const [report, setReport] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const isAdmin = 1;
-
-//dummy data samo za prikaz
-
-   
-
-    const [aids, setAids] = useState([  
-        {id: 1, date : "26 Oct 2024 10:35", organisationName: "THE RED CROSS", aidInfo: "informacije o sklonistima"},
-        {id: 2, date : "27 Oct 2024 11:00", organisationName: "ORGANISATION2", aidInfo: "informacije o HRANI"},
-        {id: 3, date : "28 Oct 2024 15:58", organisationName: "ORGANISATION3", aidInfo: "informacije o VODI"}
-    ])
-
-
     const { reportId } = useParams();
 
-    
     useEffect(() => {
-        
         const fetchReports = async () => {
             try {
                 const response = await axios.get(`http://localhost:8081/reports/${reportId}`); 
@@ -53,71 +36,62 @@ const ReportOpen = () => {
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
-    
 
-    const handleAnonymousReport = () => {
-        navigate('/report'); 
-    };
-
-    const navigateToMap = () => {
-        navigate('/map'); 
-    };
-
-    const handleInformation = () => {
-        setShowInfo(!showInfo); 
-    };
-
-    
-    
     return ( 
-            <div className="ReportOpen">
-                <div className='header'>
-                    <AnonHeader /> 
-                </div>
+        <div className="ReportOpen">
+            <div className='header'>
+                <AnonHeader /> 
+            </div>
 
-                	<div className="BackReportOpen">
-                        <BackButton/>
-                    </div>
-                    <div className="PageBodyHomeReportOpen">
+            <div className="BackReportOpen">
+                <BackButton/>
+            </div>
+
+            <div className="PageBodyHomeReportOpen">
                 <div className="ReportDetails">
                     <div className="ReportDateName">
                         <text className="aid-date">{new Date(report.time).toLocaleDateString()}</text>
-                        <text className="username">{report.user.username}</text>
+                        <text className="username">{report.user ? report.user.username : "Anonymous"}</text>
                     </div>
+
                     <h2>
-                        {report.disaster.disasterType} REPORT - {report.disaster.settlement.settlementName} AREA
+                        {report.disaster ? `${report.disaster.disasterType} REPORT - ${report.disaster.settlement ? report.disaster.settlement.settlementName : "Unknown Area"}` : "Unknown Disaster"}
                     </h2>
+
                     <div className='ReportAndDescription'>
                         <text>ID: {report.id}</text>
                         <text>{report.shortDescription}</text>
                     </div>
-                    
+
                     <div className="ReportExtendedDetails">
                         <p>Additional Information:</p>
                         <p>{report.additionalInformation}</p>
                     </div>
+
                     <div className="ReportImages">
                         {report.images && report.images.map((image, index) => (
                             <img key={index} src={image.url} alt={`Report Image ${index + 1}`} />
                         ))}
                     </div>
-                    
+
+                    <div className="ReportCoordinates">
+                        <p><strong>Location:</strong> {report.location ? `${report.location.latitude}, ${report.location.longitude}` : "Unknown location"}</p>
+                    </div>
+
                     {isAdmin && (
-                    
-                    <div className="adminStatus">
-                        <div className='currentStatus'>
-                            <p>Current status:</p>
-                            <p>{report.status}</p>
-                        </div>
-                        <select  name="reportStatus">
+                        <div className="adminStatus">
+                            <div className='currentStatus'>
+                                <p>Current status:</p>
+                                <p>{report.status}</p>
+                            </div>
+                            <select name="reportStatus">
                                 <option value="Accepted">Accepted</option>
                                 <option value="Processing">Processing...</option>
                                 <option value="Denied">Denied</option>
-                        </select>
-                        <button className='changeStatus'>Change status</button>
-                    </div>
+                            </select>
+                            <button className='changeStatus'>Change status</button>
+                        </div>
                     )}
-
                 </div>
             </div>
         </div>

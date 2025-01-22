@@ -45,22 +45,69 @@ public class ReportServiceImpl implements ReportService {
 		return reportRepository.findAll();
 	}
 
-	@Override
-	public Report newReport(ReportDTO dto) {
-		AppUser appUser = userService.loadCurrentUser();
-		Settlement settlement = settlementRepository.findBySettlementNameIgnoringCaseAndSpaces(dto.getSettlementName()); // service kada dodam
-
+	
 		// for testing
 //		AppUser testUser = new AppUser("testuser@example.com", "testuser");
 //		userService.insertUser(testUser);
 
-		NaturalDisaster naturalDisaster = new NaturalDisaster(dto.getDisasterType(), settlement);
-		naturalDisaster = naturalDisasterRepository.save(naturalDisaster);
+@Override
+public Report newReport(ReportDTO dto) {
+    AppUser appUser = userService.loadCurrentUser();
+    
+    // Provjera je li naziv naselja "Current Location"
+    if (dto.getSettlementName() == null || dto.getSettlementName().trim().isEmpty()) {
+        throw new IllegalArgumentException("Settlement name is required.");
+    }
 
-		Report report = new Report(ReportStatus.PROCESSING, getTime(), dto.getShortDescription(), dto.getPhoto(),
-				appUser, naturalDisaster); 
-		return reportRepository.save(report);
-	}
+    // Ako je naselje "Current Location", koristi samo koordinate i ne traži ga u bazi
+    Settlement settlement = null;
+    if (!dto.getSettlementName().equalsIgnoreCase("Current Location")) {
+        // Traženje naselja u bazi podataka samo ako nije "Current Location"
+        settlement = settlementRepository.findBySettlementNameIgnoringCaseAndSpaces(dto.getSettlementName());
+    }
+
+    // Ako naselje nije pronađeno u bazi (i nije "Current Location"), baca se iznimka
+    if (settlement == null && !dto.getSettlementName().equalsIgnoreCase("Current Location")) {
+        throw new IllegalArgumentException("Settlement '" + dto.getSettlementName() + "' not found in database.");
+    }
+
+    // Ako naselje nije "Current Location", spremi novo naselje u bazi
+    String geographicCoordinates = dto.getGeographicCoordinates() != null ? dto.getGeographicCoordinates() : "0.0,0.0";
+    
+    if (settlement != null && !dto.getSettlementName().equalsIgnoreCase("Current Location")) {
+        // Ako naselje nije "Current Location", stvaramo prirodnu katastrofu sa stvarnim naseljem
+        NaturalDisaster naturalDisaster = new NaturalDisaster(dto.getDisasterType(), settlement);
+        naturalDisaster = naturalDisasterRepository.save(naturalDisaster);
+        
+        Report report = new Report(
+            ReportStatus.PROCESSING,
+            getTime(),
+            dto.getShortDescription() != null ? dto.getShortDescription() : "No description provided",
+            dto.getPhoto() != null ? dto.getPhoto() : "",
+            geographicCoordinates, // Spremanje koordinata kao string
+            appUser,
+            naturalDisaster
+        );
+
+        return reportRepository.save(report);
+    }
+
+    // Ako je naselje "Current Location", samo koristi koordinate, bez dodavanja naselja u bazu
+    Report report = new Report(
+        ReportStatus.PROCESSING,
+        getTime(),
+        dto.getShortDescription() != null ? dto.getShortDescription() : "No description provided",
+        dto.getPhoto() != null ? dto.getPhoto() : "",
+        geographicCoordinates, // Spremanje koordinata kao string
+        appUser,
+        null // Ne postavljamo naselje jer koristimo samo koordinate
+    );
+
+    return reportRepository.save(report);
+}
+
+
+
 
 	private Timestamp getTime() {
 		long millis = System.currentTimeMillis();  
