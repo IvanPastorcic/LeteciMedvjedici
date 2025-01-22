@@ -36,7 +36,7 @@ public class AppUserController {
     }
 
 
-    @GetMapping("/{userId}")
+    @GetMapping("/id/{userId}")
     public ResponseEntity<AppUser> getUserById(@PathVariable Long userId)
     {
         if(userService.fetchUserById(userId) == null)
@@ -45,6 +45,17 @@ public class AppUserController {
         }
 
         return ResponseEntity.ok().body(userService.fetchUserById(userId));
+    }
+
+    @GetMapping("/email/{userEmail}")
+    public ResponseEntity<AppUser> getUserByEmail(@PathVariable String userEmail)
+    {
+        if(userService.fetchUserByEmail(userEmail).isEmpty())
+        {
+            throw new InputIsNullException("Korisnik ne postoji");
+        }
+
+        return ResponseEntity.ok().body(userService.fetchUserByEmail(userEmail).orElseThrow());
     }
 
     @GetMapping("/{userId}/reports")
@@ -62,6 +73,11 @@ public class AppUserController {
             return ResponseEntity.ok("User deleted successfully");
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<AppUser>> all(){
+        return ResponseEntity.ok(userService.findAllUsers());
     }
 
     @GetMapping

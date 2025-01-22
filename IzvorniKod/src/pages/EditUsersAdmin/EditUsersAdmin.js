@@ -19,12 +19,11 @@ const EditUsersAdmin = () => {
     useEffect(() => {
         const fetchUsers= async () => {
             try {
-                const [users] = await Promise.all([
-                    axios.get("http://localhost:8081/reports/user", { withCredentials: true }),
-                ]);
-                setUsers(users.data);
+                const response = await axios.get("http://localhost:8081/user/all", { withCredentials: true });
+                console.log(response.data);
+                setUsers(response.data);
             } catch (error) {
-                console.error("Error fetching data:", error);
+                console.error("Error fetching users:", error);
                 setError("Failed to load data");
             } finally {
                 setLoading(false);
@@ -32,6 +31,8 @@ const EditUsersAdmin = () => {
         };
         fetchUsers();
     }, []);
+
+   
 
     // Handle search input change
     const handleInputChange = (e) => {
@@ -47,7 +48,7 @@ const EditUsersAdmin = () => {
 
         try {
             setLoading(true);
-            const response = await axios.get(`http://localhost:8081/reports/${searchUserEmail}`, {
+            const response = await axios.get(`http://localhost:8081/user/email/${searchUserEmail}`, {
                 withCredentials: true,
             });
             setSearchedUser(response.data);
@@ -116,7 +117,9 @@ const EditUsersAdmin = () => {
                         {searchedUser ? (
                             <div className="SearchedUser">
                                 <h3>Searched User:</h3>
-                                <ProfileComponent users={[searchedUser]} />
+                                {/*<ProfileComponent users={searchedUser} />*/}
+                                <ProfileComponent users={Array.isArray(searchedUser) ? searchedUser : [searchedUser]} />
+
                             </div>
                         ) : (
                             <>
@@ -127,7 +130,7 @@ const EditUsersAdmin = () => {
                                     ) : error ? (
                                         <p>{error}</p>
                                     ) : (
-                                        <ProfileComponent users={[searchedUser]} />
+                                        <ProfileComponent users={users} />
                                     )}
                                 </div>
 

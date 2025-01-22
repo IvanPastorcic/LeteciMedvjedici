@@ -71,7 +71,7 @@ const ReportComponentAdmin = (props) => {
             className="clickable-title"
           >
             {report.disaster.disasterType} REPORT -{" "}
-            {report.disaster.settlement.settlementName} AREA
+            {report.disaster?.settlement?.settlementName ?? report.geographicCoordinates} AREA
           </h2>
 
           <p>ID: {report.id}</p>
