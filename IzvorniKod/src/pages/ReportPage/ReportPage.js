@@ -215,7 +215,6 @@ useEffect(() => {
           </div>
           <hr className="report-divider" />
           <h2 className="section-title">Where did it happen?</h2>
-          <p className="report-location-info">For Zagreb please choose one of the following: Brezovica, Črnomerec, Donja Dubrava, Donji Grad, Gornja Dubrava, Gornji Grad- Medvešćak, Maksimir, Novi Zagreb-istok, Novi Zagreb-zapad, Pešćenica-Žitnjak, Podsljeme (Šestine-Gračani-Markuševec), Podsused-Vrapče, Sesvete, Stenjevec, Trešnjevka-jug, Trešnjevka-sjever, Trnje </p>
           <div className="location-inputs">
             {isUsingCurrentLocation ? (
               <p>Location: Current Location</p>
@@ -229,7 +228,7 @@ useEffect(() => {
                   onChange={handleLocationInputChange}
                   disabled={isUsingCurrentLocation} // Onemogući unos kada je trenutna lokacija aktivna
                 />
-                {!isLocationValid && <p className="error-text">Location not found. Please enter a valid location.</p>}
+             {!isLocationValid && <p className="error-text">Location not found. Please enter a valid location.</p>}
                 {filteredLocations.length > 0 && locationInput && (
                   <div className="location-dropdown">
                     {filteredLocations.map((location, index) => (
