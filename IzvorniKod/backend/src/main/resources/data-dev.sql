@@ -9,26 +9,26 @@ INSERT INTO public.appuser VALUES (4, 'Anonimni korisnik', 'ROLE_USER', 'Anonimn
 
 
 --county
-INSERT INTO public.county VALUES (1, 'Zagrebačka', 'CENTRAL') ON CONFLICT DO NOTHING;
-INSERT INTO public.county VALUES (2, 'Krapinsko-zagorska', 'CENTRAL') ON CONFLICT DO NOTHING;
+INSERT INTO public.county VALUES (1, 'Zagrebačka županija', 'CENTRAL') ON CONFLICT DO NOTHING;
+INSERT INTO public.county VALUES (2, 'Krapinsko-zagorska županija', 'CENTRAL') ON CONFLICT DO NOTHING;
 INSERT INTO public.county VALUES (3, 'Sisačko-moslavačka županija', 'CENTRAL') ON CONFLICT DO NOTHING;
-INSERT INTO public.county VALUES (4, 'Karlovačka', 'CENTRAL') ON CONFLICT DO NOTHING;
-INSERT INTO public.county VALUES (5, 'Varaždinska', 'CENTRAL') ON CONFLICT DO NOTHING;
-INSERT INTO public.county VALUES (6, 'Koprivničko-križevačka', 'CENTRAL') ON CONFLICT DO NOTHING;
-INSERT INTO public.county VALUES (7, 'Bjelovarsko-bilogorska', 'CENTRAL') ON CONFLICT DO NOTHING;
-INSERT INTO public.county VALUES (8, 'Primorsko-goranska', 'NORTH_SEASIDE') ON CONFLICT DO NOTHING;
-INSERT INTO public.county VALUES (9, 'Ličko-senjska', 'GORSKI_KOTAR') ON CONFLICT DO NOTHING;
-INSERT INTO public.county VALUES (10, 'Virovitičko-podravska', 'EAST') ON CONFLICT DO NOTHING;
-INSERT INTO public.county VALUES (11, 'Požeško-slavonska', 'EAST') ON CONFLICT DO NOTHING;
-INSERT INTO public.county VALUES (12, 'Brodsko-posavska', 'EAST') ON CONFLICT DO NOTHING;
-INSERT INTO public.county VALUES (13, 'Zadarska', 'SOUTH_SEASIDE') ON CONFLICT DO NOTHING;
-INSERT INTO public.county VALUES (14, 'Osječko-baranjska', 'EAST') ON CONFLICT DO NOTHING;
-INSERT INTO public.county VALUES (15, 'Šibensko-kninska', 'SOUTH_SEASIDE') ON CONFLICT DO NOTHING;
-INSERT INTO public.county VALUES (16, 'Vukovarsko-srijemska', 'EAST') ON CONFLICT DO NOTHING;
-INSERT INTO public.county VALUES (17, 'Splitsko-dalmatinska', 'SOUTH_SEASIDE') ON CONFLICT DO NOTHING;
-INSERT INTO public.county VALUES (18, 'Istarska', 'NORTH_SEASIDE') ON CONFLICT DO NOTHING;
-INSERT INTO public.county VALUES (19, 'Dubrovačko-neretvanska', 'SOUTH_SEASIDE') ON CONFLICT DO NOTHING;
-INSERT INTO public.county VALUES (20, 'Međimurska', 'CENTRAL') ON CONFLICT DO NOTHING;
+INSERT INTO public.county VALUES (4, 'Karlovačka županija', 'CENTRAL') ON CONFLICT DO NOTHING;
+INSERT INTO public.county VALUES (5, 'Varaždinska županija', 'CENTRAL') ON CONFLICT DO NOTHING;
+INSERT INTO public.county VALUES (6, 'Koprivničko-križevačka županija', 'CENTRAL') ON CONFLICT DO NOTHING;
+INSERT INTO public.county VALUES (7, 'Bjelovarsko-bilogorska županija', 'CENTRAL') ON CONFLICT DO NOTHING;
+INSERT INTO public.county VALUES (8, 'Primorsko-goranska županija', 'NORTH_SEASIDE') ON CONFLICT DO NOTHING;
+INSERT INTO public.county VALUES (9, 'Ličko-senjska županija', 'GORSKI_KOTAR') ON CONFLICT DO NOTHING;
+INSERT INTO public.county VALUES (10, 'Virovitičko-podravska županija', 'EAST') ON CONFLICT DO NOTHING;
+INSERT INTO public.county VALUES (11, 'Požeško-slavonska županija', 'EAST') ON CONFLICT DO NOTHING;
+INSERT INTO public.county VALUES (12, 'Brodsko-posavska županija', 'EAST') ON CONFLICT DO NOTHING;
+INSERT INTO public.county VALUES (13, 'Zadarska županija', 'SOUTH_SEASIDE') ON CONFLICT DO NOTHING;
+INSERT INTO public.county VALUES (14, 'Osječko-baranjska županija', 'EAST') ON CONFLICT DO NOTHING;
+INSERT INTO public.county VALUES (15, 'Šibensko-kninska županija', 'SOUTH_SEASIDE') ON CONFLICT DO NOTHING;
+INSERT INTO public.county VALUES (16, 'Vukovarsko-srijemska županija', 'EAST') ON CONFLICT DO NOTHING;
+INSERT INTO public.county VALUES (17, 'Splitsko-dalmatinska županija', 'SOUTH_SEASIDE') ON CONFLICT DO NOTHING;
+INSERT INTO public.county VALUES (18, 'Istarska županija', 'NORTH_SEASIDE') ON CONFLICT DO NOTHING;
+INSERT INTO public.county VALUES (19, 'Dubrovačko-neretvanska županija', 'SOUTH_SEASIDE') ON CONFLICT DO NOTHING;
+INSERT INTO public.county VALUES (20, 'Međimurska županija', 'CENTRAL') ON CONFLICT DO NOTHING;
 INSERT INTO public.county VALUES (21, 'Grad Zagreb', 'CENTRAL') ON CONFLICT DO NOTHING;
 
 
