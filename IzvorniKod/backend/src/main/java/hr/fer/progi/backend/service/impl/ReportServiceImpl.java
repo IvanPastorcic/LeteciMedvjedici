@@ -7,8 +7,7 @@ import hr.fer.progi.backend.dto.ReportStatusDTO;
 import hr.fer.progi.backend.dto.SettlementDTO;
 import hr.fer.progi.backend.model.*;
 import hr.fer.progi.backend.repository.exception.InputIsNullException;
-import hr.fer.progi.backend.service.GeocodingService;
-import hr.fer.progi.backend.service.OAuth2Service;
+import hr.fer.progi.backend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +17,6 @@ import hr.fer.progi.backend.model.Enum.ReportStatus;
 import hr.fer.progi.backend.repository.NaturalDisasterRepository;
 import hr.fer.progi.backend.repository.ReportRepository;
 import hr.fer.progi.backend.repository.SettlementRepository;
-import hr.fer.progi.backend.service.ReportService;
-import hr.fer.progi.backend.service.UserService;
 
 @Service
 public class ReportServiceImpl implements ReportService {
@@ -36,11 +33,14 @@ public class ReportServiceImpl implements ReportService {
 	@Autowired
 	private GeocodingService geocodingService;
 
+	private final NaturalDisasterService naturalDisasterService;
+
 	@Autowired
 	private UserService userService;
 	private final OAuth2Service oAuth2Service;
 
-	public ReportServiceImpl(OAuth2Service oAuth2Service) {
+	public ReportServiceImpl(NaturalDisasterService naturalDisasterService, OAuth2Service oAuth2Service) {
+		this.naturalDisasterService = naturalDisasterService;
 		this.oAuth2Service = oAuth2Service;
 	}
 
@@ -52,9 +52,6 @@ public class ReportServiceImpl implements ReportService {
 		return reportRepository.findAll();
 	}
 
-	// for testing
-//		AppUser testUser = new AppUser("testuser@example.com", "testuser");
-//		userService.insertUser(testUser);
 
 	@Override
 	public Report newReport(ReportDTO dto) {
@@ -65,8 +62,7 @@ public class ReportServiceImpl implements ReportService {
 			throw new IllegalArgumentException("Settlement name is required.");
 		}
 
-		// Ako je naselje "Current Location", koristi samo koordinate i ne traži ga u
-		// bazi
+
 		Settlement settlement = null;
 		CoordinatesDTO coordinates = null;
 		SettlementDTO settlementDTO = null;
@@ -81,6 +77,7 @@ public class ReportServiceImpl implements ReportService {
 			float lon = Float.parseFloat(parts[1].trim());
 			//coordinates = new CoordinatesDTO(lat, lon);
 			settlementDTO = geocodingService.reverseGeocode(lat, lon);
+			System.out.println(settlementDTO.getSettlementName());
 			settlement = settlementRepository.findBySettlementNameIgnoringCaseAndSpaces(settlementDTO.getSettlementName());
 			reportCoordinates = dto.getCoordinates();
 		}
@@ -92,7 +89,8 @@ public class ReportServiceImpl implements ReportService {
 			reportCoordinates = coordinates.getStringCoordinates();
 		}
 
-		NaturalDisaster naturalDisaster = new NaturalDisaster(dto.getDisasterType(), settlement);
+		NaturalDisaster naturalDisaster = naturalDisasterService.getOrCreateNaturalDisaster(dto.getDisasterType(), settlement);
+
 		Report report = new Report(ReportStatus.PROCESSING,
 									getTime(),
 									reportCoordinates,
@@ -100,32 +98,7 @@ public class ReportServiceImpl implements ReportService {
 									dto.getPhoto() != null ? dto.getPhoto() : "",
 									appUser,
 									naturalDisaster);
-/*
 
-		if (settlement != null && !dto.getSettlementName().equalsIgnoreCase("Current Location")) {
-			// Ako naselje nije "Current Location", stvaramo prirodnu katastrofu sa stvarnim
-			// naseljem
-			NaturalDisaster naturalDisaster = new NaturalDisaster(dto.getDisasterType(), settlement);
-			naturalDisaster = naturalDisasterRepository.save(naturalDisaster);
-
-			Report report = new Report(ReportStatus.PROCESSING, getTime(),
-					dto.getShortDescription() != null ? dto.getShortDescription() : "No description provided",
-					dto.getPhoto() != null ? dto.getPhoto() : "", appUser, naturalDisaster);
-
-			return reportRepository.save(report);
-		}
-
-		NaturalDisaster naturalDisaster = new NaturalDisaster(dto.getDisasterType(), settlement);
-		naturalDisaster = naturalDisasterRepository.save(naturalDisaster);
-
-
-		Report report = new Report(ReportStatus.PROCESSING, getTime(), dto.getCoordinates(),
-				dto.getShortDescription() != null ? dto.getShortDescription() : "No description provided",
-				dto.getPhoto() != null ? dto.getPhoto() : "",
-				// Spremanje koordinata kao string
-				appUser, naturalDisaster // Ne postavljamo naselje jer koristimo samo koordinate
-		);
-*/
 		return reportRepository.save(report);
 	}
 
