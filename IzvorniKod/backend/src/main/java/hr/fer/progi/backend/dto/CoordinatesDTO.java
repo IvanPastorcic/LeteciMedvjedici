@@ -21,6 +21,10 @@ public class CoordinatesDTO {
 	public void setLon(float lon) {
 		this.lon = lon;
 	}
+
+	public String getStringCoordinates(){
+		return lat + ", " + lon;
+	}
 	
 	
 }
