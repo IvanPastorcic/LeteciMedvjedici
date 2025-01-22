@@ -10,17 +10,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import hr.fer.progi.backend.model.Location;
 import hr.fer.progi.backend.model.County;
 import hr.fer.progi.backend.model.Report;
 import hr.fer.progi.backend.model.Settlement;
 import hr.fer.progi.backend.model.Enum.DisasterType;
 import hr.fer.progi.backend.repository.CountyRepository;
-import hr.fer.progi.backend.repository.LocationRepository;
 import hr.fer.progi.backend.repository.SettlementRepository;
 import hr.fer.progi.backend.repository.exception.InputIsNullException;
 import hr.fer.progi.backend.service.CountyService;
-import hr.fer.progi.backend.service.LocationService;
 import hr.fer.progi.backend.service.SettlementService;
 
 @RestController
@@ -33,20 +30,20 @@ public class LocationController {
     @Autowired
     private SettlementService settlementService;
     
-    @Autowired
-    private LocationService locationService;
+//    @Autowired
+//    private LocationService locationService;
 
     // Ako želite vratiti cijeli Location objekt
-    @GetMapping("/coordinates") 
-    List<Location> getAllReportedCoordinates(){
-        return locationService.getAllReported();
-    }
-    
+//    @GetMapping("/coordinates") 
+//    List<Location> getAllReportedCoordinates(){
+//        return locationService.getAllReported();
+//    }
+//    
     // Ako želite vratiti cijeli Location objekt za određenu vrstu katastrofe
-    @GetMapping("/coordinates/byDisaster/{disasterType}") 
-    List<Location> getCoordinatesByType(@PathVariable("disasterType") DisasterType disasterType){    
-        return locationService.getCoordinatesByType(disasterType);
-    }
+//    @GetMapping("/coordinates/byDisaster/{disasterType}") 
+//    List<Location> getCoordinatesByType(@PathVariable("disasterType") DisasterType disasterType){    
+//        return locationService.getCoordinatesByType(disasterType);
+//    }
     
     // Ostale metode ostaju iste
     @GetMapping("/settlement")
