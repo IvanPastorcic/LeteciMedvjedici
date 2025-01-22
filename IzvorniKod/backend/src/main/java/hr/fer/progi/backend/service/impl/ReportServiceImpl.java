@@ -68,31 +68,45 @@ public class ReportServiceImpl implements ReportService {
 		// Ako je naselje "Current Location", koristi samo koordinate i ne traži ga u
 		// bazi
 		Settlement settlement = null;
-		if (!dto.getSettlementName().equalsIgnoreCase("Current Location")) {
-			// Traženje naselja u bazi podataka samo ako nije "Current Location"
+		CoordinatesDTO coordinates = null;
+		SettlementDTO settlementDTO = null;
+		String reportCoordinates = null;
+
+		//imamo koordinate, trebamo settlement iz njih
+		if(dto.getSettlementName().equalsIgnoreCase("Current Location")){
+			String[] parts = dto.getCoordinates().split(",");
+
+			// Convert the parts into float values
+			float lat = Float.parseFloat(parts[0].trim());
+			float lon = Float.parseFloat(parts[1].trim());
+			//coordinates = new CoordinatesDTO(lat, lon);
+			settlementDTO = geocodingService.reverseGeocode(lat, lon);
+			settlement = settlementRepository.findBySettlementNameIgnoringCaseAndSpaces(settlementDTO.getSettlementName());
+			reportCoordinates = dto.getCoordinates();
+		}
+
+		//imamo ime naselja, trebamo koordinate iz njega
+		if(!dto.getSettlementName().equalsIgnoreCase("Current Location")){
 			settlement = settlementRepository.findBySettlementNameIgnoringCaseAndSpaces(dto.getSettlementName());
+			coordinates = geocodingService.geocode(dto.getSettlementName());
+			reportCoordinates = coordinates.getStringCoordinates();
 		}
 
-		// Ako naselje nije pronađeno u bazi (i nije "Current Location"), baca se
-		// iznimka
-		if (settlement == null && !dto.getSettlementName().equalsIgnoreCase("Current Location")) {
-			throw new IllegalArgumentException("Settlement '" + dto.getSettlementName() + "' not found in database.");
-		}
-
-		// Ako naselje nije "Current Location", spremi novo naselje u bazi
-		// String geographicCoordinates = dto.getGeographicCoordinates() != null ?
-		// dto.getGeographicCoordinates() : "0.0,0.0";
+		NaturalDisaster naturalDisaster = new NaturalDisaster(dto.getDisasterType(), settlement);
+		Report report = new Report(ReportStatus.PROCESSING,
+									getTime(),
+									reportCoordinates,
+									dto.getShortDescription() != null ? dto.getShortDescription() : "No description provided",
+									dto.getPhoto() != null ? dto.getPhoto() : "",
+									appUser,
+									naturalDisaster);
+/*
 
 		if (settlement != null && !dto.getSettlementName().equalsIgnoreCase("Current Location")) {
 			// Ako naselje nije "Current Location", stvaramo prirodnu katastrofu sa stvarnim
 			// naseljem
 			NaturalDisaster naturalDisaster = new NaturalDisaster(dto.getDisasterType(), settlement);
 			naturalDisaster = naturalDisasterRepository.save(naturalDisaster);
-
-//			test za dobivanje koordinata od naselja
-//			System.out.println("ELOOOOOOOOO");
-//			CoordinatesDTO coordinates = geocodingService.geocode(settlement.getSettlementName());
-//			System.out.println(coordinates.getLat() + ", " + coordinates.getLon());
 
 			Report report = new Report(ReportStatus.PROCESSING, getTime(),
 					dto.getShortDescription() != null ? dto.getShortDescription() : "No description provided",
@@ -104,19 +118,6 @@ public class ReportServiceImpl implements ReportService {
 		NaturalDisaster naturalDisaster = new NaturalDisaster(dto.getDisasterType(), settlement);
 		naturalDisaster = naturalDisasterRepository.save(naturalDisaster);
 
-//		test za dobivanje naselja iz koordinata
-//		System.out.println("ELOOOOOOOOO");
-//		try {
-//			String[] coor = dto.getCoordinates().split(",");
-//			float c0 = Float.parseFloat(coor[0].trim());
-//			float c1 = Float.parseFloat(coor[1].trim());
-//
-//			SettlementDTO data = geocodingService.reverseGeocode(c0, c1);
-//
-//			System.out.println(data.getSettlementName() + ", " + data.getCountyName());
-//		} catch (Exception e) {
-//			System.out.println(e.getMessage());
-//		}
 
 		Report report = new Report(ReportStatus.PROCESSING, getTime(), dto.getCoordinates(),
 				dto.getShortDescription() != null ? dto.getShortDescription() : "No description provided",
@@ -124,7 +125,7 @@ public class ReportServiceImpl implements ReportService {
 				// Spremanje koordinata kao string
 				appUser, naturalDisaster // Ne postavljamo naselje jer koristimo samo koordinate
 		);
-
+*/
 		return reportRepository.save(report);
 	}
 
