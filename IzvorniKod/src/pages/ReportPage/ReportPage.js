@@ -106,8 +106,7 @@ function ReportPage() {
         settlementName: isUsingCurrentLocation ? "Current Location" : sanitizedLocation, // Ako je "use current location", koristi "Current Location"
         disasterType: emergencyType,
         shortDescription: description.trim(),
-        latitude: latitude, 
-        longitude: longitude, 
+        coordinates: latitude + ", " + longitude, 
         photo: "", 
     };
 

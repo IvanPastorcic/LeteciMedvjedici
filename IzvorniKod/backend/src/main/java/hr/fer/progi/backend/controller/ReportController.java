@@ -65,23 +65,20 @@ public class ReportController {
 	}
 	//add new report
 
-	@PostMapping("/add")
-public ResponseEntity<?> newReport(@RequestBody ReportDTO dto) {
-    try {
-    
-        System.out.println("Disaster Type: " + dto.getDisasterType());
-        System.out.println("Location: " + dto.getSettlementName());
-        System.out.println("Description: " + dto.getShortDescription());
-        System.out.println("Coordinates: " + dto.getGeographicCoordinates());
 
-       
-        Report report = reportService.newReport(dto);
-        return ResponseEntity.ok(report);
-    } catch (Exception e) {
-        e.printStackTrace(); 
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
-    }
-}
+	@PostMapping("/add")
+	//@Secured("ROLE_USER")
+	public ResponseEntity<Report> newReport(@RequestBody ReportDTO dto){
+		//ReportDTO dto = new ReportDTO(settlementName, disasterType, shortDescription, "");
+		System.out.println("Disaster Type: " + dto.getDisasterType());
+		System.out.println("Location: " + dto.getSettlementName());
+		System.out.println("Description: " + dto.getShortDescription());
+		System.out.println("Coordinates: " + dto.getCoordinates());
+
+
+		Report report = reportService.newReport(dto);
+		return ResponseEntity.ok(report);
+	}
 
 
 	//get report with matching id

@@ -10,14 +10,14 @@ import hr.fer.progi.backend.model.Enum.ReportStatus;
 		private DisasterType disasterType;
 		private String shortDescription;
 		private String photo;
-		private String geographicCoordinates; // Jedan atribut za koordinate u formatu "latitude,longitude"
-	
-		public ReportDTO(String settlementName, DisasterType disasterType, String shortDescription, String photo, String geographicCoordinates) {
+		//private String geographicCoordinates; // Jedan atribut za koordinate u formatu "latitude,longitude"
+		private String coordinates;
+		public ReportDTO(String settlementName, DisasterType disasterType, String shortDescription, String photo, String coordinates) {
 			this.settlementName = settlementName;
 			this.disasterType = disasterType;
 			this.shortDescription = shortDescription;
 			this.photo = photo;
-			this.geographicCoordinates = geographicCoordinates; // Pohranjujemo koordinate kao string
+			this.coordinates = coordinates;
 		}
 	
 		// Getteri i setteri
@@ -52,13 +52,13 @@ import hr.fer.progi.backend.model.Enum.ReportStatus;
 		public void setPhoto(String photo) {
 			this.photo = photo;
 		}
-	
-		public String getGeographicCoordinates() {
-			return geographicCoordinates;
+
+		public String getCoordinates() {
+			return coordinates;
 		}
-	
-		public void setGeographicCoordinates(String geographicCoordinates) {
-			this.geographicCoordinates = geographicCoordinates;
+
+		public void setCoordinates(String coordinates) {
+			this.coordinates = coordinates;
 		}
 	}
 	
