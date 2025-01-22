@@ -52,9 +52,11 @@ const EditUsersAdmin = () => {
                 withCredentials: true,
             });
             setSearchedUser(response.data);
+            setError(null); // ako je uspjesno, ocisti errore
         } catch (error) {
             console.error("Error searching user:", error);
             setError("No user found with the given email.");
+            setSearchedUser(null); // ocisti searchedUser ako se ne pronade
         } finally {
             setLoading(false);
         }
@@ -95,7 +97,7 @@ const EditUsersAdmin = () => {
                     <div>
                         <h2>Users</h2>
                         <div className="search">
-                            <input
+                            <input className='inputbox'
                                 type="text"
                                 value={searchUserEmail}
                                 onChange={handleInputChange}
@@ -104,7 +106,7 @@ const EditUsersAdmin = () => {
                             <button onClick={handleSearch} className="search-button">
                                 Search
                             </button>
-                            {searchedUser && (
+                            {(searchUserEmail || error) && (
                                 <button onClick={handleClearSearch} className="clear-search-button">
                                     Clear Search
                                 </button>
