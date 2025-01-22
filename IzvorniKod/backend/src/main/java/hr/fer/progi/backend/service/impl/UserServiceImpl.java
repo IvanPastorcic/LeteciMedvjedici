@@ -1,11 +1,13 @@
 package hr.fer.progi.backend.service.impl;
 
+import hr.fer.progi.backend.dto.UserDTO;
 import hr.fer.progi.backend.model.AppUser;
 import hr.fer.progi.backend.model.Report;
 import hr.fer.progi.backend.repository.ReportRepository;
 import hr.fer.progi.backend.repository.UserRepository;
 import hr.fer.progi.backend.repository.exception.WrongInputException;
 import hr.fer.progi.backend.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
@@ -75,6 +77,14 @@ public AppUser loadCurrentUser() {
     @Override
     public List<AppUser> findAllUsers() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public AppUser createNew(UserDTO userDTO) {
+
+        AppUser user = new AppUser(userDTO.getEmail(), userDTO.getUsername(), userDTO.getRole() );
+
+        return userRepository.save(user);
     }
 
 }
