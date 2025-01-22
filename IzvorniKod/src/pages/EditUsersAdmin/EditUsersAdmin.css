@@ -128,3 +128,12 @@ body {
     flex-direction: column;
     padding-top: 10px;
 }
+
+.UserForm{
+    margin: 1rem;
+}
+.inputadmin{
+    padding: 0.5rem;
+    margin: 0.5rem 0rem 0.5rem;
+    border-radius: 8px;
+}

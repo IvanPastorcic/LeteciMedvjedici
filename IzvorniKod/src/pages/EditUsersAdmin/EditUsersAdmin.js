@@ -15,6 +15,12 @@ const EditUsersAdmin = () => {
     const [searchUserEmail, setSearchUserEmail] = useState(''); // State for search input
     const [searchedUser, setSearchedUser] = useState(null); // State for the searched report
 
+    const [newUser, setNewUser] = useState({
+        username: '',
+        email: '',
+        role: 'ROLE_USER', // defaultna je  ROLE_USER
+    });
+    
     // Fetch reports on mount
     useEffect(() => {
         const fetchUsers= async () => {
@@ -67,6 +73,27 @@ const EditUsersAdmin = () => {
         setSearchUserEmail(''); // Clear the search input field
         setSearchedUser(null); // Reset the searched user state
         setError(null); // Clear any error message
+    };
+
+    // form changes for new user
+    const handleFormChange = (e) => {
+        const { name, value } = e.target;
+        setNewUser({
+            ...newUser,
+            [name]: value,
+        });
+    };
+
+    // stvaranje novoga/update
+    const handleUserSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:8081/user/create', newUser, { withCredentials: true });
+            alert('User created/updated successfully!');
+        } catch (error) {
+            setError('Failed to create/update user');
+            console.error(error);
+        }
     };
 
     const navigateToMap = () => {
@@ -139,7 +166,60 @@ const EditUsersAdmin = () => {
                             </>
                         )}
                     </div>
+
+
+
+                {/* stvaranje novog */}
+                <div className="UserForm">
+                    <h3>Create or Update User</h3>
+                    <form  onSubmit={handleUserSubmit}>
+                        <div>
+                            <label htmlFor="username">Username</label>
+                            <input className='inputadmin'
+                                type="text"
+                                id="username"
+                                name="username"
+                                value={newUser.username}
+                                onChange={handleFormChange}
+                                required
+                            />
+                        </div>
+
+                        <div>
+                            <label htmlFor="email">Email</label>
+                            <input className='inputadmin'
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={newUser.email}
+                                onChange={handleFormChange}
+                                required
+                            />
+                        </div>
+
+                        <div>
+                            <label htmlFor="role">Role</label>
+                            <select className='inputadmin'
+                                id="role"
+                                name="role"
+                                value={newUser.role}
+                                onChange={handleFormChange}
+                                required
+                            >
+                                <option value="ROLE_USER">ROLE_USER</option>
+                                <option value="ROLE_AUTHORITY">ROLE_AUTHORITY</option>
+                                <option value="ROLE_HUMANITARIAN">ROLE_HUMANITARIAN</option>
+                                <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+                            </select>
+                        </div>
                 
+                        <div>
+                            <button type="submit" className="submit-button">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     );
