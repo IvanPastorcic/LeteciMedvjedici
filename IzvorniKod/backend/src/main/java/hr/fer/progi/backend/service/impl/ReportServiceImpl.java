@@ -53,7 +53,7 @@ public class ReportServiceImpl implements ReportService {
 @Override
 public Report newReport(ReportDTO dto) {
     AppUser appUser = userService.loadCurrentUser();
-    
+
     // Provjera je li naziv naselja "Current Location"
     if (dto.getSettlementName() == null || dto.getSettlementName().trim().isEmpty()) {
         throw new IllegalArgumentException("Settlement name is required.");
@@ -72,7 +72,7 @@ public Report newReport(ReportDTO dto) {
     }
 
     // Ako naselje nije "Current Location", spremi novo naselje u bazi
-    String geographicCoordinates = dto.getGeographicCoordinates() != null ? dto.getGeographicCoordinates() : "0.0,0.0";
+    //String geographicCoordinates = dto.getGeographicCoordinates() != null ? dto.getGeographicCoordinates() : "0.0,0.0";
     
     if (settlement != null && !dto.getSettlementName().equalsIgnoreCase("Current Location")) {
         // Ako naselje nije "Current Location", stvaramo prirodnu katastrofu sa stvarnim naseljem
@@ -84,7 +84,6 @@ public Report newReport(ReportDTO dto) {
             getTime(),
             dto.getShortDescription() != null ? dto.getShortDescription() : "No description provided",
             dto.getPhoto() != null ? dto.getPhoto() : "",
-            geographicCoordinates, // Spremanje koordinata kao string
             appUser,
             naturalDisaster
         );
@@ -92,15 +91,18 @@ public Report newReport(ReportDTO dto) {
         return reportRepository.save(report);
     }
 
+	NaturalDisaster naturalDisaster = new NaturalDisaster(dto.getDisasterType(), settlement);
+	naturalDisaster = naturalDisasterRepository.save(naturalDisaster);
     // Ako je naselje "Current Location", samo koristi koordinate, bez dodavanja naselja u bazu
     Report report = new Report(
         ReportStatus.PROCESSING,
         getTime(),
+		dto.getCoordinates(),
         dto.getShortDescription() != null ? dto.getShortDescription() : "No description provided",
         dto.getPhoto() != null ? dto.getPhoto() : "",
-        geographicCoordinates, // Spremanje koordinata kao string
+        // Spremanje koordinata kao string
         appUser,
-        null // Ne postavljamo naselje jer koristimo samo koordinate
+        naturalDisaster // Ne postavljamo naselje jer koristimo samo koordinate
     );
 
     return reportRepository.save(report);

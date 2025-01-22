@@ -34,16 +34,13 @@ public class Report {
 	private String photo; // putanja do slike?
 
 	/*
-	 ** NOTE**
-	 * 
-	 * @JoinColumn(name ="ovdje_ide_NAZIVTABLICE_NAZIVCOLUMNA", nullable=false)
-	 * 
-	 */ 
 
 	 @ManyToOne(fetch = FetchType.LAZY)
 	 @JoinColumn(name = "LOCATION_GEOGRAPHICCOORDINATES", nullable =
 	  false) private String reportGeographicCoordinates;
-	 
+	 */
+	@Column(name = "LOCATION_GEOGRAPHICCOORDINATES"/*, nullable = false*/)
+	private String reportGeographicCoordinates;
 	
 	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -66,8 +63,19 @@ public class Report {
 		this.photo = photo;
 	}
 
+	public Report(ReportStatus reportStatus, Timestamp time/* , @NotEmpty String reportGeographicCoordinates */,
+				  String shortDescription, String photo, AppUser appUser, NaturalDisaster naturalDisaster) {
+		this.reportStatus = reportStatus;
+		this.time = time;
+		/* this.reportGeographicCoordinates = reportGeographicCoordinates; */
+		this.shortDescription = shortDescription;
+		this.photo = photo;
+		this.appUser = appUser;
+		this.naturalDisaster = naturalDisaster;
+	}
+
 	// with relationships
-	public Report(ReportStatus reportStatus, Timestamp time , @NotEmpty String reportGeographicCoordinates ,
+	public Report(ReportStatus reportStatus, Timestamp time , String reportGeographicCoordinates ,
 			String shortDescription, String photo, AppUser appUser, NaturalDisaster naturalDisaster) {
 		this.reportStatus = reportStatus;
 		this.time = time;

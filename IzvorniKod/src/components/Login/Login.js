@@ -3,7 +3,7 @@ import './Login.css';
 
 function Login(props) {
     function handleGoogleLogin() {
-       /* window.location.href = "http://localhost:8081/login"*/
+       
        window.location.href = "http://localhost:8081/oauth2/authorization/google"
     }
 
