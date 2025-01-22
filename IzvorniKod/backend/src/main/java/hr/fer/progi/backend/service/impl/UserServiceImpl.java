@@ -10,11 +10,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -50,24 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
 
-/*
-    public AppUser loadCurrentUser() {
 
-
-        // Retrieve the OAuth2 token from the SecurityContext
-        OAuth2AuthenticationToken authentication = (OAuth2AuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-
-        // Extract the email from the token attributes
-        String email = authentication.getPrincipal().getAttribute("email");
-        System.out.println(email);
-
-        final String emailToUse = email.isEmpty() ? "Anonimni korisnik" : email;
-        // Fetch the AppUser from the database using the email
-
-        //TODO: Dodati anonimnog korisnika u bazu podataka kako bi findByEmail() radilo
-        return userRepository.findByEmail(email)
-                .orElseThrow(() -> new WrongInputException("User not found with email: " + emailToUse));
-    }*/
 public AppUser loadCurrentUser() {
     // Retrieve the authentication object from the SecurityContext
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -87,5 +71,10 @@ public AppUser loadCurrentUser() {
                 .orElseThrow(() -> new WrongInputException("Anonymous user not found in the database."));
     }
 }
+
+    @Override
+    public List<AppUser> findAllUsers() {
+        return userRepository.findAll();
+    }
 
 }

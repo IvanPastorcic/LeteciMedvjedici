@@ -21,6 +21,8 @@ public interface UserService {
 
     AppUser loadCurrentUser();
 
+    List<AppUser> findAllUsers();
+
 
     // AppUser loadCurrentUser();
 }
