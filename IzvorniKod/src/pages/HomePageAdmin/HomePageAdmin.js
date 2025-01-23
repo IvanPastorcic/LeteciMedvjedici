@@ -14,10 +14,14 @@ const HomePageAdmin = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
+    // Stanja za collapse sekcije
+    const [showAccepted, setShowAccepted] = useState(true); // Default otvoreno
+    const [showDenied, setShowDenied] = useState(false);
+    const [showProcessing, setShowProcessing] = useState(false);
+
     const [searchReportId, setSearchReportId] = useState(''); // State for search input
     const [searchedReport, setSearchedReport] = useState(null); // State for the searched report
 
-    // Fetch reports on mount
     useEffect(() => {
         const fetchReports = async () => {
             try {
@@ -72,15 +76,6 @@ const HomePageAdmin = () => {
         setError(null); // Clear any error message
     };
 
-    const navigateToMap = () => {
-        navigate('/map');
-    };
-    const navigateToEditUsers = () => {
-        navigate('/editusersadmin');
-    };
-
-    const ITEMS_PER_PAGE = 5;
-
     return (
         <div className="HomePageAdmin">
             <div className="header">
@@ -89,80 +84,75 @@ const HomePageAdmin = () => {
 
             <div className="buttonsHomePageAdmin">
                 <BackButton />
-                <button className="edit-users" onClick={navigateToEditUsers}>
-                    EDIT USERS
-                </button>
-                <button className="see-map-button-admin" onClick={navigateToMap}>
-                    SEE MAP
-                </button>
+                <button className="edit-users" onClick={() => navigate('/editusersadmin')}>EDIT USERS</button>
+                <button className="see-map-button-admin" onClick={() => navigate('/map')}>SEE MAP</button>
             </div>
 
             <div className="PageBodyAdmin">
                 <div className="ReportSectionAdmin">
-                    <div>
-                        <h2>Reports</h2>
-                        <div className="search">
-                            <input
-                                type="text"
-                                value={searchReportId}
-                                onChange={handleInputChange}
-                                placeholder="Search reports by ID"
-                            />
-                            <button onClick={handleSearch} className="search-button">
-                                Search
+                    <h2>Reports</h2>
+
+                    <div className="search">
+                        <input
+                            type="text"
+                            value={searchReportId}
+                            onChange={handleInputChange}
+                            placeholder="Search reports by ID"
+                        />
+                        <button onClick={handleSearch} className="search-button">
+                            Search
+                        </button>
+                        {searchedReport && (
+                            <button onClick={handleClearSearch} className="clear-search-button">
+                                Clear Search
                             </button>
-                            {searchedReport && (
-                                <button onClick={handleClearSearch} className="clear-search-button">
-                                    Clear Search
-                                </button>
-                            )}
-                        </div>
-                    </div>
-
-                    <div className="ReportsAdmin">
-                        {searchedReport ? (
-                            <div className="SearchedReport">
-                                <h3>Searched Report:</h3>
-                                <ReportComponentAdmin reports={[searchedReport]} />
-                            </div>
-                        ) : (
-                            <>
-                                <div className="AcceptedReports">
-                                    <h4>Accepted Reports:</h4>
-                                    {loading ? (
-                                        <p>Loading accepted reports...</p>
-                                    ) : error ? (
-                                        <p>{error}</p>
-                                    ) : (
-                                        <ReportComponentAdmin reports={reports} />
-                                        
-                                    )}
-                                </div>
-
-                                <div className="DeniedReports">
-                                    <h4>Denied Reports:</h4>
-                                    {loading ? (
-                                        <p>Loading denied reports...</p>
-                                    ) : error ? (
-                                        <p>{error}</p>
-                                    ) : (
-                                        <ReportComponentAdmin reports={denied} />
-                                    )}
-                                </div>
-
-                                <div className="ProcessingReports">
-                                    <h4>Processing Reports:</h4>
-                                    {loading ? (
-                                        <p>Loading processing reports...</p>
-                                    ) : error ? (
-                                        <p>{error}</p>
-                                    ) : (
-                                        <ReportComponentAdmin reports={processing} />
-                                    )}
-                                </div>
-                            </>
                         )}
                     </div>
+
+                    {searchedReport ? (
+                        <div className="SearchedReport">
+                            <h3>Searched Report:</h3>
+                            <ReportComponentAdmin reports={[searchedReport]} />
+                        </div>
+                    ) : (
+                        <>
+                            {/* Accepted Reports */}
+                            <div className="CollapsibleSection">
+                                <h4 onClick={() => setShowAccepted(!showAccepted)} className="CollapsibleHeader">
+                                    Accepted Reports {showAccepted ? "⬆" : "⬇"}
+                                </h4>
+                                {showAccepted && (
+                                    <div className="ReportContent">
+                                        {loading ? <p>Loading...</p> : <ReportComponentAdmin reports={reports} />}
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Denied Reports */}
+                            <div className="CollapsibleSection">
+                                <h4 onClick={() => setShowDenied(!showDenied)} className="CollapsibleHeader">
+                                    Denied Reports {showDenied ? "⬆" : "⬇"}
+                                </h4>
+                                {showDenied && (
+                                    <div className="ReportContent">
+                                        {loading ? <p>Loading...</p> : <ReportComponentAdmin reports={denied} />}
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Processing Reports */}
+                            <div className="CollapsibleSection">
+                                <h4 onClick={() => setShowProcessing(!showProcessing)} className="CollapsibleHeader">
+                                    Processing Reports {showProcessing ? "⬆" : "⬇"}
+                                </h4>
+                                {showProcessing && (
+                                    <div className="ReportContent">
+                                        {loading ? <p>Loading...</p> : <ReportComponentAdmin reports={processing} />}
+                                    </div>
+                                )}
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
         </div>

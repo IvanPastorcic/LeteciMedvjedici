@@ -18,12 +18,6 @@ body {
     justify-content: space-between;
 }
 
-.ReportSectionAdmin{
-    display: grid;
-    grid-template-columns:  auto auto auto;
-    width: 90vw;
-    margin: 20px;
-}
 
 .UserSectionAdmin{
     display: flex;
@@ -81,13 +75,6 @@ body {
 }
 
 
-.ReportsAdmin{
-    display: flex;
-    flex-direction: column;
-    padding-top: 10px;
-}
-
-
 .searchAndEdit{
     display: flex;
     flex-direction: row;
@@ -99,3 +86,46 @@ body {
     flex-direction: column;
     padding-top: 10px;
 }
+
+.ReportSectionAdmin {
+    display: flex;
+    flex-direction: column; /* Postavlja sekcije jednu ispod druge */
+    width: 90vw;
+    margin: 20px auto; /* Centriranje sekcija */
+}
+
+.ReportsAdmin {
+    display: flex;
+    flex-direction: column; /* Osigurava vertikalni raspored */
+    gap: 15px; /* Dodaje razmak između sekcija */
+}
+
+.CollapsibleSection {
+    width: 100%; 
+    max-width: 30rem; 
+    margin: 0 auto; /* Centriranje */
+}
+
+  
+  .CollapsibleHeader {
+    background-color: #CD1434;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .CollapsibleHeader:hover {
+    background-color: #b3122e;
+  }
+  
+  .ReportContent {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+  }
+  
