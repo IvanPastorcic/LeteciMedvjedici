@@ -41,9 +41,8 @@ public class Report {
 	 */
 	@Column(name = "LOCATION_GEOGRAPHICCOORDINATES"/*, nullable = false*/)
 	private String reportGeographicCoordinates;
-	
-	@NotNull
-	@ManyToOne(fetch = FetchType.EAGER)
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "USER_ID", nullable = false)
 	private AppUser appUser;
 
