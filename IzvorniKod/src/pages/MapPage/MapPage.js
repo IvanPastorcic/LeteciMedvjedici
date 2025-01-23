@@ -30,7 +30,7 @@ const MapPage = () => {
     // Dohvati izvještaje sa backend-a
     const fetchReports = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/reports'); // Pretpostavljamo da je endpoint za izvještaje /reports
+        const response = await axios.get('http://localhost:8081/reports/accepted', {withCredentials: true}); // Pretpostavljamo da je endpoint za izvještaje /reports
         setReports(response.data);
         setLoading(false);
       } catch (error) {
@@ -50,6 +50,7 @@ const MapPage = () => {
   }
 
   return (
+
     <div className="map-page-container">
       <AnonHeader />
       <BackButton /> 
@@ -68,11 +69,12 @@ const MapPage = () => {
             {/* Iteracija kroz izvještaje i dodavanje markera */}
             {reports.map((report) => {
               // Provjera da li izvještaj ima koordinate
-              if (report.latitude && report.longitude) {
+              if (report.geographicCoordinates) {
+                const coordinates = report.geographicCoordinates.split(", ");
                 return (
                   <Marker
                     key={report.id} // Preporučuje se koristiti jedinstveni ID kao ključ
-                    position={[report.latitude, report.longitude]}
+                    position={[coordinates[0], coordinates[1]]}
                   >
                     <Popup>
                       <div>

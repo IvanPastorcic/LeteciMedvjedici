@@ -2,6 +2,7 @@ package hr.fer.progi.backend.controller;
 
 
 import hr.fer.progi.backend.dto.UserDTO;
+import hr.fer.progi.backend.dto.UsernameDTO;
 import hr.fer.progi.backend.model.AppUser;
 import hr.fer.progi.backend.model.Report;
 import hr.fer.progi.backend.repository.exception.InputIsNullException;
@@ -100,6 +101,14 @@ public class AppUserController {
     @PostMapping("/create")
     public ResponseEntity<AppUser> newUser(@RequestBody UserDTO userDTO){
         return ResponseEntity.ok(userService.createNew(userDTO));
+    }
+
+    @PatchMapping("/edit")
+    public ResponseEntity<AppUser> editUsername(@RequestBody UsernameDTO username){
+        System.out.println(username.getUsername());
+
+
+        return ResponseEntity.ok(userService.editUserName(username));
     }
 
 

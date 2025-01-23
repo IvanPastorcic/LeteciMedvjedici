@@ -34,19 +34,7 @@ public class ResourceController {
 
     }
 
-/*
-    @GetMapping("/all/{id}")
-    @Secured("ROLE_HUMANITARIAN")
-    List<Resource> getResourcesByOrganisation(@PathVariable Long id){
-        List<Resource> organisationResources = resourceService.getAllResourcesByOrganisation(id);
 
-        if(organisationResources == null){
-            throw new InputIsNullException("Organizacija nema resurse.");
-        }
-
-        return organisationResources;
-
-    }*/
 
     @GetMapping("/own")
     @Secured("ROLE_HUMANITARIAN")

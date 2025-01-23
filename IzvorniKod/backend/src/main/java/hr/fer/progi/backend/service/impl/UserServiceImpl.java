@@ -1,6 +1,7 @@
 package hr.fer.progi.backend.service.impl;
 
 import hr.fer.progi.backend.dto.UserDTO;
+import hr.fer.progi.backend.dto.UsernameDTO;
 import hr.fer.progi.backend.model.AppUser;
 import hr.fer.progi.backend.model.Report;
 import hr.fer.progi.backend.repository.ReportRepository;
@@ -86,5 +87,13 @@ public AppUser loadCurrentUser() {
 
         return userRepository.save(user);
     }
+
+    @Override
+    public AppUser editUserName(UsernameDTO username) {
+        AppUser user = loadCurrentUser();
+        user.setUsername(username.getUsername());
+        return userRepository.save(user);
+    }
+
 
 }
