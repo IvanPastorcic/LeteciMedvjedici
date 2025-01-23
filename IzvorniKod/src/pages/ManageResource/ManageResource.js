@@ -163,7 +163,7 @@ const fetchMyResources = async () => {
               <option value="">Select a resource</option>
               <option value="water">Water</option>
               <option value="food">Food</option>
-              <option value="shelter">Shelter</option>
+              <option value="capacity">Capacity</option>
               <option value="first_aid_kit">First Aid Kit</option>
               <option value="heater">Heater</option>
               <option value="sandbag">Sand Bag</option>

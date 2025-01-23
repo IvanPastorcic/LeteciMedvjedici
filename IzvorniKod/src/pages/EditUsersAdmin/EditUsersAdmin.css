@@ -63,6 +63,7 @@ body {
     padding: 0.5rem 1rem;
     margin: 1rem;
     margin-right: 3rem;
+    margin-bottom: 1rem;
     border-radius: 8px;
     border: 1px solid #808080;
     background-color: #FFFFFF;
@@ -70,6 +71,11 @@ body {
     font-size: 1rem;
     cursor: pointer;
     text-align: center;
+}
+
+.search-button,
+.clear-search-button {
+    margin-top: 10px;
 }
 
 .Report {
