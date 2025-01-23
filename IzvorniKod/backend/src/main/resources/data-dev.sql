@@ -6736,6 +6736,7 @@ INSERT INTO public.settlement VALUES (6698, 'Zagreb, Stenjevec ', 21) ON CONFLIC
 INSERT INTO public.settlement VALUES (6699, 'Zagreb, Trešnjevka-jug ', 21) ON CONFLICT DO NOTHING;
 INSERT INTO public.settlement VALUES (6700, 'Zagreb, Trešnjevka-sjever ', 21) ON CONFLICT DO NOTHING;
 INSERT INTO public.settlement VALUES (6701, 'Zagreb, Trnje ', 21) ON CONFLICT DO NOTHING;
+INSERT INTO public.settlement VALUES (6702, 'Grad Zagreb', 21) ON CONFLICT DO NOTHING;
 
 
 
