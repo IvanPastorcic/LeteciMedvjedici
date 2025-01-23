@@ -32,6 +32,7 @@ const MapPage = () => {
     const fetchReports = async () => {
       try {
         const response = await axios.get('http://localhost:8081/reports/accepted', {withCredentials: true}); // Pretpostavljamo da je endpoint za izvještaje /reports
+        console.log('Reports:', response.data)
         setReports(response.data);
         setLoading(false);
       } catch (error) {
@@ -50,10 +51,14 @@ const MapPage = () => {
     return <div>{error}</div>;
   }
 
-  // Funkcija za promjenu kategorije
   const handleFilterChange = (category) => {
-    setSelectedCategory(category === selectedCategory ? null : category); // Ako je ista kategorija, poništi
+    const selectedCategoryLower = selectedCategory?.toLowerCase() || '';
+    const categoryLower = category?.toLowerCase() || '';
+  
+    setSelectedCategory(categoryLower === selectedCategoryLower ? null : category);
   };
+
+
 
   return (
     <div className="map-page-container">
@@ -73,33 +78,36 @@ const MapPage = () => {
             />
             {/* Iteracija kroz izvještaje i dodavanje markera */}
             {reports
-              .filter(report => !selectedCategory || report.disasterType === selectedCategory) // Filtriraj izvještaje po odabranoj kategoriji
+              .filter(report => 
+                !selectedCategory || report.disaster.disasterType.toLowerCase() === selectedCategory.toLowerCase()
+              )
               .map((report) => {
-                // Provjera da li izvještaj ima koordinate
                 if (report.geographicCoordinates) {
                   const coordinates = report.geographicCoordinates.split(", ");
+
                   return (
                     <Marker
-                      key={report.id} // Preporučuje se koristiti jedinstveni ID kao ključ
+                      key={report.id}
                       position={[coordinates[0], coordinates[1]]}
                     >
                       <Popup>
                         <div>
-                          <strong>{report.disasterType}</strong>
+                          <strong>{report.disaster.disasterType}</strong>
                           <p>{report.shortDescription}</p>
                         </div>
                       </Popup>
                     </Marker>
                   );
                 }
-                return null; // Ako izvještaj nema koordinate, ne prikazujemo marker
+                return null;
               })
             }
+
           </MapContainer>
         </div>
         <aside className="map-sidebar">
           <h3>Filter by category</h3>
-          {['Fire', 'Earthquake', 'Heavy storms', 'Flooding', 'Landslide'].map((category, index) => (
+          {['Fire', 'Earthquake', 'Hurricane', 'Flooding', 'Landslide'].map((category, index) => (
             <button 
               key={index} 
               className={`filter-button ${selectedCategory === category ? 'active' : ''}`}
