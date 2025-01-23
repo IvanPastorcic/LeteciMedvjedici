@@ -126,10 +126,10 @@ const HomePage = () => {
 
             <div className="buttonsHomePage">
                 <button className="information-button" onClick={handleInformation}>INFORMATION</button>
-                <button className="report-button" onClick={handleAnonymousReport}>REPORT</button>
                 <button className="see-map-button" onClick={navigateToMap}>SEE MAP</button>
+                <button className="report-button" onClick={handleAnonymousReport}>REPORT</button>
                 <button className="track-status-button" onClick={navigateToTrack}>TRACK REPORTS</button>
-                <button className="logout" onClick={logout}>Logout</button>
+                <button className="logout-button" onClick={logout}>LOGOUT</button>
             </div>
 
             <div className="PageBodyHome">

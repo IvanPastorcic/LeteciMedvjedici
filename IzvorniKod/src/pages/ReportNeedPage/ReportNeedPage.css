@@ -7,7 +7,6 @@
 
 .report-need-page h1 {
     color: black;
-    margin-bottom: 1rem;
 }
 
 .report-need-page > p{
@@ -25,6 +24,7 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     gap: 2rem;
+    margin-bottom: 1rem;
 }
 
 .need-item {
@@ -90,6 +90,7 @@
     border-radius: 8px;
     cursor: pointer;
     background-color: white;
+    margin-bottom: 3rem;
 }
 
 

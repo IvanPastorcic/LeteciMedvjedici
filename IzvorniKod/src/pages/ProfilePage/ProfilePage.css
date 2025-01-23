@@ -98,10 +98,21 @@ hr{
 }
 
 .button-profile{
-  color: white;
-  background-color: lightgray;
+  padding: 10px 15px;
+  color: #CD1434;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s ease;
   width: 50%;
   margin: 5px;
+}
+
+.button-profile:hover {
+  background-color: #CD1434; 
+  color: #ffffff;
 }
 
 .my-reports{

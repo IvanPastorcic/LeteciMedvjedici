@@ -15,6 +15,7 @@ import ManageResource from "./pages/ManageResource/ManageResource";
 
 import HomePageAdmin from "./pages/HomePageAdmin/HomePageAdmin";
 import EditUsersAdmin from "./pages/EditUsersAdmin/EditUsersAdmin";
+import ReportOpen from "./pages/ReportOpen/ReportOpen";
 import ReportOpenAdmin from "./pages/ReportOpenAdmin/ReportOpenAdmin";
 import NeedsOpen from "./pages/NeedsOpen/NeedsOpen";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
@@ -33,7 +34,7 @@ function App() {
         <Route path="/report" element={<ReportPage />} />
         <Route path="/confirmation/:reportID" element={<ConfirmationScreen />} />
         <Route path="/report-need" element={<ReportNeedPage />} /> 
-        <Route path="/reportopen/:reportId" element={<ReportOpenAdmin />} /> 
+        <Route path="/reportopen/:reportId" element={<ReportOpen />} /> 
 
         <Route path="/profile" element={<ProfilePage />} /> 
 
@@ -51,6 +52,7 @@ function App() {
         <Route path="/homeadmin" element={<HomePageAdmin />} />
         <Route path="/editusersadmin" element={<EditUsersAdmin />} />
         <Route path="/profileadmin" element={<ProfilePageAdmin />} />
+        <Route path="/reportopenadmin/:reportId" element={<ReportOpenAdmin />} /> 
 
         <Route path ="/track-status/" element={<TrackStatus/> } /> 
         <Route path ="/track-status/:reportID" element={<TrackStatus/> } /> 
