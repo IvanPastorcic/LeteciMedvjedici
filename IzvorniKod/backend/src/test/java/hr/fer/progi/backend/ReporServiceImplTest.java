@@ -155,4 +155,54 @@ class ReportServiceImplTest {
         assertEquals(unusualDescription, result.getShortDescription());
         verify(reportRepository, times(1)).save(any(Report.class));
     }
+
+    @Test
+    void newReport_MinShortDescriptionLength() {
+        // Priprema
+        String minDescription = "A"; // Minimalna duljina - 1 znak
+        AppUser mockUser = new AppUser();
+        mockUser.setEmail("minlength@example.com");
+        Settlement mockSettlement = new Settlement();
+        NaturalDisaster mockDisaster = new NaturalDisaster();
+
+        when(userService.loadCurrentUser()).thenReturn(mockUser);
+        when(settlementRepository.findFirstBySettlementName("Zadar")).thenReturn(mockSettlement);
+        when(naturalDisasterRepository.save(any(NaturalDisaster.class))).thenReturn(mockDisaster);
+        when(reportRepository.save(any(Report.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        // Akcija
+        ReportDTO dto = new ReportDTO("Zadar", DisasterType.FLOOD, minDescription, "photo.jpg");
+        Report result = reportService.newReport(dto);
+
+        // Provjera
+        assertNotNull(result);
+        assertEquals(minDescription, result.getShortDescription(), "Short description should be 1 character long");
+        verify(reportRepository, times(1)).save(any(Report.class));
+    }
+
+    @Test
+    void newReport_ExceedsMaxShortDescriptionLength() {
+        // Priprema
+        String overMaxDescription = "A".repeat(256); // Duljina veća od maksimalne - 256 znakova
+        AppUser mockUser = new AppUser();
+        mockUser.setEmail("overmax@example.com");
+        Settlement mockSettlement = new Settlement();
+
+        when(userService.loadCurrentUser()).thenReturn(mockUser);
+        when(settlementRepository.findFirstBySettlementName("Šibenik")).thenReturn(mockSettlement);
+        when(naturalDisasterRepository.save(any(NaturalDisaster.class))).thenReturn(new NaturalDisaster());
+
+        // Akcija
+        ReportDTO dto = new ReportDTO("Šibenik", DisasterType.WILDFIRE, overMaxDescription, "photo.jpg");
+
+    
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            reportService.newReport(dto);
+        });
+
+        // Provjera
+        assertNotNull(exception, "Exception should be thrown for description longer than 255 characters");
+        assertTrue(exception.getMessage().contains("maximum length"));
+    }
+
 }
