@@ -107,7 +107,7 @@ const MapPage = () => {
         </div>
         <aside className="map-sidebar">
           <h3>Filter by category</h3>
-          {['Wildfire', 'Earthquake', 'Hurricane', 'Flooding', 'Landslide'].map((category, index) => (
+          {['Wildfire', 'Earthquake', 'Hurricane', 'Flood', 'Landslide'].map((category, index) => (
             <button 
               key={index} 
               className={`filter-button ${selectedCategory === category ? 'active' : ''}`}
