@@ -75,7 +75,7 @@ const NeedsOpen = () => {
 
                 <div className="PageBodyNeedsOpen">
                         
-                    <div className="Report">
+                    <div className="ReportNeedsOpen">
 
                         {reports.map((report) => (
 
