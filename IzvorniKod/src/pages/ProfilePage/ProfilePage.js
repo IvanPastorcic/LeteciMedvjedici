@@ -15,29 +15,65 @@ const ProfilePage = () => {
     const [reports, setReports] = useState([]); 
     const [loading, setLoading] = useState(true); // Loading state
     const [error, setError] = useState(null); 
+    const [user, setuUser] = useState([]);
     const navigate = useNavigate();
 
 
     useEffect(() => {
         
-        const fetchReports = async () => {
+        const fetchUser = async () => {
             try {
-                const response = await axios.get("http://localhost:8081/reports"); 
+                const response = await axios.get("http://localhost:8081/user", {withCredentials: true});
+                setuUser(response.data);
+                console.log(response.data);
+
+                
+             
+            } catch (error) {
+                console.error("Error fetching users: ", error);
+                setError("Failed to load user");
+            }
+
+          
+        }
+        /*const fetchReports = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8081/user/${user.id}/reports`, {withCredentials: true}); 
+                
                 setReports(response.data); 
                 setLoading(false); 
             } catch (error) {
                 console.error("Error fetching reports:", error);
                 setError("Failed to load reports"); 
+                
                 setLoading(false); 
             }
         };
-        fetchReports(); 
+       */
+         
+        fetchUser();
+       // fetchReports();
+        
     }, []); 
 
 
-    const [user, setUser] = useState([  
-            {id: 1, username : "Marko", email: "marko.markic@gmail.com"}
-        ])
+   
+    const fetchReports = async (id) => {
+        try {
+            const response = await axios.get(`http://localhost:8081/user/${id}/reports`, {withCredentials: true}); 
+            
+            setReports(response.data); 
+            setLoading(false); 
+        } catch (error) {
+            console.error("Error fetching reports:", error);
+            setError("Failed to load reports"); 
+            
+            setLoading(false); 
+        }
+    };
+   
+
+ 
 
     
 
@@ -45,9 +81,34 @@ const ProfilePage = () => {
         navigate('/report'); 
     };
 
-    const handleChangePassword = () =>{
-
+    const handleChangeUsername = async () => {
+        const newUsername = document.querySelector('.pass-input').value;
+        if (!newUsername) {
+            alert('Please enter a new username');
+            return;
+        }
+    
+        try {
+            const response = await axios.patch("http://localhost:8081/user/edit", {
+                username: newUsername
+            }, { withCredentials: true });
+            
+            setuUser(prevUser => ({ ...prevUser, username: response.data.username }));
+            alert('Username updated successfully');
+        } catch (error) {
+            console.error("Error updating username: ", error);
+            alert('Failed to update username');
+        }
     };
+
+    const handleDeleteAccount = async () => {
+        try{
+        await axios.delete(`http://localhost:8081/user/${user.id}`, { withCredentials: true });
+        } catch (error) {
+            console.error("Error deleting your account. ", error);
+            alert("Failed to delete your account.");
+        }
+    }
 
     return ( 
             <div className="ProfilePage">
@@ -67,21 +128,29 @@ const ProfilePage = () => {
                                 <div classname="user-icon"/>
                                 
                                 <div className='UserInfo'>
-                                    <p className='username-profile'>Username</p>
-                                    <p className='mail-profile'>mail@gmail.com</p>
+                                    <p className='username-profile'>{user.username}</p>
+                                    <p className='mail-profile'>{user.email}</p>
+                                    <p className="userRole">{user.role}</p>
                                 </div>
                             </div>
-                            <div className='UserEdit'>
-                                <p>Edit your username:</p>
-                                <input type='text' className='pass-input'></input>
-                                <button className='button-profile'>
-                                    change password
-                                </button>
-                                <hr></hr>
-                                <p>Want to delete your personal data?</p>
-                                <button className='button-profile'>
-                                    Delete data
-                                </button>
+                            <div className="UserEdit">
+                                <div className="EditUsernameSection">
+                                    <p>Edit your username:</p>
+                                    <input type='text' className='pass-input'></input>
+                                    <button className='button-profile' onClick={handleChangeUsername}>
+                                        Change username
+                                    </button>
+                                </div>
+
+                                <hr />
+
+                
+                                <div className="DeleteAccountSection">
+                                    <p>Want to delete your account?</p>
+                                    <button className='button-profile delete-btn' onClick={handleDeleteAccount}>
+                                        Delete data
+                                    </button>
+                                </div>
                             </div>
 
                             
@@ -89,9 +158,10 @@ const ProfilePage = () => {
                         
                         
                         <div className="RightSectionProfile">
+                            <button onClick={() =>fetchReports(user.id)}>Fetch my reports</button>
                             <p className='my-reports'>My reports:</p>
                             {loading ? (
-                                <p>Loading reports...</p> 
+                                <p></p> 
                             ) : error ? (
                                 <p>{error}</p> 
                             ) : (

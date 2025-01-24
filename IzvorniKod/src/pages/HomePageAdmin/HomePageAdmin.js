@@ -1,83 +1,162 @@
 import './HomePageAdmin.css';
 import AnonHeader from "../../components/AnonHeader/AnonHeader";
-import ReportComponent from "../../components/Report/ReportComponent";
-import AidActions from "../../components/AidActions/AidActions";
+import BackButton from "../../components/BackButton/BackButton";
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ReportComponentAdmin from '../../components/Report/ReportComponentAdmin';
+import ProfileHeader from '../../components/ProfileHeader/ProfileHeader';
 
 const HomePageAdmin = () => {
     const [reports, setReports] = useState([]);
+    const [denied, setDenied] = useState([]);
+    const [processing, setProcessing] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
+    // Stanja za collapse sekcije
+    const [showAccepted, setShowAccepted] = useState(true); // Default otvoreno
+    const [showDenied, setShowDenied] = useState(false);
+    const [showProcessing, setShowProcessing] = useState(false);
 
-//dummy data samo za prikaz
-    const [aids, setAids] = useState([  
-        {id: 1, date : "26.10.2024", organisationName: "THE RED CROSS", aidInfo: "informacije o sklonistima"},
-        {id: 2, date : "27.10.2024", organisationName: "ORGANISATION2", aidInfo: "informacije o HRANI"},
-        {id: 3, date : "28.10.2024", organisationName: "ORGANISATION3", aidInfo: "informacije o VODI"}
-    ])
+    const [searchReportId, setSearchReportId] = useState(''); // State for search input
+    const [searchedReport, setSearchedReport] = useState(null); // State for the searched report
 
     useEffect(() => {
         const fetchReports = async () => {
             try {
-                const reportsResponse = await axios.get("http://localhost:8081/reports");
-                setReports(reportsResponse.data);
-                setLoading(false);
+                const [accepted, denied, processing] = await Promise.all([
+                    axios.get("http://localhost:8081/reports/accepted", { withCredentials: true }),
+                    axios.get("http://localhost:8081/reports/denied", { withCredentials: true }),
+                    axios.get("http://localhost:8081/reports/processing", { withCredentials: true })
+                ]);
+                setReports(accepted.data);
+                setDenied(denied.data);
+                setProcessing(processing.data);
             } catch (error) {
                 console.error("Error fetching data:", error);
                 setError("Failed to load data");
+            } finally {
                 setLoading(false);
             }
         };
         fetchReports();
     }, []);
 
-    const navigateToMap = () => {
-        navigate('/map');
+    // Handle search input change
+    const handleInputChange = (e) => {
+        setSearchReportId(e.target.value);
     };
 
-    const handleAnonymousReport = () => {
-        navigate('/report');
+    // Handle search by report ID
+    const handleSearch = async () => {
+        if (!searchReportId.trim()) {
+            alert("Please enter a valid report ID.");
+            return;
+        }
+
+        try {
+            setLoading(true);
+            const response = await axios.get(`http://localhost:8081/reports/${searchReportId}`, {
+                withCredentials: true,
+            });
+            setSearchedReport(response.data);
+        } catch (error) {
+            console.error("Error searching report:", error);
+            setError("No report found with the given ID.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Clear search and show all reports
+    const handleClearSearch = () => {
+        setSearchReportId(''); // Clear the search input field
+        setSearchedReport(null); // Reset the searched report state
+        setError(null); // Clear any error message
     };
 
     return (
         <div className="HomePageAdmin">
             <div className="header">
-                <AnonHeader />
+                <ProfileHeader />
             </div>
 
             <div className="buttonsHomePageAdmin">
-                <button className="report-button" onClick={handleAnonymousReport}>REPORT</button>
-                <button className="see-map-button" onClick={navigateToMap}>SEE MAP</button>
+                
+                <button className="edit-users" onClick={() => navigate('/editusersadmin')}>EDIT USERS</button>
+                <button className="see-map-button-admin" onClick={() => navigate('/map')}>SEE MAP</button>
             </div>
 
             <div className="PageBodyAdmin">
-                <div className="MiddleSectionAdmin">
+                <div className="ReportSectionAdmin">
                     <h2>Reports</h2>
-                    {loading ? (
-                        <p>Loading reports...</p>
-                    ) : error ? (
-                        <p>{error}</p>
+
+                    <div className="search">
+                        <input
+                            type="text"
+                            value={searchReportId}
+                            onChange={handleInputChange}
+                            placeholder="Search reports by ID"
+                        />
+                        <button onClick={handleSearch} className="search-button">
+                            Search
+                        </button>
+                        {searchedReport && (
+                            <button onClick={handleClearSearch} className="clear-search-button">
+                                Clear Search
+                            </button>
+                        )}
+                    </div>
+
+                    {searchedReport ? (
+                        <div className="SearchedReport">
+                            <h3>Searched Report:</h3>
+                            <ReportComponentAdmin reports={[searchedReport]} />
+                        </div>
                     ) : (
-                        <ReportComponent reports={reports} />
+                        <>
+                            {/* Accepted Reports */}
+                            <div className="CollapsibleSection">
+                                <h4 onClick={() => setShowAccepted(!showAccepted)} className="CollapsibleHeader">
+                                    Accepted Reports {showAccepted ? "⬆" : "⬇"}
+                                </h4>
+                                {showAccepted && (
+                                    <div className="ReportContentAdmin">
+                                        {loading ? <p>Loading...</p> : <ReportComponentAdmin reports={reports} />}
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Denied Reports */}
+                            <div className="CollapsibleSection">
+                                <h4 onClick={() => setShowDenied(!showDenied)} className="CollapsibleHeader">
+                                    Denied Reports {showDenied ? "⬆" : "⬇"}
+                                </h4>
+                                {showDenied && (
+                                    <div className="ReportContentAdmin">
+                                        {loading ? <p>Loading...</p> : <ReportComponentAdmin reports={denied} />}
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Processing Reports */}
+                            <div className="CollapsibleSection">
+                                <h4 onClick={() => setShowProcessing(!showProcessing)} className="CollapsibleHeader">
+                                    Processing Reports {showProcessing ? "⬆" : "⬇"}
+                                </h4>
+                                {showProcessing && (
+                                    <div className="ReportContentAdmin">
+                                        {loading ? <p>Loading...</p> : <ReportComponentAdmin reports={processing} />}
+                                    </div>
+                                )}
+                            </div>
+                        </>
                     )}
                 </div>
-                <div className="RightSectionHome">
-                            <div className='aid-section-name'>
-                                <h2>AID ACTIONS:</h2>
-                            </div>
-                            
-                            <br /> 
-                            <AidActions aids={aids}/> 
-                        </div>
-
-                    </div>
-                
-                
             </div>
+        </div>
     );
 };
 

@@ -6,35 +6,70 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './HomePageHumanitarian.css';
+import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
+import BackButton from "../../components/BackButton/BackButton";
 
 const HomePageHumanitarian = () => {
     const [reports, setReports] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [visibleReports, setVisibleReports] = useState(5);
+
+    const [actions, setActions] = useState([]);
+    const [actionsLoading, setActionsLoading] = useState(true);
+    const [actionsError, setActionsError] = useState(null);
+    const [visibleActions, setVisibleActions] = useState(5);
+
+    const [needs, setNeeds] = useState([]);
     const navigate = useNavigate();
-
-
-//dummy data samo za prikaz
-    const [aids, setAids] = useState([  
-        {id: 1, date : "26.10.2024", organisationName: "THE RED CROSS", aidInfo: "informacije o sklonistima"},
-        {id: 2, date : "27.10.2024", organisationName: "ORGANISATION2", aidInfo: "informacije o HRANI"},
-        {id: 3, date : "28.10.2024", organisationName: "ORGANISATION3", aidInfo: "informacije o VODI"}
-    ])
 
     useEffect(() => {
         const fetchReports = async () => {
             try {
-                const reportsResponse = await axios.get("http://localhost:8081/reports");
-                setReports(reportsResponse.data);
-                setLoading(false);
+                const response = await axios.get("http://localhost:8081/reports/accepted", {
+                    withCredentials: true,
+                  });
+                setReports(response.data);
             } catch (error) {
-                console.error("Error fetching data:", error);
+                console.error("Error fetching reports:", error);
                 setError("Failed to load data");
+            } finally {
                 setLoading(false);
             }
         };
+
+        const fetchActions = async () => {
+            try {
+                const response = await axios.get("http://localhost:8081/actions", {
+                    withCredentials: true,
+                  });
+                setActions(response.data);
+            } catch (error) {
+                console.error("Error fetching actions:", error);
+                setActionsError("Failed to load actions.");
+            } finally {
+                setActionsLoading(false);
+            }
+        };
+        const fetchNeeds = async () => {
+            try {
+                const response = await axios.get("http://localhost:8081/needs/all", {withCredentials: true} );
+                setNeeds(response.data);
+                console.log("needs: ", response.data);
+            } catch (error) {
+                console.error("Error fetching needs:", error);
+                setError("Failed to load data");
+            }
+        };
+
         fetchReports();
+        fetchActions();
+        fetchNeeds();
     }, []);
+
+   /* useEffect(() => {    
+    }, []);*/
+
 
     const navigateToMap = () => {
         navigate('/map');
@@ -45,55 +80,78 @@ const HomePageHumanitarian = () => {
     };
 
     const navigateToManageResources = () => {
-        navigate('/manage-resources');
+        navigate('/manageresource');
     };
 
     const navigateToAddNewAction = () => {
-        navigate('/add-new-aid-action');
+        navigate('/addnewaction');
+    };
+
+    const loadMoreReports = () => {
+        setVisibleReports((prev) => prev + 5);
+    };
+
+    const loadMoreActions = () => {
+        setVisibleActions((prev) => prev + 5);
     };
 
     return (
         <div className="HomePageHumanitarian">
             <div className="header">
-                <AnonHeader />
+                <ProfileHeader />
             </div>
 
             <div className="buttonsHomePageHumanitarian">
-                <button className="report-button" onClick={handleAnonymousReport}>REPORT</button>
+                {/*<button className="report-button" onClick={handleAnonymousReport}>REPORT</button>*/}
                 <button className="manage-resources-button" onClick={navigateToManageResources}>MANAGE RESOURCES</button>
                 <button className="add-new-action-button" onClick={navigateToAddNewAction}>ADD NEW ACTION</button>
                 <button className="see-map-button" onClick={navigateToMap}>SEE MAP</button>
-                
             </div>
 
             <div className="PageBodyHumanitarian">
                 <div className="LeftSectionHumanitarian">
-                    <ResourceRequests />
+                    <ResourceRequests needs={needs} />
                 </div>
 
                 <div className="MiddleSectionHumanitarian">
-                    <h2>Reports</h2>
+                    <h2>REPORTS:</h2>
                     {loading ? (
                         <p>Loading reports...</p>
                     ) : error ? (
                         <p>{error}</p>
                     ) : (
-                        <ReportComponent reports={reports} />
+                        <>
+                            <ReportComponent reports={reports.slice(0, visibleReports)} />
+                            {visibleReports < reports.length && (
+                                <button className="load-more-button" onClick={loadMoreReports}>
+                                    Load More Reports
+                                </button>
+                            )}
+                        </>
                     )}
                 </div>
-                <div className="RightSectionHome">
-                            <div className='aid-section-name'>
-                                <h2>AID ACTIONS:</h2>
-                            </div>
-                            
-                            <br /> 
-                            <AidActions aids={aids}/> 
-                        </div>
 
+                <div className="RightSectionHumanitarian">
+                    <div className="aid-section-name">
+                        <h2>AID ACTIONS:</h2>
                     </div>
-                
-                
+                    {actionsLoading ? (
+                        <p>Loading actions...</p>
+                    ) : actionsError ? (
+                        <p className="error">{actionsError}</p>
+                    ) : (
+                        <>
+                            <AidActions actions={actions.slice(0, visibleActions)} />
+                            {visibleActions < actions.length && (
+                                <button className="load-more-button" onClick={loadMoreActions}>
+                                    Load More Actions
+                                </button>
+                            )}
+                        </>
+                    )}
+                </div>
             </div>
+        </div>
     );
 };
 

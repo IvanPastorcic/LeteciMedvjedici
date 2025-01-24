@@ -1,0 +1,63 @@
+
+
+.PageBodyNeedsOpen {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #FAF9F6;
+  overflow-x: hidden;
+  height: 85vh;
+  justify-content: center;
+}
+
+.BackNeedsOpen{
+  display: flex;
+  flex-direction: row;
+  padding-top: 3rem;
+  background-color: #FAF9F6;
+}
+
+.Report {
+  border: 1px solid black;
+  border-radius: 8px;
+  background-color: white;
+  padding: 11px 8px;
+  margin-bottom: 7px;
+  width: 90%;
+  height: 10rem;
+  min-height: 5rem;
+}
+
+.ReportDateName {
+  display: flex;
+  justify-content: start;
+}
+
+.ReportImages{
+  display: flex;
+  flex-direction: row;
+  margin: 30px;
+  flex-wrap: nowrap;
+}
+
+.report-image{
+  display: flex;
+  width: 20px;
+  height: 100%;
+  margin: 30px;
+  flex-wrap: nowrap;
+}
+
+.report-content {
+  text-align: left;
+}
+
+
+.profile-text {
+  color: white;
+  text-align: right;
+  font-family: Poppins;
+  margin: 10px;
+}
+
+

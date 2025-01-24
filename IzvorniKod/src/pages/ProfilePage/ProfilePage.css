@@ -1,151 +1,161 @@
-body {
-  overflow-x: hidden;
-  margin: 0; 
-}
-
-hr{
-  color: black;
-  height: 0.5px;
-  width: 98%;
-}
-
-
-.ProfilePage{
+/* Glavni kontejner */
+.ProfilePage {
   display: flex;
   flex-direction: column;
-  min-width: 1000px;
-}
-
-.PageBodyProfile {
-
-    display: flex;
-    flex-direction: row;
-    box-sizing: border-box;
-    width: 100%;
-    background-color: #FAF9F6;
-    max-width: 100%;
-  }
-
-  .header{
-    background-color: FAF9F6;
-  }
-
-.LeftSectionProfile {
-  flex: 0.6; 
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  padding: 20px 10px;
-  box-sizing: border-box;
-  margin: 8px;
-  border: 1px solid black;
-  border-radius: 10px;
-  background-color: white;
-
-}
-
-.RightSectionProfile {
-  flex: 0.3; 
-  flex-direction: column;
-  justify-content: left;
-  display: flex;
-  padding: 20px 10px;
-  margin: 8px;
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 10px;
-}
-
-
-.User{
-  display: flex;
-  flex-direction: row;
-}
-
-.UserEdit{
-  display: flex;
-  flex-direction: column;
-}
-
-
-.user-icon {
-  width: 50px;
-  height: 40px;
-  margin: 5px;
-  border-radius: 50%;
-  
-}
-
-.UserInfo{
-  display: flex;
-  flex-direction: column;
-}
-
-.username-profile{
-  font-family: Poppins;
-  font-weight: bold;
-  font-size: 30px;
-  margin: 5px;
-}
-
-.mail-profile{
-  font-family: Poppins;
-  font-weight: bold;
-  font-size: 15px;
-  margin: 5px;
-}
-
-.pass-input{
-  width: 50%;
-  height: 30px;
-  margin-bottom: 10px;
-}
-
-.button-profile{
-  color: white;
-  background-color: lightgray;
-  width: 50%;
-  margin: 5px;
-}
-
-.my-reports{
-  font-family: Poppins;
-  font-size: 20px;
-  margin: 5px;
-  text-align: left;
-}
-
-.Report {
-  border: 1px solid black;
-  border-radius: 8px;
-  background-color: white;
-  padding: 11px 8px;
-  margin-bottom: 23px;
-  width: auto;
-  min-height: 227px;
-  min-width: 300px;
-  max-width: 721px;
-}
-
-.ReportDateName {
-  display: flex;
-  justify-content: start;
-}
-
-.report-content {
-  text-align: left;
+  min-height: 100vh;
+  padding: 0;
+  background-color: #f9f9f9;
 }
 
 .header {
-  display: flex;
-  flex-direction: row;
-  background-color: #CD1434;
-  justify-content: space-between;
+  width: 100%;
 }
 
-.profile-text {
-  color: white;
-  text-align: right;
-  font-family: Poppins;
-  margin: 10px;
+.PageBodyProfile {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  padding: 20px;
+  gap: 2rem;
 }
+
+/* ---- Lijeva strana (Korisnički podaci) ---- */
+.LeftSectionProfile {
+  flex: 2.5;  
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px; 
+
+}
+
+/* Profil korisnika */
+.User {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.user-icon {
+  width: 100px;
+  height: 100px;
+  background-color: #ddd;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.UserInfo p {
+  font-size: 20px;
+  color: #333;
+  margin: 8px 0;
+}
+
+.UserEdit {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+/* Sekcija za promjenu korisničkog imena */
+.EditUsernameSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.EditUsernameSection p {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+/* Sekcija za brisanje računa */
+.DeleteAccountSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.DeleteAccountSection p {
+  font-size: 16px;
+  font-weight: 500;
+  color: #CD1434;
+  margin-bottom: 8px;
+}
+
+
+.pass-input {
+  width: auto;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.button-profile {
+  width: 60%;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px;
+}
+
+.button-profile:hover {
+  background-color: #CD1434;
+}
+
+/* ---- Desna strana (Prijave) ---- */
+.RightSectionProfile {
+  flex: 1.5;  /* Smanjeno s 2 na 1.5 */
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.RightSectionProfile button {
+  align-self: flex-start;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.RightSectionProfile button:hover {
+  background-color: #CD1434;
+}
+
+.my-reports {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+/* ---- Responsivnost ---- */
+@media (max-width: 768px) {
+  .PageBodyProfile {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .LeftSectionProfile,
+  .RightSectionProfile {
+    max-width: 100%;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+

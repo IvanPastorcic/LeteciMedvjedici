@@ -1,0 +1,162 @@
+body {
+    overflow-x: hidden;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.HomePageAdmin {
+    min-width: 100vw;
+}
+
+.PageBodyAdmin {
+    display: flex;
+    flex-direction: row; 
+    height: 100vh;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #FAF9F6;
+    justify-content: space-between;
+}
+
+
+
+.UserSectionAdmin{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 20px;
+}
+
+.UsersAdmin{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 20px;
+}
+
+.buttonsHomePageAdmin{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    flex-wrap: wrap;
+    background-color: #FAF9F6; 
+    border-radius: 5px; 
+  }
+  
+  .buttonsHomePageAdmin button {
+    max-width: 200px; 
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    background-color: #ddd;
+    color: #333;
+    transition: background-color 0.3s, transform 0.2s;
+    margin: 0.5rem;
+    text-align: center;
+    white-space: nowrap; 
+  }
+
+
+.see-map-button-admin {
+    font-family: Poppins;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+    margin-right: 3rem;
+    border-radius: 8px;
+    border: 1px solid #808080;
+    background-color: #FFFFFF;
+    color: #000;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.edit-users {
+    font-family: Poppins;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+    margin-right: 3rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid #808080;
+    background-color: #FFFFFF;
+    color: #000;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.search-button,
+.clear-search-button {
+    margin-top: 10px;
+}
+
+.Report {
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 700px;
+}
+
+.ReportDateName {
+    display: flex;
+    justify-content: start;
+}
+
+
+
+.profile-text {
+    color: white;
+    text-align: right;
+    margin: 0.5rem;
+}
+
+
+.ReportsAdmin{
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}
+
+
+.searchAndEdit{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.search-button, .clear-search-button{
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    padding: 0.5rem;
+    font-family: Poppins;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+}
+
+.inputbox{
+    border-radius: 8px;
+    font-size: 1rem;
+    padding: 0.2rem;
+}
+.UsersAdmin{
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}
+
+.UserForm{
+    margin: 1rem;
+}
+.inputadmin{
+    padding: 0.5rem;
+    margin: 0.5rem 0rem 0.5rem;
+    border-radius: 8px;
+}

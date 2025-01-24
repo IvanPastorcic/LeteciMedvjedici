@@ -7,10 +7,14 @@
 
 .report-need-page h1 {
     color: black;
-    margin-bottom: 1rem;
 }
 
 .report-need-page > p{
+    font-size: 1.2rem;
+    padding-bottom: 2rem;
+}
+
+.report-need-page > p2{
     font-size: 1.2rem;
     padding-bottom: 2rem;
 }
@@ -20,6 +24,7 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     gap: 2rem;
+    margin-bottom: 1rem;
 }
 
 .need-item {
@@ -49,7 +54,6 @@
     margin-top: 0.5rem;
     padding: 0.5rem;
     font-size: 1rem;
-    width: 100%;
     border: 1px solid #ced4da;
     border-radius: 8px;
 }
@@ -60,18 +64,42 @@
     gap: 1.5rem;
 }
 
+.location-inputs-reportneed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 37.5rem; 
+    margin: 0 auto;
+}
+.address-input-reportneed{
+    width: 10rem; 
+    margin-top: 1rem;
+    padding: 0.5rem; 
+    font-family: Poppins; 
+    border:1px solid #ccc; 
+    border-radius: 8px;
+}
+
 
 .submit-button {
+    font-family: Poppins;
+    margin-top: 2rem;
     padding: 1rem 2rem;
     font-size: 1.2rem;
     border-radius: 8px;
     cursor: pointer;
-    background-color: #769FB6;
+    background-color: white;
+    margin-bottom: 3rem;
 }
 
 
 
 .submit-button:hover {
-    background-color: #188FA7;
+    background-color: darkgray;
 }
 
+.backbutton-report-need{
+    display: flex;
+    align-items: flex-start;
+}

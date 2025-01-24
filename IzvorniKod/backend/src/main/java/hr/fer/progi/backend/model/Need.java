@@ -16,9 +16,9 @@ public class Need {
 
 	@NotNull
 	@ManyToOne
-	@MapsId("appUserId")
+	@MapsId("id")
 	@JoinColumn(name = "id", nullable = false)
-	private AppUser appUser;
+	private Report report;
 
 	@NotEmpty
 	@Column
@@ -28,21 +28,25 @@ public class Need {
 	@Enumerated(EnumType.STRING)
 	private NeedStatus needStatus;
 
+	@NotNull
+	private int quantity;
+
 	public Need() {
 	}
 
-	public Need(NeedType needType, AppUser appUser, String address) {
+	public Need(NeedType needType, Report report, String address, int quantity) {
 		this.id.setNeedType(needType);
-		this.appUser = appUser;
+		this.report = report;
 		this.address = address;
+		this.quantity = quantity;
 	}
 
-	public AppUser getAppUser() {
-		return appUser;
+	public Report getReport() {
+		return report;
 	}
 
-	public void setAppUser(AppUser appUser) {
-		this.appUser = appUser;
+	public void setReport(Report report) {
+		this.report = report;
 	}
 
 	public String getAddress() {
@@ -75,8 +79,15 @@ public class Need {
 		this.id.setNeedType(needType);
 	}
 
-	public Long getAppUserId() {
-		return this.id.getAppUserId();
+	public Long getReportId() {
+		return this.id.getId();
 	}
 
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 }

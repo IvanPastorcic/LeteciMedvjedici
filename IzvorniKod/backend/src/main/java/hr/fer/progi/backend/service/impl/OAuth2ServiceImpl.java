@@ -1,6 +1,7 @@
 package hr.fer.progi.backend.service.impl;
 
 import hr.fer.progi.backend.model.AppUser;
+import hr.fer.progi.backend.model.Enum.Role;
 import hr.fer.progi.backend.repository.UserRepository;
 import hr.fer.progi.backend.service.OAuth2Service;
 import jakarta.transaction.Transactional;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -37,6 +39,7 @@ public class OAuth2ServiceImpl implements OAuth2Service, OAuth2UserService<OidcU
             AppUser newUser = new AppUser();
             newUser.setUsername(name);
             newUser.setEmail(email);
+            newUser.setRole(Role.ROLE_USER);
             return userRepository.save(newUser);
         });
     }
@@ -46,7 +49,7 @@ public class OAuth2ServiceImpl implements OAuth2Service, OAuth2UserService<OidcU
     public OidcUser loadUser(OidcUserRequest userRequest) throws OAuth2AuthenticationException {
         // Create an OidcUser instance with the token and empty authorities
         OidcUser oidcUser = new DefaultOidcUser(
-                Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")), // Assign a default role
+                Collections.emptyList(), //prazna lista roleova
                 userRequest.getIdToken()
         );
 
@@ -54,8 +57,14 @@ public class OAuth2ServiceImpl implements OAuth2Service, OAuth2UserService<OidcU
         String email = (String) oidcUser.getAttribute("email");
         String name = (String) oidcUser.getAttribute("name");
 
-        processOAuthPostLogin(email, name);
-        return oidcUser;
+        AppUser appUser = processOAuthPostLogin(email, name);
+
+        // Map roles from the database to GrantedAuthority objects
+        GrantedAuthority authority = new SimpleGrantedAuthority(appUser.getRole().name());
+
+        //POTENCIJALNA GREŠKA
+        return new DefaultOidcUser((Collection<? extends GrantedAuthority>) Collections.singletonList(authority), userRequest.getIdToken(), "email");
+
     }
 
 

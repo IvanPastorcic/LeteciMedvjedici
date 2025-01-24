@@ -1,21 +1,18 @@
-body {
-  overflow-x: hidden;
-  margin: 0; 
-}
+
 
 .HomePage{
   min-width: 1000px;
 }
 
 .PageBodyHome {
-
-    display: flex;
-    height: auto;
-    box-sizing: border-box;
-    width: 100%;
-    background-color: #FAF9F6;
-    max-width: 100%;
-  }
+  display: flex;
+  height: auto;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #FAF9F6;
+  max-width: 100%;
+  padding-top: 3rem;
+}
 
 
 .LeftSectionHome {
@@ -44,66 +41,54 @@ body {
   flex-direction: column;
   display: flex;
   align-items: center;
-  padding: 20px 20px;
+  padding-right: 2rem;
   background-color: #FAF9F6;
   box-sizing: border-box;
 }
 
 .buttonsHomePage {
-  display: flex;
-  background-color: #E5E4E2;
-  height: 90px;
+  display: flex; 
   justify-content: space-evenly; 
-  align-items: center;
-  padding: 14px 16px;
-
-  align-items: center;
-
+  align-items: center; 
+  width: 100%;
+  padding: 1rem; 
+  flex-wrap: wrap; 
+  background-color: #FAF9F6
 }
 
-.information-button,
-.report-button,
-.see-map-button {
-  padding: 10px 15px;
-  border-radius: 8px;
-  border: 1px solid black;
+.buttonsHomePage button {
+  flex: 1; 
+  max-width: 200px; 
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: none;
   cursor: pointer;
-  font-family: Poppins;
-  font-size: 20px;
-  font-weight: bold;
+  text-align: center;
+  background-color: #ddd;
+  color: #333;
+  transition: background-color 0.3s, transform 0.2s;
+  margin: 0 10px; /* Dodatni razmak između gumba */
 }
 
-.information-button {
-  background-color: #FFFFFF;
-  width: 250px;
-  height: 62px;
+/* Hover efekt */
+.buttonsHomePage button:hover {
+  background-color: #ccc;
+  transform: scale(1.05);
 }
 
+/* REPORT gumb - crven i boldan */
 .report-button {
-  background-color: #CD1434;
-  color: white;
-  border: 3px solid #E5E4E2;
-  outline: 3px solid #CD1434;
-  width: 250px;
-  height: 62px;
+  background-color: #d32f2f !important;
+  color: white !important;
+  font-weight: bold !important;
+}
+
+.report-button:hover {
+  background-color: #a42525 !important;
 }
 
 
-.see-map-button{
-  display: flex;
 
-  background-color: #FFFFFF;
-  border: 1px solid #808080;
-
-  min-width: 150px;
-  width: 212px;
-  height: 44px;
-  cursor: pointer;
-  font-family: Poppins;
-  font-size: 25px;
-  justify-content: center;
-  align-items: center;
-}
 
 .AidActionItem{
   display: flex;
@@ -173,7 +158,7 @@ body {
   margin-left: 10px;
 }
 
-.Report {
+/*.Report {
   border: 1px solid black;
   border-radius: 8px;
   background-color: white;
@@ -192,18 +177,5 @@ body {
 
 .report-content {
   text-align: left;
-}
+}*/
 
-.header {
-  display: flex;
-  flex-direction: row;
-  background-color: #CD1434;
-  justify-content: space-between;
-}
-
-.profile-text {
-  color: white;
-  text-align: right;
-  font-family: Poppins;
-  margin: 10px;
-}

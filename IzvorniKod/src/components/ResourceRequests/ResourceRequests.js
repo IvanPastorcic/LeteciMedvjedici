@@ -1,41 +1,31 @@
 import React, { useState } from "react";
 import "./ResourceRequests.css";
 
-function ResourceRequests() {
+function ResourceRequests(props) {
+  const needs = props.needs;
+  console.log(props, needs);
+
   const [filter, setFilter] = useState("");
 
-  // Sample data za sad
-  const resourceRequests = [
-    {
-      location: "LOCATION",
-      needs: { water: "50L", "first aid kit": "30" },
-    },
-    {
-      location: "LOCATION",
-      needs: { water: "50L", "first aid kit": "30" },
-    },
-    {
-      location: "LOCATION",
-      needs: { water: "50L", "first aid kit": "30" },
-    },
-  ];
-
-  const filteredRequests = resourceRequests.filter((request) =>
-    filter
-      ? Object.keys(request.needs).includes(filter.toLowerCase())
-      : true
-  );
-
   const handleFilterClick = (resource) => {
-    setFilter(resource === filter ? "" : resource); 
+    setFilter(resource === filter ? "" : resource); // Toggle filter
   };
+
+  // Filter the needs based on the selected filter and valid appUser
+  const filteredNeeds = filter
+    ? needs.filter(
+        (need) =>
+            need.needType.toLowerCase() === filter.toLowerCase() && need.report.user
+      )
+    : needs.filter((need) => need.report.user);
+
 
   return (
     <div className="resource-requests-container">
       <div className="filter-container">
-        <p className="filter-title">Filter by resource:</p>
+        <p className="filter-title">Filter by user needs:</p>
         <div className="filter-buttons">
-          {["water", "food", "shelter", "first aid kit", "heater", "sand"].map(
+          {["water", "food", "shelter", "first aid kit", "heaters", "sand"].map(
             (resource) => (
               <button
                 key={resource}
@@ -50,19 +40,23 @@ function ResourceRequests() {
           )}
         </div>
       </div>
+
       <div className="requests-container">
-        {filteredRequests.map((request, index) => (
-          <div key={index} className="request-card">
-            <p className="request-location">{request.location}</p>
-            <p className="request-needs">
-              needs:{" "}
-              {Object.entries(request.needs)
-                .map(([key, value]) => `${key} ${value}`)
-                .join(", ")}
+    {filteredNeeds.map((need) => (
+        <div key={`${need.id.needType}-${need.id.id}`} className="request-card">
+            <p className="request-user">
+                {need.report.user?.username || "Unknown User"}
             </p>
-          </div>
-        ))}
-      </div>
+            <div className="request-needs">
+                <p>Need type: {need.needType}</p>
+                <p>Need quantity: {need.quantity}</p>
+                <p>Need location: {need.address}</p>
+                <p>Need status: {need.status}</p>
+            </div>
+        </div>
+    ))}
+</div>
+
     </div>
   );
 }
