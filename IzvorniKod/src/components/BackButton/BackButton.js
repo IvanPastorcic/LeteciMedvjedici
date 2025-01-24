@@ -3,9 +3,6 @@ import { FaArrowLeft, FaFire, FaWater, FaBolt, FaMountain, FaHome } from "react-
 import { useNavigate } from 'react-router-dom';
 
 
-
-
-
 const BackButton = () => {
     const navigate = useNavigate();
     const goBack = () => {

@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import axios from 'axios';
 import './MapPage.css'; 
-import AnonHeader from '../../components/AnonHeader/AnonHeader';
+import ProfileHeader from '../../components/ProfileHeader/ProfileHeader';
 import BackButton from '../../components/BackButton/BackButton';
 
 // Postavljanje markera za Leaflet
@@ -62,7 +62,7 @@ const MapPage = () => {
 
   return (
     <div className="map-page-container">
-      <AnonHeader />
+      <ProfileHeader />
       <BackButton /> 
       <div className="map-content-container">
         <div className="map-wrapper">
@@ -107,7 +107,7 @@ const MapPage = () => {
         </div>
         <aside className="map-sidebar">
           <h3>Filter by category</h3>
-          {['Fire', 'Earthquake', 'Hurricane', 'Flooding', 'Landslide'].map((category, index) => (
+          {['Wildfire', 'Earthquake', 'Hurricane', 'Flooding', 'Landslide'].map((category, index) => (
             <button 
               key={index} 
               className={`filter-button ${selectedCategory === category ? 'active' : ''}`}

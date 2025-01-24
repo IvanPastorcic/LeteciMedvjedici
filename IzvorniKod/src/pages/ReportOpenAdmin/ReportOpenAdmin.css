@@ -5,7 +5,7 @@
   width: 100%;
   background-color: #FAF9F6;
   overflow-x: hidden;
-  height: 85vh;
+  height: 90vh;
   justify-content: center;
 }
 
@@ -16,15 +16,15 @@
   border-radius: 8px;
   background-color: white;
   width: 90%;
-  min-height: 70%; /* Umesto fiksne visine */
+  min-height: 85%; 
   padding: 1rem;
   margin-top: 1rem;
 }
 
-.ReportAndDescription{
+.ReportAndDescription {
   display: flex;
-  flex-direction: column;
-
+  flex-direction: column; 
+  gap: 1rem; 
 }
 
 .ReportDateName {
@@ -35,7 +35,7 @@
 .ReportImages{
   display: flex;
   flex-direction: row;
-  margin: 30px;
+  margin: 3rem;
   flex-wrap: nowrap;
 }
 
@@ -43,7 +43,7 @@
   display: flex;
   width: 20px;
   height: 100%;
-  margin: 30px;
+  margin: 3rem;
   flex-wrap: nowrap;
 }
 
@@ -56,7 +56,7 @@
   color: white;
   text-align: right;
   font-family: Poppins;
-  margin: 10px;
+  margin: 1rem;
 }
 
 .BackReportOpen{
@@ -67,14 +67,50 @@
 
 .adminStatus {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  flex-direction: column; 
   gap: 0.5rem;
-  height: 100%; 
-  max-height: 100%; 
 }
 
-.changeStatus{
-  margin-top: -0.2rem;
+.currentStatus {
+  display: flex;
+  flex-direction: row; 
+  align-items: center; 
+  gap: 0.5rem; 
 }
+
+select[name="reportStatus"] {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.changeStatusContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  width: 100%; /* Sprečava rastezanje preko cijelog ekrana */
+  max-width: 20rem; /* Ograničava maksimalnu širinu */
+}
+
+.changeStatusContainer select,
+.changeStatusContainer .changeStatus {
+    width: 50%; 
+    min-width: 120px; 
+    padding: 8px; 
+    font-size: 1rem; 
+}
+
+.changeStatus {
+  padding: 0.5rem;
+  background-color: #CD1434;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.changeStatus:hover {
+  background-color: #980f26;
+}
+
 

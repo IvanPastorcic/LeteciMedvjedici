@@ -5,6 +5,7 @@ import AnonHeader from '../../components/AnonHeader/AnonHeader';
 import BackButton from '../../components/BackButton/BackButton';
 import Footer from "../../components/Footer/Footer";
 import axios from 'axios';
+import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 
 const AddNewAction = () => {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ const AddNewAction = () => {
     try {
       const response = await axios.post("http://localhost:8081/actions/add", payload, {withCredentials: true});
       alert("Action successfully added!");
-      navigate("/home");
+      navigate("/homehumanitarian");
     } catch (error) {
       console.error("Error adding action:", error);
       alert("Failed to add action. Please try again.");
@@ -76,7 +77,7 @@ const AddNewAction = () => {
 
   return (
     <div className="page-container">
-      <AnonHeader />
+      <ProfileHeader />
       <div className="header-container">
         <BackButton /> 
         <h1>ADD NEW ACTION</h1>

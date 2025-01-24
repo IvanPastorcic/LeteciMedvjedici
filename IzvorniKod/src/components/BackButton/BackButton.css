@@ -1,8 +1,29 @@
-.back-button{
+/*.back-button{
   background-color: black;
   color: white;
   border-radius: 8px;
   height: 2rem;
   margin-bottom: 1rem;
   max-width: 2.5rem;
+}*/
+
+.back-button{
+  max-width: 2rem; 
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  background-color: #ddd;
+  color: #333;
+  transition: background-color 0.3s, transform 0.2s;
+  margin: 0.5rem;
+  text-align: center;
+  white-space: nowrap; 
 }
+
+.back-button:hover {
+  background-color: #ccc;
+  transform: scale(1.05);
+}
+

@@ -56,6 +56,8 @@ hr{
 .User{
   display: flex;
   flex-direction: row;
+  align-items: center;
+  width: 100%;
 }
 
 .UserEdit{
@@ -91,28 +93,23 @@ hr{
   margin: 5px;
 }
 
-.pass-input{
-  width: 50%;
-  height: 30px;
-  margin-bottom: 10px;
+.pass-input, 
+.button-profile {
+    width: 40%; /* Ograničava širinu na 40% */
+    min-width: 120px; /* Minimalna širina za bolje skaliranje */
+    padding: 8px;
+    font-size: 1rem;
+    text-align: center;
 }
 
-.button-profile{
-  padding: 10px 15px;
-  color: #CD1434;
-  border: 2px solid #000000;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-weight: bold;
-  text-decoration: none;
-  transition: 0.3s ease;
-  width: 50%;
-  margin: 5px;
+.button-profile {
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 
 .button-profile:hover {
-  background-color: #CD1434; 
-  color: #ffffff;
+    background-color: #CD1434;
+    color: white;
 }
 
 .my-reports{
@@ -129,7 +126,7 @@ hr{
   padding: 11px 8px;
   margin-bottom: 23px;
   width: auto;
-  min-height: 227px;
+  min-height: 255px;
   min-width: 300px;
   max-width: 721px;
 }

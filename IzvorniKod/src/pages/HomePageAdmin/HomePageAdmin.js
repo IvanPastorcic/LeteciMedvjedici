@@ -122,7 +122,7 @@ const HomePageAdmin = () => {
                                     Accepted Reports {showAccepted ? "⬆" : "⬇"}
                                 </h4>
                                 {showAccepted && (
-                                    <div className="ReportContent">
+                                    <div className="ReportContentAdmin">
                                         {loading ? <p>Loading...</p> : <ReportComponentAdmin reports={reports} />}
                                     </div>
                                 )}
@@ -134,7 +134,7 @@ const HomePageAdmin = () => {
                                     Denied Reports {showDenied ? "⬆" : "⬇"}
                                 </h4>
                                 {showDenied && (
-                                    <div className="ReportContent">
+                                    <div className="ReportContentAdmin">
                                         {loading ? <p>Loading...</p> : <ReportComponentAdmin reports={denied} />}
                                     </div>
                                 )}
@@ -146,7 +146,7 @@ const HomePageAdmin = () => {
                                     Processing Reports {showProcessing ? "⬆" : "⬇"}
                                 </h4>
                                 {showProcessing && (
-                                    <div className="ReportContent">
+                                    <div className="ReportContentAdmin">
                                         {loading ? <p>Loading...</p> : <ReportComponentAdmin reports={processing} />}
                                     </div>
                                 )}

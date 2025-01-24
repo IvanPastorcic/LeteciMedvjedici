@@ -14,10 +14,11 @@
     border-radius: 8px;
     background-color: white;
     width: 90%;
-    height: 70%;
+    height: 80%;
     padding: 1rem;
     margin-top: 1rem;
   }
+
   .ReportAndDescription{
     display: flex;
     flex-direction: column;
@@ -48,6 +49,11 @@
     text-align: left;
   }
   
+  .ReportCoordinates {
+    font-size: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
   
   .profile-text {
     color: white;
