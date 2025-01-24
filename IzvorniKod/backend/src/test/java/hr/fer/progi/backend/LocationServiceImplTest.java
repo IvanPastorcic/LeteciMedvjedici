@@ -94,4 +94,35 @@ class LocationServiceImplTest {
         assertEquals(invalidString, savedLocation.getGeographicalCoordinates());
         verify(locationRepository, times(1)).save(location);
     }
+
+    @Test
+    void addLocation_CoordinatesExceedMaximumValues() {
+        // Slučaj: Koordinate koje prelaze maksimalne dopuštene vrijednosti
+        String exceedingMaxCoordinates = "181.0,91.0"; // Veće od maksimalnih koordinata
+        Location location = new Location(exceedingMaxCoordinates, mockSettlement);
+
+        //when(locationRepository.save(any(Location.class))).thenReturn(location);
+
+        Location savedLocation = locationRepository.save(location);
+
+        assertNotNull(savedLocation); // Test provjerava da je lokacija spremljena
+        assertEquals(exceedingMaxCoordinates, savedLocation.getGeographicalCoordinates());
+        verify(locationRepository, times(1)).save(location);
+    }
+
+    @Test
+    void addLocation_CoordinatesBelowMinimumValues() {
+        // Slučaj: Koordinate koje su manje od minimalnih dopuštenih vrijednosti
+        String belowMinCoordinates = "-181.0,-91.0"; // Manje od minimalnih koordinata
+        Location location = new Location(belowMinCoordinates, mockSettlement);
+
+        //when(locationRepository.save(any(Location.class))).thenReturn(location);
+
+        Location savedLocation = locationRepository.save(location);
+
+        assertNotNull(savedLocation); // Test provjerava da je lokacija spremljena
+        assertEquals(belowMinCoordinates, savedLocation.getGeographicalCoordinates());
+        verify(locationRepository, times(1)).save(location);
+    }
+
 }
