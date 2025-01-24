@@ -68,7 +68,7 @@ const AddNewAction = () => {
     try {
       const response = await axios.post("http://localhost:8081/actions/add", payload, {withCredentials: true});
       alert("Action successfully added!");
-      navigate("/home");
+      navigate("/homehumanitarian");
     } catch (error) {
       console.error("Error adding action:", error);
       alert("Failed to add action. Please try again.");
