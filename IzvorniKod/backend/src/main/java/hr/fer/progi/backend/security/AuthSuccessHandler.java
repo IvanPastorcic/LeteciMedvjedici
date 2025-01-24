@@ -17,14 +17,14 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         // Check user roles and redirect accordingly
         if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
-            response.sendRedirect("http://localhost:3000/homeadmin");
+            response.sendRedirect("https://safebear.onrender.com/homeadmin");
         } else if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_AUTHORITY"))) {
-            response.sendRedirect("http://localhost:3000/homeauthorities");
+            response.sendRedirect("https://safebear.onrender.com/homeauthorities");
         } else if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_HUMANITARIAN"))) {
-            response.sendRedirect("http://localhost:3000/homehumanitarian");
+            response.sendRedirect("https://safebear.onrender.com/homehumanitarian");
         }else {
             // Default redirect for other users
-            response.sendRedirect("http://localhost:3000/home");
+            response.sendRedirect("https://safebear.onrender.com/home");
         }
     }
 }

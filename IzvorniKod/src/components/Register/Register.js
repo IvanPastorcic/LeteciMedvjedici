@@ -16,7 +16,7 @@ function Register(props){
         
     }
         function handleGoogleLogin() {
-            window.location.href = "http://localhost:8081/login"
+            window.location.href = "https://safebear-backend.onrender.com/login"
         }
 
     return (

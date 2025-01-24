@@ -34,7 +34,7 @@ const NeedsOpen = () => {
         
         const fetchReports = async () => {
             try {
-                const response = await axios.get("http://localhost:8081/reports"); 
+                const response = await axios.get("https://safebear-backend.onrender.com/reports"); 
                 setReports(response.data); 
                 setLoading(false); 
             } catch (error) {

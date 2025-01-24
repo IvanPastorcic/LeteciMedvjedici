@@ -27,9 +27,9 @@ const HomePageAdmin = () => {
         const fetchReports = async () => {
             try {
                 const [accepted, denied, processing] = await Promise.all([
-                    axios.get("http://localhost:8081/reports/accepted", { withCredentials: true }),
-                    axios.get("http://localhost:8081/reports/denied", { withCredentials: true }),
-                    axios.get("http://localhost:8081/reports/processing", { withCredentials: true })
+                    axios.get("https://safebear-backend.onrender.com/reports/accepted", { withCredentials: true }),
+                    axios.get("https://safebear-backend.onrender.com/reports/denied", { withCredentials: true }),
+                    axios.get("https://safebear-backend.onrender.com/reports/processing", { withCredentials: true })
                 ]);
                 setReports(accepted.data);
                 setDenied(denied.data);
@@ -58,7 +58,7 @@ const HomePageAdmin = () => {
 
         try {
             setLoading(true);
-            const response = await axios.get(`http://localhost:8081/reports/${searchReportId}`, {
+            const response = await axios.get(`https://safebear-backend.onrender.com/reports/${searchReportId}`, {
                 withCredentials: true,
             });
             setSearchedReport(response.data);

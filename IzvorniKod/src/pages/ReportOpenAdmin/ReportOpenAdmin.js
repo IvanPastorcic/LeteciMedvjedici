@@ -22,7 +22,7 @@ const ReportOpen = () => {
     useEffect(() => {
         const fetchReports = async () => {
             try {
-                const response = await axios.get(`http://localhost:8081/reports/${reportId}`); 
+                const response = await axios.get(`https://safebear-backend.onrender.com/reports/${reportId}`); 
                 setReport(response.data); 
                 setLoading(false); 
             } catch (error) {

@@ -23,7 +23,7 @@ const TrackStatus = () => {
                 setLoading(true);
                 setError(null);
                 try {
-                    const response = await axios.get(`http://localhost:8081/reports/${reportID}`);
+                    const response = await axios.get(`https://safebear-backend.onrender.com/reports/${reportID}`);
                     setStatus(response.data.status);
                 } catch (err) {
                     setError("Failed to fetch the report status.");

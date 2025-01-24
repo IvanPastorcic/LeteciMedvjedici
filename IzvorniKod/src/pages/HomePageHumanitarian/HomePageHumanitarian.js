@@ -26,7 +26,7 @@ const HomePageHumanitarian = () => {
     useEffect(() => {
         const fetchReports = async () => {
             try {
-                const response = await axios.get("http://localhost:8081/reports/accepted", {
+                const response = await axios.get("https://safebear-backend.onrender.com/reports/accepted", {
                     withCredentials: true,
                   });
                 setReports(response.data);
@@ -40,7 +40,7 @@ const HomePageHumanitarian = () => {
 
         const fetchActions = async () => {
             try {
-                const response = await axios.get("http://localhost:8081/actions", {
+                const response = await axios.get("https://safebear-backend.onrender.com/actions", {
                     withCredentials: true,
                   });
                 setActions(response.data);
@@ -53,7 +53,7 @@ const HomePageHumanitarian = () => {
         };
         const fetchNeeds = async () => {
             try {
-                const response = await axios.get("http://localhost:8081/needs/all", {withCredentials: true} );
+                const response = await axios.get("https://safebear-backend.onrender.com/needs/all", {withCredentials: true} );
                 setNeeds(response.data);
                 console.log("needs: ", response.data);
             } catch (error) {

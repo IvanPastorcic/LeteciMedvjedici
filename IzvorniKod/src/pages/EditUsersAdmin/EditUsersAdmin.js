@@ -26,7 +26,7 @@ const EditUsersAdmin = () => {
     useEffect(() => {
         const fetchUsers= async () => {
             try {
-                const response = await axios.get("http://localhost:8081/user/all", { withCredentials: true });
+                const response = await axios.get("https://safebear-backend.onrender.com/user/all", { withCredentials: true });
                 console.log(response.data);
                 setUsers(response.data);
             } catch (error) {
@@ -55,7 +55,7 @@ const EditUsersAdmin = () => {
 
         try {
             setLoading(true);
-            const response = await axios.get(`http://localhost:8081/user/email/${searchUserEmail}`, {
+            const response = await axios.get(`https://safebear-backend.onrender.com/user/email/${searchUserEmail}`, {
                 withCredentials: true,
             });
             setSearchedUser(response.data);
@@ -89,7 +89,7 @@ const EditUsersAdmin = () => {
     const handleUserSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8081/user/create', newUser, { withCredentials: true });
+            const response = await axios.post('https://safebear-backend.onrender.com/user/create', newUser, { withCredentials: true });
             alert('User created/updated successfully!');
         } catch (error) {
             setError('Failed to create/update user');

@@ -8,7 +8,7 @@ const ProfileComponent = (props) => {
     const handleDeleteUser = async (userId) => {
         if (window.confirm(`Are you sure you want to delete user with ID: ${userId}?`)) {
             try {
-                await axios.delete(`http://localhost:8081/user/${userId}`, { withCredentials: true });
+                await axios.delete(`https://safebear-backend.onrender.com/user/${userId}`, { withCredentials: true });
 
                 // Notify parent component to refresh the user list
                 //props.onUserDeleted(userId);

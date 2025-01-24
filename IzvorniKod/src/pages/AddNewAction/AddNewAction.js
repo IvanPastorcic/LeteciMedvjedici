@@ -21,7 +21,7 @@ const AddNewAction = () => {
   useEffect(() => {
     const fetchLocations = async () => {
       try {
-        const response = await axios.get("http://localhost:8081/location/settlementnames");
+        const response = await axios.get("https://safebear-backend.onrender.com/location/settlementnames");
         const locationNames = response.data.map(location => location.settlementName || location);
         setLocations(locationNames);
         setFilteredLocations(locationNames); 
@@ -66,7 +66,7 @@ const AddNewAction = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:8081/actions/add", payload, {withCredentials: true});
+      const response = await axios.post("https://safebear-backend.onrender.com/actions/add", payload, {withCredentials: true});
       alert("Action successfully added!");
       navigate("/homehumanitarian");
     } catch (error) {
@@ -190,7 +190,7 @@ const AddNewAction = () => {
 
     const fetchLocations = async () => {
       try {
-        const response = await axios.get("http://localhost:8081/location/settlementnames"); 
+        const response = await axios.get("https://safebear-backend.onrender.com/location/settlementnames"); 
         const locationNames = response.data.map(location => location.settlementName || location);
         setLocations(locationNames); 
         setLoading(false); 

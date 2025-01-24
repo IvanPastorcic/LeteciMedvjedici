@@ -31,7 +31,7 @@ const MapPage = () => {
     // Dohvati izvještaje sa backend-a
     const fetchReports = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/reports/accepted', {withCredentials: true}); // Pretpostavljamo da je endpoint za izvještaje /reports
+        const response = await axios.get('https://safebear-backend.onrender.com/reports/accepted', {withCredentials: true}); // Pretpostavljamo da je endpoint za izvještaje /reports
         console.log('Reports:', response.data)
         setReports(response.data);
         setLoading(false);
