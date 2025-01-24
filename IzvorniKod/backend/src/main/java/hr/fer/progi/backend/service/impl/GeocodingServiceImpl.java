@@ -25,7 +25,7 @@ public class GeocodingServiceImpl implements GeocodingService {
 
 		restTemplate.getInterceptors().add((request, body, execution) -> {
 			HttpHeaders headers = request.getHeaders();
-			headers.add("User-Agent", "YourAppName/1.0 (your@email.com)");
+			headers.add("User-Agent", "SafeBear/1.0 (tsuki.luna177@gmail.com)");
 			return execution.execute(request, body);
 		});
 	}
