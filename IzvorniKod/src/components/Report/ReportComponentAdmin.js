@@ -20,7 +20,7 @@ const ReportComponentAdmin = (props) => {
   }, [reports]);
 
   const handleReportClick = (reportId) => {
-    navigate(`/reportopen/${reportId}`);
+    navigate(`/reportopenadmin/${reportId}`);
   };
 
   const handleChangeStatus = async (reportId) => {

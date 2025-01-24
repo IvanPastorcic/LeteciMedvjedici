@@ -30,28 +30,41 @@ body {
 
 
 
-.buttonsHomePageAdmin {
-    background-color: #FAF9F6;
+.buttonsHomePageAdmin{
     display: flex;
-    position: relative;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
-    gap: 1rem;
-}
+    width: 100%;
+    padding: 1rem;
+    flex-wrap: wrap;
+    background-color: #FAF9F6; 
+    border-radius: 5px; 
+  }
+  
+  .buttonsHomePageAdmin button {
+    max-width: 200px; 
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    background-color: #ddd;
+    color: #333;
+    transition: background-color 0.3s, transform 0.2s;
+    margin: 0.5rem;
+    text-align: center;
+    white-space: nowrap; 
+  }
+  
+  /* Hover efekat */
+  .buttonsHomePageAdmin button:hover {
+    background-color: #ccc;
+    transform: scale(1.05);
+  }
 
 
 .see-map-button-admin {
-    font-family: Poppins;
-    padding: 0.5rem 1rem;
-    margin: 1rem;
     margin-right: 3rem;
-    border-radius: 8px;
-    border: 1px solid #808080;
-    background-color: #FFFFFF;
-    color: #000;
-    font-size: 1rem;
-    cursor: pointer;
-    text-align: center;
 }
 
 .Report {
@@ -126,11 +139,8 @@ body {
   .CollapsibleHeader:hover {
     background-color: #b3122e;
   }
-  
-  .ReportContent {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f8f8f8;
-  }
+
+
+
+
   

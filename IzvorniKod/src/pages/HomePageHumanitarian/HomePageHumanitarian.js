@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './HomePageHumanitarian.css';
+import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
+import BackButton from "../../components/BackButton/BackButton";
 
 const HomePageHumanitarian = () => {
     const [reports, setReports] = useState([]);
@@ -68,6 +70,7 @@ const HomePageHumanitarian = () => {
    /* useEffect(() => {    
     }, []);*/
 
+
     const navigateToMap = () => {
         navigate('/map');
     };
@@ -95,7 +98,7 @@ const HomePageHumanitarian = () => {
     return (
         <div className="HomePageHumanitarian">
             <div className="header">
-                <AnonHeader />
+                <ProfileHeader />
             </div>
 
             <div className="buttonsHomePageHumanitarian">
@@ -111,7 +114,7 @@ const HomePageHumanitarian = () => {
                 </div>
 
                 <div className="MiddleSectionHumanitarian">
-                    <h2>Reports</h2>
+                    <h2>REPORTS:</h2>
                     {loading ? (
                         <p>Loading reports...</p>
                     ) : error ? (

@@ -84,12 +84,14 @@ const ReportOpen = () => {
                                 <p>Current status:</p>
                                 <p>{report.status}</p>
                             </div>
-                            <select name="reportStatus">
-                                <option value="Accepted">Accepted</option>
-                                <option value="Processing">Processing...</option>
-                                <option value="Denied">Denied</option>
-                            </select>
-                            <button className='changeStatus'>Change status</button>
+                            <div className="changeStatusContainer">
+                                <select name="reportStatus">
+                                    <option value="Accepted">Accepted</option>
+                                    <option value="Processing">Processing...</option>
+                                    <option value="Denied">Denied</option>
+                                </select>
+                                <button className='changeStatus'>Change status</button>
+                            </div>
                         </div>
                     )}
                 </div>

@@ -5,6 +5,7 @@ import AnonHeader from '../../components/AnonHeader/AnonHeader';
 import BackButton from '../../components/BackButton/BackButton';
 import Footer from "../../components/Footer/Footer";
 import axios from 'axios';
+import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 
 const AddNewAction = () => {
   const navigate = useNavigate();
@@ -76,7 +77,7 @@ const AddNewAction = () => {
 
   return (
     <div className="page-container">
-      <AnonHeader />
+      <ProfileHeader />
       <div className="header-container">
         <BackButton /> 
         <h1>ADD NEW ACTION</h1>

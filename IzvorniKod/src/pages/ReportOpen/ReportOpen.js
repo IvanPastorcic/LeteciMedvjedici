@@ -70,7 +70,7 @@ const ReportOpen = () => {
 
                     <div className="ReportCoordinates">
                         <p><strong>Location:</strong> {report.geographicCoordinates}</p>                    </div>
-                </div>
+                    </div>
             </div>
         </div>
     );

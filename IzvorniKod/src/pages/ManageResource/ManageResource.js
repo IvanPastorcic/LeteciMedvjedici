@@ -4,6 +4,7 @@ import AnonHeader from '../../components/AnonHeader/AnonHeader';
 import BackButton from '../../components/BackButton/BackButton';
 import Footer from "../../components/Footer/Footer";
 import axios from 'axios';
+import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 
 function ManageResource() {
   const [allResources, setAllResources] = useState([]);
@@ -11,25 +12,22 @@ function ManageResource() {
   const [newResource, setNewResource] = useState({ type: "", location: "", quantity: "" });
   const [myResources, setMyResources] = useState([]); // Initialize as an array
 
+  useEffect(() => {
+    fetchResources();
+    fetchMyResources();
+  }, []);
 
-
-useEffect(() => {
-  fetchResources();
-  fetchMyResources();
-}, []);
-
-
-const fetchMyResources = async () => {
-  try {
-    const response = await axios.get("http://localhost:8081/resource/own", {
-      withCredentials: true,
-    });
-    setMyResources(response.data);
-  } catch (error) {
-    console.error("Failed to fetch resources:", error);
-    alert("Could not fetch resources. Please try again later.");
-  }
-};
+  const fetchMyResources = async () => {
+    try {
+      const response = await axios.get("http://localhost:8081/resource/own", {
+        withCredentials: true,
+      });
+      setMyResources(response.data);
+    } catch (error) {
+      console.error("Failed to fetch resources:", error);
+      alert("Could not fetch resources. Please try again later.");
+    }
+  };
 
   const fetchResources = async () => {
     try {
@@ -42,7 +40,7 @@ const fetchMyResources = async () => {
       alert("Could not fetch resources. Please try again later.");
     }
   };
-  
+
   // Handlers for filters
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
@@ -54,11 +52,11 @@ const fetchMyResources = async () => {
     const locationMatch = !filters.location || resource.id.address.toLowerCase().includes(filters.location.toLowerCase());
     return typeMatch && locationMatch;
   });
-  
+
   // Handler for adding new resource
   const handleAddResource = async () => {
     const { type, location, quantity } = newResource;
-  
+
     if (type.trim() !== "" && location.trim() !== "" && quantity > 0) {
       try {
         const requestBody = {
@@ -66,16 +64,16 @@ const fetchMyResources = async () => {
           location: newResource.location,
           quantity: parseInt(newResource.quantity, 10),
         };
-  
+
         await axios.post(
           "http://localhost:8081/resource/add/new",
           requestBody,
           { withCredentials: true }
         );
-  
+
         // Fetch updated resources
         fetchResources();
-  
+
         alert("Resource added successfully!");
         setNewResource({ type: "", location: "", quantity: "" });
       } catch (error) {
@@ -94,30 +92,29 @@ const fetchMyResources = async () => {
   const handleUpdateResource = async (index) => {
     const currentResource = myResources[index];
     const updatedQuantity = prompt("Enter new quantity:", currentResource.quantity);
-  
+
     if (updatedQuantity !== null) {
       const newQuantity = Number(updatedQuantity);
       if (isNaN(newQuantity) || newQuantity < 0) {
         alert("Invalid quantity. Please enter a non-negative number.");
         return;
       }
-  
+
       try {
         // Prepare the request body as per the backend DTO
         const requestBody = {
           quantity: newQuantity,
           resourceType: currentResource.id.resourceType,
           address: currentResource.id.address
-          
         };
-          console.log(requestBody);
+        console.log(requestBody);
         // Make the PATCH request
-        await axios.patch("http://localhost:8081/resource/update", requestBody, {headers: {
-      "Content-Type": "application/json",
-    },
-          withCredentials: true,
+        await axios.patch("http://localhost:8081/resource/update", requestBody, { headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
         });
-  
+
         // Update the state locally after a successful update
         setMyResources((prev) => {
           const updatedResources = [...prev];
@@ -130,7 +127,7 @@ const fetchMyResources = async () => {
           }
           return updatedResources;
         });
-  
+
         alert("Resource updated successfully!");
       } catch (error) {
         console.error("Failed to update resource:", error);
@@ -142,17 +139,15 @@ const fetchMyResources = async () => {
       }
     }
   };
-  
-  
 
   return (
     <div className="manage-report-page">
-      <AnonHeader />
+      <ProfileHeader />
       <div className="ManageReport">
         <BackButton />
         <div className="resources-section">
           <h1>All resources</h1>
-          <div className="filter-container">
+          <div className="manage-filter-container">
             <p>Filter:</p>
             <label>Resource type: </label>
             <select
@@ -191,33 +186,31 @@ const fetchMyResources = async () => {
             </tbody>
           </table>
         </div>
-        <h1>Humanitarian organization</h1>
-        <table>
+        <div className="humanitarian-action">
+          <h1>Humanitarian organization</h1>
+          <table>
             <thead>
-            <tr>
+              <tr>
                 <th>Resource type</th>
                 <th>Location</th>
                 <th>Quantity</th>
                 <th>Action</th>
-            </tr>
+              </tr>
             </thead>
             <tbody>
-                {myResources.map((res, index) => (
-                <tr >
+              {myResources.map((res, index) => (
+                <tr key={index}>
                   <td>{res.id.resourceType}</td>
                   <td>{res.id.address}</td>
                   <td>{res.quantity}</td>
                   <td>
-                   { <button onClick={() => handleUpdateResource(index)}>Change quantity</button> }
+                    <button onClick={() => handleUpdateResource(index)}>Change quantity</button>
                   </td>
                 </tr>
-                ))}
-              </tbody>
+              ))}
+            </tbody>
+          </table>
 
-        </table>
-
-
-        <div className="humanitarian-action">
           <h2>Add new resource</h2>
           <div className="add-resource-container">
             <div className="form-field">

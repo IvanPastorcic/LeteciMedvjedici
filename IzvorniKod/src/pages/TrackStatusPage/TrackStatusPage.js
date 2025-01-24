@@ -4,6 +4,7 @@ import BackButton from '../../components/BackButton/BackButton';
 import { useParams , useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import './TrackStatusPage.css';
+import ProfileHeader from '../../components/ProfileHeader/ProfileHeader';
 
 
 
@@ -44,7 +45,7 @@ const TrackStatus = () => {
 
       return (
         <div className="track-status">
-          <AnonHeader />
+          <ProfileHeader />
     
           <div className="trackstatus-content">
             <BackButton />
