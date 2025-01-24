@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import hr.fer.progi.backend.dto.CoordinatesDTO;
 import hr.fer.progi.backend.dto.ReportDTO;
 import hr.fer.progi.backend.model.Enum.ReportStatus;
+import hr.fer.progi.backend.model.Enum.Role;
 import hr.fer.progi.backend.repository.NaturalDisasterRepository;
 import hr.fer.progi.backend.repository.ReportRepository;
 import hr.fer.progi.backend.repository.SettlementRepository;
@@ -52,52 +53,56 @@ public class ReportServiceImpl implements ReportService {
 		return reportRepository.findAll();
 	}
 
-
 	@Override
 	public Report newReport(ReportDTO dto) {
 		AppUser appUser = userService.loadCurrentUser();
+
+		// provjera je li user napracio report u zadnjih sat vremena
+		Timestamp oneHourAgo = new Timestamp(System.currentTimeMillis() - 3600 * 1000);
+		boolean hasRecentReport = reportRepository.existsByAppUserAndTimeAfter(appUser, oneHourAgo);
+
+		if (hasRecentReport && appUser.getRole().equals(Role.ROLE_USER) && !appUser.getUsername().equals("Anonimni korisnik")) {
+			throw new IllegalArgumentException("You can only create one report per hour.");
+		}
 
 		// Provjera je li naziv naselja "Current Location"
 		if (dto.getSettlementName() == null || dto.getSettlementName().trim().isEmpty()) {
 			throw new IllegalArgumentException("Settlement name is required.");
 		}
 
-
 		Settlement settlement = null;
 		CoordinatesDTO coordinates = null;
 		SettlementDTO settlementDTO = null;
 		String reportCoordinates = null;
 
-		//imamo koordinate, trebamo settlement iz njih
-		if(dto.getSettlementName().equalsIgnoreCase("Current Location")){
+		// imamo koordinate, trebamo settlement iz njih
+		if (dto.getSettlementName().equalsIgnoreCase("Current Location")) {
 			String[] parts = dto.getCoordinates().split(",");
 
 			// Convert the parts into float values
 			float lat = Float.parseFloat(parts[0].trim());
 			float lon = Float.parseFloat(parts[1].trim());
-			//coordinates = new CoordinatesDTO(lat, lon);
+			// coordinates = new CoordinatesDTO(lat, lon);
 			settlementDTO = geocodingService.reverseGeocode(lat, lon);
 			System.out.println(settlementDTO.getSettlementName());
-			settlement = settlementRepository.findBySettlementNameIgnoringCaseAndSpaces(settlementDTO.getSettlementName());
+			settlement = settlementRepository
+					.findBySettlementNameIgnoringCaseAndSpaces(settlementDTO.getSettlementName());
 			reportCoordinates = dto.getCoordinates();
 		}
 
-		//imamo ime naselja, trebamo koordinate iz njega
-		if(!dto.getSettlementName().equalsIgnoreCase("Current Location")){
+		// imamo ime naselja, trebamo koordinate iz njega
+		if (!dto.getSettlementName().equalsIgnoreCase("Current Location")) {
 			settlement = settlementRepository.findBySettlementNameIgnoringCaseAndSpaces(dto.getSettlementName());
 			coordinates = geocodingService.geocode(dto.getSettlementName());
 			reportCoordinates = coordinates.getStringCoordinates();
 		}
 
-		NaturalDisaster naturalDisaster = naturalDisasterService.getOrCreateNaturalDisaster(dto.getDisasterType(), settlement);
+		NaturalDisaster naturalDisaster = naturalDisasterService.getOrCreateNaturalDisaster(dto.getDisasterType(),
+				settlement);
 
-		Report report = new Report(ReportStatus.PROCESSING,
-									getTime(),
-									reportCoordinates,
-									dto.getShortDescription() != null ? dto.getShortDescription() : "No description provided",
-									dto.getPhoto() != null ? dto.getPhoto() : "",
-									appUser,
-									naturalDisaster);
+		Report report = new Report(ReportStatus.PROCESSING, getTime(), reportCoordinates,
+				dto.getShortDescription() != null ? dto.getShortDescription() : "No description provided",
+				dto.getPhoto() != null ? dto.getPhoto() : "", appUser, naturalDisaster);
 
 		return reportRepository.save(report);
 	}
