@@ -7,23 +7,34 @@
   max-width: 2.5rem;
 }*/
 
-.back-button{
-  max-width: 2rem; 
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  font-weight: bold;
+.back-button {
+  display: flex;                /* Postavljamo display na flex za lakše poravnavanje */
+  justify-content: center;      /* Centriramo sadržaj po horizontalnoj osi */
+  align-items: center;          /* Centriramo sadržaj po vertikalnoj osi */
+  padding: 0.5rem 0.8rem;         /* Smanjimo padding kako bi gumb bio ujednačen */
+  font-size: 1rem;            /* Povećaj font veličinu ako želiš veće strelice */
   border: none;
   cursor: pointer;
   background-color: #ddd;
   color: #333;
   transition: background-color 0.3s, transform 0.2s;
-  margin: 0.5rem;
   text-align: center;
-  white-space: nowrap; 
+  border-radius: 4px;           /* Dodaj zaobljene kutove za moderniji izgled */
+  margin-left: 1rem;
+  margin-top: 1rem;
 }
 
 .back-button:hover {
   background-color: #ccc;
   transform: scale(1.05);
 }
+
+/* Stiliziranje ikone strelice */
+.back-button svg {
+  width: 1.5rem;  /* Povećanje veličine strelice */
+  height: 1.5rem; /* Povećanje visine strelice */
+  margin-right: 0.5rem; /* Razmak između ikone i teksta (ako je budeš dodavala) */
+}
+
+
 

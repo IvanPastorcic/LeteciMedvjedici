@@ -111,7 +111,7 @@ const EditUsersAdmin = () => {
             </div>
 
             <div className="buttonsHomePageAdmin">
-              
+              <BackButton></BackButton>
                 <button className="edit-users" onClick={navigateToHomeAdmin}>
                     EDIT REPORTS
                 </button>

@@ -84,7 +84,7 @@ const HomePageAdmin = () => {
             </div>
 
             <div className="buttonsHomePageAdmin">
-                
+                <BackButton></BackButton>
                 <button className="edit-users" onClick={() => navigate('/editusersadmin')}>EDIT USERS</button>
                 <button className="see-map-button-admin" onClick={() => navigate('/map')}>SEE MAP</button>
             </div>

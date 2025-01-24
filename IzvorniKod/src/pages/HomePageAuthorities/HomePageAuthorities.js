@@ -5,6 +5,7 @@ import AidActions from "../../components/AidActions/AidActions";
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import BackButton from '../../components/BackButton/BackButton';
 
 const HomePageAuthorities = () => {
     const [reports, setReports] = useState([]);
@@ -96,7 +97,8 @@ const HomePageAuthorities = () => {
             </div>
 
             <div className="buttonsHomePageAuthorities">
-            <button className="report-button" onClick={handleAnonymousReport}>REPORT</button>
+                <BackButton></BackButton>
+                <button className="report-button" onClick={handleAnonymousReport}>REPORT</button>
                 <button className="see-map-button" onClick={navigateToMap}>SEE MAP</button>
             </div>
 

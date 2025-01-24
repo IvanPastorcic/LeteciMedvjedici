@@ -10,50 +10,78 @@ body {
 
 .PageBodyAuthorities {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   height: auto;
   box-sizing: border-box;
   width: 100%;
   background-color: #FAF9F6;
+  padding-top: 1rem;
+}
+
+.LeftSectionAuthorities,
+.MiddleSectionAuthorities,
+.RightSectionAuthorities {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #FAF9F6;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 8px;
+  min-height: 350px;
 }
 
 .LeftSectionAuthorities {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 2%;
-  margin: 1%;
-  border-radius: 8px;
   background-color: #E5E4E2;
 }
 
 .MiddleSectionAuthorities {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex: 1.5;
   justify-content: flex-start;
   background-color: #FAF9F6;
 }
 
 .RightSectionAuthorities {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #FAF9F6;
+  padding-right: 2rem;
+}
+
+.RightSectionAuthorities h2 {
+  margin-bottom: 2rem;
 }
 
 .buttonsHomePageAuthorities {
   display: flex;
-  position: relative;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
-  
-  gap: 1rem;
+  width: 100%;
+  padding: 1rem;
+  flex-wrap: wrap;
+  background-color: #FAF9F6; /* Boja pozadine */
+  border-radius: 5px;
 }
+
+.buttonsHomePageAuthorities button {
+  max-width: 200px;            /* Maksimalna širina gumba */
+  padding: 0.75rem 1rem;       /* Padding za unutar gumba */
+  font-size: 1rem;             /* Veličina fonta */
+  font-weight: bold;           /* Podebljan tekst */
+  border: none;                /* Ukloni okvir */
+  cursor: pointer;            /* Pokazivač ruke */
+  background-color: #ddd;     /* Boja pozadine gumba */
+  color: #333;                 /* Boja teksta */
+  transition: background-color 0.3s, transform 0.2s; /* Efekti prijelaza */
+  margin: 0.5rem;              /* Razmak između gumba */
+  text-align: center;          /* Poravnavanje teksta */
+  white-space: nowrap;         /* Sprječava prelazak teksta u više redaka */
+}
+
+.buttonsHomePageAuthorities button:hover {
+  background-color: #ccc;      /* Pozadinska boja pri hoveru */
+  transform: scale(1.05);      /* Lagano povećanje gumba pri hoveru */
+}
+
 
 .report-button {
   position: relative;

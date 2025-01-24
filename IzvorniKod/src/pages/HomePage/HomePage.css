@@ -12,6 +12,7 @@
   background-color: #FAF9F6;
   max-width: 100%;
   padding-top: 3rem;
+  flex-wrap: wrap;
 }
 
 
@@ -24,6 +25,7 @@
   margin: 10px;
   border-radius: 8px;
   background-color: #E5E4E2;
+  max-width: 250px;
 }
 
 .MiddleSectionHome {
@@ -34,6 +36,8 @@
   padding: 10px;
   background-color: #FAF9F6;
   box-sizing: border-box;
+  width: 100%;  /* Ovdje možete dodati width 100% da se prilagodi širini */
+  max-width: 800px;
 }
 
 .RightSectionHome {
@@ -86,8 +90,6 @@
 .report-button:hover {
   background-color: #a42525 !important;
 }
-
-
 
 
 .AidActionItem{

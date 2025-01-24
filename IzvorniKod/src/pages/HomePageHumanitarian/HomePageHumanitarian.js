@@ -103,6 +103,7 @@ const HomePageHumanitarian = () => {
 
             <div className="buttonsHomePageHumanitarian">
                 {/*<button className="report-button" onClick={handleAnonymousReport}>REPORT</button>*/}
+                <BackButton></BackButton>
                 <button className="manage-resources-button" onClick={navigateToManageResources}>MANAGE RESOURCES</button>
                 <button className="add-new-action-button" onClick={navigateToAddNewAction}>ADD NEW ACTION</button>
                 <button className="see-map-button" onClick={navigateToMap}>SEE MAP</button>
