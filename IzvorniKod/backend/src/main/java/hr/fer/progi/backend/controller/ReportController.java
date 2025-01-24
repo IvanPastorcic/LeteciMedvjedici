@@ -68,7 +68,7 @@ public class ReportController {
 
 	@PostMapping("/add")
 	//@Secured("ROLE_USER")
-	public ResponseEntity<Report> newReport(@RequestBody ReportDTO dto){
+	public ResponseEntity<?> newReport(@RequestBody ReportDTO dto){
 		//ReportDTO dto = new ReportDTO(settlementName, disasterType, shortDescription, "");
 		System.out.println("Disaster Type: " + dto.getDisasterType());
 		System.out.println("Location: " + dto.getSettlementName());
@@ -76,8 +76,8 @@ public class ReportController {
 		System.out.println("Coordinates: " + dto.getCoordinates());
 
 
-		Report report = reportService.newReport(dto);
-		return ResponseEntity.ok(report);
+
+		return reportService.newReport(dto);
 	}
 
 
