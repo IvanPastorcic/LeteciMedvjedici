@@ -28,7 +28,7 @@ function ReportNeedPage() {
     useEffect(() => {
       const fetchLocations = async () => {
         try {
-          const response = await axios.get("http://localhost:8081/location/settlementnames");
+          const response = await axios.get("https://safebear-backend.onrender.com/location/settlementnames");
           const locationNames = response.data.map(location => location.settlementName || location);
           setLocations(locationNames);
           setFilteredLocations(locationNames);
@@ -105,7 +105,7 @@ function ReportNeedPage() {
   
       try {
         const response = await axios.post(
-          "http://localhost:8081/needs/add",
+          "https://safebear-backend.onrender.com/needs/add",
           needsToSubmit,
           { withCredentials: true }
         );

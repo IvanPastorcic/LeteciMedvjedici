@@ -30,7 +30,7 @@ const HomePage = () => {
         // Fetch Reports
         const fetchReports = async () => {
             try {
-                const response = await axios.get(`http://localhost:8081/reports/accepted`, {
+                const response = await axios.get(`https://safebear-backend.onrender.com/reports/accepted`, {
                     withCredentials: true,
                   });
                 console.log(response.data);
@@ -46,7 +46,7 @@ const HomePage = () => {
         // Fetch Actions
         const fetchActions = async () => {
             try {
-                const response = await axios.get(`http://localhost:8081/actions`, {
+                const response = await axios.get(`https://safebear-backend.onrender.com/actions`, {
                     withCredentials: true,
                   });
                 setActions(response.data);
@@ -89,7 +89,7 @@ const HomePage = () => {
     const logout = async () => {
         try {
             // Call the backend logout endpoint
-            await axios.get(`http://localhost:8081/user/logout`, {
+            await axios.get(`https://safebear-backend.onrender.com/user/logout`, {
                 withCredentials: true, // Ensure cookies are sent with the request
             });
         } catch (error) {

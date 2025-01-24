@@ -4,7 +4,7 @@ import './Login.css';
 function Login(props) {
     function handleGoogleLogin() {
        
-       window.location.href = "http://localhost:8081/oauth2/authorization/google"
+       window.location.href = "https://safebear-backend.onrender.com/oauth2/authorization/google"
     }
 
     return (

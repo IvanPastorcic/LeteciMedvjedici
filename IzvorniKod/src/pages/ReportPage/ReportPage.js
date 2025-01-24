@@ -23,7 +23,7 @@ function ReportPage() {
   useEffect(() => {   
     const fetchLocations = async () => {
       try {
-        const response = await axios.get("http://localhost:8081/location/settlementnames"); 
+        const response = await axios.get("https://safebear-backend.onrender.com/location/settlementnames"); 
         const locationNames = response.data.map(location => location.settlementName || location);
         setLocations(locationNames);
         setFilteredLocations(locationNames); 
@@ -112,7 +112,7 @@ function ReportPage() {
 
     try {
         // Slanje izvještaja
-        const response = await axios.post("http://localhost:8081/reports/add", reportData, {
+        const response = await axios.post("https://safebear-backend.onrender.com/reports/add", reportData, {
             withCredentials: true,
         });
 
@@ -157,7 +157,7 @@ const handleSubmit = async () => {
   };
 
   try {
-    const response = await axios.post("http://localhost:8081/reports/add", reportData, {
+    const response = await axios.post("https://safebear-backend.onrender.com/reports/add", reportData, {
         withCredentials: true,
     });
 

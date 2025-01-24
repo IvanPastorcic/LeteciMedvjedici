@@ -19,7 +19,7 @@ function ManageResource() {
 
   const fetchMyResources = async () => {
     try {
-      const response = await axios.get("http://localhost:8081/resource/own", {
+      const response = await axios.get("https://safebear-backend.onrender.com/resource/own", {
         withCredentials: true,
       });
       setMyResources(response.data);
@@ -31,7 +31,7 @@ function ManageResource() {
 
   const fetchResources = async () => {
     try {
-      const response = await axios.get("http://localhost:8081/resource/all", {
+      const response = await axios.get("https://safebear-backend.onrender.com/resource/all", {
         withCredentials: true,
       });
       setAllResources(response.data);
@@ -66,7 +66,7 @@ function ManageResource() {
         };
 
         await axios.post(
-          "http://localhost:8081/resource/add/new",
+          "https://safebear-backend.onrender.com/resource/add/new",
           requestBody,
           { withCredentials: true }
         );
@@ -109,7 +109,7 @@ function ManageResource() {
         };
         console.log(requestBody);
         // Make the PATCH request
-        await axios.patch("http://localhost:8081/resource/update", requestBody, { headers: {
+        await axios.patch("https://safebear-backend.onrender.com/resource/update", requestBody, { headers: {
           "Content-Type": "application/json",
         },
         withCredentials: true,

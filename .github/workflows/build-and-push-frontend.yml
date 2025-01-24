@@ -42,10 +42,8 @@ jobs:
         run: npm install --verbose
         working-directory: IzvorniKod
 
-      - name: Disable ESLint during build
-        run: |
-          export DISABLE_ESLINT_PLUGIN=true
-          npm run build --verbose
+      - name: Izgradnja aplikacije
+        run: npm run build --verbose
         working-directory: IzvorniKod
 
       - name: Postavljanje Docker Buildx

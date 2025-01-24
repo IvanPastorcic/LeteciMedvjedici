@@ -23,7 +23,7 @@ const ProfilePage = () => {
         
         const fetchUser = async () => {
             try {
-                const response = await axios.get("http://localhost:8081/user", {withCredentials: true});
+                const response = await axios.get("https://safebear-backend.onrender.com/user", {withCredentials: true});
                 setuUser(response.data);
                 console.log(response.data);
 
@@ -38,7 +38,7 @@ const ProfilePage = () => {
         }
         /*const fetchReports = async () => {
             try {
-                const response = await axios.get(`http://localhost:8081/user/${user.id}/reports`, {withCredentials: true}); 
+                const response = await axios.get(`https://safebear-backend.onrender.com/user/${user.id}/reports`, {withCredentials: true}); 
                 
                 setReports(response.data); 
                 setLoading(false); 
@@ -60,7 +60,7 @@ const ProfilePage = () => {
    
     const fetchReports = async (id) => {
         try {
-            const response = await axios.get(`http://localhost:8081/user/${id}/reports`, {withCredentials: true}); 
+            const response = await axios.get(`https://safebear-backend.onrender.com/user/${id}/reports`, {withCredentials: true}); 
             
             setReports(response.data); 
             setLoading(false); 
@@ -89,7 +89,7 @@ const ProfilePage = () => {
         }
     
         try {
-            const response = await axios.patch("http://localhost:8081/user/edit", {
+            const response = await axios.patch("https://safebear-backend.onrender.com/user/edit", {
                 username: newUsername
             }, { withCredentials: true });
             
@@ -103,7 +103,7 @@ const ProfilePage = () => {
 
     const handleDeleteAccount = async () => {
         try{
-        await axios.delete(`http://localhost:8081/user/${user.id}`, { withCredentials: true });
+        await axios.delete(`https://safebear-backend.onrender.com/user/${user.id}`, { withCredentials: true });
         } catch (error) {
             console.error("Error deleting your account. ", error);
             alert("Failed to delete your account.");

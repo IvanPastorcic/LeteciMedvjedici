@@ -22,7 +22,7 @@ const HomePageAuthorities = () => {
     useEffect(() => {
         const fetchReports = async () => {
             try {
-                const response = await axios.get("http://localhost:8081/reports/accepted", {
+                const response = await axios.get("https://safebear-backend.onrender.com/reports/accepted", {
                     withCredentials: true,
                   });
                 setReports(response.data);
@@ -36,7 +36,7 @@ const HomePageAuthorities = () => {
 
         const fetchActions = async () => {
             try {
-                const response = await axios.get("http://localhost:8081/actions", {
+                const response = await axios.get("https://safebear-backend.onrender.com/actions", {
                     withCredentials: true,
                   });
                 setActions(response.data);
@@ -58,7 +58,7 @@ const HomePageAuthorities = () => {
 
     const handleDownloadReports = async () => {
         try {
-            const response = await axios.get("http://localhost:8081/reports/download", {
+            const response = await axios.get("https://safebear-backend.onrender.com/reports/download", {
                 responseType: "blob", 
                 withCredentials: true, 
             });

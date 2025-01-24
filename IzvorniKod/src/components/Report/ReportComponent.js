@@ -27,7 +27,7 @@ const ReportComponent = (props) => {
     const newStatus = statuses[reportId]; // Get the current status for the report
     try {
       const response = await axios.patch(
-        `http://localhost:8081/reports/${reportId}/status`,
+        `https://safebear-backend.onrender.com/reports/${reportId}/status`,
         { status: newStatus }, // Sending ReportStatusDTO
         {
           headers: {
