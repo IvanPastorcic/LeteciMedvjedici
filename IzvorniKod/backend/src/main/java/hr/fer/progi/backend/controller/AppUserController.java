@@ -71,6 +71,7 @@ public class AppUserController {
     public ResponseEntity<String> delete(@PathVariable("userId") Long id){
         Optional<AppUser> existingUser = userService.findById(id);
         if(existingUser.isPresent()){
+
             this.userService.delete(existingUser.get());
             return ResponseEntity.ok("User deleted successfully");
         }

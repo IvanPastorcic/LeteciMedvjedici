@@ -21,4 +21,5 @@ public interface UserRepository extends JpaRepository<AppUser, Long>{
 
     List<AppUser> findAll();
 
+    Optional<AppUser> findByUsername(String anonimniKorisnik);
 }

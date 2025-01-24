@@ -8,6 +8,7 @@ import hr.fer.progi.backend.repository.ReportRepository;
 import hr.fer.progi.backend.repository.UserRepository;
 import hr.fer.progi.backend.repository.exception.WrongInputException;
 import hr.fer.progi.backend.service.UserService;
+import jakarta.transaction.Transactional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -42,11 +43,31 @@ public class UserServiceImpl implements UserService {
         return reportRepository.findByUserIdJPQL(userId);
     }
 
-    @Override
+    @Transactional
     public void delete(AppUser appUser) {
-        this.userRepository.delete(appUser);
+        // Find the anonymous user
+        Optional<AppUser> anonymousUserOpt = userRepository.findByUsername("Anonimni korisnik");
 
+        if (anonymousUserOpt.isPresent()) {
+            AppUser anonymousUser = anonymousUserOpt.get();
+
+            // Find all reports associated with the user to be deleted
+            List<Report> reports = reportRepository.findByAppUserId(appUser.getId());
+
+            for (Report report : reports) {
+                report.setUser(anonymousUser);  // Reassign report to anonymous user
+                reportRepository.save(report);  // Save the updated report
+            }
+
+            // Now delete the original user
+            userRepository.delete(appUser);
+        } else {
+            throw new IllegalStateException("Anonimni korisnik not found!");
+        }
     }
+
+
+
 
     @Override
     public Optional<AppUser> fetchUserByEmail(String email) {
