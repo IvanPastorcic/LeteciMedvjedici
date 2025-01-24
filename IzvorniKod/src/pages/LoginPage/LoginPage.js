@@ -21,7 +21,7 @@ function LoginPage() {
             <div className="Separator"></div>
             <Register />
           </div>
-          {/*<Anonymous />*/}
+          <Anonymous />
         </div>
       </div>
       <Footer />

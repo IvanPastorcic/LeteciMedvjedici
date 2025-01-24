@@ -1,0 +1,202 @@
+body {
+    overflow-x: hidden;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.HomePageHumanitarian {
+    min-width: 100vw;
+}
+
+.PageBodyHumanitarian {
+    display: flex;
+    flex-direction: column; 
+    height: auto;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #FAF9F6;
+    padding-top: 1rem;
+}
+
+/*.LeftSectionHumanitarian {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1%;
+    border-radius: 8px;
+    background-color: #E5E4E2;
+}
+
+.MiddleSectionHumanitarian {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #FAF9F6;
+}
+
+.RightSectionHumanitarian {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FAF9F6;
+}*/
+
+
+.LeftSectionHumanitarian,
+.MiddleSectionHumanitarian,
+.RightSectionHumanitarian {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;  /* Poravnanje svih elemenata lijevo */
+    background-color: #FAF9F6;
+    padding: 1rem;
+    margin: 1rem; /* Razmak između sekcija */
+    border-radius: 8px;
+    min-height: 350px;
+}
+
+.LeftSectionHumanitarian {
+    flex: 1;
+    background-color: #E5E4E2; 
+}
+
+.MiddleSectionHumanitarian {
+    flex: 1.5;
+    justify-content: flex-start;
+    background-color: #FAF9F6;
+}
+
+.RightSectionHumanitarian {
+    flex: 1;
+    padding-right: 2rem;
+}
+
+.RightSectionHumanitarian  h2{
+    margin-bottom: 2rem;
+}
+
+
+.buttonsHomePageHumanitarian {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    flex-wrap: wrap;
+    background-color: #FAF9F6; 
+    border-radius: 5px; 
+  }
+  
+  .buttonsHomePageHumanitarian button {
+    max-width: 200px; 
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    background-color: #ddd;
+    color: #333;
+    transition: background-color 0.3s, transform 0.2s;
+    margin: 0.5rem;
+    text-align: center;
+    white-space: nowrap; 
+  }
+  
+  /* Hover efekat */
+  .buttonsHomePageHumanitarian button:hover {
+    background-color: #ccc;
+    transform: scale(1.05);
+  }
+
+  .back-button {
+    margin-right: auto;  /* Poravnanje BackButton na lijevu stranu */
+}
+
+ 
+
+
+.AidActionItem {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 350px;
+}
+
+.aid-date {
+    font-size: 0.8rem;
+    background-color: #E5E4E2;
+    border-radius: 8px;
+    padding: 0.2rem 0.4rem;
+    text-align: center;
+}
+
+.Filter {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #E5E4E2;
+    border: 1px solid black;
+    width: 100%;
+    height: auto;
+    font-size: 0.8rem;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.Report {
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 700px;
+}
+
+.ReportDateName {
+    display: flex;
+    justify-content: start;
+}
+
+.profile-text {
+    color: white;
+    text-align: right;
+    margin: 0.5rem;
+}
+
+@media (min-width: 768px) {
+.PageBodyHumanitarian {
+    flex-direction: row;
+}
+
+.LeftSectionHumanitarian {
+    flex: 0.25;
+}
+
+.MiddleSectionHumanitarian {
+    flex: 0.5;
+}
+
+.RightSectionHumanitarian {
+    flex: 0.25;
+}
+
+.buttonsHomePageHumanitarian {
+    flex-direction: row;
+}
+
+.see-map-button {
+    width: auto;
+    text-align: right;
+}
+}

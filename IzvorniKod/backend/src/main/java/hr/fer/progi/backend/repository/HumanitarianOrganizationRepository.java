@@ -6,5 +6,6 @@ import hr.fer.progi.backend.model.HumanitarianOrganization;
 
 @Repository
 public interface HumanitarianOrganizationRepository extends JpaRepository<HumanitarianOrganization, Long> {
-	
+
+    HumanitarianOrganization findByOrganizationName(String organisation);
 }

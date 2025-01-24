@@ -1,0 +1,71 @@
+.confirmation-screen {
+    font-family: Poppins;
+    text-align: center;
+    background-color: #FAF9F6;
+    min-height: 100vh;
+    padding-bottom: 2rem; /* Daje malo razmaka od dna */
+}
+
+.confirmation-screen h1 {
+    color: black;
+    margin-bottom: 0.8rem;
+}
+
+.confirmation-screen p {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.tracking-button{
+    font-family: Poppins;
+    margin-bottom: 3rem;
+    background-color: white;
+    font-size: 1rem;
+}
+
+.confirmation-screen-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Pomaže u raspodjeli prostora */
+    justify-content: center; /* Centriranje sadržaja */
+    padding-bottom: 3rem;
+}
+
+
+.back-button-confirmation{
+    display: flex;
+    align-items: flex-start;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.report-need-button, .go-home-button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.report-need-button{
+    color: white;
+    background-color: #B33951;
+}
+
+.go-home-button{
+    color: white;
+    background-color: gray;
+}
+
+.report-need-button:hover {
+    background-color: #CD1434;
+    color: #fff;
+}
+
+.go-home-button:hover {
+    background-color: #6c757d;
+    color: #fff;
+}

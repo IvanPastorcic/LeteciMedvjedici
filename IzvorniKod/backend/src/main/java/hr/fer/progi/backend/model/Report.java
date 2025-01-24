@@ -34,18 +34,15 @@ public class Report {
 	private String photo; // putanja do slike?
 
 	/*
-	 ** NOTE**
-	 * 
-	 * @JoinColumn(name ="ovdje_ide_NAZIVTABLICE_NAZIVCOLUMNA", nullable=false)
-	 * 
-	 * 
-	 * @ManyToOne(fetch = FetchType.LAZY)
-	 * @JoinColumn(name = "LOCATION_GEOGRAPHICCOORDINATES", nullable =
-	 * false) private String reportGeographicCoordinates;
+
+	 @ManyToOne(fetch = FetchType.LAZY)
+	 @JoinColumn(name = "LOCATION_GEOGRAPHICCOORDINATES", nullable =
+	  false) private String reportGeographicCoordinates;
 	 */
-	
-	@NotNull
-	@ManyToOne(fetch = FetchType.EAGER)
+	@Column(name = "LOCATION_GEOGRAPHICCOORDINATES"/*, nullable = false*/)
+	private String reportGeographicCoordinates;
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "USER_ID", nullable = false)
 	private AppUser appUser;
 
@@ -65,12 +62,23 @@ public class Report {
 		this.photo = photo;
 	}
 
-	// with relationships
 	public Report(ReportStatus reportStatus, Timestamp time/* , @NotEmpty String reportGeographicCoordinates */,
-			String shortDescription, String photo, AppUser appUser, NaturalDisaster naturalDisaster) {
+				  String shortDescription, String photo, AppUser appUser, NaturalDisaster naturalDisaster) {
 		this.reportStatus = reportStatus;
 		this.time = time;
 		/* this.reportGeographicCoordinates = reportGeographicCoordinates; */
+		this.shortDescription = shortDescription;
+		this.photo = photo;
+		this.appUser = appUser;
+		this.naturalDisaster = naturalDisaster;
+	}
+
+	// with relationships
+	public Report(ReportStatus reportStatus, Timestamp time , String reportGeographicCoordinates ,
+			String shortDescription, String photo, AppUser appUser, NaturalDisaster naturalDisaster) {
+		this.reportStatus = reportStatus;
+		this.time = time;
+		this.reportGeographicCoordinates = reportGeographicCoordinates; 
 		this.shortDescription = shortDescription;
 		this.photo = photo;
 		this.appUser = appUser;
@@ -97,13 +105,14 @@ public class Report {
 		this.time = time;
 	}
 
-	/*
-	 * public String getGeographicCoordinates() { return
-	 * reportGeographicCoordinates; }
-	 * 
-	 * public void setGeographicCoordinates(String reportGeographicCoordinates) {
-	 * this.reportGeographicCoordinates = reportGeographicCoordinates; }
-	 */
+
+	public String getGeographicCoordinates() {
+         return reportGeographicCoordinates; }
+ 
+	public void setCoordinates(Double latitude, Double longitude) {
+        this.reportGeographicCoordinates = latitude + "," + longitude;
+    }
+	
 
 	public String getShortDescription() {
 		return shortDescription;

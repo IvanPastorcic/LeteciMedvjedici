@@ -1,11 +1,12 @@
-.header-container {
+.report-header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  background-color: #FAF9F6;
 }
 
-.header-title {
+.report-header-title {
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -17,23 +18,20 @@
   margin-right: 8px; 
 }
   
-.app-container {
-    background-color: #d9d9d9; 
-    padding: 10px 15px; 
-}
   
   .report-section {
     margin-top: 20px;
   }
   
-  .location-inputs {
-    display: grid;
-  
-    justify-content: space-between;
+  .location-inputs,
+  .containerStylebottom {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    margin-top: 20px;
-    max-width: 600px; 
-    margin: 20px auto;
+    justify-content: space-between;
+    max-width: 37.5rem; 
+    margin: 0 auto;
+    padding-bottom: 0.4rem;
   }
   
   .location-button {
@@ -48,14 +46,32 @@
     margin-right: 10px;
   }
   
-  .address-input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  
+  .location-input,
+  .inputField {
+  width: 100%; 
+  padding: 1rem; 
+  font-family: Poppins; 
+  border:1px solid #ccc; 
+  border-radius: 8px; 
+  box-sizing: border-box; 
+}
+
+.address-input{
+  width: 10rem; 
+  padding: 1rem; 
+  font-family: Poppins; 
+  border:1px solid #ccc; 
+  border-radius: 8px; 
+}
+
+.use-location-button{
+  margin-top: 0.5rem;
+  padding: 1rem; 
+  font-family: Poppins; 
+  border:2px solid #ccc; 
+  border-radius: 8px; 
+
+}
   
   .optional-section p {
     font-weight: bold;
@@ -72,22 +88,11 @@
     align-items: center;
     border: 1px solid #ccc;
     padding: 5px;
-    border-radius: 4px;
+    border-radius: 8px;
   }
   
   .camera-icon {
     margin-right: 10px;
-  }
-  
-  .submit-button {
-    background-color: #b30000;
-    color: white;
-    padding: 15px 30px; 
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    flex: 0 0 45%; 
-    text-align: center;
   }
   
   
@@ -110,33 +115,59 @@
     border-color: #b30000; 
   }
 
+  .report-submit-button {
+    font-family: Poppins;
+    font-size: 1.2rem;
+    background-color: #b30000;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    flex: 0 0 45%; 
+    display: block;    
+    margin: 30px auto;  
+    width: auto;        
+
+  }
+
+  .report-content-container {
+    background-color: #FAF9F6;
+    width: 100%;       
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;  
+    align-items: center;
+    height: auto;
+  }
+  
+
+  .report-app-container {
+    background-color: #d9d9d9;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;  
+    align-items: center;
+    max-width: 100%;  
+  }
+  
+
   .section-title {
     text-align: center;
     margin-top: 20px;
   } 
   
-  .divider {
+  .section-title-last{
+    text-align: center;
+    margin: 0.5rem;
+  }
+  .report-divider {
     border: 0;
     border-top: 2px solid #666; 
-    width: 85%; 
-    margin: 20px auto; 
+    width: 90%; 
   }
 
-  .content-container {
-    background-color: white;
-    padding: 5px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin: 25px auto;
-    max-width: 100%; 
-  }
-
-  .footer-section {  
-    justify-content: space-between;
-    align-items: center;
-    margin: 20px auto; 
-    max-width: 90%; 
-  }
   body, html {
     margin: 0;
     padding: 0;
@@ -144,13 +175,6 @@
   }
   
 
-.footer-section {
-  display: flex;              
-  justify-content: space-between; 
-  align-items: center;           
-  margin: 40px auto;             
-  max-width: 90%;
-}
 
 
 .optional-section {
@@ -159,18 +183,6 @@
   margin-right: 20px;            
 }
 
-
-.submit-button {
-  background-color: #b30000;
-  color: white;
-  padding: 20px 30px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  text-align: center;
-  flex: 0 0 auto;                /* Prevent the submit button from stretching */
-  margin-left: 20px;             /* Optional: space between description and submit button */
-}
 .search-dropdown {
   position: absolute;
   top: 100%;
@@ -178,7 +190,7 @@
   right: 0;
   background-color: white;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 8px;
   max-height: 150px;
   overflow-y: auto;
   list-style: none;
@@ -186,6 +198,7 @@
   padding: 0;
   z-index: 1000;
 }
+
 
 .search-item {
   padding: 10px;
@@ -202,38 +215,34 @@
   background-color: #d0d0d0;
 }
 
+
 .containerStyle {
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 
 .iconContainerStyle {
   text-align: center;
+  font-family: Poppins;
   padding: 10px;
-  border-radius: 5px;
-  cursor: pointer,
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0.5rem;
 }
 
 .paragraphStyle {
+
   margin-top: 5px;
   font-size: 14px;
 }
 
-.inputField {
-  border-radius: 5px;
-  border: 1px solid gray;
-  width: 40vw;
-  padding: 15px;
-
-
-}
 
 .error-text {
   margin: 20px;
 }
+
 
 
 

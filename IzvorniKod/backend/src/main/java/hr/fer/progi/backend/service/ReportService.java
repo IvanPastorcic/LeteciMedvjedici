@@ -1,6 +1,9 @@
 package hr.fer.progi.backend.service;
 
 import java.util.List;
+
+import hr.fer.progi.backend.dto.ReportStatusDTO;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import hr.fer.progi.backend.dto.ReportDTO;
@@ -13,7 +16,7 @@ public interface ReportService {
 	public List<Report> getAllReports();
 	// returns List of all reports
 
-    public Report newReport(ReportDTO reportDTO);
+    public ResponseEntity<?> newReport(ReportDTO reportDTO);
     // adds new report
 
 	public Report findById(Long id);
@@ -23,5 +26,12 @@ public interface ReportService {
 	// returns report with matching reportStatus
 
 	public Report deleteById(Long id);
-	// deletes report with matching id
+
+    Report changeStatus(Long id, ReportStatusDTO dto);
+
+    List<Report> getAcceptedReports();
+
+	List<Report> getProcessingReports();
+
+	List<Report> getDeniedReports();
 }

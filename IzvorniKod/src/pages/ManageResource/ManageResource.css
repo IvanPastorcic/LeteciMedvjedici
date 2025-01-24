@@ -1,0 +1,127 @@
+
+.manage-report-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.ManageReport {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  background-color: #ffffff;
+  margin-bottom: 6rem;
+  gap: 3rem; 
+  align-items: flex-start;
+}
+
+.filter-container p {
+  font-weight: bold;
+}
+
+/* Lijeva sekcija s resursima */
+.resources-section {
+  flex: 1;
+  margin-right: 2rem;
+  padding-top: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Poravnanje gore */
+}
+
+/* Desna sekcija s "Humanitarian Organization" i formom za dodavanje */
+.humanitarian-action {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* Postavlja tablicu i formu jedan ispod drugog */
+  gap: 2.2rem; /* Razmak između tablice i forme */
+  margin-top: 1.8rem; /* Razmak od tablice Humanitarian organization */
+  justify-content: flex-start; /* Poravnanje gore */
+  margin-right: 1rem;
+  padding-right: 1rem;
+}
+
+/* Filter container - sve u jednom redu */
+.manage-filter-container {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  align-items: center; /* Vertikalno centriranje elemenata unutar kontejnera */
+  gap: 1rem; /* Razmak između elemenata */
+}
+
+.manage-filter-container p {
+  font-weight: bold;
+  margin: 0; 
+}
+
+/* Stil za tablicu resursa */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+}
+
+table th, table td {
+  padding: 0.6rem;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f2f2f2;
+}
+
+
+/* Dodavanje novog resursa */
+.add-resource-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.add-resource-container .form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.add-resource-container label {
+  font-size: 16px;
+  color: #333;
+}
+
+.add-resource-container input,
+.add-resource-container select {
+  padding: 8px;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+
+
+/* Footer */
+footer {
+  padding: 15px;
+  background-color: #333;
+  color: white;
+  text-align: center;
+}
+
+/* Responsivnost na manjim ekranima */
+@media (max-width: 768px) {
+  .ManageReport {
+    flex-direction: column; /* Na manjim ekranima sekcije se slažu vertikalno */
+  }
+
+  .resources-section,
+  .humanitarian-action {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
