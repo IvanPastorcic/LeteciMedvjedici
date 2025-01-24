@@ -16,6 +16,7 @@ const ProfilePage = () => {
     const [loading, setLoading] = useState(true); // Loading state
     const [error, setError] = useState(null); 
     const [user, setuUser] = useState([]);
+    const [actionsError, setActionsError] = useState(null);
     const navigate = useNavigate();
 
 
@@ -73,7 +74,32 @@ const ProfilePage = () => {
     };
    
 
- 
+    const logout = async () => {
+        try {
+            // Call the backend logout endpoint
+            await axios.get(`http://localhost:8081/user/logout`, {
+                withCredentials: true, // Ensure cookies are sent with the request
+            });
+        } catch (error) {
+            console.error("Error logging out", error);
+            setActionsError("Failed to log out.");
+        }
+    
+        // Clear cookies on the client side
+        document.cookie.split(";").forEach(cookie => {
+            const cookieName = cookie.split("=")[0].trim();
+            document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        });
+    
+        // Log out from Google
+        const googleLogoutURL = "https://accounts.google.com/logout";
+        window.location.href = googleLogoutURL;
+    
+        // Optionally: Add a delay to redirect the user back to your app after logging out from Google
+        setTimeout(() => {
+            window.location.href = "http://localhost:3000/";
+        }, 2000); // Adjust delay as needed
+    };
 
     
 
@@ -149,6 +175,12 @@ const ProfilePage = () => {
                                     <p>Want to delete your account?</p>
                                     <button className='button-profile delete-btn' onClick={handleDeleteAccount}>
                                         Delete data
+                                    </button>
+                                </div>
+
+                                <div className="LogoutSection">
+                                    <button className='button-profile logout-btn' onClick={logout}>
+                                        Logout
                                     </button>
                                 </div>
                             </div>

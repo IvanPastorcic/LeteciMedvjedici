@@ -115,6 +115,24 @@
   background-color: #CD1434;
 }
 
+.logout-btn {
+  background-color: #d9534f; /* Crvena boja za logout */
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px; 
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%; 
+  margin-top: 1.5rem;
+}
+
+.logout-btn:hover {
+  background-color: #c9302c;
+}
+
+
 /* ---- Desna strana (Prijave) ---- */
 .RightSectionProfile {
   flex: 1.5;  /* Smanjeno s 2 na 1.5 */
