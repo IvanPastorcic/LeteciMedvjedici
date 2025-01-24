@@ -19,7 +19,7 @@ import ReportOpen from "./pages/ReportOpen/ReportOpen";
 import ReportOpenAdmin from "./pages/ReportOpenAdmin/ReportOpenAdmin";
 import NeedsOpen from "./pages/NeedsOpen/NeedsOpen";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
-import ProfilePageAdmin from "./pages/ProfilePageAdmin/ProfilePageAdmin";
+
 
 import TrackStatus from "./pages/TrackStatusPage/TrackStatusPage";
 
@@ -51,7 +51,6 @@ function App() {
 
         <Route path="/homeadmin" element={<HomePageAdmin />} />
         <Route path="/editusersadmin" element={<EditUsersAdmin />} />
-        <Route path="/profileadmin" element={<ProfilePageAdmin />} />
         <Route path="/reportopenadmin/:reportId" element={<ReportOpenAdmin />} /> 
 
         <Route path ="/track-status/" element={<TrackStatus/> } /> 

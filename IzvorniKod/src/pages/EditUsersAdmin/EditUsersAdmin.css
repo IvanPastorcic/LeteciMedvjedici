@@ -34,14 +34,31 @@ body {
     margin: 20px;
 }
 
-.buttonsHomePageAdmin {
-    font-family: Poppins;
+.buttonsHomePageAdmin{
     display: flex;
-    position: relative;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
-    gap: 1rem;
-}
+    width: 100%;
+    padding: 1rem;
+    flex-wrap: wrap;
+    background-color: #FAF9F6; 
+    border-radius: 5px; 
+  }
+  
+  .buttonsHomePageAdmin button {
+    max-width: 200px; 
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    background-color: #ddd;
+    color: #333;
+    transition: background-color 0.3s, transform 0.2s;
+    margin: 0.5rem;
+    text-align: center;
+    white-space: nowrap; 
+  }
 
 
 .see-map-button-admin {

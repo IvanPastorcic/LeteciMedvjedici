@@ -133,17 +133,24 @@ const ProfilePage = () => {
                                     <p className="userRole">{user.role}</p>
                                 </div>
                             </div>
-                            <div className='UserEdit'>
-                                <p>Edit your username:</p>
-                                <input type='text' className='pass-input'></input>
-                                <button className='button-profile' onClick={handleChangeUsername}>
-                                    Change username
-                                </button>
-                                <hr></hr>
-                                <p>Want to delete your account?</p>
-                                <button className='button-profile' onClick={handleDeleteAccount}>
-                                    Delete data
-                                </button>
+                            <div className="UserEdit">
+                                <div className="EditUsernameSection">
+                                    <p>Edit your username:</p>
+                                    <input type='text' className='pass-input'></input>
+                                    <button className='button-profile' onClick={handleChangeUsername}>
+                                        Change username
+                                    </button>
+                                </div>
+
+                                <hr />
+
+                
+                                <div className="DeleteAccountSection">
+                                    <p>Want to delete your account?</p>
+                                    <button className='button-profile delete-btn' onClick={handleDeleteAccount}>
+                                        Delete data
+                                    </button>
+                                </div>
                             </div>
 
                             

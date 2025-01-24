@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ReportComponentAdmin from '../../components/Report/ReportComponentAdmin';
+import ProfileHeader from '../../components/ProfileHeader/ProfileHeader';
 
 const HomePageAdmin = () => {
     const [reports, setReports] = useState([]);
@@ -79,11 +80,11 @@ const HomePageAdmin = () => {
     return (
         <div className="HomePageAdmin">
             <div className="header">
-                <AnonHeader />
+                <ProfileHeader />
             </div>
 
             <div className="buttonsHomePageAdmin">
-                <BackButton />
+                
                 <button className="edit-users" onClick={() => navigate('/editusersadmin')}>EDIT USERS</button>
                 <button className="see-map-button-admin" onClick={() => navigate('/map')}>SEE MAP</button>
             </div>

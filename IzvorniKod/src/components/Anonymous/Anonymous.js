@@ -10,7 +10,7 @@ function Anonymous() {
     };
 
     const handleTrackStatusAnon = () => {
-        navigate('/track-status'); 
+        navigate('/track-status', { state: { isAnon: true } });
     };
     
 

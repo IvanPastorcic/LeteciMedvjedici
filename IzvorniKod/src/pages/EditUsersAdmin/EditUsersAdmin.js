@@ -5,6 +5,7 @@ import BackButton from "../../components/BackButton/BackButton";
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ProfileHeader from '../../components/ProfileHeader/ProfileHeader';
 
 const EditUsersAdmin = () => {
     const [users, setUsers] = useState([]);
@@ -106,11 +107,11 @@ const EditUsersAdmin = () => {
     return (
         <div className="EditUsersAdmin">
             <div className="header">
-                <AnonHeader />
+                <ProfileHeader />
             </div>
 
             <div className="buttonsHomePageAdmin">
-                <BackButton />
+              
                 <button className="edit-users" onClick={navigateToHomeAdmin}>
                     EDIT REPORTS
                 </button>
