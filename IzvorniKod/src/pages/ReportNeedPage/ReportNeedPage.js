@@ -63,77 +63,7 @@ function ReportNeedPage() {
       }));
     };
   
-    /*
-    const handleSubmit = () => {
-      const submittedNeeds = Object.entries(needs).filter(
-        ([, quantity]) => quantity
-      );
-  
-      if (submittedNeeds.length === 0) {
-        alert("Please specify at least one need.");
-        return;
-      }
-  
-      const needsToSubmit = submittedNeeds.map(([need, quantity]) => ({
-        type: need,
-        quantity: parseInt(quantity, 10),
-        unit: needUnits[need],
-      }));
-
-      //za slanje info u backend
-/*       try {
-        
-        const response = await axios.post("http://localhost:8081/needs/add", {
-          needs: needsToSubmit, 
-    
-        console.log("Submitted successfully:", response.data);
-        alert("Needs submitted successfully!");
-    
-        
-        navigate("/home");
-      } catch (error) {
-        console.error("Error submitting needs:", error);
-        alert("Failed to submit needs. Please try again.");
-      } 
-  
-      console.log("Submitting needs:", needsToSubmit);
-      alert("Needs submitted successfully!");
-      navigate("/home");
-    };*/
-
-    /*
-    const handleSubmit = async () => {
-      const submittedNeeds = Object.entries(needs).filter(
-        ([, quantity]) => quantity
-      );
-    
-      if (submittedNeeds.length === 0) {
-        alert("Please specify at least one need.");
-        return;
-      }
-    
-      // Prepare the data to send to the backend
-      const needsToSubmit = submittedNeeds.map(([need, quantity]) => ({
-        type: need.toUpperCase(),  // Ensure the type matches your backend's enum format
-        location: "Some Location", // Replace with actual location input if needed //DODATI OVO PREKO INPUT FIELDA
-        quantity: parseInt(quantity, 10),  // Ensure quantity is an integer
-      }));
-    
-      try {
-        // Make the POST request to your backend
-        const response = await axios.post("http://localhost:8081/needs/add", {
-           needsToSubmit,
-        }, { withCredentials: true,});
-    
-        console.log("Submitted successfully:", response.data);
-        alert("Needs submitted successfully!");
-        navigate("/home");
-    
-      } catch (error) {
-        console.error("Error submitting needs:", error);
-        alert("Failed to submit needs. Please try again.");
-      }
-    };*/
+   
 
 
     const handleLocationInputChange = (e) => {

@@ -2,6 +2,7 @@ package hr.fer.progi.backend.service.impl;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 import hr.fer.progi.backend.dto.ReportStatusDTO;
 import hr.fer.progi.backend.dto.SettlementDTO;
@@ -9,6 +10,8 @@ import hr.fer.progi.backend.model.*;
 import hr.fer.progi.backend.repository.exception.InputIsNullException;
 import hr.fer.progi.backend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import hr.fer.progi.backend.dto.CoordinatesDTO;
@@ -18,6 +21,8 @@ import hr.fer.progi.backend.model.Enum.Role;
 import hr.fer.progi.backend.repository.NaturalDisasterRepository;
 import hr.fer.progi.backend.repository.ReportRepository;
 import hr.fer.progi.backend.repository.SettlementRepository;
+
+import static org.springframework.web.servlet.function.ServerResponse.status;
 
 @Service
 public class ReportServiceImpl implements ReportService {
@@ -54,7 +59,7 @@ public class ReportServiceImpl implements ReportService {
 	}
 
 	@Override
-	public Report newReport(ReportDTO dto) {
+	public ResponseEntity<?> newReport(ReportDTO dto) {
 		AppUser appUser = userService.loadCurrentUser();
 
 		// provjera je li user napracio report u zadnjih sat vremena
@@ -62,7 +67,9 @@ public class ReportServiceImpl implements ReportService {
 		boolean hasRecentReport = reportRepository.existsByAppUserAndTimeAfter(appUser, oneHourAgo);
 
 		if (hasRecentReport && appUser.getRole().equals(Role.ROLE_USER) && !appUser.getUsername().equals("Anonimni korisnik")) {
-			throw new IllegalArgumentException("You can only create one report per hour.");
+			return ResponseEntity
+					.status(HttpStatus.BAD_REQUEST)
+					.body(Map.of("message", "You can only create one report per hour."));
 		}
 
 		// Provjera je li naziv naselja "Current Location"
@@ -104,7 +111,7 @@ public class ReportServiceImpl implements ReportService {
 				dto.getShortDescription() != null ? dto.getShortDescription() : "No description provided",
 				dto.getPhoto() != null ? dto.getPhoto() : "", appUser, naturalDisaster);
 
-		return reportRepository.save(report);
+		return ResponseEntity.ok(reportRepository.save(report));
 	}
 
 	private Timestamp getTime() {

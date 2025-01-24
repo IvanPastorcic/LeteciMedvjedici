@@ -74,7 +74,7 @@ function ReportPage() {
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value); 
   };
-
+/*
   const handleSubmit = async () => {
     // Sanitiziraj lokaciju
     const sanitizedLocation = locationInput.trim();
@@ -124,7 +124,71 @@ function ReportPage() {
         alert("Failed to submit report.");
         console.error("Error submitting report:", error);
     }
+};*/
+const handleSubmit = async () => {
+  const sanitizedLocation = locationInput.trim();
+
+  const typeMapping = {
+      fire: "WILDFIRE",
+      earthquake: "EARTHQUAKE",
+      flooding: "FLOOD",
+      heavy_storm: "HURRICANE",
+      landslide: "LANDSLIDE",
+  };
+
+  const emergencyType = typeMapping[activeButton];
+
+  if (!emergencyType) {
+      alert("Please select an emergency type.");
+      return;
+  }
+
+  if (!description.trim()) {
+      alert("Please enter a description.");
+      return;
+  }
+
+  const reportData = {
+      settlementName: isUsingCurrentLocation ? "Current Location" : sanitizedLocation,
+      disasterType: emergencyType,
+      shortDescription: description.trim(),
+      coordinates: latitude + ", " + longitude, 
+      photo: "", 
+  };
+
+  try {
+    const response = await axios.post("http://localhost:8081/reports/add", reportData, {
+        withCredentials: true,
+    });
+
+    const reportId = response.data.id;
+    localStorage.setItem("reportId", reportId);
+    navigate(`/confirmation/${reportId}`);
+  } catch (error) {
+    console.error("Error submitting report:", error);
+
+    if (error.response) {
+      // Attempt to extract the error message from various possible formats
+      let errorMessage = "Failed to submit report.";
+
+      if (typeof error.response.data === "string") {
+        errorMessage = error.response.data; // Plain text error response
+      } else if (error.response.data && error.response.data.message) {
+        errorMessage = error.response.data.message; // Standard API response format
+      } else if (error.response.data && typeof error.response.data === "object") {
+        errorMessage = JSON.stringify(error.response.data); // Fallback to stringifying object
+      }
+
+      alert(`Error: ${errorMessage}`);
+    } else if (error.request) {
+      alert("No response from server. Please try again later.");
+    } else {
+      alert("An unexpected error occurred.");
+    }
+  }
 };
+
+
 
 
 const useCurrentLocation = () => {
