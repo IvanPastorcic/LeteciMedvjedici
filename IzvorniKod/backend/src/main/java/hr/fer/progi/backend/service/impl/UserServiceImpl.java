@@ -101,6 +101,7 @@ public AppUser loadCurrentUser() {
         return userRepository.findAll();
     }
 
+<<<<<<< HEAD
     @Override
     public AppUser createNew(UserDTO userDTO) {
 
@@ -117,4 +118,6 @@ public AppUser loadCurrentUser() {
     }
 
 
+=======
+>>>>>>> b189cd5 (Added admin functionalities)
 }

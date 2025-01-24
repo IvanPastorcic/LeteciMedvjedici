@@ -21,5 +21,8 @@ public interface UserRepository extends JpaRepository<AppUser, Long>{
 
     List<AppUser> findAll();
 
+<<<<<<< HEAD
     Optional<AppUser> findByUsername(String anonimniKorisnik);
+=======
+>>>>>>> b189cd5 (Added admin functionalities)
 }

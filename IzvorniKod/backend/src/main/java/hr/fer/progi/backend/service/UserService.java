@@ -26,10 +26,13 @@ public interface UserService {
 
     List<AppUser> findAllUsers();
 
+<<<<<<< HEAD
     AppUser createNew(UserDTO userDTO);
 
     AppUser editUserName(UsernameDTO username);
 
+=======
+>>>>>>> b189cd5 (Added admin functionalities)
 
     // AppUser loadCurrentUser();
 }
