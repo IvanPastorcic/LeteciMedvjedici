@@ -69,7 +69,7 @@ const ReportOpen = () => {
                     </div>
 
                     <div className="ReportCoordinates">
-                        <p><strong>Location:</strong> {report.location ? `${report.location.latitude}, ${report.location.longitude}` : "Unknown location"}</p>                    </div>
+                        <p><strong>Location:</strong> {report.geographicCoordinates}</p>                    </div>
                 </div>
             </div>
         </div>

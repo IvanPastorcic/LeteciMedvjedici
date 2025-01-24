@@ -11,7 +11,7 @@ const ProfileComponent = (props) => {
                 await axios.delete(`http://localhost:8081/user/${userId}`, { withCredentials: true });
 
                 // Notify parent component to refresh the user list
-                props.onUserDeleted(userId);
+                //props.onUserDeleted(userId);
             } catch (error) {
                 console.error("Error deleting user:", error);
                 alert("Failed to delete user. Please try again.");
@@ -34,9 +34,9 @@ const ProfileComponent = (props) => {
                         <button 
                             className='delete-user' 
                             onClick={() => handleDeleteUser(user.id)}
-                            disabled={user.role === 'ROLE_ADMIN'}
+                            disabled={user.role === 'ROLE_ADMIN' || user.username === 'Anonimni korisnik'}
                         >
-                            {user.role === 'ROLE_ADMIN' ? 'Cannot Delete Admin' : 'Delete the user'}
+                            {user.role === 'ROLE_ADMIN' || user.username === 'Anonimni korisnik' ? 'Cannot Delete' : 'Delete the user'}
                         </button>
                     </div>
                 </div>

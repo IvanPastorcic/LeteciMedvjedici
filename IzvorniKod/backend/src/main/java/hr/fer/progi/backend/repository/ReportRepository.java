@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -23,4 +24,9 @@ public interface ReportRepository extends JpaRepository<Report, Long> {
 	List<Report> findByUserIdJPQL(Long userId);
 
     List<Report> findAllByReportStatus(ReportStatus status);
+
+
+    void deleteByAppUserId(Long id);
+
+	List<Report> findByAppUserId(Long id);
 }
